@@ -1,0 +1,16 @@
+{
+  "menu": [
+    {
+      "url": "home",
+      "name": "Home",
+      "icon": "home",
+      "slug": "home"
+    },
+    {
+      "url": "transactions",
+      "name": "Transactions",
+      "icon": "dollar-sign",
+      "slug": "transactions"
+    }
+  ]
+}
