@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+RewriteCond %{HTTP_HOST} ^eastcoast\.asia$
+RewriteRule ^/?$ "https\:\/\/eastcoast\.asia\/" [R=301,L]
