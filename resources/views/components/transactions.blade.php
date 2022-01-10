@@ -49,14 +49,14 @@ $details = Auth::user()->usersdetail;
               <!-- <th></th>
               <th></th> -->
               <th>No</th>
+              <th>Requester</th>
               <th>Order No</th>
               <th>Amount (MYR)</th>
               <th>Amount (USD)</th>
               <th>Trading No</th>
               <th>Receipt</th>
               <th>Order Time</th>
-              <th>Request By</th>
-              <th>Action</th>
+              <th>Phone No</th>
             </tr>
           </thead>
           <tbody>
@@ -67,27 +67,29 @@ $details = Auth::user()->usersdetail;
             @foreach ($all_trx as $data)
               <tr>
                 <td>{{$count++}}</td>
+                <td>{{auth()->user()->find($data->created_by)->name}}</td>
                 <td><span id="trx-id-clipboard">{{$data->trx_id}}</span> <a href="javascript:;" class="copyClipboard" trx-id="{{$data->trx_id}}"><i data-feather='copy'></i></a></td>
                 <td>{{$data->amount_sent}}</td>
-                <td>{{$data->amount_receive}}</td>
+                <td><b>{{$data->amount_receive}}</b></td>
                 <td>{{$data->trading_no}}</td>
                 <td><a href="{{ url($data->receipt_url) }}" target="_blank" rel="noopener noreferrer"> <i data-feather='external-link'></i> View</a></td>
                 <td>{{ \Carbon\Carbon::parse($data->created_at)->diffForHumans()}}</td>
-                <td>{{auth()->user()->find($data->created_by)->name}}</td>
                 <!-- $data->created_by -->
-                <td>
+                <td>{{$details->find($data->created_by)->phone_no}}</td>
+                <!-- <td>
                   @if($data->notified == false)
-                  <button type="button" class="btn btn-outline-danger">
-                    <i data-feather="bell" class="me-25"></i>
+                  
+                  <a href="#" class="btn btn-outline-danger">
+                  <i data-feather="bell" class="me-25"></i>
                     <span>Notify</span>
-                  </button>
+                  </a>
                   @else  
                   <button type="button" class="btn btn-flat-success">
                     <i data-feather="check" class="me-25"></i>
                     <span>Notified</span>
                   </button>
                   @endif
-                </td>
+                </td> -->
               </tr>
             @endforeach
           </tbody>
@@ -268,8 +270,9 @@ $details = Auth::user()->usersdetail;
                         value="{{Auth::user()->usersdetail->find(1)->bank_acc_no}}"
                         readonly
                       />
-                      <!-- <small class="form-text"> You can use letters, numbers & periods </small> -->
                     </div>
+
+                    <small class="form-text"> Your order will be fulfilled within 24 hours </small>
 
                   </div>
                   <div class="modal-footer">
