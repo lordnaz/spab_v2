@@ -49,14 +49,12 @@ $details = Auth::user()->usersdetail;
               <!-- <th></th>
               <th></th> -->
               <th>No</th>
-
               <th>Requester</th>
               <th>Order No</th>
               <th>Amount (MYR)</th>
               <th>Amount (USD)</th>
               <th>Trading No</th>
               <th>Receipt</th>
-              <th>Action</th>
               <th>Order Time</th>
               <th>Phone No</th>
             </tr>
@@ -85,15 +83,13 @@ $details = Auth::user()->usersdetail;
                   <i data-feather="bell" class="me-25"></i>
                     <span>Notify</span>
                   </a>
-                  
                   @else  
                   <button type="button" class="btn btn-flat-success">
                     <i data-feather="check" class="me-25"></i>
                     <span>Notified</span>
                   </button>
                   @endif
-                </td>
-
+                </td> -->
               </tr>
             @endforeach
           </tbody>
@@ -308,6 +304,8 @@ $details = Auth::user()->usersdetail;
           <button type="submit" class="btn btn-primary">Confirm</button>
           <!-- </div> -->
 
+          
+          
         </div>
         
       </form>
@@ -343,6 +341,5 @@ $json = json_encode($status);
   {{-- Page js files --}}
   <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
 @endsection
-
 
 
