@@ -7,6 +7,7 @@
 /public/js
 /public/css
 /public/vendors
+/public/trx_receipt
 /storage/*.key
 /vendor
 .env
@@ -19,3 +20,4 @@ yarn-error.log
 /vuexy-shell-scripts
 supervisord.log
 supervisord.pid
+starter-kit.zip

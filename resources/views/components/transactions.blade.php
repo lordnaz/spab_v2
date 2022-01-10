@@ -30,6 +30,8 @@
 
 $status= session('msgg'); 
 
+$details = Auth::user()->usersdetail;
+
 @endphp
 
 @if ($status=='success')
@@ -47,13 +49,16 @@ $status= session('msgg');
               <!-- <th></th>
               <th></th> -->
               <th>No</th>
+
+              <th>Requester</th>
               <th>Order No</th>
               <th>Amount (MYR)</th>
               <th>Amount (USD)</th>
               <th>Trading No</th>
               <th>Receipt</th>
-              <th>Request</th>
               <th>Action</th>
+              <th>Order Time</th>
+              <th>Phone No</th>
             </tr>
           </thead>
           <tbody>
@@ -64,18 +69,23 @@ $status= session('msgg');
             @foreach ($all_trx as $data)
               <tr>
                 <td>{{$count++}}</td>
+                <td>{{auth()->user()->find($data->created_by)->name}}</td>
                 <td><span id="trx-id-clipboard">{{$data->trx_id}}</span> <a href="javascript:;" class="copyClipboard" trx-id="{{$data->trx_id}}"><i data-feather='copy'></i></a></td>
                 <td>{{$data->amount_sent}}</td>
-                <td>{{$data->amount_receive}}</td>
+                <td><b>{{$data->amount_receive}}</b></td>
                 <td>{{$data->trading_no}}</td>
                 <td><a href="{{ url($data->receipt_url) }}" target="_blank" rel="noopener noreferrer"> <i data-feather='external-link'></i> View</a></td>
                 <td>{{ \Carbon\Carbon::parse($data->created_at)->diffForHumans()}}</td>
-                <td>
+                <!-- $data->created_by -->
+                <td>{{$details->find($data->created_by)->phone_no}}</td>
+                <!-- <td>
                   @if($data->notified == false)
-                  <button type="button" class="btn btn-outline-danger">
-                    <i data-feather="bell" class="me-25"></i>
+                  
+                  <a href="#" class="btn btn-outline-danger">
+                  <i data-feather="bell" class="me-25"></i>
                     <span>Notify</span>
-                  </button>
+                  </a>
+                  
                   @else  
                   <button type="button" class="btn btn-flat-success">
                     <i data-feather="check" class="me-25"></i>
@@ -83,6 +93,7 @@ $status= session('msgg');
                   </button>
                   @endif
                 </td>
+
               </tr>
             @endforeach
           </tbody>
@@ -138,6 +149,21 @@ $status= session('msgg');
           </div>
 
           <div class="mb-1">
+            <label class="form-label" for="basic-icon-default-email">Phone No</label>
+            <input
+              type="text"
+              name="phoneno"
+              id="basic-icon-default-email"
+              class="form-control dt-email"
+              placeholder="0142217851"
+              aria-label="0142217851"
+              value="{{$details->phone_no}}"
+              readonly
+            />
+            <!-- <small class="form-text"> You can use letters, numbers & periods </small> -->
+          </div>
+
+          <div class="mb-1">
             <label class="form-label" for="basic-icon-default-fullname">Account Trading No.</label>
             <input
               type="text"
@@ -146,6 +172,7 @@ $status= session('msgg');
               id="basic-icon-default-fullname"
               placeholder="MT4/MT5 trading account no."
               aria-label="John Doe"
+              value="{{$latest_trx->trading_no ?? ''}}"
               required
             />
           </div>
@@ -181,6 +208,86 @@ $status= session('msgg');
             </div>
           </div>
 
+          <!-- Disabled Backdrop -->
+          <div class="disabled-backdrop-ex mb-1">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#backdrop">
+              Bank Transfer
+            </button>
+            <br>
+            <small class="form-text">Click to view bank transfer method</small>
+            <!-- Modal -->
+            <div
+              class="modal fade text-start"
+              id="backdrop"
+              tabindex="-1"
+              aria-labelledby="myModalLabel4"
+              data-bs-backdrop="false"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel4">Bank Information</h4>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-1">
+                      <label class="form-label" for="basic-icon-default-email">Account Name</label>
+                      <input
+                        type="text"
+                        name="phoneno"
+                        id="basic-icon-default-email"
+                        class="form-control dt-email"
+                        placeholder="0142217851"
+                        aria-label="0142217851"
+                        value="{{Auth::user()->usersdetail->find(1)->bank_acc_name}}"
+                        readonly
+                      />
+                      <!-- <small class="form-text"> You can use letters, numbers & periods </small> -->
+                    </div>
+
+                    <div class="mb-1">
+                      <label class="form-label" for="basic-icon-default-email">Bank Name</label>
+                      <input
+                        type="text"
+                        name="phoneno"
+                        id="basic-icon-default-email"
+                        class="form-control dt-email"
+                        placeholder="0142217851"
+                        aria-label="0142217851"
+                        value="{{Auth::user()->usersdetail->find(1)->bank_name}}"
+                        readonly
+                      />
+                      <!-- <small class="form-text"> You can use letters, numbers & periods </small> -->
+                    </div>
+
+                    <div class="mb-1">
+                      <label class="form-label" for="basic-icon-default-email">Bank Account No</label>
+                      <input
+                        type="text"
+                        name="phoneno"
+                        id="basic-icon-default-email"
+                        class="form-control dt-email"
+                        placeholder="0142217851"
+                        aria-label="0142217851"
+                        value="{{Auth::user()->usersdetail->find(1)->bank_acc_no}}"
+                        readonly
+                      />
+                    </div>
+
+                    <small class="form-text"> Your order will be fulfilled within 24 hours </small>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Disabled Backdrop end-->
+
           <div class="mb-1">
             <label for="formFile" class="form-label">Payment Receipt</label>
             <input 
@@ -191,10 +298,16 @@ $status= session('msgg');
             required />
             <small class="form-text"> As payment proof for transfer process </small>
           </div>
+
+          <!-- <button type="button" class="btn btn-outline-danger">Back</button>
+          <button type="button" class="btn btn-primary">Next</button> -->
         
           <!-- <button type="button" class="btn btn-primary data-submit me-1">Submit</button> -->
+          <!-- <div id="final_stage"> -->
           <button type="reset" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-primary">Confirm</button>
+          <!-- </div> -->
+
         </div>
         
       </form>

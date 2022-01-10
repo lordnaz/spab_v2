@@ -17,6 +17,7 @@ class UserDetail extends Model
         'phone_no',
         'acc_trading_no',
         'bank_acc_name',
+        'bank_name',
         'bank_acc_no',
         'tnc',
         'vip_status',

@@ -20,6 +20,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('phone_no');
             $table->string('acc_trading_no')->nullable();
             $table->string('bank_acc_name')->nullable();
+            $table->string('bank_name')->nullable();
             $table->string('bank_acc_no')->nullable();
             $table->string('tnc')->nullable();
             $table->boolean('vip_status');
