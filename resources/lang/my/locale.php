@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "Home" => "Utama",
+    // "Home" => "Utama",
     "Starter Kit" => "Starter Kit",
     "Apps & Pages" => "Apps & Pages",
     "User Interface" => "User Interface",
@@ -14,7 +14,7 @@ return [
     "Pages" => "Pages",
     "Charts & Maps" => "Charts & Maps",
     "Others" => "Others",
-    "Email" => "Email",
+    // "Email" => "Email",
     "Chat" => "Chat",
     "Todo" => "Todo",
     "Calendar" => "Calendar",
@@ -105,7 +105,7 @@ return [
     "500" => "500",
     "Not Authorized" => "Not Authorized",
     "Maintenance" => "Maintenance",
-    "Profile" => "Profile",
+    "Profile" => "Profil",
     "FAQ" => "FAQ",
     "Knowledge Base" => "Knowledge Base",
     "Search" => "Search",
@@ -141,7 +141,7 @@ return [
     "List" => "List",
     "View" => "View",
     "Edit" => "Edit",
-    "Account Settings" => "Account Settings",
+    "Account Settings" => "Tetapan Akaun",
     "Error 404" => "Error 404",
     "Error 405" => "Error 405",
     "Details" => "Details",
@@ -186,5 +186,54 @@ return [
     "Transactions" => "Transaksi",
     "Announcements" => "Makluman",
     "KYC_alert" => "<strong>Peringatan:</strong> Sila hantarkan gambar kad pengenalan (depan & belakang) dan swafoto anda bagi proses pengesahan status VIP anda.",
-    "trade_acc_alert" => "<strong>Info:</strong> Sila lengkapkan informasi 'Trade Settings' anda dan pastikan anda menggunakan akaun bank milikan anda."
+    "trade_acc_alert" => "<strong>Info:</strong> Sila lengkapkan informasi 'Trade Settings' anda dan pastikan anda menggunakan akaun bank milikan anda.",
+    
+    
+    // Login page 
+    "login_title" => "SPAB Aswara",
+    "login_desc" => "Selamat datang ke Sistem Pengurusan Akademi Bersepadu (SPAB) ASWARA 👋 </br></br> Sila log masuk untuk meneruskan",
+    "Email" => "E-mel",
+    "Password" => "Kata Laluan",
+    "Forgot_Password" => "Lupa Kata Laluan?",
+    "Login_Button" => "Log Masuk",
+    "No_Account" => "Masih tiada akaun?",
+    "Create_Account" => "Daftar di sini!",
+
+
+    //Registration page
+    "register_title" => "Pendaftaran Akaun",
+    "register_desc" => "Mudah sahaja untuk mendaftar 🚀",
+    "register_desc_2" => "Lengkapkan semua medan berikut.",
+    "register_name" => "Nama Penuh",
+    "nric" => "No. Kad Pengenalan",
+    "phone_no" => "Nama Penuh",
+    "confirm_password" => "Sahkan Kata Laluan",
+    "tnc_statement" => "Saya bersetuju dengan",
+    "tnc_link" => "<b>terma dan syarat</b>",
+    "register_btn" => "Daftar",
+    "has_account" => "Sudah mempunyai akaun?",
+
+    
+    // Navigation Menu
+    "app_name" => "SPAB",
+    "Home" => "Dashboard",
+    "API Token" => "Token API",
+    "Manage Profile" => "Pengurusan Profil",
+
+
+    // Vertical Menu
+    "Programme" => "Tetapan",
+    "Programme Setting" => "Tetapan Program",
+    "Activation" => "Program Ditawar",
+    "Student Registration" => "Pendaftaran Pelajar",
+
+    // program page
+    "New Program" => "Program Baru",
+    "Program Name" => "Nama Program",
+    "Program Code" => "Kod Program",
+    "Faculty" => "Fakulti",
+    "Code" => "Kod",
+    "Name" => "Nama",
+    "Type" => "Jenis",
+    "Action" => "Pilihan"
 ];

@@ -7,6 +7,31 @@
       "slug": "home"
     },
     {
+      "name": "Programme",
+      "icon": "file-text",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "program",
+          "name": "Programme Setting",
+          "icon": "circle",
+          "slug": "program"
+        },
+        {
+          "url": "app/invoice/preview",
+          "name": "Activation",
+          "icon": "circle",
+          "slug": "app-invoice-preview"
+        },
+        {
+          "url": "app/invoice/edit",
+          "name": "Student Registration",
+          "icon": "circle",
+          "slug": "app-invoice-edit"
+        }
+      ]
+    },
+    {
       "url": "transactions",
       "name": "Transactions",
       "icon": "dollar-sign",

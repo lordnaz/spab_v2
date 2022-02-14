@@ -29,7 +29,7 @@
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Artboard" transform="translate(-400.000000, -178.000000)">
                   <g id="Group" transform="translate(400.000000, 178.000000)">
-                    <path class="text-success" id="Path"
+                    <path class="text-primary" id="Path"
                       d="M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z"
                       style="fill: currentColor"></path>
                     <path id="Path1"
@@ -47,14 +47,14 @@
                 </g>
               </g>
             </svg>
-            <h1 class="brand-text text-success ms-1">FBS East Coast</h1>
+            <h1 class="brand-text text-primary ms-1">{!! __('locale.login_title') !!}</h1>
           </a>
 
           <!-- <h4 class="card-title mb-1">Welcome </h4> -->
-          <p class="card-text mb-2">Please sign-in to your VIP account and start trading 👋</p>
+          <p class="card-text mb-2 text-center">{!! __('locale.login_desc') !!}</p>
 
           @if (session('status'))
-            <div class="alert alert-success mb-1 rounded-0" role="alert">
+            <div class="alert alert-primary mb-1 rounded-0" role="alert">
               <div class="alert-body">
                 {{ session('status') }}
               </div>
@@ -64,9 +64,8 @@
           <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-1">
-              <label for="login-email" class="form-label">Email</label>
-              <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email"
-                placeholder="john@example.com" aria-describedby="login-email" tabindex="1" autofocus
+              <label for="login-email" class="form-label">{!! __('locale.Email') !!}</label>
+              <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" aria-describedby="login-email" tabindex="1" autofocus
                 value="{{ old('email') }}" />
               @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -77,10 +76,10 @@
 
             <div class="mb-1">
               <div class="d-flex justify-content-between">
-                <label class="form-label" for="login-password">Password</label>
+                <label class="form-label" for="login-password">{!! __('locale.Password') !!}</label>
                 @if (Route::has('password.request'))
-                  <a href="{{ route('password.request') }}" class="text-success">
-                    <small>Forgot Password?</small>
+                  <a href="{{ route('password.request') }}" class="text-primary">
+                    <small>{!! __('locale.Forgot_Password') !!}</small>
                   </a>
                 @endif
               </div>
@@ -98,14 +97,14 @@
                 <label class="form-check-label" for="remember"> Remember Me </label>
               </div>
             </div> -->
-            <button type="submit" class="btn btn-success w-100" tabindex="4">Sign in</button>
+            <button type="submit" class="btn btn-primary w-100" tabindex="4">{!! __('locale.Login_Button') !!}</button>
           </form>
 
           <p class="text-center mt-2">
-            <span>Wanted to be our <b>VIP</b>?</span>
+            <span>{!! __('locale.No_Account') !!}</span>
             @if (Route::has('register'))
-              <a href="{{ route('register') }}" class="text-success">
-                <span>Create an account</span>
+              <a href="{{ route('register') }}" class="text-primary">
+                <span><b>{!! __('locale.Create_Account') !!}<b></span>
               </a>
             @endif
           </p>

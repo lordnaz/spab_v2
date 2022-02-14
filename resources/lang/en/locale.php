@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "Home" => "Home",
+    // "Home" => "Home",
     "Starter Kit" => "Starter Kit",
     "Apps & Pages" => "Apps & Pages",
     "User Interface" => "User Interface",
@@ -14,7 +14,7 @@ return [
     "Pages" => "Pages",
     "Charts & Maps" => "Charts & Maps",
     "Others" => "Others",
-    "Email" => "Email",
+    // "Email" => "Email",
     "Chat" => "Chat",
     "Todo" => "Todo",
     "Calendar" => "Calendar",
@@ -186,5 +186,52 @@ return [
     "Transactions" => "Transactions",
     "Announcements" => "Announcements",
     "KYC_alert" => "<strong>Alert:</strong> Please submit picture of your NRIC (front & back) and a selfie photo of yourself, in order for us to verify you for the VIP access.",
-    "trade_acc_alert" => "<strong>Info:</strong> Please complete your 'Trade Settings' information and please make sure you are using your own back account."
+    "trade_acc_alert" => "<strong>Info:</strong> Please complete your 'Trade Settings' information and please make sure you are using your own back account.",
+
+
+    // Login page 
+    "login_title" => "SPAB Aswara",
+    "login_desc" => "Selamat datang ke Sistem Pengurusan Akademi Bersepadu (SPAB) ASWARA 👋 </br></br> Sila log masuk untuk meneruskan",
+    "Email" => "E-mel",
+    "Password" => "Kata Laluan",
+    "Forgot_Password" => "Lupa Kata Laluan?",
+    "Login_Button" => "Log Masuk",
+    "No_Account" => "Masih tiada akaun?",
+    "Create_Account" => "Daftar di sini!",
+
+    //Registration page
+    "register_title" => "Pendaftaran Akaun",
+    "register_desc" => "Mudah sahaja untuk mendaftar 🚀",
+    "register_desc_2" => "Lengkapkan semua medan berikut.",
+    "register_name" => "Nama Penuh",
+    "nric" => "No. Kad Pengenalan",
+    "phone_no" => "Nama Penuh",
+    "confirm_password" => "Sahkan Kata Laluan",
+    "tnc_statement" => "Saya bersetuju dengan",
+    "tnc_link" => "<b>terma dan syarat</b>",
+    "register_btn" => "Daftar",
+    "has_account" => "Sudah mempunyai akaun?",
+
+
+    // Navigation Menu
+    "app_name" => "SPAB",
+    "Home" => "Dashboard",
+    "API Token" => "API Token",
+    "Manage Profile" => "Manage Profile",
+
+    // Vertical Menu
+    "Programme" => "Setting",
+    "Programme Setting" => "Program Setting",
+    "Activation" => "Offered Program",
+    "Student Registration" => "Student Registration",
+
+    // program page
+    "New Program" => "New Program",
+    "Program Name" => "Program Name",
+    "Program Code" => "Program Code",
+    "Faculty" => "Faculty",
+    "Code" => "Code",
+    "Name" => "Name",
+    "Type" => "Type",
+    "Action" => "Action"
 ];

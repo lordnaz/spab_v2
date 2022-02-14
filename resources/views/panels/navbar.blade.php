@@ -45,7 +45,7 @@ $roles = auth()->user()->role;
                 </g>
               </svg>
             </span>
-            <h2 class="brand-text mb-0">FBS EastCoast</h2>
+            <h2 class="brand-text mb-0">{!! __('locale.app_name') !!}</h2>
           </a>
         </li>
       </ul>
@@ -61,24 +61,24 @@ $roles = auth()->user()->role;
             data-feather="menu"></i></a></li>
     </ul>
 
-    <li class="nav-item d-none d-lg-block">
+    <!-- <li class="nav-item d-none d-lg-block">
       <a class="nav-link nav-link-style">
         <i class="ficon" data-feather="{{ $configData['theme'] === 'dark' ? 'sun' : 'moon' }}"></i>
       </a>
-    </li>
+    </li> -->
 
     <ul class="nav navbar-nav">
       <li class="nav-item dropdown dropdown-language">
         <a class="nav-link dropdown-toggle" id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true">
-          <i class="flag-icon flag-icon-us"></i>
+          <i class="flag-icon flag-icon-gb"></i>
           <span class="selected-language">English</span>
         </a>
         <div class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdown-flag">
-          <a class="dropdown-item" href="{{ url('lang/en') }}" data-language="en">
-            <i class="flag-icon flag-icon-us"></i> English
-          </a>
           <a class="dropdown-item" href="{{ url('lang/my') }}" data-language="my">
             <i class="flag-icon flag-icon-my"></i> Bahasa
+          </a>
+          <a class="dropdown-item" href="{{ url('lang/en') }}" data-language="en">
+            <i class="flag-icon flag-icon-gb"></i> English
           </a>
         </div>
       </li>
@@ -111,21 +111,21 @@ $roles = auth()->user()->role;
         </span>
       </a>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-        <h6 class="dropdown-header">Manage Profile</h6>
+        <h6 class="dropdown-header">{!! __('locale.Manage Profile') !!}</h6>
         <div class="dropdown-divider"></div>
+        <a class="dropdown-item" 
+          href="{{ Route::has('myspace') ? route('myspace') : 'javascript:void(0)' }}">
+          <i class="me-50" data-feather="dollar-sign"></i> {!! __('locale.Profile') !!}
+        </a>
         <a class="dropdown-item"
           href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0)' }}">
-          <i class="me-50" data-feather="user"></i> Profile
+          <i class="me-50" data-feather="user"></i> {!! __('locale.Account Settings') !!}
         </a>
         @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures() && $roles == 'admin')
           <a class="dropdown-item" href="{{ route('api-tokens.index') }}">
-            <i class="me-50" data-feather="key"></i> API Tokens
+            <i class="me-50" data-feather="key"></i> {!! __('locale.API Token') !!}
           </a>
         @endif
-
-        <a class="dropdown-item" href="#">
-          <i class="me-50" data-feather="dollar-sign"></i> Trade Settings
-        </a>
 
         @if (Auth::User() && Laravel\Jetstream\Jetstream::hasTeamFeatures())
           <div class="dropdown-divider"></div>

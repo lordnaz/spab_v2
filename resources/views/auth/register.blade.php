@@ -29,7 +29,7 @@
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Artboard" transform="translate(-400.000000, -178.000000)">
                   <g id="Group" transform="translate(400.000000, 178.000000)">
-                    <path class="text-success" id="Path"
+                    <path class="text-primary" id="Path"
                       d="M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z"
                       style="fill: currentColor"></path>
                     <path id="Path1"
@@ -45,20 +45,20 @@
                 </g>
               </g>
             </svg>
-            <h2 class="brand-text text-success ms-1">FBS East Coast</h2>
+            <h2 class="brand-text text-primary ms-1">{!! __('locale.register_title') !!}</h2>
           </a>
 
-          <h4 class="card-title mb-1">Profits starts here 🚀</h4>
-          <p class="card-text mb-2">Make your forex management easy and fun!</p>
+          <h4 class="card-title mb-1">{!! __('locale.register_desc') !!}</h4>
+          <p class="card-text mb-2">{!! __('locale.register_desc_2') !!}</p>
 
 
           <form class="auth-register-form mt-2" method="POST" action="{{ route('register') }}">
             @csrf
 
             <div class="mb-1">
-              <label for="register-username" class="form-label">Full Name</label>
+              <label for="register-username" class="form-label">{!! __('locale.register_name') !!}</label>
               <input type="text" class="form-control @error('name') is-invalid @enderror" id="register-username"
-                name="name" placeholder="Ahmad Bin Ali" aria-describedby="register-username" tabindex="1" autofocus/>
+                name="name" aria-describedby="register-username" tabindex="1"/>
               @error('name')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -67,9 +67,9 @@
             </div>
 
             <div class="mb-1">
-              <label for="register-nric" class="form-label">IC Number</label>
+              <label for="register-nric" class="form-label">{!! __('locale.nric') !!}</label>
               <input type="number" class="form-control @error('nric') is-invalid @enderror" id="register-nric"
-                name="nric" placeholder="911123082612" aria-describedby="register-nric" tabindex="1" autofocus/>
+                name="nric" aria-describedby="register-nric" tabindex="1"/>
               @error('nric')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -78,9 +78,9 @@
             </div>
 
             <div class="mb-1">
-              <label for="register-email" class="form-label">Email</label>
+              <label for="register-email" class="form-label">{!! __('locale.Email') !!}</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="register-email"
-                name="email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2"/>
+                name="email" aria-describedby="register-email" tabindex="1"/>
               @error('email')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -89,9 +89,9 @@
             </div>
 
             <div class="mb-1">
-              <label for="register-phoneno" class="form-label">Phone Number</label>
+              <label for="register-phoneno" class="form-label">{!! __('locale.phone_no') !!}</label>
               <input type="number" class="form-control @error('phoneno') is-invalid @enderror" id="register-phoneno"
-                name="phoneno" placeholder="0172219185" aria-describedby="register-phoneno" tabindex="1" autofocus/>
+                name="phoneno" aria-describedby="register-phoneno" tabindex="1"/>
               @error('phoneno')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -101,7 +101,7 @@
             
 
             <div class="mb-1">
-              <label for="register-password" class="form-label">Password</label>
+              <label for="register-password" class="form-label">{!! __('locale.Password') !!}</label>
 
               <div class="input-group input-group-merge form-password-toggle @error('password') is-invalid @enderror">
                 <input type="password" class="form-control form-control-merge @error('password') is-invalid @enderror"
@@ -118,7 +118,7 @@
             </div>
 
             <div class="mb-1">
-              <label for="register-password-confirm" class="form-label">Confirm Password</label>
+              <label for="register-password-confirm" class="form-label">{!! __('locale.confirm_password') !!}</label>
 
               <div class="input-group input-group-merge form-password-toggle">
                 <input type="password" class="form-control form-control-merge" id="register-password-confirm"
@@ -133,7 +133,7 @@
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="terms" name="terms" tabindex="4" required/>
                   <label class="form-check-label" for="terms">
-                    I agree to the <a href="{{ route('terms.show') }}" target="_blank">terms and conditions</a>
+                  {!! __('locale.tnc_statement') !!} <a href="{{ route('terms.show') }}" target="_blank"><b>{!! __('locale.tnc_link') !!}</b></a>
                   </label>
 
                   @error('terms')
@@ -144,14 +144,14 @@
                 </div>
               </div>
             @endif
-            <button type="submit" class="btn btn-success w-100" tabindex="5">Sign up</button>
+            <button type="submit" class="btn btn-primary w-100" tabindex="5">{!! __('locale.register_btn') !!}</button>
           </form>
 
           <p class="text-center mt-2">
-            <span>Already have an account?</span>
+            <span>{!! __('locale.has_account') !!}</span>
             @if (Route::has('login'))
-              <a href="{{ route('login') }}" class="text-success">
-                <span>Sign in instead</span>
+              <a href="{{ route('login') }}" class="text-primary">
+                <span><b>{!! __('locale.Login_Button') !!}</b></span>
               </a>
             @endif
           </p>

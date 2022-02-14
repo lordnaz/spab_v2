@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProgrammeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,12 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('transactions', [TransactionController::class, 'transaction'])->name('transactions');
     Route::post('request_trx', [TransactionController::class, 'request_trx'])->name('request_trx');
     Route::get('api_trx_list', [TransactionController::class, 'api_trx_list'])->name('api_trx_list');
+
+    // Profile
+    Route::get('myspace', [UserController::class, 'get_profile'])->name('myspace');
     
+    // Program
+    Route::get('program', [ProgrammeController::class, 'program_setting'])->name('program');
 
 });
 
