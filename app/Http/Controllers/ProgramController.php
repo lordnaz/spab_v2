@@ -12,7 +12,7 @@ class ProgramController extends Controller
 
         $user_id = auth()->User()->name;
     
-        $addprogram = new add_program;
+        $addprogram = new program;
         $addprogram->code = $req->code;
         $addprogram->program = $req->program;
         $addprogram->type = $req->type;
@@ -37,7 +37,7 @@ class ProgramController extends Controller
 
     public function display_allprogram(Request $req){
 
-        $display = add_program::all();
+        $display = program::all();
 
         $data = [
             'status' => 'success',
