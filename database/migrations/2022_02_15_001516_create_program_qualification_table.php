@@ -20,7 +20,7 @@ class CreateProgramQualificationTable extends Migration
             $table->string('subj_name');
             $table->string('min_grade');
             $table->string('created_by');
-            $table->string('status');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

@@ -40,7 +40,7 @@ class ProgramQualificationController extends Controller
         $add->subj_code = $req->subj_code;
         $add->subj_name = $req->subj_name;
         $add->min_grade = $req->min_grade;      
-        $add->status = 'true';
+        $add->status = true;
         $add->created_by = $user_id;
         $add->save();
 
@@ -55,13 +55,13 @@ class ProgramQualificationController extends Controller
 
     }
 
-    public function delete($id){
+    public function delete(Request $req){
 
-        $active = ProgramQualification::find($id);
+       
 
-        $update = ProgramQualification::where('pqualification_id',$active)->update
+        $update = ProgramQualification::where('pqualification_id',$req->id)->update
         ([
-            'status' => 'false',        
+            'status' => false,        
         ]);
 
         $data = [

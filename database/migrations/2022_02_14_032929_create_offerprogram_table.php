@@ -22,7 +22,7 @@ class CreateOfferprogramTable extends Migration
             $table->string('registration_time');
             $table->string('registration_venue');
             $table->string('qualification_text');
-            $table->string('status');
+            $table->boolean('status')->default(true);
             $table->string('created_by');
             $table->foreignId('program_id')->index();
             $table->timestamps();

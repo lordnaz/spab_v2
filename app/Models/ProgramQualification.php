@@ -11,4 +11,9 @@ class ProgramQualification extends Model
 
     protected $table = 'program_qualification';
     protected  $primaryKey = 'pqualification_id';
+
+    protected $hidden = [
+        'pqualification_id',
+    ];
+
 }

@@ -11,4 +11,8 @@ class Offerprogram extends Model
 
     protected $table = 'offerprogram';
     protected  $primaryKey = 'offerprogram_id';
+
+    protected $hidden = [
+        'offerprogram_id',
+    ];
 }

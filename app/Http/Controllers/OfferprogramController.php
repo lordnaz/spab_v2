@@ -22,7 +22,7 @@ class OfferprogramController extends Controller
         $addprogram->registration_venue = $req->registration_venue;
         $addprogram->registration_date = $req->registration_date;
         $addprogram->qualification_text = $req->qualification_text;
-        $addprogram->status = 'false';
+        $addprogram->status = false;
         $addprogram->created_by = $user_id;
         $addprogram->save();
 
@@ -86,13 +86,13 @@ class OfferprogramController extends Controller
 
     }
 
-    public function active_program($id){
+    public function active_program(Request $req){
 
-        $active = Offerprogram::find($id);
+       
 
-        $update = Offerprogram::where('offerprogram_id',$active)->update
+        $update = Offerprogram::where('offerprogram_id',$req->id)->update
         ([
-            'status' => 'true',        
+            'status' => true,        
         ]);
 
         $data = [
@@ -105,13 +105,13 @@ class OfferprogramController extends Controller
 
     }
 
-    public function disable_program($id){
+    public function disable_program(Request $req){
 
-        $active = Offerprogram::find($id);
+        
 
-        $update = Offerprogram::where('offerprogram_id',$active)->update
+        $update = Offerprogram::where('offerprogram_id',$req->id)->update
         ([
-            'status' => 'false',        
+            'status' => false,        
         ]);
 
         $data = [
