@@ -10,7 +10,7 @@ class ProgramController extends Controller
     //
     public function add_program(Request $req){
 
-        $user_id = auth()->User()->name;
+        $user_id = auth()->user()->name;
     
         $addprogram = new program;
         $addprogram->code = $req->code;
@@ -20,7 +20,7 @@ class ProgramController extends Controller
         $addprogram->field = $req->field;
         $addprogram->sub_field = $req->sub_field;
         $addprogram->notes = $req->notes;
-        $addprogram->status = 'true';
+        $addprogram->status = true;
         $addprogram->created_by = $user_id;
         $addprogram->save();
 
@@ -42,7 +42,8 @@ class ProgramController extends Controller
         $data = [
             'status' => 'success',
             'code' => '000',
-            'description' => 'program displayed successful'
+            'description' => 'program displayed successful',
+            'data' => $display
         ];
 
         return response()->json($data);
@@ -52,7 +53,7 @@ class ProgramController extends Controller
 
     public function update_program(Request $req){
 
-        $update = program::where('program_id',$req->id)->update
+        $update = program::where('program_id',$req->program_id)->update
         ([
 
         'code' => $req->code,
@@ -60,36 +61,60 @@ class ProgramController extends Controller
         'type' => $req->type,
         'faculty' => $req->faculty,
         'field' => $req->field,
-        'sub-field' => $req->sub_field,
+        'sub_field' => $req->sub_field,
         'notes' => $req->notes
+
         ]);
 
-        $data = [
-            'status' => 'success',
-            'code' => '000',
-            'description' => 'program has been updated successfully'
-        ];
+        if($update){
+            $data = [
+                'status' => 'success',
+                'code' => '000',
+                'description' => 'program has been updated successfully'
+            ];
+        }else{
+            $data = [
+                'status' => 'failed',
+                'code' => '001',
+                'description' => 'program failed to update'
+            ];
+        }
 
         return response()->json($data);
     }
 
 
-    public function delete_program($id){
+    public function delete_program(Request $req){
+        $status = "success";
+        $code = "000";
+        $description = "program has been deleted successfully";
 
-        $active = program::find($id);
+        $exists_activated = program::where('program_id',$req->program_id)
+                        ->where('status', true)
+                        ->exists();
         
-        $update = program::where('program_id',$active)->$update
-        ([
-            'status' => 'false',
-        ]);
+        if($exists_activated){
+            $update = program::where('program_id',$req->program_id)->update
+            ([
+                'status' => false,
+            ]);
+
+            if(!$update){
+                $status = "failed";
+                $code = "001";
+                $description = "program delete failed";
+            }
+        }else{
+            $status = "failed";
+            $code = "002";
+            $description = "program not exist";
+        }
 
         $data = [
-            'status' => 'success',
-            'code' => '000',
-            'description' => 'program has been deleted successfully'
+            'status' => $status,
+            'code' => $code,
+            'description' => $description
         ];
-
         return response()->json($data);
     }
-
 }

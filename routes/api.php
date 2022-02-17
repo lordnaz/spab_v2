@@ -28,4 +28,4 @@ Route::middleware('auth:sanctum')->get('/get_rate', [TransactionController::clas
 Route::middleware('auth:sanctum')->post('/add_program', [ProgramController::class, 'add_program']);
 Route::middleware('auth:sanctum')->get('/display_allprogram', [ProgramController::class, 'display_allprogram']);
 Route::middleware('auth:sanctum')->post('/update_program', [ProgramController::class, 'update_program']);
-Route::middleware('auth:sanctum')->get('delete_program/{id}', [ProgramController::class, 'delete_program']);
+Route::middleware('auth:sanctum')->post('delete_program', [ProgramController::class, 'delete_program']);

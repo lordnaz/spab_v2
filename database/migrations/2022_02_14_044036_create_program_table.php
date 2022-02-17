@@ -14,17 +14,17 @@ class CreateProgramTable extends Migration
     public function up()
     {
         Schema::create('program', function (Blueprint $table) {
-             $table->id('program_id');
-            $table->timestamps();
-            $table->string('code');
+            $table->id('program_id')->primary();
+            $table->string('code')->unique();
             $table->string('program');
             $table->string('type');
             $table->string('faculty');
             $table->string('field');
-            $table->string('sub-field');
+            $table->string('sub_field');
             $table->string('notes');
-            $table->string('status');
+            $table->boolean('status')->default(true);
             $table->string('created_by');
+            $table->timestamps();
         });
     }
 

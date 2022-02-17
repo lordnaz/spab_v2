@@ -11,4 +11,8 @@ class program extends Model
 
     protected $table = 'program';
     protected $primaryKey = 'program_id';
+
+    protected $hidden = [
+        'program_id',
+    ];
 }
