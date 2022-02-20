@@ -44,6 +44,10 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     
     // Program
     Route::get('program', [ProgrammeController::class, 'program_setting'])->name('program');
+    Route::get('add_new', [ProgrammeController::class, 'add_new'])->name('add_new');
+    Route::get('details_program/{code}', [ProgrammeController::class, 'details_program'])->name('details_program');
+    Route::post('add_new_program', [ ProgrammeController::class, "add_new_program" ])->name('add_new_program');
+    // Route::get('delete_prog/{code}', [ProgrammeController::class, 'delete_prog'])->name('delete_prog');
 
 });
 

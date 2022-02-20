@@ -32,10 +32,10 @@
         <div class="card-body mt-2">
           <div class="row g-1 mb-md-1">
             <div class="col-md-4">
-              <button type="button" class="btn btn-success">
+              <a href="{{ route('add_new') }}" class="btn btn-success"> 
                 <i data-feather="plus-circle" class="me-25"></i>
                 <span>{!! __('locale.New Program') !!}</span>
-              </button>
+              </a>
             </div>
           </div>
 
@@ -84,9 +84,9 @@
         </div>
         <hr class="my-0" />
         <div class="card-datatable">
-          <table class="dt-advanced-search table">
+          <table class="dt-advanced-search-2 table">
             <thead>
-              <tr>
+              <tr class="text-center">
                 <th></th>
                 <th>{!! __('locale.Code') !!}</th>
                 <th>{!! __('locale.Name') !!}</th>
@@ -96,17 +96,29 @@
               </tr>
 
             </thead>
-            <!-- <tfoot>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Post</th>
-                <th>City</th>
-                <th>Date</th>
-                <th>Salary</th>
-              </tr>
-            </tfoot> -->
+            <tbody>
+              @php  
+                $count = 1;
+              @endphp
+
+              @foreach ($datas as $data)
+                <tr>
+                  <td>{{$count++}}</td>
+                  <td>{{$data['code']}}</td>
+                  <td>{{$data['program']}}</td>
+                  <td>{{$data['type']}}</td>
+                  <td>{{$data['faculty']}}</td>
+                  <td>
+                    <a href="{{ route('details_program', Crypt::encrypt($data['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+                    <a href="javascript:;" class="btn-sm btn-danger deleteProgram" program-id="{{$data['program_id']}}"> 
+                      <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
+                    </a>
+                    
+                  </td>
+                 
+                </tr>
+              @endforeach
+            </tbody>
           </table>
         </div>
       </div>

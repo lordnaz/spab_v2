@@ -37,7 +37,9 @@ class ProgramController extends Controller
 
     public function display_allprogram(Request $req){
 
-        $display = program::all();
+        // $display = program::all();
+
+        $display = program::where('status', true)->get();
 
         $data = [
             'status' => 'success',
@@ -48,6 +50,36 @@ class ProgramController extends Controller
 
         return response()->json($data);
 
+    }
+
+    public function display_program_by_code(Request $req){
+
+        // $display = program::all();
+
+        $program = program::where('code', $req->code)
+                            ->where('status', true)
+                            ->first();
+
+        if($program){
+
+            $data = [
+                'status' => 'success',
+                'code' => '000',
+                'description' => 'program displayed successful',
+                'data' => $program
+            ];
+
+        }else{
+
+            $data = [
+                'status' => 'failed',
+                'code' => '002',
+                'description' => 'program not exist',
+            ];
+
+        }
+
+        return response()->json($data);
     }
 
 
@@ -85,18 +117,21 @@ class ProgramController extends Controller
 
 
     public function delete_program(Request $req){
+
+        // $req = $req->program_id;
         $status = "success";
         $code = "000";
         $description = "program has been deleted successfully";
 
         $exists_activated = program::where('program_id',$req->program_id)
                         ->where('status', true)
-                        ->exists();
-        
+                        ->first();
+
         if($exists_activated){
             $update = program::where('program_id',$req->program_id)->update
             ([
                 'status' => false,
+                // 'status' => true,
             ]);
 
             if(!$update){
@@ -113,8 +148,9 @@ class ProgramController extends Controller
         $data = [
             'status' => $status,
             'code' => $code,
-            'description' => $description
+            'description' => $req
         ];
+
         return response()->json($data);
     }
 }
