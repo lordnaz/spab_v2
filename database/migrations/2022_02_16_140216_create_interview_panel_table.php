@@ -14,7 +14,7 @@ class CreateInterviewPanelTable extends Migration
     public function up()
     {
         Schema::create('interview_panel', function (Blueprint $table) {
-            $table->id_panel();
+            $table->id('panel_id');
             $table->foreignId('no_ic')->index();
             $table->string('panel_name')->nullable();
             $table->string('panel_position')->nullable();
@@ -26,6 +26,7 @@ class CreateInterviewPanelTable extends Migration
             $table->string('tel_phone')->nullable();
             $table->string('panel_email')->nullable();
             $table->string('description')->nullable();
+            $table->string('panel_status')->nullable();
             $table->boolean('status')->default(true);
             $table->string('created_by')->nullable();
             $table->timestamps();

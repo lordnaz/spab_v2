@@ -6,6 +6,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProgrammeController;
+use App\Http\Controllers\PanelTemudugaController;
 
 
 /*
@@ -45,6 +46,12 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     
     // Program
     Route::get('program', [ProgrammeController::class, 'program_setting'])->name('program');
+
+    //temuga
+    Route::get('paneltemuduga', [PanelTemudugaController::class, 'temuduga_setting'])->name('paneltemuduga');
+    Route::get('page_new_temuduga', [PanelTemudugaController::class, 'page_new_temuduga'])->name('page_new_temuduga');
+    Route::post('add_new_temuduga', [ PanelTemudugaController::class, "add_new_temuduga" ])->name('add_new_temuduga');
+    Route::get('details_temuduga/{code}', [PanelTemudugaController::class, 'details_temuduga'])->name('details_temuduga');
 
 
   

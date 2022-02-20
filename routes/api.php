@@ -28,5 +28,5 @@ Route::middleware('auth:sanctum')->get('/get_rate', [TransactionController::clas
   Route::middleware('auth:sanctum')->post('/addNewPanel', [PanelInterviewController::class, 'addNewPanel']);
   Route::middleware('auth:sanctum')->get('/getAllPanel', [PanelInterviewController::class, 'getAllPanel']);
   Route::middleware('auth:sanctum')->post('/updatePanelById', [PanelInterviewController::class, 'updatePanelById']);
-  Route::middleware('auth:sanctum')->get('getPanelDetailsbyId/{id}', [PanelInterviewController::class, 'getPanelDetailsbyId']);
+  Route::middleware('auth:sanctum')->post('getPanelDetailsbyId', [PanelInterviewController::class, 'getPanelDetailsbyId']);
   Route::middleware('auth:sanctum')->get('deletePanelById/{id}', [PanelInterviewController::class, 'deletePanelById']);

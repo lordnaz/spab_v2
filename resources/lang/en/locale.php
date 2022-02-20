@@ -233,5 +233,21 @@ return [
     "Code" => "Code",
     "Name" => "Name",
     "Type" => "Type",
-    "Action" => "Action"
+    "Action" => "Action",
+
+    //temuduga
+    "New Interview" => "New Interview",
+    "No.KP" => "No.KP",
+    "Name" => "Name",
+    "Faculty" => "Faculty",
+    "Status" => "Status",
+    "Position" => "Position",
+    "Address" => "Address",
+    "Tel(H)" => "Tel(H)",
+    "Tel(P)" => "Tel(P)",
+    "EmailT" => "Email",
+    "Description" => "Description",
+    "Active" => "Active",
+    "Not Active" => "Not Active",
+
 ];

@@ -13,29 +13,14 @@ class PanelInterviewController extends Controller
 
        
 
-        $displayPanel = PanelInterview::orderBy('id_panel', 'desc')->get();
+        $displayPanel = PanelInterview::where('status', true)->get();
 
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' =>[
-                'no_ic' => $displayPanel->no_ic,
-                'panel_name' => $displayPanel->panel_name,
-                'panel_position' => $displayPanel->panel_position,
-                'panel_faculty' => $displayPanel->panel_faculty,
-                'address_1' => $displayPanel->address_1,
-                'address_2' => $displayPanel->address_2,
-                'address_3' => $displayPanel->address_3,
-                'tel_house' => $displayPanel->tel_house,
-                'tel_phone' => $displayPanel->tel_phone,
-                'panel_email' => $displayPanel->panel_email,
-                'description' => $displayPanel->description,
-                'status' => $displayPanel->status,
-                'created_by' => $displayPanel->created_by,
-                'created_date' => $displayPanel->created_at,
-                'modify_date' => $displayPanel->updated_at
-            ]
+            'data' => $displayPanel
+            
         ];
 
         return response()->json($data);
@@ -43,10 +28,10 @@ class PanelInterviewController extends Controller
     }
 
 
-    public function getPanelDetailsbyId ($id){
+    public function getPanelDetailsbyId (Request $req){
 
 
-        $displayPanelbyId = PanelInterview::orderBy('id_panel', 'desc')->where('id_panel',$id)->get();
+        $displayPanelbyId = PanelInterview::where('no_ic',$req->code)->first();
         
        
         $data = [
@@ -65,7 +50,7 @@ class PanelInterviewController extends Controller
                 'tel_phone' => $displayPanelbyId->tel_phone,
                 'panel_email' => $displayPanelbyId->panel_email,
                 'description' => $displayPanelbyId->description,
-                'status' => $displayPanelbyId->status,
+                'status' => $displayPanelbyId->panel_status,
                 'created_by' => $displayPanelbyId->created_by,
                 'created_date' => $displayPanelbyId->created_at,
                 'modify_date' => $displayPanelbyId->updated_at
@@ -81,18 +66,18 @@ class PanelInterviewController extends Controller
         $currentdt = date('Y-m-d H:i:s');
         $updatePanelById = PanelInterview::where('id_panel',$req->id_panel)->update
         ([
-                'no_ic' => $updatePanelById->no_ic,
-                'panel_name' => $updatePanelById->panel_name,
-                'panel_position' => $updatePanelById->panel_position,
-                'panel_faculty' => $updatePanelById->panel_faculty,
-                'address_1' => $updatePanelById->address_1,
-                'address_2' => $updatePanelById->address_2,
-                'address_3' => $updatePanelById->address_3,
-                'tel_house' => $updatePanelById->tel_house,
-                'tel_phone' => $updatePanelById->tel_phone,
-                'panel_email' => $updatePanelById->panel_email,
-                'description' => $updatePanelById->description,
-                'status' => $updatePanelById->status,
+                'no_ic' => $req->no_ic,
+                'panel_name' => $req->panel_name,
+                'panel_position' => $req->panel_position,
+                'panel_faculty' => $req->panel_faculty,
+                'address_1' => $req->address_1,
+                'address_2' => $req->address_2,
+                'address_3' => $req->address_3,
+                'tel_house' => $req->tel_house,
+                'tel_phone' => $req->tel_phone,
+                'panel_email' => $req->panel_email,
+                'description' => $req->description,
+                'status' => $req->status,
                 'modify_date' => $currentdt,
         ]);
 
@@ -143,7 +128,7 @@ class PanelInterviewController extends Controller
         $addpanel->tel_phone = $req->tel_phone;
         $addpanel->panel_email = $req->panel_email;
         $addpanel->description = $req->description;
-        $addpanel->status = 'true';
+        $addpanel->panel_status = $req->status;
         $addpanel->created_by = $user_id;
         $addpanel->created_date = $currentdt;
         $addpanel->modify_date = $currentdt;
