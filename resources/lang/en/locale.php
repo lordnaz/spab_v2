@@ -249,4 +249,6 @@ return [
     "Add" => "Add",
     "Back" => "Back",
     "Update" => "Update",
+    "Minimum Qualification" => "Minimum Qualification",
+    "Offer Details" => "Offer Details",
 ];

@@ -251,4 +251,6 @@ return [
     "Add" => "Tambah",
     "Back" => "Kembali",
     "Update" => "Kemaskini",
+    "Minimum Qualification" => "Kelayakan Minimum",
+    "Offer Details" => "Butiran Tawaran",
 ];
