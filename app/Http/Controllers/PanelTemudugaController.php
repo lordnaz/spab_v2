@@ -68,13 +68,7 @@ class PanelTemudugaController extends Controller
         // $data = $req->input();
 
         $param = [
-            'code' => $req->code,
-            'program' => $req->program,
-            'type' => $req->type,
-            'faculty' => $req->faculty,
-            'field' => $req->field,
-            'sub_field' => $req->sub_field,
-            'notes' => $req->notes,
+
             'no_ic' => $req->no_ic,
             'panel_name'=> $req->panel_name,
             'panel_position' => $req->panel_position,
