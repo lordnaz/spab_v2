@@ -14,7 +14,7 @@ class CreateProgramTable extends Migration
     public function up()
     {
         Schema::create('program', function (Blueprint $table) {
-            $table->id('program_id')->primary();
+            $table->id('program_id');
             $table->string('code')->unique();
             $table->string('program');
             $table->string('type');
