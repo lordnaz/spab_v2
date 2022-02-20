@@ -18,10 +18,10 @@
           "slug": "program"
         },
         {
-          "url": "app/invoice/preview",
+          "url": "offered_program",
           "name": "Activation",
           "icon": "circle",
-          "slug": "app-invoice-preview"
+          "slug": "offered-program"
         },
         {
           "url": "app/invoice/edit",

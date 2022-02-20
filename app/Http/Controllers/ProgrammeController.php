@@ -33,6 +33,24 @@ class ProgrammeController extends Controller
 
     }
 
+    public function offered_program(){
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['name' => "Program Ditawar"]
+        ];
+
+        $request = Request::create('/api/display_allprogram', 'GET');
+        $response = Route::dispatch($request);
+
+        $request->headers->set('Content-Type', 'application/json');
+        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        
+        $responseBody = json_decode($response->getContent(), true);
+
+        $datas = $responseBody['data'];
+
+        return view('components.program-offer', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+    }
+
     public function add_new(){
 
         $breadcrumbs = [
