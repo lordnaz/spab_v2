@@ -6,6 +6,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\OfferprogramController;
 use App\Http\Controllers\ProgramQualificationController;
+use App\Http\Controllers\PanelInterviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,9 @@ Route::middleware('auth:sanctum')->post('/add_ProgramQualification', [ProgramQua
 Route::middleware('auth:sanctum')->get('/getProgramQualificationDetails/{id}', [ProgramQualificationController::class, 'get_detailsbyid']);
 Route::middleware('auth:sanctum')->post('/update_offerprogram', [ProgramQualificationController::class, 'update']);
 Route::middleware('auth:sanctum')->post('/deleteProgramQualification', [ProgramQualificationController::class, 'delete']);
+  //PanelInterview 
+  Route::middleware('auth:sanctum')->post('/addNewPanel', [PanelInterviewController::class, 'addNewPanel']);
+  Route::middleware('auth:sanctum')->get('/getAllPanel', [PanelInterviewController::class, 'getAllPanel']);
+  Route::middleware('auth:sanctum')->post('/updatePanelById', [PanelInterviewController::class, 'updatePanelById']);
+  Route::middleware('auth:sanctum')->post('getPanelDetailsbyId', [PanelInterviewController::class, 'getPanelDetailsbyId']);
+  Route::middleware('auth:sanctum')->get('deletePanelById/{id}', [PanelInterviewController::class, 'deletePanelById']);

@@ -21,3 +21,5 @@ yarn-error.log
 supervisord.log
 supervisord.pid
 starter-kit.zip
+composer.lock
+

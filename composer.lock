@@ -1989,16 +1989,16 @@
         },
         {
             "name": "mobiledetect/mobiledetectlib",
-            "version": "2.8.37",
+            "version": "2.8.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/serbanghita/Mobile-Detect.git",
-                "reference": "9841e3c46f5bd0739b53aed8ac677fa712943df7"
+                "reference": "b6c4ac9686d204c49a432f527f137cf24ac0b90e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/9841e3c46f5bd0739b53aed8ac677fa712943df7",
-                "reference": "9841e3c46f5bd0739b53aed8ac677fa712943df7",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/b6c4ac9686d204c49a432f527f137cf24ac0b90e",
+                "reference": "b6c4ac9686d204c49a432f527f137cf24ac0b90e",
                 "shasum": ""
             },
             "require": {
@@ -2039,15 +2039,9 @@
             ],
             "support": {
                 "issues": "https://github.com/serbanghita/Mobile-Detect/issues",
-                "source": "https://github.com/serbanghita/Mobile-Detect/tree/2.8.37"
+                "source": "https://github.com/serbanghita/Mobile-Detect/tree/2.8.38"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/serbanghita",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-02-19T21:22:57+00:00"
+            "time": "2022-02-14T12:38:04+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7246,21 +7240,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pixinvent/jetstrap-vuexy.git",
-                "reference": "788660ed3ed29d99bdcdddaf1d9804c5a46310b4"
+                "reference": "04062bf50740a95f7caf8ab29766f9e68613ee24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pixinvent/jetstrap-vuexy/zipball/788660ed3ed29d99bdcdddaf1d9804c5a46310b4",
-                "reference": "788660ed3ed29d99bdcdddaf1d9804c5a46310b4",
+                "url": "https://api.github.com/repos/pixinvent/jetstrap-vuexy/zipball/04062bf50740a95f7caf8ab29766f9e68613ee24",
+                "reference": "04062bf50740a95f7caf8ab29766f9e68613ee24",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^8.0",
-                "laravel/jetstream": "^2.3",
+                "illuminate/support": "^8.0|^9.0",
                 "php": "^7.3|^8.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^6.0",
+                "laravel/jetstream": "^2.3",
+                "orchestra/testbench": "^6.0|^7.0",
                 "phpunit/phpunit": "^9.3"
             },
             "default-branch": true,
@@ -7301,7 +7295,7 @@
                 "issues": "https://github.com/pixinvent/jetstrap-vuexy/issues",
                 "source": "https://github.com/pixinvent/jetstrap-vuexy/tree/main"
             },
-            "time": "2021-12-13T06:30:12+00:00"
+            "time": "2022-02-16T06:43:13+00:00"
         },
         {
             "name": "sebastian/cli-parser",

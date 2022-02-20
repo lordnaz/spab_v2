@@ -253,4 +253,20 @@ return [
     "Update" => "Kemaskini",
     "Minimum Qualification" => "Kelayakan Minimum",
     "Offer Details" => "Butiran Tawaran",
+
+    //temuduga
+    "New Interview" => "Temuduga Baru",
+    "No.KP" => "No.KP",
+    "Name" => "Nama",
+    "Faculty" => "Fakulti",
+    "Status" => "Status",
+    "Position" => "Jawatan",
+    "Address" => "Alamat",
+    "Tel(H)" => "Tel(R)",
+    "Tel(P)" => "Tel(P)",
+    "EmailT" => "Email",
+    "Description" => "Catatan",
+    "Active" => "Aktif",
+    "Not Active" => "Tidak Aktif",
+
 ];

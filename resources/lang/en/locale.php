@@ -251,4 +251,20 @@ return [
     "Update" => "Update",
     "Minimum Qualification" => "Minimum Qualification",
     "Offer Details" => "Offer Details",
+
+    //temuduga
+    "New Interview" => "New Interview",
+    "No.KP" => "No.KP",
+    "Name" => "Name",
+    "Faculty" => "Faculty",
+    "Status" => "Status",
+    "Position" => "Position",
+    "Address" => "Address",
+    "Tel(H)" => "Tel(H)",
+    "Tel(P)" => "Tel(P)",
+    "EmailT" => "Email",
+    "Description" => "Description",
+    "Active" => "Active",
+    "Not Active" => "Not Active",
+
 ];
