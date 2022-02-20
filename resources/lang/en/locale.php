@@ -266,5 +266,11 @@ return [
     "Description" => "Description",
     "Active" => "Active",
     "Not Active" => "Not Active",
+    "Interview Setting" => "Interview Panel",
+    "MyKad" => "MyKad",
+    "Interview" => "Interview",
+    "Interview Panel" => "Interview Panel",
+    
+
 
 ];

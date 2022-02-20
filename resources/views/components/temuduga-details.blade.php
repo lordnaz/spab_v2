@@ -10,7 +10,8 @@
           <h4 class="card-title">{!! __('locale.Details_2') !!}</h4>
         </div>
         <div class="card-body">
-          <form class="form form-horizontal">
+          <form action="/update_temuduga" method="post" enctype="multipart/form-data" accept-charset='UTF-8' class="form form-horizontal">
+            @csrf  
             <div class="row">
 
               <div class="col-12">
@@ -34,6 +35,8 @@
                   </div>
                 </div>
               </div>
+
+              <input hidden type="text" id="name" class="form-control" name="panel_id" placeholder="" value="{{$datas['panel_id']}}"/>
 
               <div class="col-12">
                 <div class="mb-1 row">
@@ -108,7 +111,7 @@
                     <label class="col-form-label">{!! __('locale.Status') !!}:</label>
                   </div>
                   <div class="col-sm-10">
-                    <select class="select2 form-select" id="type">
+                    <select class="select2 form-select" id="type" name="status">
                         <option selected disabled>{!! __('locale.Please Choose') !!}</option>
                         <option data-avatar="1-small.png" value="asasi">{!! __('locale.Active') !!}</option>
                         <option data-avatar="3-small.png" value="diploma">{!! __('locale.Not Active') !!}</option>
@@ -131,7 +134,7 @@
 
               <div class="col-sm-3 offset-sm-9">
                 <a href="{{ route('paneltemuduga') }}" class="btn btn-outline-danger me-1">{!! __('locale.Back') !!}</a>
-                <button type="reset" class="btn btn-primary">{!! __('locale.Update') !!}</button>
+                <button type="submit" class="btn btn-primary">{!! __('locale.Update') !!}</button>
                 
                 <!-- <button type="reset" class="btn btn-outline-secondary">Back</button> -->
               </div>
@@ -141,79 +144,7 @@
           <br>
             <hr>
             <br>
-          <!-- form repeater  -->
-          <h4 class="card-title">{!! __('locale.Details_2') !!}</h4>
-          <form action="#" class="invoice-repeater">
-            <div data-repeater-list="invoice">
-              <div data-repeater-item>
-                <div class="row d-flex align-items-end">
-                  <div class="col-md-4 col-12">
-                    <div class="mb-1">
-                      <label class="form-label" for="itemname">Item Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="itemname"
-                        aria-describedby="itemname"
-                        placeholder="Vuexy Admin Template"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="col-md-2 col-12">
-                    <div class="mb-1">
-                      <label class="form-label" for="itemcost">Cost</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="itemcost"
-                        aria-describedby="itemcost"
-                        placeholder="32"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="col-md-2 col-12">
-                    <div class="mb-1">
-                      <label class="form-label" for="itemquantity">Quantity</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="itemquantity"
-                        aria-describedby="itemquantity"
-                        placeholder="1"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="col-md-2 col-12">
-                    <div class="mb-1">
-                      <label class="form-label" for="staticprice">Price</label>
-                      <input type="text" readonly class="form-control-plaintext" id="staticprice" value="$32" />
-                    </div>
-                  </div>
-
-                  <div class="col-md-2 col-12 mb-50">
-                    <div class="mb-1">
-                      <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
-                        <i data-feather="x" class="me-25"></i>
-                        <span>Delete</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
-                  <i data-feather="plus" class="me-25"></i>
-                  <span>Add New</span>
-                </button>
-              </div>
-            </div>
-          </form>
+        
           <!-- end of form repeater -->
         </div>
       </div>

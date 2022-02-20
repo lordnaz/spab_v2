@@ -13,7 +13,7 @@ class PanelTemudugaController extends Controller
     public function temuduga_setting(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Tetapan Temuduga"]
+            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
         ];
 
         $request = Request::create('/api/getAllPanel', 'GET');
@@ -30,12 +30,12 @@ class PanelTemudugaController extends Controller
 
     }
 
-    public function details_program($code){
+    public function details_temuduga($code){
 
         $code = decrypt($code);
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Temuduga"], ['name' => "ButiranTemuduga"]
+            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Panel Temuduga"], ['name' => "ButiranTemuduga"]
         ];
 
         $request = Http::withHeaders([
@@ -54,7 +54,7 @@ class PanelTemudugaController extends Controller
     public function page_new_temuduga(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Temuduga Baru"]
+            ['link' => "/", 'name' => "Home"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Temuduga Baru"]
         ];
 
         $datas = 'test';
@@ -78,17 +78,67 @@ class PanelTemudugaController extends Controller
             'tel_phone' => $req->tel_phone,
             'panel_email' => $req->panel_email,
             'description' => $req->description,
-            'panel_status '=>$req->status,
+            'panel_status' =>$req->status,
+            
         ];
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Home"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Butiran Temuduga"]
         ];
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
         ])->post(getenv('ENDPOINT').'/api/addNewPanel', $param);
+
+        return redirect()->route('paneltemuduga');
+
+    }
+
+    public function delete_temuduga($code){
+
+        $code = decrypt($code);
+        
+
+
+        $request = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        ])->post(getenv('ENDPOINT').'/api/deletePanelById', [
+            'code' => $code,
+        ]);
+
+       
+
+        return redirect()->route('paneltemuduga');
+
+    }
+
+    public function update_temuduga(Request $req){
+
+        $param = [
+
+            'panel_id' => $req->panel_id,
+            'no_ic' => $req->no_ic,
+            'panel_name'=> $req->panel_name,
+            'panel_position' => $req->panel_position,
+           'panel_faculty' => $req->panel_faculty,
+            'address_1' => $req->address_1,
+            'tel_house' => $req->tel_house,
+            'tel_phone' => $req->tel_phone,
+            'panel_email' => $req->panel_email,
+            'description' => $req->description,
+            'panel_status' =>$req->status,
+            
+        ];
+
+
+        $request = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        ])->post(getenv('ENDPOINT').'/api/updatePanelById', $param);
+
+       
 
         return redirect()->route('paneltemuduga');
 

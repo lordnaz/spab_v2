@@ -25,7 +25,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-          <h4 class="card-title">{!! __('locale.Programme Setting') !!}</h4>
+          <h4 class="card-title">{!! __('locale.Interview Setting') !!}</h4>
         </div>
         
         <!--Search Form -->
@@ -34,7 +34,7 @@
             <div class="col-md-4">
               <a href="{{ route('page_new_temuduga') }}" class="btn btn-success"> 
                 <i data-feather="plus-circle" class="me-25"></i>
-                <span>{!! __('locale.New Program') !!}</span>
+                <span>{!! __('locale.New Interview') !!}</span>
               </a>
             </div>
           </div>
@@ -42,7 +42,7 @@
           <form class="dt_adv_search" method="POST">
             <div class="row g-1 mb-md-1">
               <div class="col-md-4">
-                <label class="form-label">{!! __('locale.Program Name') !!}:</label>
+                <label class="form-label">{!! __('locale.MyKad') !!}:</label>
                 <input
                   type="text"
                   class="form-control dt-input dt-full-name"
@@ -51,22 +51,18 @@
                   data-column-index="0"
                 />
               </div>
+
               <div class="col-md-4">
-                <label class="form-label">{!! __('locale.Program Code') !!}:</label>
-                <select id="choosePlan" name="email" class="form-select" aria-label="Choose Plan">
-                    <option selected disabled>Pilih Kod</option>
-                    <option value="standard">kocrevy0@thetimes.co.uk</option>
-                    <option value="exclusive">Exclusive - $249/month</option>
-                    <option value="Enterprise">Enterprise - $499/month</option>
-                </select>
-                <!-- <input
+                <label class="form-label">{!! __('locale.Name') !!}:</label>
+                <input
                   type="text"
-                  class="form-control dt-input"
-                  data-column="2"
-                  placeholder="demo@example.com"
-                  data-column-index="1"
-                /> -->
+                  class="form-control dt-input dt-full-name"
+                  data-column="1"
+                  placeholder="Alaric Beslier"
+                  data-column-index="0"
+                />
               </div>
+
               <div class="col-md-4">
                 <label class="form-label">{!! __('locale.Faculty') !!}:</label>
                 <select class="select2 form-select" id="addMemberSelect">
@@ -102,15 +98,15 @@
               @endphp
 
               @foreach ($datas as $data)
-                <tr>
+                <tr class="text-center">
                   <td>{{$count++}}</td>
                   <td>{{$data['no_ic']}}</td>
                   <td>{{$data['panel_name']}}</td>
                   <td>{{$data['panel_faculty']}}</td>
-                  <td>{{$data['status']}}</td>
+                  <td>{{$data['panel_status']}}</td>
                   <td>
                     <a href="{{ route('details_temuduga', Crypt::encrypt($data['no_ic'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
-                    <a href="javascript:;" class="btn-sm btn-danger deleteProgram" program-id="{{$data['program_id']}}"> 
+                    <a href="{{ route('delete_temuduga', Crypt::encrypt($data['panel_id'])) }}" class="btn-sm btn-danger deleteProgram"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
                     </a>
                     
