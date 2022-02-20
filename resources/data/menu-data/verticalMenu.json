@@ -32,6 +32,19 @@
       ]
     },
     {
+      "name": "Interview",
+      "icon": "file-text",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "paneltemuduga",
+          "name": "Interview Panel",
+          "icon": "circle",
+          "slug": "program"
+        }
+      ]
+    },
+    {
       "url": "transactions",
       "name": "Transactions",
       "icon": "dollar-sign",

@@ -39,6 +39,7 @@ class PanelInterviewController extends Controller
             'code' => '000',
             'description' => 'succesfull',
             'data' =>[
+                'panel_id' => $displayPanelbyId->panel_id,
                 'no_ic' => $displayPanelbyId->no_ic,
                 'panel_name' => $displayPanelbyId->panel_name,
                 'panel_position' => $displayPanelbyId->panel_position,
@@ -64,7 +65,7 @@ class PanelInterviewController extends Controller
     public function updatePanelById(Request $req){
 
         $currentdt = date('Y-m-d H:i:s');
-        $updatePanelById = PanelInterview::where('id_panel',$req->id_panel)->update
+        $updatePanelById = PanelInterview::where('panel_id',$req->panel_id)->update
         ([
                 'no_ic' => $req->no_ic,
                 'panel_name' => $req->panel_name,
@@ -77,8 +78,7 @@ class PanelInterviewController extends Controller
                 'tel_phone' => $req->tel_phone,
                 'panel_email' => $req->panel_email,
                 'description' => $req->description,
-                'status' => $req->status,
-                'modify_date' => $currentdt,
+                'panel_status' => $req->status,
         ]);
 
         $data = [
@@ -93,11 +93,11 @@ class PanelInterviewController extends Controller
 
 
 
-    public function deletePanelById($id){
+    public function deletePanelById(Request $req){
 
         $user_name = auth()->User()->name;
-        $deletePanel = PanelInterview::where('id_panel', $id)->update([
-            'status' => 'false',     
+        $deletePanel = PanelInterview::where('panel_id', $req->code)->update([
+            'status' => false    
     
             ]);
     
@@ -128,10 +128,9 @@ class PanelInterviewController extends Controller
         $addpanel->tel_phone = $req->tel_phone;
         $addpanel->panel_email = $req->panel_email;
         $addpanel->description = $req->description;
-        $addpanel->panel_status = $req->status;
+        $addpanel->panel_status = $req->panel_status;
+        $addpanel->status = true;
         $addpanel->created_by = $user_id;
-        $addpanel->created_date = $currentdt;
-        $addpanel->modify_date = $currentdt;
         $addpanel->save();
 
 

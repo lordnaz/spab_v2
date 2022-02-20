@@ -268,5 +268,10 @@ return [
     "Description" => "Catatan",
     "Active" => "Aktif",
     "Not Active" => "Tidak Aktif",
+    "Interview Setting" => "Panel Temuduga",
+    "MyKad" => "MyKad",
+    "Interview" => "Temuduga",
+    "Interview Panel" => "Panel Temuduga",
+
 
 ];

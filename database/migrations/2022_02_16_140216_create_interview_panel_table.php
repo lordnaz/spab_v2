@@ -15,7 +15,7 @@ class CreateInterviewPanelTable extends Migration
     {
         Schema::create('interview_panel', function (Blueprint $table) {
             $table->id('panel_id');
-            $table->foreignId('no_ic')->nullable();
+            $table->string('no_ic')->nullable();
             $table->string('panel_name')->nullable();
             $table->string('panel_position')->nullable();
             $table->string('panel_faculty')->nullable();

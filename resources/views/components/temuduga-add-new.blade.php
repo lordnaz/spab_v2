@@ -20,7 +20,7 @@
       <label class="col-form-label" for="code">{!! __('locale.No.KP') !!}</label>
     </div>
     <div class="col-sm-10">
-      <input type="text" id="code" class="form-control" name="no_ic" placeholder="" value=""/>
+      <input type="text" id="code" class="form-control" name="no_ic" placeholder=""/>
     </div>
   </div>
 </div>
@@ -31,7 +31,7 @@
       <label class="col-form-label" for="name">{!! __('locale.Name') !!}</label>
     </div>
     <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="panel_name" placeholder="" value=""/>
+      <input type="text" id="name" class="form-control" name="panel_name" placeholder=""/>
     </div>
   </div>
 </div>
@@ -42,7 +42,7 @@
       <label class="col-form-label" for="name">{!! __('locale.Position') !!}</label>
     </div>
     <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="panel_position" placeholder="" value=""/>
+      <input type="text" id="name" class="form-control" name="panel_position" placeholder=""/>
     </div>
   </div>
 </div>
@@ -53,7 +53,7 @@
       <label class="col-form-label" for="name">{!! __('locale.Faculty') !!}</label>
     </div>
     <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="panel_faculty" placeholder="" value=""/>
+      <input type="text" id="name" class="form-control" name="panel_faculty" placeholder=""/>
     </div>
   </div>
 </div>
@@ -64,7 +64,7 @@
       <label class="col-form-label" for="name">{!! __('locale.Address') !!}</label>
     </div>
     <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="address_1" placeholder="" value=""/>
+      <input type="text" id="name" class="form-control" name="address_1" placeholder=""/>
     </div>
   </div>
 </div>
@@ -75,7 +75,7 @@
       <label class="col-form-label" for="name">{!! __('locale.Tel(H)') !!}</label>
     </div>
     <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="tel_house" placeholder="" value=""/>
+      <input type="text" id="name" class="form-control" name="tel_house" placeholder="" />
     </div>
   </div>
 </div>
@@ -86,7 +86,7 @@
       <label class="col-form-label" for="name">{!! __('locale.Tel(P)') !!}</label>
     </div>
     <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="tel_phone" placeholder="" value=""/>
+      <input type="text" id="name" class="form-control" name="tel_phone" placeholder="" />
     </div>
   </div>
 </div>
@@ -97,7 +97,7 @@
       <label class="col-form-label" for="name">{!! __('locale.Email') !!}</label>
     </div>
     <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="panel_email" placeholder="" value=""/>
+      <input type="text" id="name" class="form-control" name="panel_email" placeholder="" />
     </div>
   </div>
 </div>
@@ -111,8 +111,8 @@
     <div class="col-sm-10">
       <select class="select2 form-select" id="type" name="status">
           <option selected disabled>{!! __('locale.Please Choose') !!}</option>
-          <option data-avatar="1-small.png" value="asasi">{!! __('locale.Active') !!}</option>
-          <option data-avatar="3-small.png" value="diploma">{!! __('locale.Not Active') !!}</option>
+          <option data-avatar="1-small.png" value="Aktif">{!! __('locale.Active') !!}</option>
+          <option data-avatar="3-small.png" value="Tidak Aktif">{!! __('locale.Not Active') !!}</option>
       </select>
     </div>
   </div>

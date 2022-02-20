@@ -50,6 +50,6 @@ Route::middleware('auth:sanctum')->post('/deleteProgramQualification', [ProgramQ
   //PanelInterview 
   Route::middleware('auth:sanctum')->post('/addNewPanel', [PanelInterviewController::class, 'addNewPanel']);
   Route::middleware('auth:sanctum')->get('/getAllPanel', [PanelInterviewController::class, 'getAllPanel']);
-  Route::middleware('auth:sanctum')->post('/updatePanelById', [PanelInterviewController::class, 'updatePanelById']);
+  Route::middleware('auth:sanctum')->post('updatePanelById', [PanelInterviewController::class, 'updatePanelById']);
   Route::middleware('auth:sanctum')->post('getPanelDetailsbyId', [PanelInterviewController::class, 'getPanelDetailsbyId']);
-  Route::middleware('auth:sanctum')->get('deletePanelById/{id}', [PanelInterviewController::class, 'deletePanelById']);
+  Route::middleware('auth:sanctum')->post('deletePanelById', [PanelInterviewController::class, 'deletePanelById']);
