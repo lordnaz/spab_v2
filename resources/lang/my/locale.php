@@ -250,4 +250,5 @@ return [
     "Notes" => "Nota",
     "Add" => "Tambah",
     "Back" => "Kembali",
+    "Update" => "Kemaskini",
 ];

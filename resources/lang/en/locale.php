@@ -248,4 +248,5 @@ return [
     "Notes" => "Notes",
     "Add" => "Add",
     "Back" => "Back",
+    "Update" => "Update",
 ];
