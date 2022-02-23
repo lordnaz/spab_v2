@@ -7,6 +7,7 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\OfferprogramController;
 use App\Http\Controllers\ProgramQualificationController;
 use App\Http\Controllers\PanelInterviewController;
+use App\Http\Controllers\InterviewCenterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,9 +48,17 @@ Route::middleware('auth:sanctum')->post('/add_ProgramQualification', [ProgramQua
 Route::middleware('auth:sanctum')->get('/getProgramQualificationDetails/{id}', [ProgramQualificationController::class, 'get_detailsbyid']);
 Route::middleware('auth:sanctum')->post('/update_offerprogram', [ProgramQualificationController::class, 'update']);
 Route::middleware('auth:sanctum')->post('/deleteProgramQualification', [ProgramQualificationController::class, 'delete']);
-  //PanelInterview 
-  Route::middleware('auth:sanctum')->post('/addNewPanel', [PanelInterviewController::class, 'addNewPanel']);
-  Route::middleware('auth:sanctum')->get('/getAllPanel', [PanelInterviewController::class, 'getAllPanel']);
-  Route::middleware('auth:sanctum')->post('updatePanelById', [PanelInterviewController::class, 'updatePanelById']);
-  Route::middleware('auth:sanctum')->post('getPanelDetailsbyId', [PanelInterviewController::class, 'getPanelDetailsbyId']);
-  Route::middleware('auth:sanctum')->post('deletePanelById', [PanelInterviewController::class, 'deletePanelById']);
+
+//PanelInterview 
+Route::middleware('auth:sanctum')->post('/addNewPanel', [PanelInterviewController::class, 'addNewPanel']);
+Route::middleware('auth:sanctum')->get('/getAllPanel', [PanelInterviewController::class, 'getAllPanel']);
+Route::middleware('auth:sanctum')->post('updatePanelById', [PanelInterviewController::class, 'updatePanelById']);
+Route::middleware('auth:sanctum')->post('getPanelDetailsbyId', [PanelInterviewController::class, 'getPanelDetailsbyId']);
+Route::middleware('auth:sanctum')->post('deletePanelById', [PanelInterviewController::class, 'deletePanelById']);
+
+//PanelInterview 
+Route::middleware('auth:sanctum')->post('/addCenterInterview', [InterviewCenterController::class, 'addCenterInterview']);
+Route::middleware('auth:sanctum')->get('/getAllCenterInterview', [InterviewCenterController::class, 'getAllCenterInterview']);
+Route::middleware('auth:sanctum')->post('updateCenterInterviewybId', [InterviewCenterController::class, 'updateCenterInterviewybId']);
+Route::middleware('auth:sanctum')->post('getAllCenterInterviewybId', [InterviewCenterController::class, 'getAllCenterInterviewybId']);
+Route::middleware('auth:sanctum')->post('deleteCenterInterviewybId', [InterviewCenterController::class, 'deleteCenterInterviewybId']);
