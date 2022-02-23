@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Offerprogram;
+use App\Models\program;
+use App\Models\Qualification;
 
 class OfferprogramController extends Controller
 {
@@ -13,15 +15,16 @@ class OfferprogramController extends Controller
         $user_id = auth()->User()->name;
 
         $addprogram = new Offerprogram;
-        $addprogram->program_id = $req->id;
+        $addprogram->program_id = $req->program_id;
         $addprogram->mode = $req->mode;
         $addprogram->notes = $req->notes;
         $addprogram->quota = $req->quota;
         $addprogram->registration_date = $req->registration_date;
         $addprogram->registration_time = $req->registration_time;
         $addprogram->registration_venue = $req->registration_venue;
-        $addprogram->registration_date = $req->registration_date;
-        $addprogram->qualification_text = $req->qualification_text;
+        $addprogram->status_aktif = "tidak aktif";
+        $addprogram->status_validate = "tiada pelajar";
+        $addprogram->qualification_text = "nothing";
         $addprogram->status = false;
         $addprogram->created_by = $user_id;
         $addprogram->save();
@@ -41,30 +44,22 @@ class OfferprogramController extends Controller
 
        
 
-        $display = Offerprogram::orderBy('offerprogram_id', 'desc')->join('program', 'program.program_id', '=', 'offerprogram.program_id')->select('program.code','program.program','offerprogram.mode', 'offerprogram.quota', 'offerprogram.created_by', 'offerprogram.created_at', 'offerprogram.updated_at', );
+        $display = Offerprogram::orderBy('offerprogram_id', 'asc')->join('program', 'program.program_id', '=', 'offerprogram.program_id')->select('program.code','program.program','offerprogram.mode', 'offerprogram.quota', 'offerprogram.created_by', 'offerprogram.created_at', 'offerprogram.updated_at', 'offerprogram.status_aktif', 'offerprogram.offerprogram_id as id')->where('offerprogram.status',true)->get();
 
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' =>[
-                'code' => $display->code,
-                'program' => $display->program,
-                'mode' => $display->mode,
-                'quota' => $display->quota,
-                'created_by' => $display->created_by,
-                'created_date' => $display->created_at,
-                'modify_date' => $display->updated_at
-            ]
+            'data' => $display
         ];
 
         return response()->json($data);
 
     }
 
-    public function update_offerprogram(Request $req){
+    public function update_offerprogram2(Request $req){
 
-        $update = Offerprogram::where('offerprogram_id',$req->id)->update
+        $update = Offerprogram::where('offerprogram_id',$req->offerid)->update
         ([
             'program_id' => $req->program_id,
             'mode' => $req->mode,
@@ -73,7 +68,8 @@ class OfferprogramController extends Controller
             'registration_date' => $req->registration_date,
             'registration_time' => $req->registration_time,
             'registration_venue' => $req->registration_venue,
-            'qualification_text' => $req->qualification_text
+            'status_aktif' => $req->status,
+
         ]);
 
         $data = [
@@ -105,47 +101,48 @@ class OfferprogramController extends Controller
 
     }
 
-    public function disable_program(Request $req){
 
+    public function offeredprogramById(Request $req){
+
+        $display = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->select('program.code','program.program','offerprogram.mode','offerprogram.notes', 'offerprogram.quota', 'offerprogram.registration_date', 'offerprogram.registration_time', 'offerprogram.registration_venue','offerprogram.qualification_text','offerprogram.status_aktif', 'offerprogram.offerprogram_id as id', 'offerprogram.program_id')->where('offerprogram.offerprogram_id',$req->code)->first();
+        $displayy = program::where('status', true)->get();
+        $displayyy = Qualification::where('status', true)->where('offerprogram_id', $req->code)->get();
         
-
-        $update = Offerprogram::where('offerprogram_id',$req->id)->update
-        ([
-            'status' => false,        
-        ]);
-
-        $data = [
-            'status' => 'success',
-            'code' => '000',
-            'description' => 'disable status by offerprogram ID'
-        ];
-
-        return response()->json($data);
-
-    }
-
-    public function get_program($id){
-
-        $databyid = Offerprogram::find($id);
-        $display = Offerprogram::where('offerprogram_id', $databyid)->join('program', 'program.program_id', '=', 'offerprogram.program_id')->select('program.code','program.program','offerprogram.mode', 'offerprogram.quota', 'offerprogram.created_by', 'offerprogram.created_at', 'offerprogram.updated_at', );
        
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' =>[
-                'code' => $display->code,
-                'program' => $display->program,
-                'mode' => $display->mode,
-                'quota' => $display->quota,
-                'created_by' => $display->created_by,
-                'created_date' => $display->created_at,
-                'modify_date' => $display->updated_at
-            ]
+            'data' => $display,
+            'dataa' => $displayy,
+            'dataaa' => $displayyy,
         ];
 
 
         return response()->json($data);
+        
+       
+    }
+
+    public function delete_offerprogram(Request $req){
+
+        $user_name = auth()->User()->name;
+
+        $deletePanel = Offerprogram::where('offerprogram_id', $req->code)->update([
+            
+            'status' => false    
+    
+            ]);
+    
+
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => 'disable status by'.$user_name.'.'
+        ];
+
+        return response()->json($data);
+
     }
 
 

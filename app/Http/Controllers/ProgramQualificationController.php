@@ -3,47 +3,61 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProgramQualification;
+use App\Models\Qualification;
 class ProgramQualificationController extends Controller
 {
-    //
-    public function get_detailsbyid($id){
-
-        $display = ProgramQualification::find($id);
-        
-       
-        $data = [
-            'status' => 'success',
-            'code' => '000',
-            'description' => 'succesfull',
-            'data' =>[
-                'code' => $display->code,
-                'subj_code' => $display->subj_code,
-                'subj_name' => $display->subj_name,
-                'min_grade' => $display->min_grade,
-                'created_by' => $display->created_by,
-                'created_date' => $display->created_at,
-                'modify_date' => $display->updated_at
-            ]
-        ];
-
-
-        return response()->json($data);
-    }
-
-    public function new_offerprogram(Request $req){
+    //  
+    public function add_ProgramQualification(Request $req){
 
         $user_id = auth()->User()->name;
+      $nothing = 'nothing';
 
-        $add = new ProgramQualification;
-        $add->code = $req->code;
-        $add->subj_code = $req->subj_code;
-        $add->subj_name = $req->subj_name;
-        $add->min_grade = $req->min_grade;      
-        $add->status = true;
-        $add->created_by = $user_id;
-        $add->save();
+        if (empty($req->subjek)) {
 
+        } else {
+
+            if ($req->grade == '1') {
+                $valuegrade = "F";
+            } elseif ($req->grade == '2') {
+                $valuegrade = "E";
+            } elseif ($req->grade == '3') {
+                $valuegrade = "D-";
+            } elseif ($req->grade == '4') {
+                $valuegrade = "D";
+            } elseif ($req->grade == '5') {
+                $valuegrade = "D+";
+            } elseif ($req->grade == '6') {
+                $valuegrade = "C-";
+            } elseif ($req->grade == '7') {
+                $valuegrade = "C";
+            } elseif ($req->grade == '8') {
+                $valuegrade = "C+";
+            } elseif ($req->grade == '9') {
+                $valuegrade = "B-";
+            } elseif ($req->grade == '10') {
+                $valuegrade = "B";
+            } elseif ($req->grade == '11') {
+                $valuegrade = "B+";
+            } elseif ($req->grade == '12') {
+                $valuegrade = "A-";
+            } elseif ($req->grade == '13') {
+                $valuegrade = "A";
+            } elseif ($req->grade == '14') {
+                $valuegrade = "A+";
+            } else {
+                $valuegrade = "N/A";
+            }
+           
+            $addpanel = new Qualification;
+            $addpanel->subj_name = $req->subjek;
+            $addpanel->min_grade = $valuegrade;
+            $addpanel->val_grade = $req->grade;
+            $addpanel->offerprogram_id = $req->offeridd;
+            $addpanel->status = true;
+            $addpanel->created_by = $user_id;
+            $addpanel->save();
+
+        }
         $data = [
             'status' => 'success',
             'code' => '000',
@@ -55,34 +69,56 @@ class ProgramQualificationController extends Controller
 
     }
 
-    public function delete(Request $req){
+    public function update_ProgramQualification(Request $req){
 
-       
 
-        $update = ProgramQualification::where('pqualification_id',$req->id)->update
-        ([
-            'status' => false,        
-        ]);
+        
 
-        $data = [
-            'status' => 'success',
-            'code' => '000',
-            'description' => 'disable status by ProgramQualification ID'
-        ];
+            if ($req->grade == '1') {
+                $valuegrade = "F";
+            } elseif ($req->grade == '2') {
+                $valuegrade = "E";
+            } elseif ($req->grade == '3') {
+                $valuegrade = "D-";
+            } elseif ($req->grade == '4') {
+                $valuegrade = "D";
+            } elseif ($req->grade == '5') {
+                $valuegrade = "D+";
+            } elseif ($req->grade == '6') {
+                $valuegrade = "C-";
+            } elseif ($req->grade == '7') {
+                $valuegrade = "C";
+            } elseif ($req->grade == '8') {
+                $valuegrade = "C+";
+            } elseif ($req->grade == '9') {
+                $valuegrade = "B-";
+            } elseif ($req->grade == '10') {
+                $valuegrade = "B";
+            } elseif ($req->grade == '11') {
+                $valuegrade = "B+";
+            } elseif ($req->grade == '12') {
+                $valuegrade = "A-";
+            } elseif ($req->grade == '13') {
+                $valuegrade = "A";
+            } elseif ($req->grade == '14') {
+                $valuegrade = "A+";
+            } else {
+                $valuegrade = "N/A";
+            }
 
-        return response()->json($data);
+            $update = Qualification::where('qualificationid', $req->qualificationid)->update
+            ([
+    
+                'subj_name' => $req->subjek,
+                'min_grade' => $valuegrade,
+                'val_grade' => $req->grade,
+                'status' => $req->status,
+                  
+            ]);
+           
+        
 
-    }
-
-    public function update(Request $req){
-
-        $update = ProgramQualification::where('pqualification_id',$req->subject_id)->update
-        ([
-            'code' => $req->code,
-            'subj_code' => $req->subj_code,
-            'subj_name' => $req->subj_name,
-            'min_grade' => $req->min_grade,
-        ]);
+   
 
         $data = [
             'status' => 'success',
@@ -94,4 +130,5 @@ class ProgramQualificationController extends Controller
 
     }
 
+    
 }

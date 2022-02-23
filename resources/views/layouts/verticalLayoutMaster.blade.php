@@ -3,7 +3,7 @@ data-open="click"
 data-menu="vertical-menu-modern"
 data-col="{{$configData['showMenu'] ? $configData['contentLayout'] : '1-column' }}"
 data-framework="laravel"
-data-asset-path="{{ asset('/')}}">
+data-asset-path="{{ asset('/')}}" onload="myFunction()">
 
   <!-- BEGIN: Header-->
   @include('panels.navbar')

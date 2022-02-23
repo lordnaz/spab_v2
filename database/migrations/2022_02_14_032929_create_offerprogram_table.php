@@ -18,10 +18,12 @@ class CreateOfferprogramTable extends Migration
             $table->string('mode');
             $table->string('notes');
             $table->integer('quota');
-            $table->dateTime('registration_date');
+            $table->string('registration_date');
             $table->string('registration_time');
             $table->string('registration_venue');
             $table->string('qualification_text');
+            $table->string('status_aktif');
+            $table->string('status_validate');
             $table->boolean('status')->default(true);
             $table->string('created_by');
             $table->foreignId('program_id')->index();

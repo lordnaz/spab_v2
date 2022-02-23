@@ -38,7 +38,7 @@ data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}
 data-menu="vertical-menu-modern"
 data-col="blank-page"
 data-framework="laravel"
-data-asset-path="{{ asset('/')}}">
+data-asset-path="{{ asset('/')}}" >
 
   <!-- BEGIN: Content-->
   <div class="app-content content {{ $configData['pageClass'] }}">

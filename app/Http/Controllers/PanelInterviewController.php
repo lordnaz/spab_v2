@@ -78,7 +78,7 @@ class PanelInterviewController extends Controller
                 'tel_phone' => $req->tel_phone,
                 'panel_email' => $req->panel_email,
                 'description' => $req->description,
-                'panel_status' => $req->status,
+                'panel_status' => $req->panel_status,
         ]);
 
         $data = [
@@ -133,6 +133,7 @@ class PanelInterviewController extends Controller
         $addpanel->created_by = $user_id;
         $addpanel->save();
 
+        
 
         $data = [
             'status' => 'success',

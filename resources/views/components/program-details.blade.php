@@ -228,7 +228,9 @@
           <!-- form repeater  -->
           <h4 class="card-title">{!! __('locale.Minimum Qualification') !!}</h4>
           <form action="#" class="invoice-repeater">
+            
             <div data-repeater-list="invoice">
+            <div id="view">
               <div data-repeater-item>
                 <div class="row d-flex align-items-end">
                   <div class="col-md-4 col-12">
@@ -260,13 +262,14 @@
                   <div class="col-md-2 col-12">
                     <div class="mb-1">
                       <label class="form-label" for="itemquantity">Quantity</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="itemquantity"
-                        aria-describedby="itemquantity"
-                        placeholder="1"
-                      />
+                     <select class="select2 form-select" id="type" name="type">
+                        <option selected disabled>{!! __('locale.Please Choose') !!}</option>
+                        <option data-avatar="1-small.png" value="asasi">{!! __('locale.Foundation') !!}</option>
+                        <option data-avatar="3-small.png" value="diploma">{!! __('locale.Diploma') !!}</option>
+                        <option data-avatar="5-small.png" value="sarjana muda">{!! __('locale.Degree') !!}</option>
+                        <option data-avatar="7-small.png" value="sarjana">{!! __('locale.Master') !!}</option>
+                        <option data-avatar="9-small.png" value="kedoktoran">{!! __('locale.PhD') !!}</option>
+                    </select>
                     </div>
                   </div>
 
@@ -288,15 +291,18 @@
                 </div>
                 <hr />
               </div>
+             </div>
             </div>
+
             <div class="row">
               <div class="col-12">
-                <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
+                <button id="btn1" class="btn btn-icon btn-primary" type="button" data-repeater-create>
                   <i data-feather="plus" class="me-25"></i>
                   <span>Add New</span>
                 </button>
               </div>
             </div>
+
           </form>
           <!-- end of form repeater -->
         </div>
@@ -304,6 +310,25 @@
     </div>
     
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+       $(document).ready(function() {
+    
+        
+        
+    
+    $("#btn1").click(function() {     
+      
+      $("#view").append('<div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Item Name</label><input type="text" class="form-control" id="itemname" aria-describedby="itemname" placeholder="Vuexy Admin Template" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Cost</label><input type="number" class="form-control" id="itemcost" aria-describedby="itemcost" placeholder="32"/></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>');
+
+      
+    });
+    
+  });
+
+  
+    </script>
 </section>
 <!-- Basic Horizontal form layout section end -->
 

@@ -238,6 +238,7 @@ return [
     "Action" => "Pilihan",
     "Details" => "Butiran",
     "Details_2" => "Butiran Program",
+    "Details_3" => "Butiran Program Ditawar",
     "Delete" => "Padam",
     "Foundation" => "Asasi",
     "Diploma" => "Diploma",
@@ -253,6 +254,7 @@ return [
     "Update" => "Kemaskini",
     "Minimum Qualification" => "Kelayakan Minimum",
     "Offer Details" => "Butiran Tawaran",
+    "Quota" => "Kuota",
 
     //temuduga
     "New Interview" => "Temuduga Baru",

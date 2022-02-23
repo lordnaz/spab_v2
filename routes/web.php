@@ -53,7 +53,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     // Offered Program   
     Route::get('offered_program', [ProgrammeController::class, 'offered_program'])->name('offered_program'); 
-    
+    Route::get('offered_program_add', [ProgrammeController::class, 'offered_add'])->name('offered_program_add');
+    Route::post('add_new_offered_program', [ ProgrammeController::class, 'add_new_offered_program' ])->name('add_new_offered_program');
+    Route::get('details_offered_program/{code}', [ProgrammeController::class, 'details_offered_program'])->name('details_offered_program');
+    Route::post('update_offered_program', [ProgrammeController::class, 'update_offered_program'])->name('update_offered_program');
+    Route::get('delete_offered_program/{code}', [ProgrammeController::class, 'delete_offered_program'])->name('delete_offered_program');
 
     //temuga
     Route::get('paneltemuduga', [PanelTemudugaController::class, 'temuduga_setting'])->name('paneltemuduga');

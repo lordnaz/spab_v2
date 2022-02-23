@@ -44,11 +44,9 @@
                   <div class="col-sm-10">
                     <select class="select2 form-select" id="type" name="type">
                         <option selected disabled>{!! __('locale.Please Choose') !!}</option>
-                        <option data-avatar="1-small.png" value="asasi">{!! __('locale.Foundation') !!}</option>
-                        <option data-avatar="3-small.png" value="diploma">{!! __('locale.Diploma') !!}</option>
-                        <option data-avatar="5-small.png" value="sarjana muda">{!! __('locale.Degree') !!}</option>
-                        <option data-avatar="7-small.png" value="sarjana">{!! __('locale.Master') !!}</option>
-                        <option data-avatar="9-small.png" value="kedoktoran">{!! __('locale.PhD') !!}</option>
+                        <option data-avatar="1-small.png" value="Program Asasi">{!! __('locale.Foundation') !!}</option>
+                        <option data-avatar="3-small.png" value="Diploma">{!! __('locale.Diploma') !!}</option>
+                        <option data-avatar="5-small.png" value="Sarjana Muda">{!! __('locale.Degree') !!}</option>
                     </select>
                   </div>
                 </div>

@@ -236,6 +236,7 @@ return [
     "Action" => "Action",
     "Details" => "Details",
     "Details_2" => "Program Details",
+    "Details_3" => "Offered Program Details",
     "Delete" => "Delete",
     "Foundation" => "Foundation",
     "Diploma" => "Diploma",
@@ -251,6 +252,7 @@ return [
     "Update" => "Update",
     "Minimum Qualification" => "Minimum Qualification",
     "Offer Details" => "Offer Details",
+    "Quota" => "Quota",
 
     //temuduga
     "New Interview" => "New Interview",

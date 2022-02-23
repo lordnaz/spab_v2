@@ -32,7 +32,7 @@
         <div class="card-body mt-2">
           <div class="row g-1 mb-md-1">
             <div class="col-md-4">
-              <a href="{{ route('add_new') }}" class="btn btn-success"> 
+              <a href="{{ route('offered_program_add') }}" class="btn btn-success"> 
                 <i data-feather="plus-circle" class="me-25"></i>
                 <span>{!! __('locale.New Program') !!}</span>
               </a>
@@ -91,7 +91,8 @@
                 <th>{!! __('locale.Code') !!}</th>
                 <th>{!! __('locale.Name') !!}</th>
                 <th>{!! __('locale.Type') !!}</th>
-                <th>{!! __('locale.Faculty') !!}</th>
+                <th>{!! __('locale.Quota') !!}</th>
+                <th>Status</th>
                 <th>{!! __('locale.Action') !!}</th>
               </tr>
 
@@ -102,15 +103,16 @@
               @endphp
 
               @foreach ($datas as $data)
-                <tr>
+                <tr class="text-center">
                   <td>{{$count++}}</td>
                   <td>{{$data['code']}}</td>
                   <td>{{$data['program']}}</td>
-                  <td>{{$data['type']}}</td>
-                  <td>{{$data['faculty']}}</td>
+                  <td>{{$data['mode']}}</td>
+                  <td>{{$data['quota']}}</td>
+                  <td>{{$data['status_aktif']}}</td>
                   <td>
-                    <a href="{{ route('details_program', Crypt::encrypt($data['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
-                    <a href="javascript:;" class="btn-sm btn-danger deleteProgram" program-id="{{$data['program_id']}}"> 
+                    <a href="{{ route('details_offered_program', Crypt::encrypt($data['id'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+                    <a href="{{ route('delete_offered_program', Crypt::encrypt($data['id'])) }}" class="btn-sm btn-danger deleteProgram"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
                     </a>
                     

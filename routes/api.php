@@ -37,16 +37,18 @@ Route::middleware('auth:sanctum')->post('/delete_program', [ProgramController::c
 //OfferedProgram Route
 Route::middleware('auth:sanctum')->post('/new_offerprogram', [OfferprogramController::class, 'new_offerprogram']);
 Route::middleware('auth:sanctum')->get('/display_offerprogram', [OfferprogramController::class, 'display_all']);
-Route::middleware('auth:sanctum')->post('/update_offerprogram', [OfferprogramController::class, 'update_offerprogram']);
+Route::middleware('auth:sanctum')->post('/update_offerprogram2', [OfferprogramController::class, 'update_offerprogram2']);
 Route::middleware('auth:sanctum')->post('/active_offerprogram', [OfferprogramController::class, 'active_program']);
-Route::middleware('auth:sanctum')->post('/disable_offerprogram', [OfferprogramController::class, 'disable_program']);
-Route::middleware('auth:sanctum')->get('get_offerprogram/{id}', [OfferprogramController::class, 'get_program']);
+Route::middleware('auth:sanctum')->post('/delete_offerprogram', [OfferprogramController::class, 'delete_offerprogram']);
+Route::middleware('auth:sanctum')->post('/offeredprogramById', [OfferprogramController::class, 'offeredprogramById']);
+
+//qualification route
 
 //Program Qualification route
 Route::middleware('auth:sanctum')->post('/add_ProgramQualification', [ProgramQualificationController::class, 'add_ProgramQualification']);
-Route::middleware('auth:sanctum')->get('/getProgramQualificationDetails/{id}', [ProgramQualificationController::class, 'get_detailsbyid']);
-Route::middleware('auth:sanctum')->post('/update_offerprogram', [ProgramQualificationController::class, 'update']);
-Route::middleware('auth:sanctum')->post('/deleteProgramQualification', [ProgramQualificationController::class, 'delete']);
+Route::middleware('auth:sanctum')->post('/update_ProgramQualification', [ProgramQualificationController::class, 'update_ProgramQualification']);
+
+
   //PanelInterview 
   Route::middleware('auth:sanctum')->post('/addNewPanel', [PanelInterviewController::class, 'addNewPanel']);
   Route::middleware('auth:sanctum')->get('/getAllPanel', [PanelInterviewController::class, 'getAllPanel']);

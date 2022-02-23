@@ -113,8 +113,8 @@
                   <div class="col-sm-10">
                     <select class="select2 form-select" id="type" name="status">
                         <option selected disabled>{!! __('locale.Please Choose') !!}</option>
-                        <option data-avatar="1-small.png" value="asasi">{!! __('locale.Active') !!}</option>
-                        <option data-avatar="3-small.png" value="diploma">{!! __('locale.Not Active') !!}</option>
+                        <option data-avatar="1-small.png" value="aktif">{!! __('locale.Active') !!}</option>
+                        <option data-avatar="3-small.png" value="tidak aktif">{!! __('locale.Not Active') !!}</option>
                     </select>
                   </div>
                 </div>
