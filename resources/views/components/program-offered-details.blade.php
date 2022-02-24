@@ -1,5 +1,11 @@
 @extends('layouts/contentLayoutMaster')
 
+@section('vendor-style')
+  {{-- vendor css files --}}
+  
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+@endsection
+
 @section('content')
 <!-- Basic Horizontal form layout section start -->
 <section id="basic-horizontal-layouts">
@@ -233,6 +239,73 @@
             </form>
 
 </div>
+
+
+<div class="col-md-6 mb-1">
+              <label class="form-label" for="select2-multiple">Multiple</label>
+              <select class="select2 form-select" id="select2-multiple" multiple>
+                <optgroup label="Alaskan/Hawaiian Time Zone">
+                  <option value="AK">Alaska</option>
+                  <option value="HI">Hawaii</option>
+                </optgroup>
+                <optgroup label="Pacific Time Zone">
+                  <option value="CA">California</option>
+                  <option value="NV">Nevada</option>
+                  <option value="OR">Oregon</option>
+                  <option value="WA">Washington</option>
+                </optgroup>
+                <optgroup label="Mountain Time Zone">
+                  <option value="AZ">Arizona</option>
+                  <option value="CO" selected>Colorado</option>
+                  <option value="ID">Idaho</option>
+                  <option value="MT">Montana</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="UT">Utah</option>
+                  <option value="WY">Wyoming</option>
+                </optgroup>
+                <optgroup label="Central Time Zone">
+                  <option value="AL">Alabama</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TX">Texas</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="WI">Wisconsin</option>
+                </optgroup>
+                <optgroup label="Eastern Time Zone">
+                  <option value="CT">Connecticut</option>
+                  <option value="DE">Delaware</option>
+                  <option value="FL" selected>Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="IN">Indiana</option>
+                  <option value="ME">Maine</option>
+                  <option value="MD">Maryland</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NY">New York</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="OH">Ohio</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option>
+                  <option value="WV">West Virginia</option>
+                </optgroup>
+              </select>
+            </div>
          
           <!-- end of form repeater -->
         </div>
@@ -267,7 +340,7 @@
     
     $("#btn1").click(function() {     
       
-      $("#view").append('<div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subject</label><select class="select2 form-select" id="type" name="subjek"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Mathematic">Mathematic</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="type" name="grade"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="14">A+</option><option data-avatar="3-small.png" value="13">A</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>');
+      $("#view").append('<div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subject</label><select class="select2 form-select" id="type" name="subjek"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Mathematic">Mathematic</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="type" name="grade"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="14">A+</option><option data-avatar="3-small.png" value="13">A</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
 
       v = v + 1;
       document.getElementById("currentt").value = v;
@@ -290,10 +363,13 @@
 @section('vendor-script')
   <!-- vendor files -->
   <script src="{{ asset(mix('vendors/js/forms/repeater/jquery.repeater.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 @endsection
 @section('page-script')
   <!-- Page js files -->
   
   <script src="{{ asset(mix('js/scripts/forms/form-repeater.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 @endsection
+
 

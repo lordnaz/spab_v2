@@ -25,7 +25,7 @@ class OfferprogramController extends Controller
         $addprogram->status_aktif = "tidak aktif";
         $addprogram->status_validate = "tiada pelajar";
         $addprogram->qualification_text = "nothing";
-        $addprogram->status = false;
+        $addprogram->status = true;
         $addprogram->created_by = $user_id;
         $addprogram->save();
 
@@ -42,9 +42,11 @@ class OfferprogramController extends Controller
 
     public function display_all(){
 
-       
-
-        $display = Offerprogram::orderBy('offerprogram_id', 'asc')->join('program', 'program.program_id', '=', 'offerprogram.program_id')->select('program.code','program.program','offerprogram.mode', 'offerprogram.quota', 'offerprogram.created_by', 'offerprogram.created_at', 'offerprogram.updated_at', 'offerprogram.status_aktif', 'offerprogram.offerprogram_id as id')->where('offerprogram.status',true)->get();
+        $display = Offerprogram::orderBy('offerprogram_id', 'asc')
+        ->join('program', 'program.program_id', '=', 'offerprogram.program_id')
+        ->select('program.code','program.program','offerprogram.mode', 'offerprogram.quota', 'offerprogram.created_by', 'offerprogram.created_at', 'offerprogram.updated_at', 'offerprogram.status_aktif', 'offerprogram.offerprogram_id as id')
+        ->where('offerprogram.status',true)
+        ->get();
 
         $data = [
             'status' => 'success',
