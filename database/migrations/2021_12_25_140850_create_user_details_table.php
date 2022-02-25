@@ -19,6 +19,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('nric')->unique();
             $table->string('name')->nullable();
             $table->string('short_name')->nullable();
+            $table->string('email')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('place_of_birth')->nullable();
             $table->string('race')->nullable();
@@ -35,7 +36,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('parliament')->nullable();
             $table->string('payment_ref_no')->nullable();
             $table->string('form_description')->nullable();
-            $table->boolean('form_completion')->default(false);
+            $table->string('form_completion')->nullable();
             $table->string('description')->nullable();
             $table->string('status_admission')->nullable();
             $table->string('type_program_applied')->nullable();
