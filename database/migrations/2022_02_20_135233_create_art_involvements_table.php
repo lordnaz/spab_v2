@@ -14,7 +14,7 @@ class CreateArtInvolvementsTable extends Migration
     public function up()
     {
         Schema::create('art_involvements', function (Blueprint $table) {
-            $table->id();
+            $table->id('art_id');
             $table->foreignId('nric')->index();
             $table->string('area_involvement')->nullable();
             $table->string('organizer')->nullable();

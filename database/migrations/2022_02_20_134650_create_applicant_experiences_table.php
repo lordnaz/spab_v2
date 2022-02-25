@@ -14,7 +14,7 @@ class CreateApplicantExperiencesTable extends Migration
     public function up()
     {
         Schema::create('applicant_experiences', function (Blueprint $table) {
-            $table->id();
+            $table->id('application_exid');
             $table->foreignId('nric')->index();
             $table->string('job_type')->nullable();
             $table->string('monthly_income')->nullable();

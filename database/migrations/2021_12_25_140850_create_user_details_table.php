@@ -14,7 +14,7 @@ class CreateUserDetailsTable extends Migration
     public function up()
     {
         Schema::create('user_details', function (Blueprint $table) {
-            $table->id();
+            $table->id('user_detailsid');
             $table->foreignId('user_id')->index();
             $table->string('nric')->unique();
             $table->string('name')->nullable();

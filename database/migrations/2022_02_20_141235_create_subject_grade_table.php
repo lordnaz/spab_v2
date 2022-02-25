@@ -14,7 +14,7 @@ class CreateSubjectGradeTable extends Migration
     public function up()
     {
         Schema::create('subject_grade', function (Blueprint $table) {
-            $table->id();
+            $table->id('subject_gradeid');
             $table->foreignId('nric')->index();
             $table->string('subject_list')->nullable();
             $table->string('grade')->nullable();

@@ -14,7 +14,7 @@ class CreateQualificationTable extends Migration
     public function up()
     {
         Schema::create('qualification', function (Blueprint $table) {
-            $table->id();
+            $table->id('qualification_id');
             $table->foreignId('nric')->index();
             $table->string('institution_others_qc')->nullable();
             $table->string('grade_others_qc')->nullable();

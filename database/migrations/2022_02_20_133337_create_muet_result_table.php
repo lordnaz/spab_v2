@@ -14,7 +14,7 @@ class CreateMuetResultTable extends Migration
     public function up()
     {
         Schema::create('muet_result', function (Blueprint $table) {
-            $table->id();
+            $table->id('muet_id');
             $table->foreignId('nric')->index();
             $table->string('year_muet')->nullable();
             $table->string('grade')->nullable();

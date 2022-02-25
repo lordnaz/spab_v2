@@ -14,7 +14,7 @@ class CreateCourseTakenTable extends Migration
     public function up()
     {
         Schema::create('course_taken', function (Blueprint $table) {
-            $table->id();
+            $table->id('course_takenid');
             $table->foreignId('nric')->index();
             $table->string('course_taken')->nullable();
             $table->string('organizer')->nullable();

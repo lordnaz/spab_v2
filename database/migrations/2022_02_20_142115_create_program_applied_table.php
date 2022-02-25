@@ -14,7 +14,7 @@ class CreateProgramAppliedTable extends Migration
     public function up()
     {
         Schema::create('program_applied', function (Blueprint $table) {
-            $table->id();
+            $table->id('program_applid');
             $table->foreignId('nric')->index();
             $table->string('program_name')->nullable();
             $table->string('created_by')->nullable();

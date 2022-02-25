@@ -14,7 +14,7 @@ class CreateAllStatusPermohonanTable extends Migration
     public function up()
     {
         Schema::create('all_status_permohonan', function (Blueprint $table) {
-            $table->id();
+            $table->id('status_id');
             $table->foreignId('nric')->index();
             $table->string('status_validation')->nullable();
             $table->string('modified_by_validation')->nullable();

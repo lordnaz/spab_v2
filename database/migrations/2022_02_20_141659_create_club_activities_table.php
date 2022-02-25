@@ -14,7 +14,7 @@ class CreateClubActivitiesTable extends Migration
     public function up()
     {
         Schema::create('club_activities', function (Blueprint $table) {
-            $table->id();
+            $table->id('club_id');
             $table->foreignId('nric')->index();
             $table->string('club')->nullable();
             $table->string('role')->nullable();

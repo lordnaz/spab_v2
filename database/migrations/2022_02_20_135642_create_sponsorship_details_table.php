@@ -14,7 +14,7 @@ class CreateSponsorshipDetailsTable extends Migration
     public function up()
     {
         Schema::create('sponsorship_details', function (Blueprint $table) {
-            $table->id();
+            $table->id('sponsor_id');
             $table->foreignId('nric')->index();
             $table->string('sponsorship')->nullable();
             $table->string('address_sponsorship')->nullable();
