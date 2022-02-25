@@ -17,7 +17,7 @@ class CreateCourseTakenTable extends Migration
             $table->id('course_takenid');
             $table->foreignId('nric')->index();
             $table->string('course_taken')->nullable();
-            $table->string('organizer')->nullable();
+            $table->string('course_organizer')->nullable();
             $table->string('place_taken')->nullable();
             $table->string('year_taken')->nullable();
             $table->string('created_by')->nullable();

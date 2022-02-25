@@ -15,7 +15,7 @@ class CreateUserDetailsTable extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->id('user_detailsid');
-            $table->foreignId('user_id')->index();
+            $table->string('no_siri')->unique();
             $table->string('nric')->unique();
             $table->string('name')->nullable();
             $table->string('short_name')->nullable();
@@ -40,8 +40,9 @@ class CreateUserDetailsTable extends Migration
             $table->string('description')->nullable();
             $table->string('status_admission')->nullable();
             $table->string('type_program_applied')->nullable();
-            $table->timestamp('date_application')->nullable();
-            $table->timestamp('date_acceptance')->nullable();
+            $table->dateTime('date_application')->nullable();
+            $table->dateTime('date_acceptance')->nullable();
+            $table->boolean('status')->default(true);
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();
             $table->timestamps();
