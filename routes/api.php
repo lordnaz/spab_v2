@@ -58,7 +58,7 @@ Route::middleware('auth:sanctum')->post('updatePanelById', [PanelInterviewContro
 Route::middleware('auth:sanctum')->post('getPanelDetailsbyId', [PanelInterviewController::class, 'getPanelDetailsbyId']);
 Route::middleware('auth:sanctum')->post('deletePanelById', [PanelInterviewController::class, 'deletePanelById']);
 
-//PanelInterview 
+//Pusat Temuduga 
 Route::middleware('auth:sanctum')->post('/addCenterInterview', [InterviewCenterController::class, 'addCenterInterview']);
 Route::middleware('auth:sanctum')->get('/getAllCenterInterview', [InterviewCenterController::class, 'getAllCenterInterview']);
 Route::middleware('auth:sanctum')->post('updateCenterInterviewybId', [InterviewCenterController::class, 'updateCenterInterviewybId']);
