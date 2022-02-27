@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Qualification extends Model
+class MuetResult extends Model
 {
     use HasFactory;
 
-    protected $table = 'qualification';
+    protected $table = 'muet_result';
     
-    protected $primaryKey = 'qualification_id';
+    protected $primaryKey = 'muet_id';
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\OfferprogramController;
 use App\Http\Controllers\ProgramQualificationController;
 use App\Http\Controllers\PanelInterviewController;
 use App\Http\Controllers\InterviewCenterController;
+use App\Http\Controllers\PermohonanAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,10 @@ Route::middleware('auth:sanctum')->get('/getAllPlaceIVapplicant', [IVSchedulingC
 Route::middleware('auth:sanctum')->post('getAllApplicantDetailbyPlaceIV', [IVSchedulingController::class, 'getAllApplicantDetailbyPlaceIV']);
 Route::middleware('auth:sanctum')->post('getIVSessionbyCenter', [IVSchedulingController::class, 'getIVSessionbyCenter']);
 Route::middleware('auth:sanctum')->post('updatePlaceIVapplicantById', [IVSchedulingController::class, 'updatePlaceIVapplicantById']);
+
+//Permohonan
+Route::middleware('auth:sanctum')->post('/add_permohonan', [PermohonanAPIController::class, 'add_permohonan']);
+Route::middleware('auth:sanctum')->get('/display_permohonan', [PermohonanAPIController::class, 'display_permohonan']);
+Route::middleware('auth:sanctum')->post('/delete_permohonan', [PermohonanAPIController::class, 'delete_permohonan']);
+Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [PermohonanAPIController::class, 'display_permohonanbynric']);
+Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPIController::class, 'update_permohonan']);

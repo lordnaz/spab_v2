@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Qualification extends Model
+class ArtInvolve extends Model
 {
     use HasFactory;
 
-    protected $table = 'qualification';
+    protected $table = 'art_involvements';
     
-    protected $primaryKey = 'qualification_id';
+    protected $primaryKey = 'art_id';
 }

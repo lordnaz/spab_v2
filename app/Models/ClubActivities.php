@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Qualification extends Model
+class ClubActivities extends Model
 {
     use HasFactory;
 
-    protected $table = 'qualification';
+    protected $table = 'club_activities';
     
-    protected $primaryKey = 'qualification_id';
+    protected $primaryKey = 'club_id';
 }
