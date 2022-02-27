@@ -73,3 +73,6 @@ Route::middleware('auth:sanctum')->post('deleteOpenCenterInterviewbyId', [OpenCe
 Route::middleware('auth:sanctum')->post('addSessionInterviewbyId', [OpenCenterInterviewController::class, 'addSessionInterviewbyId']);
 Route::middleware('auth:sanctum')->post('deleteSessionInterviewbyId', [OpenCenterInterviewController::class, 'deleteSessionInterviewbyId']);
 
+//InterviewScreening 
+Route::middleware('auth:sanctum')->get('/getAllScreeningIVapplicant', [InterviewScreeningController::class, 'getAllScreeningIVapplicant']);
+Route::middleware('auth:sanctum')->post('updateScreeningIVapplicantById', [InterviewScreeningController::class, 'updateScreeningIVapplicantById']);
