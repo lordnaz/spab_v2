@@ -255,9 +255,11 @@ return [
     "Minimum Qualification" => "Kelayakan Minimum",
     "Offer Details" => "Butiran Tawaran",
     "Quota" => "Kuota",
+    "Submit" => "Hantar",
 
     //temuduga
     "New Interview" => "Temuduga Baru",
+    "New Panel" => "Panel Baru",
     "No.KP" => "No.KP",
     "Name" => "Nama",
     "Faculty" => "Fakulti",

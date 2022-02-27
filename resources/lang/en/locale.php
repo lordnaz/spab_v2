@@ -253,9 +253,11 @@ return [
     "Minimum Qualification" => "Minimum Qualification",
     "Offer Details" => "Offer Details",
     "Quota" => "Quota",
+    "Submit" => "Submit",
 
     //temuduga
     "New Interview" => "New Interview",
+    "New Panel" => "New Panel",
     "No.KP" => "No.KP",
     "Name" => "Name",
     "Faculty" => "Faculty",

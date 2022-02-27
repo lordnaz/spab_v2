@@ -229,7 +229,7 @@
                               
                 <button type="submit" class="btn btn-success">
                   <i data-feather="plus-circle" class="me-25"></i>
-                  <span>{!! __('locale.Add') !!}</span>
+                  <span>{!! __('locale.Submit') !!}</span>
                 </button>
                 
 
