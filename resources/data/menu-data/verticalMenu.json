@@ -45,6 +45,19 @@
       ]
     },
     {
+      "name": "Intake",
+      "icon": "file-text",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "registration",
+          "name": "New Registration",
+          "icon": "circle",
+          "slug": "registration"
+        }
+      ]
+    },
+    {
       "url": "transactions",
       "name": "Transactions",
       "icon": "dollar-sign",

@@ -212,6 +212,7 @@ return [
     "tnc_link" => "<b>terma dan syarat</b>",
     "register_btn" => "Daftar",
     "has_account" => "Sudah mempunyai akaun?",
+    "short_name" => "Nama Singkatan",
 
     
     // Navigation Menu
@@ -222,10 +223,11 @@ return [
 
 
     // Vertical Menu
-    "Programme" => "Tetapan",
+    "Programme" => "Program",
     "Programme Setting" => "Tetapan Program",
     "Activation" => "Program Ditawar",
     "Student Registration" => "Pendaftaran Pelajar",
+    "Intake" => "Kemasukan",
 
     // program page
     "New Program" => "Program Baru",
@@ -277,5 +279,37 @@ return [
     "Interview" => "Temuduga",
     "Interview Panel" => "Panel Temuduga",
 
+
+    // Permohonan
+    "New Registration" => "Permohonan Baru",
+    "Registration Details" => "Permohonan",
+    "Registration Details Sub" => "Maklumat Permohonan",
+    "Personal Info" => "Maklumat Pemohon",
+    "Personal Info Sub" => "Maklumat Lengkap <br> Pemohon",
+    "Programme Sub" => "Program Dipohon",
+    "Qualification" => "Kelayakan",
+    "Qualification Sub" => "Maklumat Kelayakan dan <br> Pendidikan",
+    "Muet" => "MUET",
+    "Muet Sub" => "Keputusan MUET",
+    "High Education" => "Pengajian Tinggi",
+    "High Education Sub" => "Maklumat<br> Pengajian Tinggi",
+    "Work Experience" => "Pekerjaan",
+    "Work Experience Sub" => "Maklumat Lengkap<br> Pekerjaan",
+    "Art Involvements" => "Pengalaman",
+    "Art Involvements Sub" => "Pengalaman<br> Bidang Kesenian",
+    "Course" => "Kursus",
+    "Course Sub" => "Kursus yang <br> telah diambil",
+    "Activities" => "Aktiviti/Kelab",
+    "Activities Sub" => "Maklumat Aktiviti/Kelab",
+    "Registration Details Desc" => "Sila lengkapkan maklumat permohonan anda.",
+    "DOB" => "Tarikh Lahir",
+    "POB" => "Tempat Lahir",
+    "Race" => "Bangsa",
+    "State" => "Negeri",
+    "Gender" => "Jantina",
+    "Male" => "Lelaki",
+    "Female" => "Perempuan",
+    "Birth Certificate" => "No. Sijil Kelahiran",
+    
 
 ];
