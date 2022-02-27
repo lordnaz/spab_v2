@@ -192,9 +192,10 @@ class PermohonanAPIController extends Controller
         $course->modified_by = $user_id;;
         $course->save();
 
-        $course = new StatusPermohonan();
-        $course->nric = $req->nric;
-        $course->save();
+        $statuspermohonan = new StatusPermohonan();
+        $statuspermohonan->nric = $req->nric;
+        $statuspermohonan->status_validation = 'Belum Disahkan';
+        $statuspermohonan->save();
 
 
 
@@ -427,6 +428,7 @@ class PermohonanAPIController extends Controller
             ]
 
         );
+        $currentdt = date('d-m-Y H:i:s');
 
 
 

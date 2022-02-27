@@ -9,6 +9,7 @@ use App\Http\Controllers\ProgramQualificationController;
 use App\Http\Controllers\PanelInterviewController;
 use App\Http\Controllers\InterviewCenterController;
 use App\Http\Controllers\PermohonanAPIController;
+use App\Http\Controllers\PengesahanPermohonanAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,3 +91,9 @@ Route::middleware('auth:sanctum')->get('/display_permohonan', [PermohonanAPICont
 Route::middleware('auth:sanctum')->post('/delete_permohonan', [PermohonanAPIController::class, 'delete_permohonan']);
 Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [PermohonanAPIController::class, 'display_permohonanbynric']);
 Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPIController::class, 'update_permohonan']);
+
+//Pengensahan Permohonan
+Route::middleware('auth:sanctum')->get('/display_pengesahan', [PengesahanPermohonanAPIController::class, 'display_pengesahan']);
+Route::middleware('auth:sanctum')->get('/display_permohonanbynric', [PermohonanAPIController::class, '/display_permohonanbynric']);
+Route::middleware('auth:sanctum')->post('/sahkan', [PengesahanPermohonanAPIController::class, 'sahkan']);
+Route::middleware('auth:sanctum')->post('/tolak', [PengesahanPermohonanAPIController::class, 'tolak']);
