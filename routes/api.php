@@ -64,3 +64,11 @@ Route::middleware('auth:sanctum')->get('/getAllCenterInterview', [InterviewCente
 Route::middleware('auth:sanctum')->post('updateCenterInterviewybId', [InterviewCenterController::class, 'updateCenterInterviewybId']);
 Route::middleware('auth:sanctum')->post('getAllCenterInterviewybId', [InterviewCenterController::class, 'getAllCenterInterviewybId']);
 Route::middleware('auth:sanctum')->post('deleteCenterInterviewybId', [InterviewCenterController::class, 'deleteCenterInterviewybId']);
+
+
+//IVScheduling 
+
+Route::middleware('auth:sanctum')->get('/getAllPlaceIVapplicant', [IVSchedulingController::class, 'getAllPlaceIVapplicant']);
+Route::middleware('auth:sanctum')->post('getAllApplicantDetailbyPlaceIV', [IVSchedulingController::class, 'getAllApplicantDetailbyPlaceIV']);
+Route::middleware('auth:sanctum')->post('getIVSessionbyCenter', [IVSchedulingController::class, 'getIVSessionbyCenter']);
+Route::middleware('auth:sanctum')->post('updatePlaceIVapplicantById', [IVSchedulingController::class, 'updatePlaceIVapplicantById']);
