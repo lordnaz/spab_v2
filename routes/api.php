@@ -76,3 +76,9 @@ Route::middleware('auth:sanctum')->post('deleteSessionInterviewbyId', [OpenCente
 //InterviewScreening 
 Route::middleware('auth:sanctum')->get('/getAllScreeningIVapplicant', [InterviewScreeningController::class, 'getAllScreeningIVapplicant']);
 Route::middleware('auth:sanctum')->post('updateScreeningIVapplicantById', [InterviewScreeningController::class, 'updateScreeningIVapplicantById']);
+
+//IVScheduling 
+Route::middleware('auth:sanctum')->get('/getAllPlaceIVapplicant', [IVSchedulingController::class, 'getAllPlaceIVapplicant']);
+Route::middleware('auth:sanctum')->post('getAllApplicantDetailbyPlaceIV', [IVSchedulingController::class, 'getAllApplicantDetailbyPlaceIV']);
+Route::middleware('auth:sanctum')->post('getIVSessionbyCenter', [IVSchedulingController::class, 'getIVSessionbyCenter']);
+Route::middleware('auth:sanctum')->post('updatePlaceIVapplicantById', [IVSchedulingController::class, 'updatePlaceIVapplicantById']);
