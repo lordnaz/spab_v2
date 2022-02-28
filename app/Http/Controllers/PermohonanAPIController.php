@@ -195,6 +195,7 @@ class PermohonanAPIController extends Controller
         $statuspermohonan = new StatusPermohonan();
         $statuspermohonan->nric = $req->nric;
         $statuspermohonan->status_validation = 'Belum Disahkan';
+        $statuspermohonan->status_offer = 'Belum Ditawar';
         $statuspermohonan->save();
 
 

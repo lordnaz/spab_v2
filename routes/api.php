@@ -97,3 +97,6 @@ Route::middleware('auth:sanctum')->get('/display_pengesahan', [PengesahanPermoho
 Route::middleware('auth:sanctum')->get('/display_permohonanbynric', [PermohonanAPIController::class, '/display_permohonanbynric']);
 Route::middleware('auth:sanctum')->post('/sahkan', [PengesahanPermohonanAPIController::class, 'sahkan']);
 Route::middleware('auth:sanctum')->post('/tolak', [PengesahanPermohonanAPIController::class, 'tolak']);
+
+//Penawaran Permohonan
+Route::middleware('auth:sanctum')->get('/display_penawaran', [PengesahanPermohonanAPIController::class, 'display_penawaran']);
