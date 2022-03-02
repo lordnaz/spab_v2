@@ -875,7 +875,7 @@
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
           </button>
-          <button type="submit" class="btn btn-success btn-submit">Submit</button>
+          <button type="submit" class="btn btn-success">Submit</button>
         </div>
       </div>
     </div>
