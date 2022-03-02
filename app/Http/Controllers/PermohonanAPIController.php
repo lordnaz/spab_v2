@@ -93,27 +93,30 @@ class PermohonanAPIController extends Controller
 
         $pmr = new SubjectGrade;
         $pmr->nric = $req->nric;
+        $pmr->subject_year = $req->year_pmr;
         $pmr->subject_list = $req->subject_pmr;
         $pmr->grade = $req->grade_pmr;
-        $pmr->type_qualification = $req->type_pmr;
+        $pmr->type_qualification = "pmr";
         $pmr->created_by = $user_id;
         $pmr->modified_by = $user_id;
         $pmr->save();
 
         $spm = new SubjectGrade;
         $spm->nric = $req->nric;
+        $pmr->subject_year = $req->year_spm;
         $spm->subject_list = $req->subject_spm;
         $spm->grade = $req->grade_spm;
-        $spm->type_qualification = $req->type_spm;
+        $spm->type_qualification = "spm";
         $spm->created_by = $user_id;
         $spm->modified_by = $user_id;
         $spm->save();
 
         $stpm = new SubjectGrade;
         $stpm->nric = $req->stpm;
+        $pmr->subject_year = $req->year_stpm;
         $stpm->subject_list = $req->subject_stpm;
         $stpm->grade = $req->grade_stpm;
-        $stpm->type_qualification = $req->type_stpm;
+        $stpm->type_qualification = "stpm";
         $stpm->created_by = $user_id;
         $stpm->modified_by = $user_id;
         $stpm->save();
@@ -121,7 +124,7 @@ class PermohonanAPIController extends Controller
         $muet = new MuetResult;
         $muet->nric = $req->nric;
         $muet->year_muet = $req->year_muet;
-        $muet->grade = $req->grade_muet;
+        $muet->place_muet = $req->place_muet;
         $muet->speaking_grade = $req->speaking_grade;
         $muet->reading_grade = $req->reading_grade;
         $muet->writing_grade = $req->writing_grade;
@@ -169,7 +172,7 @@ class PermohonanAPIController extends Controller
         $sponsorship->nric = $req->nric;
         $sponsorship->sponsorship = $req->sponsorship;
         $sponsorship->address_sponsorship = $req->address_sponsorship;
-        $sponsorship->type_srponsorship = $req->type_srponsorship;
+        $sponsorship->type_sponsorship = $req->type_sponsorship;
         $sponsorship->reference_no_spsp = $req->reference_no_spsp;
         $sponsorship->date_offer = $req->date_offer;
         $sponsorship->monthly_amount_spsp = $req->monthly_amount_spsp;
