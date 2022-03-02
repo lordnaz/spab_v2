@@ -133,7 +133,7 @@ class FE_PermohonanController extends Controller
             'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
         ])->post(getenv('ENDPOINT').'/api/add_permohonan', $param);
 
-        return redirect()->route('program');
+        
 
     }
 

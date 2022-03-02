@@ -119,6 +119,7 @@
 
 
     <form action="/add_permohonan" method="post" enctype="multipart/form-data" accept-charset='UTF-8'>
+    {{@csrf_field()}}
     <div class="bs-stepper-content">
       <div
         id="account-details-vertical"
@@ -233,7 +234,7 @@
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
           </button>
-          <div data-target="#personal-info-vertical">
+          <div data-target="#personal-info-vertical" id="personal-info-vertical-trigger">
           <button class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
@@ -560,7 +561,7 @@
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
           </button>
           <button class="btn btn-primary btn-next">
-            <span class="align-middle d-sm-inline-block d-none">Test</span>
+            <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
