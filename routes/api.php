@@ -10,6 +10,9 @@ use App\Http\Controllers\PanelInterviewController;
 use App\Http\Controllers\InterviewCenterController;
 use App\Http\Controllers\PermohonanAPIController;
 use App\Http\Controllers\PengesahanPermohonanAPIController;
+use App\Http\Controllers\PenawaranPermohonanAPIController;
+use App\Http\Controllers\KeputusanPermohonanAPIController;
+use App\Http\Controllers\BalasanCalonAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,9 +97,23 @@ Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPICont
 
 //Pengensahan Permohonan
 Route::middleware('auth:sanctum')->get('/display_pengesahan', [PengesahanPermohonanAPIController::class, 'display_pengesahan']);
-Route::middleware('auth:sanctum')->get('/display_permohonanbynric', [PermohonanAPIController::class, '/display_permohonanbynric']);
+Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [PermohonanAPIController::class, '/display_permohonanbynric']);
 Route::middleware('auth:sanctum')->post('/sahkan', [PengesahanPermohonanAPIController::class, 'sahkan']);
 Route::middleware('auth:sanctum')->post('/tolak', [PengesahanPermohonanAPIController::class, 'tolak']);
 
 //Penawaran Permohonan
-Route::middleware('auth:sanctum')->get('/display_penawaran', [PengesahanPermohonanAPIController::class, 'display_penawaran']);
+Route::middleware('auth:sanctum')->get('/display_penawaran', [PenawaranPermohonanAPIController::class, 'display_penawaran']);
+Route::middleware('auth:sanctum')->post('/display_penawarabynric', [PenawaranPermohonanAPIController::class, '/display_penawarabynric']);
+Route::middleware('auth:sanctum')->post('/tawar_penawaran', [PenawaranPermohonanAPIController::class, 'tawar_permohonan']);
+Route::middleware('auth:sanctum')->post('/tolak_penawaran', [PenawaranPermohonanAPIController::class, 'tolak_permohonan']);
+Route::middleware('auth:sanctum')->post('/hadir_penawaran', [PenawaranPermohonanAPIController::class, 'hadir_permohonan']);
+Route::middleware('auth:sanctum')->post('/KIV_penawaran', [PenawaranPermohonanAPIController::class, 'KIV_permohonan']);
+
+//Keputusan Permohonan
+Route::middleware('auth:sanctum')->get('/display_keputusanbynric', [KeputusanPermohonanAPIController::class, '/display_keputusanbynric']);
+
+//Balasan Calon Permohonan
+Route::middleware('auth:sanctum')->get('/display_balasan', [BalasanCalonAPIController::class, '/display_balasan']);
+Route::middleware('auth:sanctum')->post('/terima', [BalasanCalonAPIController::class, '/terima']);
+Route::middleware('auth:sanctum')->post('/tolak', [BalasanCalonAPIController::class, '/tolak']);
+Route::middleware('auth:sanctum')->post('/display_balasanbynric', [BalasanCalonAPIController::class, '/display_balasanbynric']);

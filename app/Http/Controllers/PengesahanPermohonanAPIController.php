@@ -31,7 +31,7 @@ class PengesahanPermohonanAPIController extends Controller
 
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
-            'status_validation' => 'sah',        
+            'status_validation' => 'Sah',        
         ]);
 
         $data = [
