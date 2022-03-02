@@ -95,7 +95,6 @@
           </span>
         </button>
       </div>
-
       <div class="step" data-target="#social-links-vertical" role="tab" id="social-links-vertical-trigger">
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">9</span>
@@ -105,7 +104,6 @@
           </span>
         </button>
       </div>
-
       <div class="step" data-target="#social-links-vertical" role="tab" id="social-links-vertical-trigger">
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">10</span>
@@ -116,6 +114,11 @@
         </button>
       </div>
     </div>
+
+
+
+
+    <form action="/add_permohonan" method="post" enctype="multipart/form-data" accept-charset='UTF-8'>
     <div class="bs-stepper-content">
       <div
         id="account-details-vertical"
@@ -127,6 +130,7 @@
           <h5 class="mb-0">{!! __('locale.Registration Details') !!}</h5>
           <small class="text-muted">{!! __('locale.Registration Details Desc') !!}</small>
         </div>
+        
         <div class="row">
           <div class="mb-1 col-md-6">
             <label class="form-label" for="vertical-username">{!! __('locale.nric') !!}</label>
@@ -196,79 +200,37 @@
           </div>
           <div class="mb-1 col-md-6">
             <label class="form-label" for="vertical-gender">{!! __('locale.Gender') !!}</label>
-            <select class="select2 w-100" id="vertical-gender" name="gender" multiple>
-              <option>{!! __('locale.Male') !!}</option>
-              <option>{!! __('locale.Female') !!}</option>
+            <select class="select2 w-100" id="vertical-gender" name="gender">
+              <option label=" "></option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
           </div>
           <div class="mb-1 col-md-6">
             <label class="form-label" for="vertical-birth_cert_no">{!! __('locale.Birth Certificate') !!}</label>
             <input type="text" id="vertical-birth_cert_no" name="birth_cert_no" class="form-control" />
           </div>
-
-        </div>
-
-
-        <div class="row">
-          <div class="mb-1 form-password-toggle col-md-6">
-            <label class="form-label" for="vertical-password">Password</label>
-            <input
-              type="password"
-              id="vertical-password"
-              class="form-control"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-            />
-          </div>
-          <div class="mb-1 form-password-toggle col-md-6">
-            <label class="form-label" for="vertical-confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              id="vertical-confirm-password"
-              class="form-control"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-            />
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-birth_cert_no">{!! __('locale.Nationality') !!}</label>
+            <input type="text" id="vertical-birth_cert_no" name="nationality" class="form-control" />
           </div>
         </div>
         <div class="row">
-          <div class="mb-1 form-password-toggle col-md-6">
-            <label class="form-label" for="vertical-password">Password</label>
-            <input
-              type="password"
-              id="vertical-password"
-              class="form-control"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-            />
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-short_name">{!! __('locale.Phone_No') !!}</label>
+            <input type="text" id="vertical-short_name" name="phone_no" class="form-control" placeholder=" " />
           </div>
-          <div class="mb-1 form-password-toggle col-md-6">
-            <label class="form-label" for="vertical-confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              id="vertical-confirm-password"
-              class="form-control"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-            />
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-short_name">{!! __('locale.House_No') !!}</label>
+            <input type="text" id="vertical-short_name" name="house_no" class="form-control" placeholder=" " />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-short_name">{!! __('locale.Parliament') !!}</label>
+            <input type="text" id="vertical-short_name" name="parliament" class="form-control" placeholder=" " />
           </div>
         </div>
-        <div class="row">
-          <div class="mb-1 form-password-toggle col-md-6">
-            <label class="form-label" for="vertical-password">Password</label>
-            <input
-              type="password"
-              id="vertical-password"
-              class="form-control"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-            />
-          </div>
-          <div class="mb-1 form-password-toggle col-md-6">
-            <label class="form-label" for="vertical-confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              id="vertical-confirm-password"
-              class="form-control"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-            />
-          </div>
-        </div>
+      
+
         <div class="d-flex justify-content-between">
           <button class="btn btn-outline-secondary btn-prev" disabled>
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
@@ -280,82 +242,221 @@
           </button>
         </div>
       </div>
+
+
+
+
+
       <div id="personal-info-vertical" class="content" role="tabpanel" aria-labelledby="personal-info-vertical-trigger">
         <div class="content-header">
           <h5 class="mb-0">Personal Info</h5>
           <small>Enter Your Personal Info.</small>
         </div>
         <div class="row">
-          <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-first-name">First Name</label>
-            <input type="text" id="vertical-first-name" class="form-control" placeholder="John" />
+        <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-status_marriage">{!! __('locale.Status_Marriage') !!}</label>
+            <select class="select2 w-100" id="status_marriage" name="status_marriage">
+              <option label=" "></option>
+              <option value="Married">Married</option>
+              <option value="Divorced">Divorced</option>
+              <option value="Seperated">Seperated</option>
+              <option value="Widowed">Widowed</option>
+              <option value="Single">Single</option>
+            </select>
           </div>
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-last-name">Last Name</label>
-            <input type="text" id="vertical-last-name" class="form-control" placeholder="Doe" />
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Partner_Name') !!}</label>
+            <input type="text" id="vertical-last-name" name="partner_name" class="form-control" placeholder="Doe" />
           </div>
         </div>
         <div class="row">
-          <!-- <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-country">Country</label>
-            <select class="select2 w-100" id="vertical-country">
-              <option label=" "></option>
-              <option>UK</option>
-              <option>USA</option>
-              <option>Spain</option>
-              <option>France</option>
-              <option>Italy</option>
-              <option>Australia</option>
-            </select>
-          </div> -->
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-language">Language</label>
-            <select class="select2 w-100" id="vertical-language" multiple>
-              <option>English</option>
-              <option>French</option>
-              <option>Spanish</option>
-            </select>
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Partner_Phone_No') !!}</label>
+            <input type="text" id="vertical-last-name" name="partner_no_tel" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Partner_House_No') !!}</label>
+            <input type="text" id="vertical-last-name" name="partner_no_phonehouse" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-place_of_birth">{!! __('locale.Partner_Address') !!}</label>
+            <textarea class="form-control" id="label-textarea" name="partner_address_1" rows="4" placeholder=""></textarea>
+          </div>  
+        </div>
+        <div class="row">
+        <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Guardian_Name') !!}</label>
+            <input type="text" id="vertical-last-name" name="guardian_name" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-email">{!! __('locale.Guardian_Email') !!}</label>
+            <input
+              type="email"
+              id="vertical-email"
+              class="form-control"
+              placeholder="john.smith@email.com"
+              name="guardian_email"
+            />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Guardian_Nric_Old') !!}</label>
+            <input type="text" id="vertical-last-name" name="guardian_nric_old" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Guardian_Nric_New') !!}</label>
+            <input type="text" id="vertical-last-name" name="guardian_nric_new" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Guardian_Phone_No') !!}</label>
+            <input type="text" id="vertical-last-name" name="guardian_no_tel" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Guardian_House_No') !!}</label>
+            <input type="text" id="vertical-last-name" name="guardian_no_phonehouse" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-place_of_birth">{!! __('locale.Guardian_Address') !!}</label>
+            <textarea class="form-control" id="label-textarea" name="guardian_address_1" rows="4" placeholder=""></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-first-name">{!! __('locale.Guardian_Income') !!}</label>
+            <input type="text" id="vertical-first-name" name="guardian_income" class="form-control" placeholder="John" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Guardian_Occupation') !!}</label>
+            <input type="text" id="vertical-last-name" name="guardian_occupation" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-first-name">{!! __('locale.Number_of_Dependents') !!}</label>
+            <input type="text" id="vertical-first-name" name="guardian_occupation" class="form-control" placeholder="John" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Relationship_Guardian') !!}</label>
+            <input type="text" id="vertical-last-name" name="relationship_guardian" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-first-name">{!! __('locale.Kin_Name') !!}</label>
+            <input type="text" id="vertical-first-name" name="kin_name" class="form-control" placeholder="John" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Kin_Relationship') !!}</label>
+            <input type="text" id="vertical-last-name" name="kin_relationship" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-first-name">{!! __('locale.Kin_Phone_No') !!}</label>
+            <input type="text" id="vertical-first-name" name="kin_no_tel" class="form-control" placeholder="John" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Kin_House_No') !!}</label>
+            <input type="text" id="vertical-last-name" name="kin_no_phonehouse" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-email">{!! __('locale.Kin_Email') !!}</label>
+            <input
+              type="email"
+              id="vertical-email"
+              class="form-control"
+              placeholder="john.smith@email.com"
+              name="kin_email"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-place_of_birth">{!! __('locale.Kin_Address') !!}</label>
+            <textarea class="form-control" id="label-textarea" name="kin_address_1" rows="4" placeholder=""></textarea>
           </div>
         </div>
         <div class="d-flex justify-content-between">
+          <div data-target="#account-details-vertical-trigger">
           <button class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
           </button>
+          </div>
           <button class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
       </div>
-      <div id="address-step-vertical" class="content" role="tabpanel" aria-labelledby="address-step-vertical-trigger">
+
+
+
+
+      
+      <div id="address-step-vertical" class="content" role="tabpanel" aria-labelledby="program-step-vertical-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Address</h5>
+          <h5 class="mb-0">Program</h5>
           <small>Enter Your Address.</small>
         </div>
         <div class="row">
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-address">Address</label>
-            <input
-              type="text"
-              id="vertical-address"
-              class="form-control"
-              placeholder="98  Borough bridge Road, Birmingham"
-            />
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Series_No') !!}</label>
+            <input type="text" id="vertical-last-name" name="no_siri" class="form-control" placeholder="Doe" />
           </div>
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-landmark">Landmark</label>
-            <input type="text" id="vertical-landmark" class="form-control" placeholder="Borough bridge" />
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Program_Name') !!}</label>
+            <input type="text" id="vertical-last-name" name="program_name" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="row">
+        <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-status_marriage">{!! __('locale.Type_Program_Applied') !!}</label>
+            <select class="select2 w-100" id="type_program_applied" name="type_program_applied">
+              <option label=" "></option>
+              <option value="Full Time">Full-Time</option>
+              <option value="Half Time">Half-Time</option>
+            </select>
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Payment_Ref_No') !!}</label>
+            <input type="text" id="vertical-last-name" name="payment_ref_no" class="form-control" placeholder="Doe" />
           </div>
         </div>
         <div class="row">
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="pincode2">Pincode</label>
-            <input type="text" id="pincode2" class="form-control" placeholder="658921" />
+            <label class="form-label" for="vertical-place_of_birth">{!! __('locale.Form_Description') !!}</label>
+            <textarea class="form-control" id="label-textarea" name="form_description" rows="4" placeholder=""></textarea>
           </div>
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="city2">City</label>
-            <input type="text" id="city2" class="form-control" placeholder="Birmingham" />
+            <label class="form-label" for="vertical-place_of_birth">{!! __('locale.Description') !!}</label>
+            <textarea class="form-control" id="label-textarea" name="description" rows="4" placeholder=""></textarea>
+          </div> 
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-date_application">{!! __('locale.Date_Application') !!}</label>
+            <input type="text" id="vertical-date_application" name="date_application" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-date_acceptance">{!! __('locale.Date_Acceptance') !!}</label>
+            <input type="text" id="vertical-date_acceptance" name="date_acceptance" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Form_Completion') !!}</label>
+            <input type="text" id="vertical-last-name" name="form_completion" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.Status_Admission') !!}</label>
+            <input type="text" id="vertical-last-name" name="status_admission" class="form-control" placeholder="Doe" />
           </div>
         </div>
         <div class="d-flex justify-content-between">
@@ -369,29 +470,34 @@
           </button>
         </div>
       </div>
-      <div id="social-links-vertical" class="content" role="tabpanel" aria-labelledby="social-links-vertical-trigger">
+
+
+
+
+      
+      <div id="social-links-vertical" class="content" role="tabpanel" aria-labelledby="qualification-vertical-trigger">
         <div class="content-header">
           <h5 class="mb-0">Social Links</h5>
           <small>Enter Your Social Links.</small>
         </div>
         <div class="row">
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-twitter">Twitter</label>
-            <input type="text" id="vertical-twitter" class="form-control" placeholder="https://twitter.com/abc" />
+            <label class="form-label" for="vertical-last-name">{!! __('locale.institution_others_qc') !!}</label>
+            <input type="text" id="vertical-last-name" name="institution_others_qc" class="form-control" placeholder="Doe" />
           </div>
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-facebook">Facebook</label>
-            <input type="text" id="vertical-facebook" class="form-control" placeholder="https://facebook.com/abc" />
+            <label class="form-label" for="vertical-last-name">{!! __('locale.grade_others_qc') !!}</label>
+            <input type="text" id="vertical-last-name" name="grade_others_qc" class="form-control" placeholder="Doe" />
           </div>
         </div>
         <div class="row">
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-google">Google+</label>
-            <input type="text" id="vertical-google" class="form-control" placeholder="https://plus.google.com/abc" />
+            <label class="form-label" for="vertical-last-name">{!! __('locale.specialization_others_qc') !!}</label>
+            <input type="text" id="vertical-last-name" name="specialization_others_qc" class="form-control" placeholder="Doe" />
           </div>
           <div class="mb-1 col-md-6">
-            <label class="form-label" for="vertical-linkedin">Linkedin</label>
-            <input type="text" id="vertical-linkedin" class="form-control" placeholder="https://linkedin.com/abc" />
+            <label class="form-label" for="vertical-last-name">{!! __('locale.year_others_qc') !!}</label>
+            <input type="text" id="vertical-last-name" name="year_others_qc" class="form-control" placeholder="Doe" />
           </div>
         </div>
         <div class="d-flex justify-content-between">
@@ -399,11 +505,53 @@
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
           </button>
+          <button class="btn btn-primary btn-next">
+            <span class="align-middle d-sm-inline-block d-none">Test</span>
+            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+          </button>
+        </div>
+      </div>
+
+
+
+      <div id="muet-vertical" class="content" role="tabpanel" aria-labelledby="muet-vertical-trigger">
+        <div class="content-header">
+          <h5 class="mb-0">Social Links</h5>
+          <small>Enter Your Social Links.</small>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.institution_others_qc') !!}</label>
+            <input type="text" id="vertical-last-name" name="institution_others_qc" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.grade_others_qc') !!}</label>
+            <input type="text" id="vertical-last-name" name="grade_others_qc" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.specialization_others_qc') !!}</label>
+            <input type="text" id="vertical-last-name" name="specialization_others_qc" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="mb-1 col-md-6">
+            <label class="form-label" for="vertical-last-name">{!! __('locale.year_others_qc') !!}</label>
+            <input type="text" id="vertical-last-name" name="year_others_qc" class="form-control" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-primary btn-prev">
+            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+            <span class="align-middle d-sm-inline-block d-none">Testing</span>
+          </button>
           <button class="btn btn-success btn-submit">Submit</button>
         </div>
       </div>
+
+
     </div>
   </div>
+</form>
 </section>
 <!-- /Vertical Wizard -->
 

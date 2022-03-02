@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 class FE_PermohonanController extends Controller
 {
     //
@@ -26,6 +27,33 @@ class FE_PermohonanController extends Controller
         // return view('components.program-setting', ['breadcrumbs' => $breadcrumbs], compact('datas'));
 
         return view('components.permohonan-baru', ['breadcrumbs' => $breadcrumbs]);
+    }
+
+    public function add_permohonan(Request $req){
+
+        // $data = $req->input();
+
+        $param = [
+            'nric' => $req->nric,
+            'program' => $req->program,
+            'type' => $req->type,
+            'faculty' => $req->faculty,
+            'field' => $req->field,
+            'sub_field' => $req->sub_field,
+            'notes' => $req->notes,
+        ];
+
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+        ];
+
+        $request = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        ])->post(getenv('ENDPOINT').'/api/add_permohonan', $param);
+
+        return redirect()->route('program');
+
     }
 
 }

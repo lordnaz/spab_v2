@@ -71,7 +71,6 @@ class PermohonanAPIController extends Controller
         $addapplicant2->guardian_address_1 = $req->guardian_address_1;
         $addapplicant2->guardian_email = $req->guardian_email;
         $addapplicant2->guardian_income = $req->guardian_income;
-        $addapplicant2->relationship = $req->relationship;
         $addapplicant2->guardian_occupation = $req->guardian_occupation;
         $addapplicant2->number_of_dependents = $req->number_of_dependents;
         $addapplicant2->relationship_guardian = $req->relationship_guardian;
