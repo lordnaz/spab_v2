@@ -90,3 +90,7 @@ Route::middleware('auth:sanctum')->get('/display_permohonan', [PermohonanAPICont
 Route::middleware('auth:sanctum')->post('/delete_permohonan', [PermohonanAPIController::class, 'delete_permohonan']);
 Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [PermohonanAPIController::class, 'display_permohonanbynric']);
 Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPIController::class, 'update_permohonan']);
+
+//InterviewResult
+Route::middleware('auth:sanctum')->get('/getAllApplicantIvResult', [ResultInterviewController::class, 'getAllApplicantIvResult']);
+Route::middleware('auth:sanctum')->post('updateApplicantIvResultById', [ResultInterviewController::class, 'updateApplicantIvResultById']);
