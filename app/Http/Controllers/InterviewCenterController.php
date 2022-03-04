@@ -93,14 +93,26 @@ class InterviewCenterController extends Controller
 
         
         $user_name = auth()->User()->name;
+        $where = CenterInterview::where('center_id', $req->code)->first();
+
+        if ($where->status_center == "TIDAK AKTIF"){
+
         $deleteCenterInterviewybId = CenterInterview::where('center_id', $req->code)->update([
             'status' => false    
     
             ]);
+
+            $status ="success";
+
+        }
+        else{
+
+            $status ="fail";
+        }
     
 
         $data = [
-            'status' => 'success',
+            'status' => $status,
             'code' => '000',
             'description' => 'disable status by'.$user_name.'.'
         ];

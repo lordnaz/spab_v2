@@ -135,9 +135,9 @@ class PusatTemudugaFEController extends Controller
             'code' => $code,
         ]);
 
-       
+        $datas = $request['status'];
 
-        return redirect()->route('pusattemuduga');
+        return redirect()->route('pusattemuduga' , compact('datas'));
 
     }
 }
