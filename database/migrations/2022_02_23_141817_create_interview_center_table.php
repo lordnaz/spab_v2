@@ -26,6 +26,7 @@ class CreateInterviewCenterTable extends Migration
             $table->string('position_officer_center')->nullable();
             $table->string('description_center')->nullable();
             $table->string('status_center')->nullable();
+            $table->boolean('status')->default(true);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

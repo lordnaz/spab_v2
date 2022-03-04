@@ -60,16 +60,18 @@
                 </div>
               </div>
 
+              
+
               <div class="col-12">
-                <div class="mb-1 row">
-                  <div class="col-sm-2">
-                    <label class="col-form-label" for="name">{!! __('locale.Address') !!}</label>
-                  </div>
-                  <div class="col-sm-10">
-                    <input type="text" id="name" class="form-control" name="address_1" placeholder="" value="{{$datas['address_1']}}"/>
-                  </div>
-                </div>
-              </div>
+                                <div class="mb-1 row">
+                                    <div class="col-sm-2">
+                                        <label class="col-form-label" for="label-textarea">{!! __('locale.Address') !!}</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="label-textarea" name="address_1" rows="4" placeholder="....">{{$datas['address_1']}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
 
               <div class="col-12">
                 <div class="mb-1 row">

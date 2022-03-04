@@ -7,6 +7,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProgrammeController;
 use App\Http\Controllers\PanelTemudugaController;
+use App\Http\Controllers\PusatTemudugaFEController;
 
 
 /*
@@ -62,6 +63,14 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('details_temuduga/{code}', [PanelTemudugaController::class, 'details_temuduga'])->name('details_temuduga');
     Route::get('delete_temuduga/{code}', [PanelTemudugaController::class, 'delete_temuduga'])->name('delete_temuduga');
     Route::post('update_temuduga', [PanelTemudugaController::class, 'update_temuduga'])->name('update_temuduga');
+
+    //pusat temuduga
+    Route::get('page_new_pusat', [PusatTemudugaFEController::class, 'page_new_pusat'])->name('page_new_pusat');
+    Route::get('pusattemuduga', [PusatTemudugaFEController::class, 'pusattemuduga'])->name('pusattemuduga');
+    Route::post('add_new_pusat', [ PusatTemudugaFEController::class, "add_new_pusat" ])->name('add_new_pusat');
+    Route::get('details_pusat/{code}', [PusatTemudugaFEController::class, 'details_pusat'])->name('details_pusat');
+    Route::post('update_pusat', [PusatTemudugaFEController::class, 'update_pusat'])->name('update_pusat');
+    Route::get('delete_pusat/{code}', [PusatTemudugaFEController::class, 'delete_pusat'])->name('delete_pusat');
 
 
   

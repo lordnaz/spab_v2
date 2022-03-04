@@ -273,5 +273,7 @@ return [
     "Interview" => "Temuduga",
     "Interview Panel" => "Panel Temuduga",
 
+    //pusat temuduga
+"Code" => "Kod",
 
 ];
