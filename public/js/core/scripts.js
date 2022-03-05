@@ -21,7 +21,7 @@ var __webpack_exports__ = {};
       'program_id' : program_id
     }
 
-    var tokenString = 'pkFjzut0Bxn7K8V04I18QNpOQWDzdm6ZINaKLKr8'
+    var tokenString = 'Ab2G82GnSfAbL0lU8pAiUQNHAnjEq10pTREcbTI8'
 
     $.ajax({
       url: "api/delete_program",

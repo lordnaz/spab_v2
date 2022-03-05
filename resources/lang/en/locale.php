@@ -392,10 +392,8 @@ return [
     "Year_taken" => "Year",
 
 
-
-
-
-//pusat temuduga
-"Code" => "Code",
+    //pusat temuduga
+    "Code" => "Code",
+    "Pusat Temuduga" => "Pusat Temuduga",
 
 ];

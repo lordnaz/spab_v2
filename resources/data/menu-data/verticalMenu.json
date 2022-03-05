@@ -41,6 +41,12 @@
           "name": "Interview Panel",
           "icon": "circle",
           "slug": "program"
+        },
+        {
+          "url": "pusattemuduga",
+          "name": "Pusat Temuduga",
+          "icon": "circle",
+          "slug": "program"
         }
       ]
     },

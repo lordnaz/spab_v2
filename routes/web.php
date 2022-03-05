@@ -77,7 +77,6 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('update_pusat', [PusatTemudugaFEController::class, 'update_pusat'])->name('update_pusat');
     Route::get('delete_pusat/{code}', [PusatTemudugaFEController::class, 'delete_pusat'])->name('delete_pusat');
 
-
     // Permohonan  
     Route::get('registration', [FE_PermohonanController::class, 'registration'])->name('registration');
     Route::post('add_permohonan', [FE_PermohonanController::class, 'add_permohonan'])->name('add_permohonan');

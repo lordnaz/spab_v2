@@ -230,15 +230,15 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-outline-secondary btn-prev" disabled>
+          <a class="btn btn-outline-secondary btn-prev" disabled>
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
+          </a>
           <div data-target="#personal-info-vertical" id="personal-info-vertical-trigger">
-          <button class="btn btn-primary btn-next">
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+          </a>
           </div>
         </div>
       </div>
@@ -395,15 +395,15 @@
         </div>
         <div class="d-flex justify-content-between">
           <div data-target="#account-details-vertical-trigger">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
+</a>
           </div>
-          <button class="btn btn-primary btn-next">
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+</a>
         </div>
       </div>
 
@@ -471,14 +471,14 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next">
+</a>
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+</a>
         </div>
       </div>
 
@@ -556,14 +556,14 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next">
+</a>
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+</a>
         </div>
       </div>
 
@@ -653,14 +653,14 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next">
+</a>
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+</a>
         </div>
       </div>
 
@@ -685,14 +685,14 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next">
+</a>
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+</a>
         </div>
       </div>
 
@@ -754,14 +754,14 @@
           </div> 
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next">
+</a>
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+</a>
         </div>
       </div>
 
@@ -789,14 +789,14 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next">
+</a>
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+</a>
         </div>
       </div>
 
@@ -838,14 +838,14 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next">
+</a>
+          <a class="btn btn-primary btn-next">
             <span class="align-middle d-sm-inline-block d-none">Next</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-          </button>
+</a>
         </div>
       </div>
 
@@ -872,10 +872,10 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev">
+          <a class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
+</a>
           <button type="submit" class="btn btn-success">Submit</button>
         </div>
       </div>
