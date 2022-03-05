@@ -11,123 +11,123 @@
         </div>
         <div class="card-body">
           <form action="/add_new_temuduga" method="post" enctype="multipart/form-data" accept-charset='UTF-8' class="form form-horizontal">
-            @csrf  
+            @csrf
             <div class="row">
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="code">{!! __('locale.No.KP') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="code" class="form-control" name="no_ic" placeholder=""/>
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="code">{!! __('locale.No.KP') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="code" class="form-control" name="no_ic" placeholder="" />
+                  </div>
+                </div>
+              </div>
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="name">{!! __('locale.Name') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="panel_name" placeholder=""/>
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="name">{!! __('locale.Name') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" name="panel_name" placeholder="" />
+                  </div>
+                </div>
+              </div>
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="name">{!! __('locale.Position') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="panel_position" placeholder=""/>
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="name">{!! __('locale.Position') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" name="panel_position" placeholder="" />
+                  </div>
+                </div>
+              </div>
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="name">{!! __('locale.Faculty') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="panel_faculty" placeholder=""/>
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="name">{!! __('locale.Faculty') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" name="panel_faculty" placeholder="" />
+                  </div>
+                </div>
+              </div>
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="name">{!! __('locale.Address') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="address_1" placeholder=""/>
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="label-textarea">{!! __('locale.Address') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" id="label-textarea" name="address_1" rows="4" placeholder="...."></textarea>
+                  </div>
+                </div>
+              </div>
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="name">{!! __('locale.Tel(H)') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="tel_house" placeholder="" />
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="name">{!! __('locale.Tel(H)') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" name="tel_house" placeholder="" />
+                  </div>
+                </div>
+              </div>
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="name">{!! __('locale.Tel(P)') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="tel_phone" placeholder="" />
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="name">{!! __('locale.Tel(P)') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" name="tel_phone" placeholder="" />
+                  </div>
+                </div>
+              </div>
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="name">{!! __('locale.Email') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="panel_email" placeholder="" />
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="name">{!! __('locale.Email') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" name="panel_email" placeholder="" />
+                  </div>
+                </div>
+              </div>
 
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label">{!! __('locale.Status') !!}:</label>
-    </div>
-    <div class="col-sm-10">
-      <select class="select2 form-select" id="type" name="status">
-          <option selected disabled>{!! __('locale.Please Choose') !!}</option>
-          <option data-avatar="1-small.png" value="Aktif">{!! __('locale.Active') !!}</option>
-          <option data-avatar="3-small.png" value="Tidak Aktif">{!! __('locale.Not Active') !!}</option>
-      </select>
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label">{!! __('locale.Status') !!}:</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <select class="select2 form-select" id="type" name="status">
+                      <option selected disabled>{!! __('locale.Please Choose') !!}</option>
+                      <option data-avatar="1-small.png" value="Aktif">{!! __('locale.Active') !!}</option>
+                      <option data-avatar="3-small.png" value="Tidak Aktif">{!! __('locale.Not Active') !!}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
-<div class="col-12">
-  <div class="mb-1 row">
-    <div class="col-sm-2">
-      <label class="col-form-label" for="name">{!! __('locale.Description') !!}</label>
-    </div>
-    <div class="col-sm-10">
-      <input type="text" id="name" class="form-control" name="description" placeholder="" value=""/>
-    </div>
-  </div>
-</div>
+              <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="name">{!! __('locale.Description') !!}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" name="description" placeholder="" value="" />
+                  </div>
+                </div>
+              </div>
 
               <div class="col-sm-3 offset-sm-9">
                 <a href="{{ route('paneltemuduga') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Back') !!}</a>
@@ -142,7 +142,7 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 </section>
 <!-- Basic Horizontal form layout section end -->

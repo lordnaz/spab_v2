@@ -279,6 +279,8 @@ return [
     "Interview" => "Temuduga",
     "Interview Panel" => "Panel Temuduga",
 
+    //pusat temuduga
+"Code" => "Kod",
 
     // Permohonan
     "New Registration" => "Permohonan Baru",
