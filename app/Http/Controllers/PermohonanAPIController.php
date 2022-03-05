@@ -15,6 +15,8 @@ use App\Models\Qualification;
 use App\Models\SponsorDetails;
 use App\Models\StatusPermohonan;
 use App\Models\SubjectGrade;
+use App\Models\PenawaranPermohonan;
+use App\Models\program;
 
 class PermohonanAPIController extends Controller
 {
@@ -86,7 +88,8 @@ class PermohonanAPIController extends Controller
 
         $programapply = new ProgramApplied;
         $programapply->nric = $req->nric;
-        $programapply->program_name = $req->program_name;
+        $programapply->program_id = $req->program_id;
+        $programapply->program_id2 = $req->program_id2;
         $programapply->created_by = $user_id;
         $programapply->modified_by = $user_id;;
         $programapply->save();
@@ -198,9 +201,16 @@ class PermohonanAPIController extends Controller
         $course->modified_by = $user_id;
         $course->save();
 
-        $course = new StatusPermohonan();
-        $course->nric = $req->nric;
-        $course->save();
+        $statuspermohonan = new StatusPermohonan();
+        $statuspermohonan->nric = $req->nric;
+        $statuspermohonan->status_validation = 'Belum Disahkan';
+        $statuspermohonan->status_offer = 'Belum Ditawar';
+        $statuspermohonan->balasan_calon = 'Tiada Balasan';
+        $statuspermohonan->save();
+
+        $penawaranpermohonan = new PenawaranPermohonan();
+        $penawaranpermohonan->nric = $req->nric;
+        $$penawaranpermohonan->save();
 
 
 
@@ -250,7 +260,16 @@ class PermohonanAPIController extends Controller
     public function display_permohonanbynric(Request $req)
     {
 
-        $displaybynric = UserDetail::join('applicant_details_sub', 'nric', '=', 'user_details.nric')->join('qualification', 'nric', '=', 'user_details.nric')->join('muet_result', 'nric', '=', 'user_details.nric')->join('applicant_experiences', 'nric', '=', 'user_details.nric')->join('art_involvements', 'nric', '=', 'user_details.nric')->join('sponsorship_details', 'nric', '=', 'user_details.nric')->join('subject_grade', 'nric', '=', 'user_details.nric')->join('course_taken', 'nric', '=', 'user_details.nric')->join('club_activities', 'nric', '=', 'user_details.nric')->where('nric', $req->nric)->get();
+        $displaybynric = UserDetail::join('applicant_details_sub', 'nric', '=', 'user_details.nric')->join('qualification', 'nric', '=', 'user_details.nric')->join('program_applied', 'nric', '=', 'user_details.nric')->join('muet_result', 'nric', '=', 'user_details.nric')->join('applicant_experiences', 'nric', '=', 'user_details.nric')->join('art_involvements', 'nric', '=', 'user_details.nric')->join('sponsorship_details', 'nric', '=', 'user_details.nric')->join('subject_grade', 'nric', '=', 'user_details.nric')->join('course_taken', 'nric', '=', 'user_details.nric')->join('club_activities', 'nric', '=', 'user_details.nric')->where('nric', $req->nric)->get();
+        $displayy = program::where('status', true)->get();
+
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => 'succesfull',
+            'data' => $displaybynric,
+            'dataa' => $displayy,
+        ];
     }
 
 
@@ -433,6 +452,7 @@ class PermohonanAPIController extends Controller
             ]
 
         );
+        $currentdt = date('d-m-Y H:i:s');
 
 
 
