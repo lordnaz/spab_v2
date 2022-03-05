@@ -21,10 +21,14 @@ class PermohonanAPIController extends Controller
     public function add_permohonan(Request $req)
     {
 
+        $random_string = chr(rand(65,90)) . chr(rand(65,90)) . chr(rand(65,90));
+        $random_number = rand(10000000,99999999);
+        $no_siri = $random_string.$random_number;
+
         $user_id = auth()->User()->name;
 
         $addapplicant = new UserDetail;
-        $addapplicant->no_siri = $req->no_siri;
+        $addapplicant->no_siri = $no_siri;
         $addapplicant->nric = $req->nric;
         $addapplicant->name = $req->name;
         $addapplicant->short_name = $req->short_name;
@@ -67,7 +71,6 @@ class PermohonanAPIController extends Controller
         $addapplicant2->guardian_address_1 = $req->guardian_address_1;
         $addapplicant2->guardian_email = $req->guardian_email;
         $addapplicant2->guardian_income = $req->guardian_income;
-        $addapplicant2->relationship = $req->relationship;
         $addapplicant2->guardian_occupation = $req->guardian_occupation;
         $addapplicant2->number_of_dependents = $req->number_of_dependents;
         $addapplicant2->relationship_guardian = $req->relationship_guardian;
@@ -90,41 +93,44 @@ class PermohonanAPIController extends Controller
 
         $pmr = new SubjectGrade;
         $pmr->nric = $req->nric;
+        $pmr->subject_year = $req->year_pmr;
         $pmr->subject_list = $req->subject_pmr;
         $pmr->grade = $req->grade_pmr;
-        $pmr->type_qualification = $req->type_pmr;
+        $pmr->type_qualification = "pmr";
         $pmr->created_by = $user_id;
-        $pmr->modified_by = $user_id;;
+        $pmr->modified_by = $user_id;
         $pmr->save();
 
         $spm = new SubjectGrade;
         $spm->nric = $req->nric;
+        $pmr->subject_year = $req->year_spm;
         $spm->subject_list = $req->subject_spm;
         $spm->grade = $req->grade_spm;
-        $spm->type_qualification = $req->type_spm;
+        $spm->type_qualification = "spm";
         $spm->created_by = $user_id;
-        $spm->modified_by = $user_id;;
+        $spm->modified_by = $user_id;
         $spm->save();
 
         $stpm = new SubjectGrade;
         $stpm->nric = $req->stpm;
+        $pmr->subject_year = $req->year_stpm;
         $stpm->subject_list = $req->subject_stpm;
         $stpm->grade = $req->grade_stpm;
-        $stpm->type_qualification = $req->type_stpm;
+        $stpm->type_qualification = "stpm";
         $stpm->created_by = $user_id;
-        $stpm->modified_by = $user_id;;
+        $stpm->modified_by = $user_id;
         $stpm->save();
 
         $muet = new MuetResult;
         $muet->nric = $req->nric;
         $muet->year_muet = $req->year_muet;
-        $muet->grade = $req->grade_muet;
+        $muet->place_muet = $req->place_muet;
         $muet->speaking_grade = $req->speaking_grade;
         $muet->reading_grade = $req->reading_grade;
         $muet->writing_grade = $req->writing_grade;
         $muet->band = $req->band;
         $muet->created_by = $user_id;
-        $muet->modified_by = $user_id;;
+        $muet->modified_by = $user_id;
         $muet->save();
 
         $qualification = new Qualification;
@@ -134,7 +140,7 @@ class PermohonanAPIController extends Controller
         $qualification->specialization_others_qc = $req->specialization_others_qc;
         $qualification->year_others_qc = $req->year_others_qc;
         $qualification->created_by = $user_id;
-        $qualification->modified_by = $user_id;;
+        $qualification->modified_by = $user_id;
         $qualification->save();
 
         $experience = new ApplicantExperiences;
@@ -150,7 +156,7 @@ class PermohonanAPIController extends Controller
         $experience->work_exp_related_program = $req->work_exp_related_program;
         $experience->description_work_exp = $req->description_work_exp;
         $experience->created_by = $user_id;
-        $experience->modified_by = $user_id;;
+        $experience->modified_by = $user_id;
         $experience->save();
 
         $artinvolvement = new ArtInvolve;
@@ -159,19 +165,19 @@ class PermohonanAPIController extends Controller
         $artinvolvement->organizer = $req->organizer;
         $artinvolvement->year_involvement = $req->year_involvement;
         $artinvolvement->created_by = $user_id;
-        $artinvolvement->modified_by = $user_id;;
+        $artinvolvement->modified_by = $user_id;
         $artinvolvement->save();
 
         $sponsorship = new SponsorDetails;
         $sponsorship->nric = $req->nric;
         $sponsorship->sponsorship = $req->sponsorship;
         $sponsorship->address_sponsorship = $req->address_sponsorship;
-        $sponsorship->type_srponsorship = $req->type_srponsorship;
+        $sponsorship->type_sponsorship = $req->type_sponsorship;
         $sponsorship->reference_no_spsp = $req->reference_no_spsp;
         $sponsorship->date_offer = $req->date_offer;
         $sponsorship->monthly_amount_spsp = $req->monthly_amount_spsp;
         $sponsorship->created_by = $user_id;
-        $sponsorship->modified_by = $user_id;;
+        $sponsorship->modified_by = $user_id;
         $sponsorship->save();
 
         $club = new ClubActivities;
@@ -180,7 +186,7 @@ class PermohonanAPIController extends Controller
         $club->role = $req->role;
         $club->year_taken = $req->year_taken;
         $club->created_by = $user_id;
-        $club->modified_by = $user_id;;
+        $club->modified_by = $user_id;
         $club->save();
 
         $course = new CourseTaken;
@@ -189,7 +195,7 @@ class PermohonanAPIController extends Controller
         $course->organizer = $req->course_organizer;
         $course->place_taken = $req->place_taken;
         $course->created_by = $user_id;
-        $course->modified_by = $user_id;;
+        $course->modified_by = $user_id;
         $course->save();
 
         $course = new StatusPermohonan();

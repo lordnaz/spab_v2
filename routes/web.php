@@ -7,6 +7,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProgrammeController;
 use App\Http\Controllers\PanelTemudugaController;
+use App\Http\Controllers\FE_PermohonanController;
 
 
 /*
@@ -68,6 +69,9 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('update_temuduga', [PanelTemudugaController::class, 'update_temuduga'])->name('update_temuduga');
 
 
+    // Permohonan  
+    Route::get('registration', [FE_PermohonanController::class, 'registration'])->name('registration');
+    Route::post('add_permohonan', [FE_PermohonanController::class, 'add_permohonan'])->name('add_permohonan');
   
 
 });
