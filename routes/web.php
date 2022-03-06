@@ -80,6 +80,12 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //open pusat temuduga
     Route::get('/AddOpenPusatTemuduga', [OpenPusatTemudugaFEController::class, 'AddOpenPusatTemuduga'])->name('AddOpenPusatTemuduga');
+    Route::get('/PusatTemudugaTable', [OpenPusatTemudugaFEController::class, 'PusatTemudugaTable'])->name('PusatTemudugaTable');
+    Route::post('/OpenPusatTemuduga', [OpenPusatTemudugaFEController::class, 'OpenPusatTemuduga'])->name('OpenPusatTemuduga');
+    Route::get('details_open_temuduga/{code}', [OpenPusatTemudugaFEController::class, 'details_open_temuduga'])->name('details_open_temuduga');
+    Route::post('/UpdateOpenPusatTemuduga', [OpenPusatTemudugaFEController::class, 'UpdateOpenPusatTemuduga'])->name('UpdateOpenPusatTemuduga');
+    Route::get('sessiontable/{code}', [OpenPusatTemudugaFEController::class, 'sessiontable'])->name('sessiontable');
+    Route::post('/AddSesiTemuduga', [OpenPusatTemudugaFEController::class, 'AddSesiTemuduga'])->name('AddSesiTemuduga');
 
 
     // Permohonan  
