@@ -26,7 +26,9 @@ class FE_PermohonanController extends Controller
 
         // return view('components.program-setting', ['breadcrumbs' => $breadcrumbs], compact('datas'));
 
-        return view('components.permohonan-baru', ['breadcrumbs' => $breadcrumbs]);
+        $email = auth()->user()->email;
+
+        return view('components.permohonan-baru', ['breadcrumbs' => $breadcrumbs], compact('email'));
     }
 
     public function add_permohonan(Request $req){

@@ -66,6 +66,58 @@ $(function () {
       var $this = $(this);
       $this.validate({
         rules: {
+
+          //Permohonan
+          // nric: {
+          //   required: true
+          // },
+          // name: {
+          //   required: true
+          // },
+          // short_name: {
+          //   required: true
+          // },
+          // date_of_birth: {
+          //   required: true
+          // },
+          // place_of_birth: {
+          //   required: true
+          // },
+          // address_1: {
+          //   required: true
+          // },
+          // race: {
+          //   required: true
+          // },
+          // state: {
+          //   required: true
+          // },
+          // gender: {
+          //   required: true
+          // },
+          // birth_cert_no: {
+          //   required: true
+          // },
+          // nationality: {
+          //   required: true
+          // },
+          // phone_no: {
+          //   required: true
+          // },
+          // house_no: {
+          //   required: true
+          // },
+          // parliament: {
+          //   required: true
+          // },
+
+
+          // Personal
+          status_marriage: {
+            required: true
+          },
+
+
           username: {
             required: true
           },
@@ -123,6 +175,7 @@ $(function () {
         $(this).on('click', function (e) {
           var isValid = $(this).parent().siblings('form').valid();
           if (isValid) {
+            window.scrollTo({top: 0, behavior: 'smooth'});
             numberedStepper.next();
           } else {
             e.preventDefault();
@@ -149,9 +202,83 @@ $(function () {
   // Vertical Wizard
   // --------------------------------------------------------------------
   if (typeof verticalWizard !== undefined && verticalWizard !== null) {
-    var verticalStepper = new Stepper(verticalWizard, {
-      linear: false
+    // var verticalStepper = new Stepper(verticalWizard, {
+    //   linear: false
+    // });
+
+    // var numberedStepper = new Stepper(horizontalWizard),
+    //   $form = $(horizontalWizard).find('form');
+    // $form.each(function () {
+    //   var $this = $(this);
+    //   $this.validate({
+
+    // alert('here')
+    var verticalStepper = new Stepper(verticalWizard),
+      $form = $(verticalWizard).find('form');
+    $form.each(function () {
+      // console.log($form)
+      var $this = $(this);
+      $this.validate({
+        rules: {
+          nric: {
+            required: true
+          },
+          name: {
+            required: true
+          },
+          
+
+          username: {
+            required: true
+          },
+          email: {
+            required: true
+          },
+          password: {
+            required: true
+          },
+          'confirm-password': {
+            required: true,
+            equalTo: '#password'
+          },
+          'first-name': {
+            required: true
+          },
+          'last-name': {
+            required: true
+          },
+          address: {
+            required: true
+          },
+          landmark: {
+            required: true
+          },
+          country: {
+            required: true
+          },
+          language: {
+            required: true
+          },
+          twitter: {
+            required: true,
+            url: true
+          },
+          facebook: {
+            required: true,
+            url: true
+          },
+          google: {
+            required: true,
+            url: true
+          },
+          linkedin: {
+            required: true,
+            url: true
+          }
+        }
+      });
     });
+
     $(verticalWizard)
       .find('.btn-next')
       .on('click', function () {
