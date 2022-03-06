@@ -197,7 +197,7 @@ return [
     "Forgot_Password" => "Forget Password?",
     "Login_Button" => "Log Masuk",
     "No_Account" => "Masih tiada akaun?",
-    "Create_Account" => "Register Here!",
+    "Create_Account" => "Daftar di sini!",
 
     //Registration page
     "register_title" => "Account Registration",
