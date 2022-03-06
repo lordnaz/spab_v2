@@ -11,5 +11,5 @@ class Qualification extends Model
 
     protected $table = 'qualification';
     
-    protected $primaryKey = 'qualification_id';
+    protected $primaryKey = 'qualificationid';
 }

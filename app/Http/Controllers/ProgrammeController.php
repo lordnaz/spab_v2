@@ -272,9 +272,14 @@ class ProgrammeController extends Controller
         
 
         //add qualification
+        
         for ($i = 0; $i < $req->total; $i++){
         
-            
+            if (empty($req->data[$i]['subjek'])){
+
+            }
+            else{
+
         $paramm = [
             
             'subjek' => $req->data[$i]['subjek'],
@@ -290,7 +295,7 @@ class ProgrammeController extends Controller
         ])->post(getenv('ENDPOINT').'/api/add_ProgramQualification', $paramm);
 
         }
-
+    }
         return redirect()->route('offered_program');
 
     }

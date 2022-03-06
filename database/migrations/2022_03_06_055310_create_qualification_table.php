@@ -14,14 +14,13 @@ class CreateQualificationTable extends Migration
     public function up()
     {
         Schema::create('qualification', function (Blueprint $table) {
-            $table->id('qualification_id');
-            $table->foreignId('nric')->index();
-            $table->string('institution_others_qc')->nullable();
-            $table->string('grade_others_qc')->nullable();
-            $table->string('specialization_others_qc')->nullable();
-            $table->string('year_others_qc')->nullable();
-            $table->string('created_by')->nullable();
-            $table->string('modified_by')->nullable();
+            $table->id('qualificationid');
+            $table->string('subj_name');
+            $table->string('min_grade');
+            $table->integer('val_grade');
+            $table->string('created_by');
+            $table->boolean('status')->default(true);
+            $table->foreignId('offerprogram_id')->index();
             $table->timestamps();
         });
     }

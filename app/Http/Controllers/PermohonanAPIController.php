@@ -11,7 +11,7 @@ use App\Models\ClubActivities;
 use App\Models\CourseTaken;
 use App\Models\MuetResult;
 use App\Models\ProgramApplied;
-use App\Models\Qualification;
+use App\Models\QualificationPermohonan;
 use App\Models\SponsorDetails;
 use App\Models\StatusPermohonan;
 use App\Models\SubjectGrade;
@@ -136,7 +136,7 @@ class PermohonanAPIController extends Controller
         $muet->modified_by = $user_id;
         $muet->save();
 
-        $qualification = new Qualification;
+        $qualification = new QualificationPermohonan;
         $qualification->nric = $req->nric;
         $qualification->institution_others_qc = $req->institution_others_qc;
         $qualification->grade_others_qc = $req->grade_others_qc;
@@ -388,7 +388,7 @@ class PermohonanAPIController extends Controller
             ]
         );
 
-        $update = Qualification::where('nric', $req->nric)->update(
+        $update = QualificationPermohonan::where('nric', $req->nric)->update(
             [
 
                 'institution_others_qc' => $req->institution_others_qc,

@@ -15,14 +15,14 @@ class OpenCenterInterviewController extends Controller
 
        
 
-        $displayOpenCenterInterview = CenterInterview::where('status_center', 'AKTIF')->get();
+        $displayCenterInterview = CenterInterview::where('status', true)->get();
         
 
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' => $displayOpenCenterInterview
+            'data' => $displayCenterInterview
             
         ];
 
@@ -38,7 +38,7 @@ class OpenCenterInterviewController extends Controller
         
         $displayOpenCenterInterviewybId = CenterInterview::orderBy('interview_center.center_id', 'desc')->join('session_interview','interview_center.center_id','=','session_interview.center_id')
         ->join('panel_session_iv','session_interview.session_id','=','panel_session_iv.session_id')
-        ->where('interview_center.center_id',$center_id)
+        ->where('interview_center.center_id',$req->code)
         ->where('interview_center.status_center','AKTIF')
         ->get();
 
@@ -86,17 +86,17 @@ class OpenCenterInterviewController extends Controller
         $updateStatusCenterInterviewybId = CenterInterview::where('center_id',$req->center_id)->update
         ([
 
-            'code_center' => $updateStatusCenterInterviewybId->code_center,
-            'name_center' => $updateStatusCenterInterviewybId->name_center,
-            'address_center_1' => $updateStatusCenterInterviewybId->address_center_1,
-            'address_center_2' => $updateStatusCenterInterviewybId->address_center_2,
-            'address_center_3' => $updateStatusCenterInterviewybId->address_center_3,
-            'tel_no_center' => $updateStatusCenterInterviewybId->tel_no_center,
-            'fax_no_center' => $updateStatusCenterInterviewybId->fax_no_center,
-            'officer_center' => $updateStatusCenterInterviewybId->officer_center,
-            'position_officer_center' => $updateStatusCenterInterviewybId->position_officer_center,
-            'description_center' => $updateStatusCenterInterviewybId->description_center,
-            'status_center' => $updateStatusCenterInterviewybId->status_center,
+            'code_center' => $req->code_center,
+            'name_center' => $req->name_center,
+            'address_center_1' => $req->address_center_1,
+            'address_center_2' => $req->address_center_2,
+            'address_center_3' => $req->address_center_3,
+            'tel_no_center' => $req->tel_no_center,
+            'fax_no_center' => $req->fax_no_center,
+            'officer_center' => $req->officer_center,
+            'position_officer_center' => $req->position_officer_center,
+            'description_center' => $req->description_center,
+            'status_center' => $req->status_center,
             'updated_by' => $user_name,
             'updated_at' => $currentdt
         ]);
@@ -104,9 +104,9 @@ class OpenCenterInterviewController extends Controller
          $updateSessionInterviewybId = SessionInterview::where('center_id',$req->center_id)->update
         ([
 
-            'date_session' => $updateSessionInterviewybId->date_session,
-            'time_session' => $updateSessionInterviewybId->time_session,
-            'place_description' => $updateSessionInterviewybId->place_description,
+            'date_session' => $req->date_session,
+            'time_session' => $req->time_session,
+            'place_description' => $req->place_description,
             'updated_by' => $user_name,
             'updated_at' => $currentdt
         ]);
@@ -120,7 +120,7 @@ class OpenCenterInterviewController extends Controller
         
 
             $addNewPanelInterview = new PanelSessionInterview;
-            $addNewPanelInterview->number_session = $session_id;
+            $addNewPanelInterview->number_session = $req->code;
             $addNewPanelInterview->panel_name = $req->get('panel_name')[$key];
             $addNewPanelInterview->description = $req->description;
             $addNewPanelInterview->created_by = $user_name;

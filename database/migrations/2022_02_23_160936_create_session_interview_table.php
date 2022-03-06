@@ -15,10 +15,13 @@ class CreateSessionInterviewTable extends Migration
     {
         Schema::create('session_interview', function (Blueprint $table) {
             $table->id('session_id');
-            $table->foreignId('center_id')->index();
-            $table->string('number_session')->nullable();
-            $table->string('date_session')->nullable();
-            $table->string('time_session')->nullable();
+            $table->foreignId('asas_id')->index();
+            $table->integer('number_session')->nullable();
+            $table->dateTime('TarikhFrom')->nullable();
+            $table->dateTime('TarikhTo')->nullable();
+            $table->dateTime('DateFrom')->nullable();
+            $table->dateTime('DateTo')->nullable();
+            $table->string('description')->nullable();
             $table->string('place_description')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

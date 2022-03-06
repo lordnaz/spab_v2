@@ -12,15 +12,5 @@ class SessionInterview extends Model
     protected $table = 'session_interview';
     protected  $primaryKey = 'session_id';
     
-    protected $fillable = [
-        'center_id',
-        'number_session',
-        'date_session',
-        'time_session',
-        'place_description',
-        'status',
-        'created_by',
-        'created_at',
-        'updated_at',
-    ];
+    
 }

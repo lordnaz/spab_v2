@@ -13,6 +13,7 @@ use App\Http\Controllers\PengesahanPermohonanAPIController;
 use App\Http\Controllers\PenawaranPermohonanAPIController;
 use App\Http\Controllers\KeputusanPermohonanAPIController;
 use App\Http\Controllers\BalasanCalonAPIController;
+use App\Http\Controllers\OpenCenterInterviewController;
 
 /*
 |--------------------------------------------------------------------------

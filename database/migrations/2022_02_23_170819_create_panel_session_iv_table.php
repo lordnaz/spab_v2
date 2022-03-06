@@ -15,9 +15,8 @@ class CreatePanelSessionIvTable extends Migration
     {
         Schema::create('panel_session_iv', function (Blueprint $table) {
             $table->id('panel_iv_id');
-            $table->string('session_id')->nullable();
-            $table->string('panel_name')->nullable();
-            $table->string('description')->nullable();
+            $table->foreignId('session_id')->index()->nullable();
+            $table->foreignId('panel_id')->index()->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

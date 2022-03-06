@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProgramQualificationTable extends Migration
+class CreateAsasInterviewTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateProgramQualificationTable extends Migration
      */
     public function up()
     {
-        Schema::create('program_qualification', function (Blueprint $table) {
-            $table->id('pqualification_id');
-            $table->string('subj_name');
-            $table->string('min_grade');
-            $table->integer('val_grade');
-            $table->string('created_by');
+        Schema::create('asas_interview', function (Blueprint $table) {
+            $table->id('asas_id');
+            $table->foreignId('center_id')->index();
+            $table->json('negeri')->nullable();
+            $table->string('catatan')->nullable();
             $table->boolean('status')->default(true);
-            $table->foreignId('offerprogram_id')->index();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateProgramQualificationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('program_qualification');
+        Schema::dropIfExists('asas_interview');
     }
 }
