@@ -395,5 +395,11 @@ return [
     //pusat temuduga
     "Code" => "Code",
     "Pusat Temuduga" => "Pusat Temuduga",
+
+
+    //Pengesahan Permohonan
+    "Application Confirmation" => "Pengesahan Permohonan",
+    "Confirm" => "Sahkan",
+    "Reject" => "Tolak",
 ];
 

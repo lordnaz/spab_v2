@@ -60,6 +60,12 @@
           "name": "New Registration",
           "icon": "circle",
           "slug": "registration"
+        },
+        {
+          "url": "display_pengesahan_permohonan",
+          "name": "Application Confirmation",
+          "icon": "circle",
+          "slug": "registration"
         }
       ]
     },

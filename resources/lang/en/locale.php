@@ -396,4 +396,9 @@ return [
     "Code" => "Code",
     "Pusat Temuduga" => "Pusat Temuduga",
 
+    //pengesahan permohonan
+    "Application Confirmation" => "Application Confirmation",
+    "Confirm" => "Confirm",
+    "Reject" => "Reject",
+    
 ];

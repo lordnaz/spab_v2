@@ -101,16 +101,18 @@ Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPICont
 Route::middleware('auth:sanctum')->get('/getAllApplicantIvResult', [ResultInterviewController::class, 'getAllApplicantIvResult']);
 Route::middleware('auth:sanctum')->post('updateApplicantIvResultById', [ResultInterviewController::class, 'updateApplicantIvResultById']);
 //Pengensahan Permohonan
-Route::middleware('auth:sanctum')->get('/display_pengesahan', [PengesahanPermohonanAPIController::class, 'display_pengesahan']);
+//Route::middleware('auth:sanctum')->get('/display_pengesahan', [PengesahanPermohonanAPIController::class, 'display_pengesahan']);
+
+Route::middleware('auth:sanctum')->get('/display_permohonan', [PengesahanPermohonanAPIController::class, 'display_permohonan']);
 Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [PermohonanAPIController::class, '/display_permohonanbynric']);
 Route::middleware('auth:sanctum')->post('/sahkan', [PengesahanPermohonanAPIController::class, 'sahkan']);
-Route::middleware('auth:sanctum')->post('/tolak', [PengesahanPermohonanAPIController::class, 'tolak']);
+Route::middleware('auth:sanctum')->post('/tolak_pengesahan_pemohon', [PengesahanPermohonanAPIController::class, 'tolak_pengesahan_pemohon']);
 
 //Penawaran Permohonan
 Route::middleware('auth:sanctum')->get('/display_penawaran', [PenawaranPermohonanAPIController::class, 'display_penawaran']);
 Route::middleware('auth:sanctum')->post('/display_penawarabynric', [PenawaranPermohonanAPIController::class, '/display_penawarabynric']);
 Route::middleware('auth:sanctum')->post('/tawar_penawaran', [PenawaranPermohonanAPIController::class, 'tawar_permohonan']);
-Route::middleware('auth:sanctum')->post('/tolak_penawaran', [PenawaranPermohonanAPIController::class, 'tolak_permohonan']);
+Route::middleware('auth:sanctum')->post('/tolak_penawaran', [PenawaranPermohonanAPIController::class, 'tolak_penawaran']);
 Route::middleware('auth:sanctum')->post('/hadir_penawaran', [PenawaranPermohonanAPIController::class, 'hadir_permohonan']);
 Route::middleware('auth:sanctum')->post('/KIV_penawaran', [PenawaranPermohonanAPIController::class, 'KIV_permohonan']);
 
