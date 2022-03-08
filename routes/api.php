@@ -78,6 +78,10 @@ Route::middleware('auth:sanctum')->post('getAllOpenCenterInterviewybId', [OpenCe
 Route::middleware('auth:sanctum')->post('PostOpenCenterInterview', [OpenCenterInterviewController::class, 'PostOpenCenterInterview']);
 Route::middleware('auth:sanctum')->post('UpdateAsasTemuduga', [OpenCenterInterviewController::class, 'UpdateAsasTemuduga']);
 Route::middleware('auth:sanctum')->post('OpenSession', [OpenCenterInterviewController::class, 'OpenSession']);
+Route::middleware('auth:sanctum')->post('OpenSessionDetail', [OpenCenterInterviewController::class, 'OpenSessionDetail']);
+Route::middleware('auth:sanctum')->post('UpdateSesi', [OpenCenterInterviewController::class, 'UpdateSesi']);
+Route::middleware('auth:sanctum')->post('deleteOpenTemuduga', [OpenCenterInterviewController::class, 'deleteOpenTemuduga']);
+Route::middleware('auth:sanctum')->post('deleteSesi', [OpenCenterInterviewController::class, 'deleteSesi']);
 
 //opencenter kakak
 Route::middleware('auth:sanctum')->post('updateStatusCenterInterviewybId', [OpenCenterInterviewController::class, 'updateStatusCenterInterviewybId']);

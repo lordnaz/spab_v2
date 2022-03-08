@@ -6,14 +6,18 @@
 {{-- vendor css files --}}
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 @endsection
 
 
 @section('page-style')
 {{-- Page Css files --}}
-<link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
+
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
 @endsection
 
 
@@ -39,9 +43,8 @@
 
                             <div class="col-md-4">
                                 <label class="form-label">Pusat Temuduga:</label>
-                                <select class="select2 form-select" id="addMemberSelect">
-                                    <option selected disabled>{{$displayasas['code_center']}} - {{$displayasas['name_center']}}</option>
-                                </select>
+                                <input type="text" id="code" class="form-control" value="{{$displayasas['code_center']}} - {{$displayasas['name_center']}}" disabled/>
+                                
                             </div>
                         </div>
                     
@@ -69,21 +72,21 @@
                                 <td>{{$count++}}</td>
                                 <td>{{$displaysessionn['number_session']}}</td>
                                 <td>
-                                    @if ($displaysessionn['TarikhFrom'] == $displaysessionn['TarikhTo'])
+                                    @if ($displaysessionn['DateFrom'] == $displaysessionn['DateTo'])
 
-                                       {{$displaysessionn['TarikhFrom']}} 
+                                       {{$displaysessionn['DateFrom'] ? Carbon\Carbon::parse($displaysessionn['DateFrom'])->format('Y-m-d') : ' '}} 
 
                                        @else
 
-                                       {{$displaysessionn['TarikhFrom']}} - {{$displaysessionn['TarikhTo']}} 
+                                       {{$displaysessionn['DateFrom'] ? Carbon\Carbon::parse($displaysessionn['DateFrom'])->format('Y-m-d') : ' '}} - {{$displaysessionn['DateTo'] ? Carbon\Carbon::parse($displaysessionn['DateTo'])->format('Y-m-d') : ' '}}  
                             @endif
                             </td>
-                                <td>{{$displaysessionn['DateFrom']}} - {{$displaysessionn['DateTo']}}  </td>
+                                <td>{{ $displaysessionn['TarikhFrom'] ? Carbon\Carbon::parse($displaysessionn['TarikhFrom'])->format('H:i:s') : ' '}} - {{ $displaysessionn['TarikhTo'] ? Carbon\Carbon::parse($displaysessionn['TarikhTo'])->format('H:i:s') : ' '}}  </td>
 
                                 <td>
 
-                                <a href="{{ route('details_temuduga', Crypt::encrypt($displaysessionn['asas_id'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
-                    <a href="{{ route('delete_temuduga', Crypt::encrypt($displaysessionn['asas_id'])) }}" class="btn-sm btn-danger deleteProgram"> 
+                                <a href="{{ route('details_session', Crypt::encrypt($displaysessionn['session_id'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+                    <a href="{{ route('delete_sesi', Crypt::encrypt($displaysessionn['session_id'])) }}" class="btn-sm btn-danger deleteProgram"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
                     </a>
 
@@ -94,10 +97,36 @@
 @endforeach
                         </tbody>
                     </table>
-                    <div class="card-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+                    <section id="pick-a-time">
+  <div class="card">
+    
+  <div class="card-body">
                     @php
-                            $total = count($displaysession);
+                            $total = count($displaysession)+1;
+                            $numbersession = 0;
                      @endphp
+                     @foreach ($kiraan as $kiraann)
+                     @if ($total == $kiraann['number_session'])
+
+                     @php
+                     $total = $total - 1;
+                     @endphp
+
+                     @else
+
+                     @php
+                     $total;
+                     @endphp
+@endif
+@endforeach
+
                     <form action="/AddSesiTemuduga" method="post" enctype="multipart/form-data" accept-charset='UTF-8' class="form form-horizontal">
                         @csrf
                     <div class="row">
@@ -110,7 +139,68 @@
                                         <label class="col-form-label" for="code">No Sesi</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input type="text" id="code" class="form-control" name="number_session" value="{{($count)}}" disabled/>
+                                        <input type="text" id="code" class="form-control" name="number_session" value="{{($total)}}" readonly/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+        <div class="col-12">
+
+<div class="mb-1 row">
+  <div class="col-sm-2">
+
+    <label class="col-form-label" for="name">Masa</label>
+  </div>
+  <div class="col-sm-4">
+  
+  <input type="time" id="TarikhFrom" name="TarikhFrom" value="08:00" >
+  
+  </div>
+
+  <div class="col-sm-2">
+    <label class="col-form-label" for="name">{!! __('locale.Program Name') !!}</label>
+  </div>
+  <div class="col-sm-4">
+
+  <input type="time" id="TarikhTo"  name="TarikhTo" value="08:00">
+  </div>
+
+</div>
+</div>
+
+        
+
+        <div class="col-12">
+
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+
+                    <label class="col-form-label" for="name">Tarikh</label>
+                  </div>
+                  <div class="col-sm-4">
+                  
+                  <input type="date" id="DateFrom" name="DateFrom" >
+                  </div>
+
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="name">{!! __('locale.Program Name') !!}</label>
+                  </div>
+                  <div class="col-sm-4">
+                  <input type="date" id="DateFrom" name="DateTo" >
+                  </div>
+
+                </div>
+              </div>
+
+              
+              <div class="col-12">
+                                <div class="mb-1 row">
+                                    <div class="col-sm-2">
+                                        <label class="col-form-label" for="label-textarea">Tempat</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="label-textarea" name="place_description" rows="2" placeholder=""></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +208,7 @@
                     <div class="col-12">
                         <div class="mb-1 row">
                             <div class="col-sm-2">
-                                <label class="col-form-label">Pusat Temuduga:</label>
+                                <label class="col-form-label">Panel:</label>
                             </div>
                             <div class="col-sm-10">
                                 <select name="panel[]" class="select2 form-select" id="select2-multiple" multiple>
@@ -136,6 +226,17 @@
                         </div>
                     </div>
 
+                    <div class="col-12">
+                                <div class="mb-1 row">
+                                    <div class="col-sm-2">
+                                        <label class="col-form-label" for="label-textarea">Catatan</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="label-textarea" name="description" rows="4" placeholder=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
                     <div class="col-sm-3 offset-sm-9">
                                 <a href="{{ route('PusatTemudugaTable') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Back') !!}</a>
                                 
@@ -152,13 +253,14 @@
                 </div>
                     </form>
             </div>
-        </div>
-    </div>
-    </div>
-    </div>
-
-
+  </div>
 </section>
+
+                   
+    
+
+
+
 <!--/ Advanced Search -->
 
 
@@ -171,12 +273,19 @@
 <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+
 <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+
+<script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
 {{-- Page js files --}}
 <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
+<script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 @endsection

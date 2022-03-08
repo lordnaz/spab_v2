@@ -47,6 +47,12 @@
           "name": "Pusat Temuduga",
           "icon": "circle",
           "slug": "program"
+        },
+        {
+          "url": "PusatTemudugaTable",
+          "name": "Bukak Temuduga",
+          "icon": "circle",
+          "slug": "program"
         }
       ]
     },

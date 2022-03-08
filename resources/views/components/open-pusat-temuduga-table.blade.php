@@ -102,7 +102,7 @@
                   <td>{{$data['name_center']}}</td>
                   <td>
                     <a href="{{ route('details_open_temuduga', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-warning"><i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
-                    <a href="{{ route('delete_pusat', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
+                    <a href="{{ route('delete_open_temuduga', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
                     </a>
                     <a href="{{ route('sessiontable', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-warning"><i data-feather='external-link'></i>Sesi</a>

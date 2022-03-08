@@ -55,9 +55,66 @@ class OpenCenterInterviewController extends Controller
         return response()->json($data);
     }
 
+    public function deleteOpenTemuduga(Request $req)
+    {
+        
+        $exists = SessionInterview::where('asas_id', $req->code)->where('status',true)->exists();
+
+        if(!$exists){
+        $update = AsasInterview::where('asas_id', $req->code)->update([
+                'status' => false,
+                
+
+
+            ]);
+
+            $status="berjaya";
+
+        }
+        else{
+
+            $status="tidak berjaya";
+        }
+
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => $status
+        ];
+
+        return response()->json($data);
+    }
+
+    public function deleteSesi(Request $req)
+    {
+        
+        
+
+       
+        $update = SessionInterview::where('session_id', $req->code)->update([
+
+                'status' => false,           
+
+            ]);
+
+            $status="berjaya";
+
+
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => $status
+        ];
+
+        return response()->json($data);
+    }
+
     public function PostOpenCenterInterview(Request $req)
     {
 
+        $exists = SessionInterview::where('center_id', $req->center_id)->where('status',true)->exists();
+
+        if(!$exists){
         $addNewPanelInterview = new AsasInterview();
         $addNewPanelInterview->center_id = $req->center_id;
         $addNewPanelInterview->negeri = $req->negeri;
@@ -65,10 +122,16 @@ class OpenCenterInterviewController extends Controller
         $addNewPanelInterview->status = true;
         $addNewPanelInterview->save();
 
+        $status="berjaya";
+        }
+        else{
+            $status="tidak berjaya";
+        }
+
         $data = [
             'status' => 'success',
             'code' => '000',
-            'description' => 'program added successfully'
+            'description' => $status
         ];
 
         return response()->json($data);
@@ -83,10 +146,12 @@ class OpenCenterInterviewController extends Controller
         $displayCenterInterview = AsasInterview::where('asas_id', $req->code)->first();
         $displayall = CenterInterview::where('status', true)->get();
         $Displayasas = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_id', $req->code)->first();
-        $DisplaySession = SessionInterview::where('asas_id', $req->code)->get();
+        $DisplaySession = SessionInterview::orderBy('number_session', 'asc')->where('asas_id', $req->code)->where('status', true)->get();
+        $kiraan = SessionInterview::orderBy('number_session', 'desc')->where('asas_id', $req->code)->where('status', true)->get();
         $panel = PanelInterview::where('status', true)->get();
 
         $data = [
+
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
@@ -95,6 +160,7 @@ class OpenCenterInterviewController extends Controller
             'Displaysession' => $DisplaySession,
             'panel' => $panel,
             'Displayasas' => $Displayasas,
+            'kiraan' => $kiraan,
 
         ];
 
@@ -105,10 +171,17 @@ class OpenCenterInterviewController extends Controller
 
     public function OpenSession(Request $req)
     {
+        
 
         $addNewPanelInterview = new SessionInterview();
         $addNewPanelInterview->asas_id = $req->asas_id;
         $addNewPanelInterview->number_session = $req->number_session;
+        $addNewPanelInterview->TarikhFrom = $req->TarikhFrom;
+        $addNewPanelInterview->TarikhTo = $req->TarikhTo;
+        $addNewPanelInterview->DateFrom = $req->DateFrom;
+        $addNewPanelInterview->DateTo = $req->DateTo;
+        $addNewPanelInterview->description = $req->description;
+        $addNewPanelInterview->place_description = $req->place_description;
         $addNewPanelInterview->panel_id = $req->panel;
         $addNewPanelInterview->status = true;
         $addNewPanelInterview->save();
@@ -117,6 +190,54 @@ class OpenCenterInterviewController extends Controller
             'status' => 'success',
             'code' => '000',
             'description' => 'program added successfully'
+        ];
+
+        return response()->json($data);
+    }
+
+    public function OpenSessionDetail(Request $req)
+    {
+
+
+        // $displayOpenCenterInterviewybId = CenterInterview::where('center_id',$req->center_id)->first();
+        
+        $DisplaySession = SessionInterview::where('session_id', $req->code)->first();
+        $panel = PanelInterview::where('status', true)->get();
+
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => 'succesfull',
+            'Displaysession' => $DisplaySession,
+            'panel' => $panel,
+
+        ];
+
+
+
+        return response()->json($data);
+    }
+
+    public function UpdateSesi(Request $req)
+    {
+
+        $update = SessionInterview::where('session_id', $req->session_id)->update([
+            
+                'TarikhFrom' => $req->TarikhFrom,
+                'TarikhTo' => $req->TarikhTo,
+                'DateFrom' => $req->DateFrom,
+                'DateTo' => $req->DateTo,
+                'description' => $req->description,
+                'panel_id' => $req->panel,
+                'place_description' => $req->place_description,
+                
+
+            ]);
+
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => 'succesfull'
         ];
 
         return response()->json($data);

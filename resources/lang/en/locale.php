@@ -396,4 +396,8 @@ return [
     "Code" => "Code",
     "Pusat Temuduga" => "Pusat Temuduga",
 
+    
+    //Bukak pusat temuduga
+    "Bukak Temuduga" => "Open Interview",
+
 ];

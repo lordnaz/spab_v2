@@ -395,5 +395,8 @@ return [
     //pusat temuduga
     "Code" => "Code",
     "Pusat Temuduga" => "Pusat Temuduga",
+
+    //Bukak pusat temuduga
+    "Bukak Temuduga" => "Bukak Temuduga",
 ];
 
