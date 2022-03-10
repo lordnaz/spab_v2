@@ -17,6 +17,7 @@ use App\Models\StatusPermohonan;
 use App\Models\SubjectGrade;
 use App\Models\PenawaranPermohonan;
 use App\Models\program;
+use App\Models\ScreeningIV;
 
 class PermohonanAPIController extends Controller
 {
@@ -211,6 +212,11 @@ class PermohonanAPIController extends Controller
         $penawaranpermohonan = new PenawaranPermohonan();
         $penawaranpermohonan->nric = $req->nric;
         $$penawaranpermohonan->save();
+
+        $penawaranpermohonan = new ScreeningIV();
+        $penawaranpermohonan->nric = $req->nric;
+        $$penawaranpermohonan->save();
+
 
 
 

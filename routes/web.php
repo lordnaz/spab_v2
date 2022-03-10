@@ -11,6 +11,7 @@ use App\Http\Controllers\FE_PermohonanController;
 use App\Http\Controllers\PusatTemudugaFEController;
 use App\Http\Controllers\OpenPusatTemudugaFEController;
 use App\Http\Controllers\PengesahanPermohonanFEController;
+use App\Http\Controllers\PenapisanTemudugaFEController;
 
 
 /*
@@ -81,7 +82,19 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //open pusat temuduga
     Route::get('/AddOpenPusatTemuduga', [OpenPusatTemudugaFEController::class, 'AddOpenPusatTemuduga'])->name('AddOpenPusatTemuduga');
+    Route::get('/PusatTemudugaTable', [OpenPusatTemudugaFEController::class, 'PusatTemudugaTable'])->name('PusatTemudugaTable');
+    Route::post('/OpenPusatTemuduga', [OpenPusatTemudugaFEController::class, 'OpenPusatTemuduga'])->name('OpenPusatTemuduga');
+    Route::get('details_open_temuduga/{code}', [OpenPusatTemudugaFEController::class, 'details_open_temuduga'])->name('details_open_temuduga');
+    Route::get('delete_open_temuduga/{code}', [OpenPusatTemudugaFEController::class, 'delete_open_temuduga'])->name('delete_open_temuduga');
+    Route::post('/UpdateOpenPusatTemuduga', [OpenPusatTemudugaFEController::class, 'UpdateOpenPusatTemuduga'])->name('UpdateOpenPusatTemuduga');
+    Route::get('sessiontable/{code}', [OpenPusatTemudugaFEController::class, 'sessiontable'])->name('sessiontable');
+    Route::post('/AddSesiTemuduga', [OpenPusatTemudugaFEController::class, 'AddSesiTemuduga'])->name('AddSesiTemuduga');
+    Route::get('details_session/{code}', [OpenPusatTemudugaFEController::class, 'details_session'])->name('details_session');
+    Route::get('/delete_sesi/{code}', [OpenPusatTemudugaFEController::class, 'delete_sesi'])->name('delete_sesi');
+    Route::post('/UpdateSesi', [OpenPusatTemudugaFEController::class, 'UpdateSesi'])->name('UpdateSesi');
 
+    //penapisan temuduga
+    Route::get('/PenapisanTemuduga', [PenapisanTemudugaFEController::class, 'PenapisanTemuduga'])->name('PenapisanTemuduga');
 
     // Permohonan  
     Route::get('registration', [FE_PermohonanController::class, 'registration'])->name('registration');

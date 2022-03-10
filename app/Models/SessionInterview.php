@@ -12,5 +12,7 @@ class SessionInterview extends Model
     protected $table = 'session_interview';
     protected  $primaryKey = 'session_id';
     
-    
+    protected $casts = [
+        'panel_id' => 'array'
+    ];
 }

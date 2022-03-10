@@ -401,4 +401,8 @@ return [
     "Confirm" => "Confirm",
     "Reject" => "Reject",
     
+    
+    //Bukak pusat temuduga
+    "Bukak Temuduga" => "Open Interview",
+
 ];

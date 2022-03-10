@@ -34,7 +34,7 @@
             <div class="col-md-4">
               <a href="{{ route('AddOpenPusatTemuduga') }}" class="btn btn-success"> 
                 <i data-feather="plus-circle" class="me-25"></i>
-                <span>Pusat Temuduga Baru</span>
+                <span>Bukak Pusat Temuduga</span>
               </a>
             </div>
           </div>
@@ -101,10 +101,11 @@
                   <td>{{$data['code_center']}}</td>
                   <td>{{$data['name_center']}}</td>
                   <td>
-                    <a href="{{ route('details_pusat', Crypt::encrypt($data['center_id'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
-                    <a href="{{ route('delete_pusat', Crypt::encrypt($data['center_id'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
+                    <a href="{{ route('details_open_temuduga', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-warning"><i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+                    <a href="{{ route('delete_open_temuduga', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
                     </a>
+                    <a href="{{ route('sessiontable', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-warning"><i data-feather='external-link'></i>Sesi</a>
                     
                   </td>
                  

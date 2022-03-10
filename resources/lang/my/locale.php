@@ -401,5 +401,7 @@ return [
     "Application Confirmation" => "Pengesahan Permohonan",
     "Confirm" => "Sahkan",
     "Reject" => "Tolak",
+    //Bukak pusat temuduga
+    "Bukak Temuduga" => "Bukak Temuduga",
 ];
 

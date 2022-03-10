@@ -21,6 +21,7 @@ class CreateAllStatusPermohonanTable extends Migration
             $table->timestamp('updated_date_validation')->nullable();
             $table->string('status_offer')->nullable();
             $table->string('balasan_calon')->nullable();
+            $table->string('status_temuduga')->nullable();
             $table->string('modified_by_offer')->nullable();
             $table->timestamp('updated_date_offer')->nullable();
             $table->timestamps();

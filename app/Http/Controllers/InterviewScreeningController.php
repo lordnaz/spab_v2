@@ -13,18 +13,34 @@ class InterviewScreeningController extends Controller
     public function getAllScreeningIVapplicant(){
 
        
-        $displayScreeningIV = UserDetail::orderBy('user_details.id', 'desc')->join('applicant_experiences','user_details.nric','=','applicant_experiences.nric')
-        ->join('program_applied','applicant_experiences.nric','=','program_applied.nric')
-        ->join('all_status_permohonan','program_applied.nric','=','all_status_permohonan.nric')
-        ->where('all_status_permohonan.status_validation','SAH')
+        $displayBelumProses = UserDetail::join('applicant_experiences','applicant_experiences.nric', '=', 'user_details.nric')
+        ->join('program_applied','program_applied.nric', '=', 'user_details.nric')
+        ->join('all_status_permohonan','all_status_permohonan.nric', '=', 'user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Belum proses')
         ->get();
+
+        $displayTemuduga = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Temuduga')
+        ->get();
+
+        $displayTolak = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Tolak')
+        ->get();
+
+       
 
 
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' => $displayScreeningIV
+            'displayBelumProses' => $displayBelumProses,
+            'displayTemuduga' => $displayTemuduga,
+            'displayTolak' => $displayTolak, 
             
         ];
 
