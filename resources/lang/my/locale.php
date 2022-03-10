@@ -395,5 +395,13 @@ return [
     //pusat temuduga
     "Code" => "Code",
     "Pusat Temuduga" => "Pusat Temuduga",
+
+    //Jadual Temuduga
+    "Interview Schedule" => "Penjadualan Temuduga",
+    "Program" => "Program",
+    "Session" => "No. Sesi",
+    "Date" => "Tarikh",
+    "Start Time" => "Masa Mula",
+    "End Time" => "Masa Tamat",
 ];
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\PanelTemudugaController;
 use App\Http\Controllers\FE_PermohonanController;
 use App\Http\Controllers\PusatTemudugaFEController;
 use App\Http\Controllers\OpenPusatTemudugaFEController;
-
+use App\Http\Controllers\FE_ScheduleInterviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +81,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     //open pusat temuduga
     Route::get('/AddOpenPusatTemuduga', [OpenPusatTemudugaFEController::class, 'AddOpenPusatTemuduga'])->name('AddOpenPusatTemuduga');
 
+    //penjadualan temuduga
+    Route::get('jadualtemuduga', [FE_ScheduleInterviewController::class, 'jadualtemuduga'])->name('jadualtemuduga');
+    Route::get('details_jadualtemuduga/{code}', [FE_ScheduleInterviewController::class, 'details_jadualtemuduga'])->name('details_jadualtemuduga');
+    Route::post('update_jadualtemuduga', [FE_ScheduleInterviewController::class, 'update_jadualtemuduga'])->name('update_jadualtemuduga');
+    Route::get('delete_jadualtemuduga/{code}', [FE_ScheduleInterviewController::class, 'delete_jadualtemuduga'])->name('delete_jadualtemuduga');
 
     // Permohonan  
     Route::get('registration', [FE_PermohonanController::class, 'registration'])->name('registration');

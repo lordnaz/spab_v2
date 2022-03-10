@@ -106,7 +106,7 @@ class PermohonanAPIController extends Controller
 
         $spm = new SubjectGrade;
         $spm->nric = $req->nric;
-        $pmr->subject_year = $req->year_spm;
+        $spm->subject_year = $req->year_spm;
         $spm->subject_list = $req->subject_spm;
         $spm->grade = $req->grade_spm;
         $spm->type_qualification = "spm";
@@ -116,7 +116,7 @@ class PermohonanAPIController extends Controller
 
         $stpm = new SubjectGrade;
         $stpm->nric = $req->stpm;
-        $pmr->subject_year = $req->year_stpm;
+        $stpm->subject_year = $req->year_stpm;
         $stpm->subject_list = $req->subject_stpm;
         $stpm->grade = $req->grade_stpm;
         $stpm->type_qualification = "stpm";
