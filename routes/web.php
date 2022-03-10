@@ -13,6 +13,7 @@ use App\Http\Controllers\OpenPusatTemudugaFEController;
 use App\Http\Controllers\PengesahanPermohonanFEController;
 use App\Http\Controllers\PenapisanTemudugaFEController;
 
+use App\Http\Controllers\FE_ScheduleInterviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,8 +94,16 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('/delete_sesi/{code}', [OpenPusatTemudugaFEController::class, 'delete_sesi'])->name('delete_sesi');
     Route::post('/UpdateSesi', [OpenPusatTemudugaFEController::class, 'UpdateSesi'])->name('UpdateSesi');
 
+<<<<<<< HEAD
     //penapisan temuduga
     Route::get('/PenapisanTemuduga', [PenapisanTemudugaFEController::class, 'PenapisanTemuduga'])->name('PenapisanTemuduga');
+=======
+    //penjadualan temuduga
+    Route::get('jadualtemuduga', [FE_ScheduleInterviewController::class, 'jadualtemuduga'])->name('jadualtemuduga');
+    Route::get('details_jadualtemuduga/{code}', [FE_ScheduleInterviewController::class, 'details_jadualtemuduga'])->name('details_jadualtemuduga');
+    Route::post('update_jadualtemuduga', [FE_ScheduleInterviewController::class, 'update_jadualtemuduga'])->name('update_jadualtemuduga');
+    Route::get('delete_jadualtemuduga/{code}', [FE_ScheduleInterviewController::class, 'delete_jadualtemuduga'])->name('delete_jadualtemuduga');
+>>>>>>> knr-penjadualan-temudugaFE
 
     // Permohonan  
     Route::get('registration', [FE_PermohonanController::class, 'registration'])->name('registration');

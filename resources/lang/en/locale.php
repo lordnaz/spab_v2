@@ -404,5 +404,12 @@ return [
     
     //Bukak pusat temuduga
     "Bukak Temuduga" => "Open Interview",
+    //Jadual Temuduga
+    "Interview Schedule" => "Interview Schedule",
+    "Program" => "Program",
+    "Session" => "Session",
+    "Date" => "Date",
+    "Start Time" => "Start Time",
+    "End Time" => "End Time",
 
 ];
