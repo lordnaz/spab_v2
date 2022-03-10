@@ -13,7 +13,11 @@ class PengesahanPermohonanAPIController extends Controller
     public function display_permohonan()
     {
 
-        $display = UserDetail::join('all_status_permohonan', 'nric', '=', 'user_details.nric')->where('status', true)->get();
+      
+
+        $display = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')->get();
+
+     
 
         $data = [
             'status' => 'success',
@@ -27,12 +31,12 @@ class PengesahanPermohonanAPIController extends Controller
 
     public function sahkan(Request $req){
 
-       
+        $sahkan = StatusPermohonan::where('status_id', $req->code)->update([
+            'status_validation' => 'SAH'  
+    
+            ]);
 
-        $update = StatusPermohonan::where('nric',$req->nric)->update
-        ([
-            'status_validation' => 'Sah',        
-        ]);
+    
 
         $data = [
             'status' => 'success',
@@ -42,16 +46,19 @@ class PengesahanPermohonanAPIController extends Controller
 
         return response()->json($data);
 
+
+        
+
     }
 
-    public function tolak(Request $req){
+    public function tolak_pengesahan_pemohon(Request $req){
 
        
 
-        $update = StatusPermohonan::where('nric',$req->nric)->update
-        ([
-            'status_validation' => 'Tolak',        
-        ]);
+        $tolak = StatusPermohonan::where('status_id', $req->code)->update([
+            'status_validation' => 'TOLAK'  
+    
+            ]);
 
         $data = [
             'status' => 'success',

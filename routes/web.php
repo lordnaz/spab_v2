@@ -10,6 +10,7 @@ use App\Http\Controllers\PanelTemudugaController;
 use App\Http\Controllers\FE_PermohonanController;
 use App\Http\Controllers\PusatTemudugaFEController;
 use App\Http\Controllers\OpenPusatTemudugaFEController;
+use App\Http\Controllers\PengesahanPermohonanFEController;
 
 
 /*
@@ -85,7 +86,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     // Permohonan  
     Route::get('registration', [FE_PermohonanController::class, 'registration'])->name('registration');
     Route::post('add_permohonan', [FE_PermohonanController::class, 'add_permohonan'])->name('add_permohonan');
-  
+
+    //Pengesahan Permohonan
+    Route::get('display_pengesahan_permohonan', [PengesahanPermohonanFEController::class, 'display_pengesahan_permohonan'])->name('display_pengesahan_permohonan');
+    Route::get('sahkan_permohonan/{code}', [PengesahanPermohonanFEController::class, 'sahkan_permohonan'])->name('sahkan_permohonan');
+    Route::get('tolak_permohonan/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan'])->name('tolak_permohonan');
 
 });
 

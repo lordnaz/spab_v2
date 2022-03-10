@@ -21,7 +21,7 @@ var __webpack_exports__ = {};
       'program_id' : program_id
     }
 
-    var tokenString = 'fzvIEL5BFUDaGaeuPbuB7PmbfVF87MHYnZMfT3CZ'
+    var tokenString = '5aXEuhjGl0sCMr3vOfzZbPkJpy5Yy4G6A6siriuS'
 
     $.ajax({
       url: "api/delete_program",
@@ -50,6 +50,9 @@ var __webpack_exports__ = {};
     //   });
     
   });
+
+
+  
 
 })(window);
 /******/ })()
