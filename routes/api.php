@@ -14,7 +14,7 @@ use App\Http\Controllers\PenawaranPermohonanAPIController;
 use App\Http\Controllers\KeputusanPermohonanAPIController;
 use App\Http\Controllers\BalasanCalonAPIController;
 use App\Http\Controllers\OpenCenterInterviewController;
-
+use App\Http\Controllers\InterviewScreeningController;
 /*
 |--------------------------------------------------------------------------
 | API Routes

@@ -109,14 +109,14 @@
     
   <div class="card-body">
                     @php
-                            $total = count($displaysession)+1;
-                            $numbersession = 0;
+                            $total = count($displaysession);
+                            $numbersession = 1;
                      @endphp
                      @foreach ($kiraan as $kiraann)
-                     @if ($total == $kiraann['number_session'])
+                     @if ($numbersession == $kiraann['number_session'])
 
                      @php
-                     $total = $total - 1;
+                     $numbersession = $numbersession + 1;
                      @endphp
 
                      @else
@@ -139,7 +139,7 @@
                                         <label class="col-form-label" for="code">No Sesi</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input type="text" id="code" class="form-control" name="number_session" value="{{($total)}}" readonly/>
+                                        <input type="text" id="code" class="form-control" name="number_session" value="{{($numbersession)}}" readonly/>
                                     </div>
                                 </div>
                             </div>

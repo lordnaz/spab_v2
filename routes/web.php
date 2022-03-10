@@ -10,6 +10,7 @@ use App\Http\Controllers\PanelTemudugaController;
 use App\Http\Controllers\FE_PermohonanController;
 use App\Http\Controllers\PusatTemudugaFEController;
 use App\Http\Controllers\OpenPusatTemudugaFEController;
+use App\Http\Controllers\PenapisanTemudugaFEController;
 
 
 /*
@@ -89,7 +90,10 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('/AddSesiTemuduga', [OpenPusatTemudugaFEController::class, 'AddSesiTemuduga'])->name('AddSesiTemuduga');
     Route::get('details_session/{code}', [OpenPusatTemudugaFEController::class, 'details_session'])->name('details_session');
     Route::get('/delete_sesi/{code}', [OpenPusatTemudugaFEController::class, 'delete_sesi'])->name('delete_sesi');
+    Route::post('/UpdateSesi', [OpenPusatTemudugaFEController::class, 'UpdateSesi'])->name('UpdateSesi');
 
+    //penapisan temuduga
+    Route::get('/PenapisanTemuduga', [PenapisanTemudugaFEController::class, 'PenapisanTemuduga'])->name('PenapisanTemuduga');
 
     // Permohonan  
     Route::get('registration', [FE_PermohonanController::class, 'registration'])->name('registration');

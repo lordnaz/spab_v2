@@ -16,7 +16,15 @@ class CreateScreeningInterviewTable extends Migration
         Schema::create('screening_interview', function (Blueprint $table) {
             $table->id('screening_id');
             $table->foreignId('nric')->index();
-            $table->string('screening_ic_status')->nullable();
+            $table->foreignId('center_id')->index();
+            $table->string('kelulusan1')->nullable();
+            $table->string('kelulusan2')->nullable();
+            $table->dateTime('TarikhProses')->nullable();
+            $table->dateTime('TarikhHadir')->nullable();
+            $table->dateTime('MasaFrom')->nullable();
+            $table->dateTime('MasaTo')->nullable();
+            $table->string('status_sesi')->nullable();
+            $table->string('catatan_temuduga')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

@@ -112,7 +112,9 @@ class OpenCenterInterviewController extends Controller
     public function PostOpenCenterInterview(Request $req)
     {
 
-        $exists = SessionInterview::where('center_id', $req->center_id)->where('status',true)->exists();
+        
+        $exists = AsasInterview::where('center_id', $req->center_id)->where('status',true)->exists();
+    
 
         if(!$exists){
         $addNewPanelInterview = new AsasInterview();
@@ -147,7 +149,7 @@ class OpenCenterInterviewController extends Controller
         $displayall = CenterInterview::where('status', true)->get();
         $Displayasas = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_id', $req->code)->first();
         $DisplaySession = SessionInterview::orderBy('number_session', 'asc')->where('asas_id', $req->code)->where('status', true)->get();
-        $kiraan = SessionInterview::orderBy('number_session', 'desc')->where('asas_id', $req->code)->where('status', true)->get();
+        $kiraan = SessionInterview::orderBy('number_session', 'asc')->where('asas_id', $req->code)->where('status', true)->get();
         $panel = PanelInterview::where('status', true)->get();
 
         $data = [
