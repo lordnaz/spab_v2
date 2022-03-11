@@ -22,7 +22,7 @@
 
 @section('content')
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Advanced Search -->
 <section id="advanced-search-datatable">
   <div class="row">
@@ -40,8 +40,8 @@
               <div class="row">
               <div class="col-md-4">
                 <label class="form-label">Negeri:</label>
-                <select class="select2 form-select" id="addMemberSelect">
-                    <option selected>Semua</option>
+                <select class="select2 form-select" id="ajax">
+                    <option value="Semua" selected>Semua</option>
                     
                     <option value="Johor Darul Takzim">Johor Darul Takzim</option>
                                             <option value="Kedah Darul Aman">Kedah Darul Aman</option>
@@ -75,6 +75,7 @@
           </form>
         </div>
 
+        
         <!-- Modern Horizontal Wizard -->
 <section class="modern-horizontal-wizard">
   <div class="bs-stepper wizard-modern modern-wizard-example">
@@ -120,41 +121,75 @@
       </div>
     </div>
     <div class="bs-stepper-content">
+      
       <div id="account-details-modern" class="content">
         <div class="content-header">
           <h5 class="mb-0">Temuduga</h5>
           
         </div>
+        
         <div class="card-datatable">
-          <table class="dt-advanced-search-2 table">
+        
+          <table class="dt-advanced-search-2 table" id="displaytemuduga">
+          
             <thead>
               <tr class="text-center">
                 <th></th>
-                <th>{!! __('locale.Code') !!}</th>
+                <th>No.KP</th>
                 <th>{!! __('locale.Name') !!}</th>
+                <th>Jenis</th>
+                <th>Negeri</th>
+                <th>P1</th>
+                <th>P2</th>
+                <th>Sijil</th>
+                <th>P.T'Duga</th>
+                <th>T.Proses</th>
                 <th>{!! __('locale.Action') !!}</th>
               </tr>
 
             </thead>
-            <tbody>
-              @php  
+            @php  
                 $count = 1;
               @endphp
-
+              
+            <tbody>
              
+
+              @foreach ($displayTemuduga as $displayTemudugaa)
+              @php
+             $total = count($displayTemudugaa['program']);
+                           
+             @endphp
                 <tr class="text-center">
                   <td></td>
+                  <td>{{$displayTemudugaa['nric']}}</td>
+                  <td>{{$displayTemudugaa['name']}}</td>
+                  <td>{{$displayTemudugaa['type_program_applied']}}</td>
+                  <td>{{$displayTemudugaa['state']}}</td>
+                  @if ($total == '2')
+                  @foreach ($displayTemudugaa as $displayTemudugaaa)
+                  <td>{{$displayTemudugaaa['program']}}</td>
+                  <td>{{$displayTemudugaaa['program']}}</td>
+                  @endforeach
+                  @else
+                  <td>{{$displayTemudugaa['program']}}</td>
                   <td></td>
-                  <td></td>
+                  @endif
+                  <td>{{$displayTemudugaa['cert_related_program']}}</td>
+                  <td>{{$displayTemudugaa['code_center']}}</td>
+                  <td>{{$displayTemudugaa['TarikhProses']}}</td>
                   <td>
                    
                     
                   </td>
                  
                 </tr>
-             
+             @endforeach
+
             </tbody>
+            
           </table>
+         
         </div>
        
       </div>
@@ -164,12 +199,19 @@
           
         </div>
         <div class="card-datatable">
-          <table class="dt-advanced-search-2 table">
+          <table class="dt-advanced-search-2 table" id="displaytolak">
             <thead>
               <tr class="text-center">
                 <th></th>
-                <th>{!! __('locale.Code') !!}</th>
+                <th>No.KP</th>
                 <th>{!! __('locale.Name') !!}</th>
+                <th>Jenis</th>
+                <th>Negeri</th>
+                <th>P1</th>
+                <th>P2</th>
+                <th>Sijil</th>
+                <th>P.T'Duga</th>
+                <th>T.Proses</th>
                 <th>{!! __('locale.Action') !!}</th>
               </tr>
 
@@ -179,22 +221,41 @@
                 $count = 1;
               @endphp
 
-             
+              @foreach ($displayTolak as $displayTolakk)
+              @php
+             $total = count($displayTolakk['program']);
+                           
+             @endphp
                 <tr class="text-center">
                   <td></td>
+                  <td>{{$displayTolakk['nric']}}</td>
+                  <td>{{$displayTolakk['name']}}</td>
+                  <td>{{$displayTolakk['type_program_applied']}}</td>
+                  <td>{{$displayTolakk['state']}}</td>
+                  @if ($total == '2')
+                  @foreach ($displayTolakk as $displayTolakkk)
+                  <td>{{$displayTolakkk['program']}}</td>
+                  <td>{{$displayTolakkk['program']}}</td>
+                  @endforeach
+                  @else
+                  <td>{{$displayTolakk['program']}}</td>
                   <td></td>
-                  <td></td>
+                  @endif
+                  <td>{{$displayTolakk['cert_related_program']}}</td>
+                  <td>{{$displayTolakk['code_center']}}</td>
+                  <td>{{$displayTolakk['TarikhProses']}}</td>
                   <td>
                    
                     
                   </td>
                  
                 </tr>
-             
+             @endforeach
             </tbody>
           </table>
         </div>
-      </div>
+
+        </div>
 
       <div id="address-step-modern" class="content">
         <div class="content-header">
@@ -202,12 +263,19 @@
           
         </div>
          <div class="card-datatable">
-          <table class="dt-advanced-search-2 table">
+          <table class="dt-advanced-search-2 table" id="displayproses">
             <thead>
               <tr class="text-center">
                 <th></th>
-                <th>{!! __('locale.Code') !!}</th>
+                <th>No.KP</th>
                 <th>{!! __('locale.Name') !!}</th>
+                <th>Jenis</th>
+                <th>Negeri</th>
+                <th>P1</th>
+                <th>P2</th>
+                <th>Sijil</th>
+                <th>P.T'Duga</th>
+                <th>T.Proses</th>
                 <th>{!! __('locale.Action') !!}</th>
               </tr>
 
@@ -217,18 +285,36 @@
                 $count = 1;
               @endphp
 
-             
+              @foreach ($displayBelumProses as $displayBelumProsess)
+              @php
+             $total = count($displayBelumProsess['program']);
+                           
+             @endphp
                 <tr class="text-center">
                   <td></td>
+                  <td>{{$displayBelumProsess['nric']}}</td>
+                  <td>{{$displayBelumProsess['name']}}</td>
+                  <td>{{$displayBelumProsess['type_program_applied']}}</td>
+                  <td>{{$displayBelumProsess['state']}}</td>
+                  @if ($total == '2')
+                  @foreach ($displayBelumProsess as $displayBelumProsesss)
+                  <td>{{$displayBelumProsesss['program']}}</td>
+                  <td>{{$displayBelumProsesss['program']}}</td>
+                  @endforeach
+                  @else
+                  <td>{{$displayBelumProsess['program']}}</td>
                   <td></td>
-                  <td></td>
+                  @endif
+                  <td>{{$displayBelumProsess['cert_related_program']}}</td>
+                  <td>{{$displayBelumProsess['code_center']}}</td>
+                  <td>{{$displayBelumProsess['TarikhProses']}}</td>
                   <td>
                    
                     
                   </td>
                  
                 </tr>
-             
+             @endforeach
             </tbody>
           </table>
         </div>
@@ -238,7 +324,7 @@
   </div>
 </section>
 <!-- /Modern Horizontal Wizard -->
-
+        
         <hr class="my-0" />
         
       </div>
@@ -247,11 +333,12 @@
 </section>
 <!--/ Advanced Search -->
 <script>
+  //ajaxtemuduga
 $(document).ready(function(){
-    $('input[type="radio"]').click(function(){  
-                        var presence = $(this).val();  
+    $('#ajax').change(function(){  
+                        var presence = this.value;  
                         $.ajax({  
-                            url:"/ajaxpost",  
+                            url:"/ajaxtemuduga",  
                             method:"POST", 
                             dataType:"html", 
                             data:{
@@ -262,7 +349,55 @@ $(document).ready(function(){
                             success:function(response)
    {
    console.log(response);
-   $("#main").html(response);
+   $("#displaytemuduga").html(response);
+    
+   }
+                        });  
+                    });  
+
+})
+
+//ajaxtolak
+$(document).ready(function(){
+    $('#ajax').change(function(){  
+                        var presence = this.value;  
+                        $.ajax({  
+                            url:"/ajaxtolak",  
+                            method:"POST", 
+                            dataType:"html", 
+                            data:{
+                                "_token": "{{ csrf_token() }}",
+                                  type:presence,
+                                  },  
+                            
+                            success:function(response)
+   {
+   console.log(response);
+   $("#displaytolak").html(response);
+    
+   }
+                        });  
+                    });  
+
+})
+
+//ajaxproses
+$(document).ready(function(){
+    $('#ajax').change(function(){  
+                        var presence = this.value;  
+                        $.ajax({  
+                            url:"/ajaxproses",  
+                            method:"POST", 
+                            dataType:"html", 
+                            data:{
+                                "_token": "{{ csrf_token() }}",
+                                  type:presence,
+                                  },  
+                            
+                            success:function(response)
+   {
+   console.log(response);
+   $("#displayproses").html(response);
     
    }
                         });  

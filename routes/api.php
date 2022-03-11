@@ -91,6 +91,7 @@ Route::middleware('auth:sanctum')->post('deleteSessionInterviewbyId', [OpenCente
 
 //InterviewScreening 
 Route::middleware('auth:sanctum')->get('/getAllScreeningIVapplicant', [InterviewScreeningController::class, 'getAllScreeningIVapplicant']);
+Route::middleware('auth:sanctum')->post('AjaxView', [InterviewScreeningController::class, 'AjaxView']);
 Route::middleware('auth:sanctum')->post('updateScreeningIVapplicantById', [InterviewScreeningController::class, 'updateScreeningIVapplicantById']);
 
 //IVScheduling 

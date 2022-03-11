@@ -32,7 +32,8 @@ class PengesahanPermohonanAPIController extends Controller
     public function sahkan(Request $req){
 
         $sahkan = StatusPermohonan::where('status_id', $req->code)->update([
-            'status_validation' => 'SAH'  
+            'status_validation' => 'SAH',  
+            'status_temuduga' => 'Belum proses'
     
             ]);
 

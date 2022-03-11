@@ -18,6 +18,7 @@ use App\Models\SubjectGrade;
 use App\Models\PenawaranPermohonan;
 use App\Models\program;
 use App\Models\ScreeningIV;
+use App\Models\ProgramApplied2;
 
 class PermohonanAPIController extends Controller
 {
@@ -90,10 +91,10 @@ class PermohonanAPIController extends Controller
         $programapply = new ProgramApplied;
         $programapply->nric = $req->nric;
         $programapply->program_id = $req->program_id;
-        $programapply->program_id2 = $req->program_id2;
         $programapply->created_by = $user_id;
         $programapply->modified_by = $user_id;;
         $programapply->save();
+
 
         $pmr = new SubjectGrade;
         $pmr->nric = $req->nric;

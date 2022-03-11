@@ -96,6 +96,10 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //penapisan temuduga
     Route::get('/PenapisanTemuduga', [PenapisanTemudugaFEController::class, 'PenapisanTemuduga'])->name('PenapisanTemuduga');
+    Route::post('/ajaxtemuduga', [PenapisanTemudugaFEController::class, 'ajaxtemuduga'])->name('ajaxtemuduga');
+    Route::post('/ajaxtolak', [PenapisanTemudugaFEController::class, 'ajaxtolak'])->name('ajaxtolak');
+    Route::post('/ajaxproses', [PenapisanTemudugaFEController::class, 'ajaxproses'])->name('ajaxproses');
+
     //penjadualan temuduga
     Route::get('jadualtemuduga', [FE_ScheduleInterviewController::class, 'jadualtemuduga'])->name('jadualtemuduga');
     Route::get('details_jadualtemuduga/{code}', [FE_ScheduleInterviewController::class, 'details_jadualtemuduga'])->name('details_jadualtemuduga');

@@ -13,25 +13,113 @@ class InterviewScreeningController extends Controller
     public function getAllScreeningIVapplicant(){
 
        
-        $displayBelumProses = UserDetail::join('applicant_experiences','applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied','program_applied.nric', '=', 'user_details.nric')
-        ->join('all_status_permohonan','all_status_permohonan.nric', '=', 'user_details.nric')
+        $displayBelumProses = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
         ->where('all_status_permohonan.status_temuduga', 'Belum proses')
         ->get();
 
-        $displayTemuduga = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')
+        $displayTemuduga = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
         ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
         ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
         ->where('all_status_permohonan.status_temuduga', 'Temuduga')
         ->get();
 
-        $displayTolak = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')
+        $displayTolak = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
         ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
         ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
         ->where('all_status_permohonan.status_temuduga', 'Tolak')
         ->get();
-
        
+
+
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => 'succesfull',
+            'displayBelumProses' => $displayBelumProses,
+            'displayTemuduga' => $displayTemuduga,
+            'displayTolak' => $displayTolak, 
+            
+        ];
+
+        return response()->json($data);
+
+    }
+
+    public function AjaxView(Request $req){
+
+       if ($req->type == "Semua")
+       {
+        $displayBelumProses = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+        ->get();
+
+        $displayTemuduga = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Temuduga')
+        ->get();
+
+        $displayTolak = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Tolak')
+        ->get();
+       }
+       else{
+
+        $displayBelumProses = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+        ->where('user_details.state', $req->type)
+        ->get();
+
+        $displayTemuduga = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Temuduga')
+        ->where('user_details.state', $req->type)
+        ->get();
+
+        $displayTolak = UserDetail::join('applicant_experiences','applicant_experiences.nric','=','user_details.nric')      
+        ->join('program_applied','program_applied.nric','=','user_details.nric')
+        ->join('screening_interview','screening_interview.nric','=','user_details.nric')
+        ->join('interview_center','interview_center.center_id','=','screening_interview.center_id')
+        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('all_status_permohonan','all_status_permohonan.nric','=','user_details.nric')
+        ->where('all_status_permohonan.status_temuduga', 'Tolak')
+        ->where('user_details.state', $req->type)
+        ->get();
+
+       }
 
 
         $data = [
