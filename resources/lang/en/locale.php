@@ -412,4 +412,19 @@ return [
     "Start Time" => "Start Time",
     "End Time" => "End Time",
 
+    //Penawaran Permohonan
+    "Application Offer" => "Application Offer",
+    "Certificate" => "Certificate",
+    "Interview Center" => "Interview Center",
+    "Proposal" => "Proposal",
+    "Marks" => "Marks",
+    "Process" => "Process",
+    "Offer" => "Offer",
+    "KIV" => "Keep In View",
+    "Reject" => "Reject",
+    "Attend" => "Attend Interview",
+    "Applicant Details" => "Applicant Offer Details",
+    "Full Time" => "Full-Time",
+    "Half Time" => "Half-Time",
+
 ];

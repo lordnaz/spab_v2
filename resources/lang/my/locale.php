@@ -410,5 +410,21 @@ return [
     "Date" => "Tarikh",
     "Start Time" => "Masa Mula",
     "End Time" => "Masa Tamat",
+
+    //Penawaran Permohonan
+    "Application Offer" => "Penawaran Permohonan",
+    "Certificate" => "Sijil",
+    "Interview Center" => "Pusat Temuduga",
+    "Proposal" => "Cadangan",
+    "Marks" => "Markah",
+    "Process" => "Proses",
+    "Offer" => "Tawar",
+    "KIV" => "Dalam Pemerhatian",
+    "Reject" => "Tolak",
+    "Attend" => "Hadir Temuduga",
+    "Applicant Details" => "Butiran Penawaran Permohonan",
+    "Full Time" => "Sepenuh Masa",
+    "Half Time" => "Separuh Masa",
+
 ];
 

@@ -12,8 +12,8 @@ use App\Http\Controllers\PusatTemudugaFEController;
 use App\Http\Controllers\OpenPusatTemudugaFEController;
 use App\Http\Controllers\PengesahanPermohonanFEController;
 use App\Http\Controllers\PenapisanTemudugaFEController;
-
 use App\Http\Controllers\FE_ScheduleInterviewController;
+use App\Http\Controllers\FE_PenawaranPermohonanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +110,13 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('display_pengesahan_permohonan', [PengesahanPermohonanFEController::class, 'display_pengesahan_permohonan'])->name('display_pengesahan_permohonan');
     Route::get('sahkan_permohonan/{code}', [PengesahanPermohonanFEController::class, 'sahkan_permohonan'])->name('sahkan_permohonan');
     Route::get('tolak_permohonan/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan'])->name('tolak_permohonan');
+
+    //Penawaran Permohonan
+    Route::get('penawaranpermohonan', [FE_PenawaranPermohonanController::class, 'penawaranpermohonan'])->name('penawaranpermohonan');
+    Route::get('penawaranpermohonan_new_page', [FE_PenawaranPermohonanController::class, 'penawaranpermohonan_new_page'])->name('penawaranpermohonan_new_page');
+    Route::get('details_penawaranpermohonan/{code}', [FE_PenawaranPermohonanController::class, 'details_penawaranpermohonan'])->name('details_penawaranpermohonan');
+    Route::post('update_penawaranpermohonan', [FE_PenawaranPermohonanController::class, 'update_penawaranpermohonan'])->name('update_penawaranpermohonan');
+    Route::get('delete_penawaranpermohonan/{code}', [FE_PenawaranPermohonanController::class, 'delete_penawaranpermohonan'])->name('delete_penawaranpermohonan');
 
 });
 
