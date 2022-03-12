@@ -52,18 +52,6 @@
                 </tr>
              @endforeach
 
-            <tr>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            <td>sazrul</td>
-            </tr>
+         
 
 </tbody>

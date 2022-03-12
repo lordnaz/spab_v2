@@ -40,26 +40,27 @@
               <div class="row">
               <div class="col-md-4">
                 <label class="form-label">Negeri:</label>
-                <select class="select2 form-select" id="ajax">
-                    <option value="Semua" selected>Semua</option>
+                <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
+                    <option value="{{ route('PenapisanTemuduga') }}" selected>Semua</option>
                     
-                    <option value="Johor Darul Takzim">Johor Darul Takzim</option>
-                                            <option value="Kedah Darul Aman">Kedah Darul Aman</option>
-                                            <option value="Kelantan Darul Naim">Kelantan Darul Naim</option>
-                                            <option value="Melaka">Melaka</option>
-                                            <option value="Negeri Sembilan Darul Khusus">Negeri Sembilan Darul Khusus</option>
-                                            <option value="Pahang Darul Makmur">Pahang Darul Makmur</option>
-                                            <option value="Pulau Pinang">Pulau Pinang</option>
-                                            <option value="Perak Darul Ridzuan">Perak Darul Ridzuan</option>
-                                            <option value="Perlis Indra Kayangan">Perlis Indra Kayangan</option>
-                                            <option value="Selangor Darul Ehsan">Selangor Darul Ehsan</option>
-                                            <option value="Terengganu Darul Iman">Terengganu Darul Iman</option>
-                                            <option value="Sabah">Sabah</option>
-                                            <option value="Sarawak">Sarawak</option>
-                                            <option value="W.P Kuala Lumpur">W.P Kuala Lumpur</option>
-                                            <option value="W.P Labuan">W.P Labuan</option>
-                                            <option value="W.P Putrajaya">W.P Putrajaya</option>
-                                            <option value="Lain-lain">Lain-lain</option>
+                    <option value="{{ route('Penapisantemuduga', 'Johor Darul Takzim') }}">Johor Darul Takzim</option>
+                  
+                  <option value="{{ route('Penapisantemuduga', 'Kedah Darul Aman') }}">Kedah Darul Aman</option>
+                  <option value="{{ route('Penapisantemuduga', 'Kelantan Darul Naim') }}">Kelantan Darul Naim</option>
+                  <option value="{{ route('Penapisantemuduga', 'Melaka') }}">Melaka</option>
+                  <option value="{{ route('Penapisantemuduga', 'Negeri Sembilan Darul Khusus') }}">Negeri Sembilan Darul Khusus</option>
+                  <option value="{{ route('Penapisantemuduga', 'Pahang Darul Makmur') }}">Pahang Darul Makmur</option>
+                  <option value="{{ route('Penapisantemuduga', 'Pulau Pinang') }}">Pulau Pinang</option>
+                  <option value="{{ route('Penapisantemuduga', 'Perak Darul Ridzuan') }}">Perak Darul Ridzuan</option>
+                  <option value="{{ route('Penapisantemuduga', 'Perlis Indra Kayangan') }}">Perlis Indra Kayangan</option>
+                  <option value="{{ route('Penapisantemuduga', 'JSelangor Darul Ehsan') }}">Selangor Darul Ehsan</option>
+                  <option value="{{ route('Penapisantemuduga', 'Terengganu Darul Iman') }}">Terengganu Darul Iman</option>
+                  <option value="{{ route('Penapisantemuduga', 'Sabah') }}">Sabah</option>
+                  <option value="{{ route('Penapisantemuduga', 'Sarawak') }}">Sarawak</option>
+                  <option value="{{ route('Penapisantemuduga', 'W.P Kuala Lumpur') }}">W.P Kuala Lumpur</option>
+                  <option value="{{ route('Penapisantemuduga', 'W.P Labuan') }}">W.P Labuan</option>
+                  <option value="{{ route('Penapisantemuduga', 'W.P Putrajaya') }}">W.P Putrajaya</option>
+                  <option value="{{ route('Penapisantemuduga', 'Lain-lain') }}">Lain-lain</option>
                 </select>
               </div>
 
@@ -130,7 +131,7 @@
         
         <div class="card-datatable">
         
-          <table class="dt-advanced-search-2 table" id="displaytemuduga">
+          <table class="dt-advanced-search-2 table">
           
             <thead>
               <tr class="text-center">
@@ -160,8 +161,8 @@
              $total = count($displayTemudugaa['program']);
                            
              @endphp
-                <tr class="text-center">
-                  <td></td>
+                <tr class="text-center" >
+                  <td>{{$count++}}</td>
                   <td>{{$displayTemudugaa['nric']}}</td>
                   <td>{{$displayTemudugaa['name']}}</td>
                   <td>{{$displayTemudugaa['type_program_applied']}}</td>
@@ -185,7 +186,7 @@
                  
                 </tr>
              @endforeach
-
+            
             </tbody>
             
           </table>
@@ -199,7 +200,7 @@
           
         </div>
         <div class="card-datatable">
-          <table class="dt-advanced-search-2 table" id="displaytolak">
+          <table class="dt-advanced-search-2 table">
             <thead>
               <tr class="text-center">
                 <th></th>
@@ -263,7 +264,7 @@
           
         </div>
          <div class="card-datatable">
-          <table class="dt-advanced-search-2 table" id="displayproses">
+          <table class="dt-advanced-search-2 table">
             <thead>
               <tr class="text-center">
                 <th></th>

@@ -34,81 +34,26 @@ class PenapisanTemudugaFEController extends Controller
 
     }
 
-    public function ajaxtemuduga(Request $req){
+    public function ajaxtemuduga($code){
 
 
 
         //update details
-        $param = [
-            
-            'type' => $req->type,
-          
-            
-        ];
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/AjaxView', $param);
+        ])->post(getenv('ENDPOINT').'/api/AjaxView', [
+            'type' => $code,
+        ]);
 
         $displayBelumProses = $request['displayBelumProses'];
         $displayTemuduga = $request['displayTemuduga'];
         $displayTolak = $request['displayTolak'];
 
         
-        return view('components.penapisan-ajaxTemuduga')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak);
+        return view('components.penapisan-ajaxTemuduga')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak)->with('code', $code);
 
     }
 
-    public function ajaxtolak(Request $req){
-
-
-
-        //update details
-        $param = [
-            
-            'type' => $req->type,
-          
-            
-        ];
-
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/AjaxView', $param);
-
-        $displayBelumProses = $request['displayBelumProses'];
-        $displayTemuduga = $request['displayTemuduga'];
-        $displayTolak = $request['displayTolak'];
-
-        
-        return view('components.penapisan-ajaxTolak')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak);
-
-    }
-
-    public function ajaxproses(Request $req){
-
-
-
-        //update details
-        $param = [
-            
-            'type' => $req->type,
-          
-            
-        ];
-
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/AjaxView', $param);
-
-        $displayBelumProses = $request['displayBelumProses'];
-        $displayTemuduga = $request['displayTemuduga'];
-        $displayTolak = $request['displayTolak'];
-
-        
-        return view('components.penapisan-ajaxProses')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak);
-
-    }
 }

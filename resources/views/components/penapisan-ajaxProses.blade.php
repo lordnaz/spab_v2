@@ -52,18 +52,6 @@
                 </tr>
              @endforeach
 
-            <tr>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            <td>kacak</td>
-            </tr>
+            
 
 </tbody>
