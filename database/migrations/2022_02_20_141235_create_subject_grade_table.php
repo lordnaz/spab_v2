@@ -17,7 +17,7 @@ class CreateSubjectGradeTable extends Migration
             $table->id('subject_gradeid');
             $table->foreignId('nric')->index();
             $table->string('subject_list')->nullable();
-            $table->string('grade')->nullable();
+            $table->integer('grade')->nullable();
             $table->string('type_qualification')->nullable();
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();

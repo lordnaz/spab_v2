@@ -16,7 +16,7 @@ class CreateProgramAppliedTable extends Migration
         Schema::create('program_applied', function (Blueprint $table) {
             $table->id('program_applid');
             $table->foreignId('nric')->index();
-            $table->foreignId('program_id')->index()->nullable();       
+            $table->foreignId('offerprogram_id')->index()->nullable();       
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();
             $table->timestamps();

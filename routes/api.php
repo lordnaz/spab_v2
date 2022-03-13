@@ -92,6 +92,11 @@ Route::middleware('auth:sanctum')->post('deleteSessionInterviewbyId', [OpenCente
 //InterviewScreening 
 Route::middleware('auth:sanctum')->get('/getAllScreeningIVapplicant', [InterviewScreeningController::class, 'getAllScreeningIVapplicant']);
 Route::middleware('auth:sanctum')->post('AjaxView', [InterviewScreeningController::class, 'AjaxView']);
+Route::middleware('auth:sanctum')->post('batalPenapisan', [InterviewScreeningController::class, 'batalPenapisan']);
+Route::middleware('auth:sanctum')->post('tolakPenapisan', [InterviewScreeningController::class, 'tolakPenapisan']);
+Route::middleware('auth:sanctum')->post('temudugaPenapisan', [InterviewScreeningController::class, 'temudugaPenapisan']);
+Route::middleware('auth:sanctum')->post('KemaskiniTemuduga', [InterviewScreeningController::class, 'KemaskiniTemuduga']);
+Route::middleware('auth:sanctum')->post('pemprosesanTemuduga', [InterviewScreeningController::class, 'pemprosesanTemuduga']);
 Route::middleware('auth:sanctum')->post('updateScreeningIVapplicantById', [InterviewScreeningController::class, 'updateScreeningIVapplicantById']);
 
 //IVScheduling 

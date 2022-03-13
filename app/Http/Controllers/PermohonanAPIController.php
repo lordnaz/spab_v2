@@ -90,7 +90,7 @@ class PermohonanAPIController extends Controller
 
         $programapply = new ProgramApplied;
         $programapply->nric = $req->nric;
-        $programapply->program_id = $req->program_id;
+        $programapply->program_id = $req->offerprogram_id;
         $programapply->created_by = $user_id;
         $programapply->modified_by = $user_id;;
         $programapply->save();

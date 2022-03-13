@@ -97,6 +97,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     //penapisan temuduga
     Route::get('/PenapisanTemuduga', [PenapisanTemudugaFEController::class, 'PenapisanTemuduga'])->name('PenapisanTemuduga');
     Route::get('/Penapisantemuduga/{code}', [PenapisanTemudugaFEController::class, 'ajaxtemuduga'])->name('Penapisantemuduga');
+    Route::get('batalPenapisan/{code}', [PenapisanTemudugaFEController::class, 'batalPenapisan'])->name('batalPenapisan');
+    Route::get('tolakPenapisan/{code}', [PenapisanTemudugaFEController::class, 'tolakPenapisan'])->name('tolakPenapisan');
+    Route::get('temudugaPenapisan/{code}', [PenapisanTemudugaFEController::class, 'temudugaPenapisan'])->name('temudugaPenapisan');
+    Route::post('/KemaskiniTemuduga', [PenapisanTemudugaFEController::class, 'KemaskiniTemuduga'])->name('KemaskiniTemuduga');
+    Route::post('/pemprosesanTemuduga', [PenapisanTemudugaFEController::class, 'pemprosesanTemuduga'])->name('pemprosesanTemuduga');
    
 
     //penjadualan temuduga

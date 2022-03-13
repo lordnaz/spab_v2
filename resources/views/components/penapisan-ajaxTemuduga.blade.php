@@ -35,8 +35,10 @@
         <div class="card-body mt-2">
 
 
-          <form class="dt_adv_search" method="POST">
+          <form class="dt_adv_search" action="/pemprosesanTemuduga" method="post" enctype="multipart/form-data" accept-charset='UTF-8'>
+          @csrf
             <div class="row">
+            <input hidden type="text" id="code" class="form-control" name="proses" value="{{($code)}}"/>
               <div class="col-md-4">
                 <label class="form-label">Negeri:</label>
                 <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
@@ -167,23 +169,72 @@
                         <td>{{$displayTemudugaa['state']}}</td>
                         @if ($total == '2')
                         @foreach ($displayTemudugaa as $displayTemudugaaa)
-                        <td>{{$displayTemudugaaa['program']}}</td>
-                        <td>{{$displayTemudugaaa['program']}}</td>
-                        @endforeach
-                        @else
-                        <td>{{$displayTemudugaa['program']}}</td>
-                        <td></td>
+                        @if($loop->first)
+                  @if ($displayTemudugaa['kelulusan1'] == 'L' || $displayTemudugaa['kelulusan1'] == 'G')
+                  <td>{{$displayTemudugaaa['program']}}-{{$displayTemudugaa['kelulusan1']}}</td>
+                  @else
+                  <td>{{$displayTemudugaaa['program']}}-N{{$displayTemudugaa['kelulusan1']}}</td>
+                  @endif
+                  @else
+                  @if ($displayTemudugaa['kelulusan2'] == 'L' || $displayTemudugaa['kelulusan2'] == 'G')
+                  <td>{{$displayTemudugaaa['program']}}-{{$displayTemudugaa['kelulusan2']}}</td>
+                  @else
+                  <td>{{$displayTemudugaaa['program']}}-N{{$displayTemudugaa['kelulusan2']}}</td>
+                  @endif
+
+                  @endif
+                  @endforeach
+                  @else
+                  @if ($displayTemudugaa['kelulusan1'] == 'L' || $displayTemudugaa['kelulusan1'] == 'G')
+                  <td>{{$displayTemudugaaa['program']}}-{{$displayTemudugaa['kelulusan1']}}</td>
+                  @else
+                  <td>{{$displayTemudugaaa['program']}}-N{{$displayTemudugaa['kelulusan1']}}</td>
+                  @endif
+                  <td></td>
                         @endif
                         <td>{{$displayTemudugaa['cert_related_program']}}</td>
                         <td>{{$displayTemudugaa['code_center']}}</td>
                         <td>{{$displayTemudugaa['TarikhProses']}}</td>
                         <td>
-
+                        <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                  <a href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
+                  <a href="{{ route('tolakPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Tolak</a>
+                    <a href="{{ route('batalPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
+                      Batal
+                    </a>
 
                         </td>
 
                       </tr>
                       @endforeach
+                      <tr class="text-center">
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  
+                 
+                  <td>nizam</td>
+                  <td>nizam</td>
+                 
+                 
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>
+                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                  <a href="" class="btn-sm btn-warning">Temuduga</a>
+                  <a href="" class="btn-sm btn-warning">Tolak</a>
+                    <a href="" class="btn-sm btn-danger deletePusatTemuduga"> 
+                      Batal
+                    </a>
+                 
+              
+                 
+                  </td>
+                 
+                </tr>
               
                     </tbody>
 
@@ -233,23 +284,70 @@
                         <td>{{$displayTolakk['state']}}</td>
                         @if ($total == '2')
                         @foreach ($displayTolakk as $displayTolakkk)
-                        <td>{{$displayTolakkk['program']}}</td>
-                        <td>{{$displayTolakkk['program']}}</td>
-                        @endforeach
-                        @else
-                        <td>{{$displayTolakk['program']}}</td>
-                        <td></td>
+                        @if($loop->first)
+                  @if ($displayTolakk['kelulusan1'] == 'L' || $displayTolakk['kelulusan1'] == 'G')
+                  <td>{{$displayTolakkk['program']}}-{{$displayTolakk['kelulusan1']}}</td>
+                  @else
+                  <td>{{$displayTolakkk['program']}}-N{{$displayTolakk['kelulusan1']}}</td>
+                  @endif
+                  @else
+                  @if ($displayTolakk['kelulusan2'] == 'L' || $displayTolakk['kelulusan2'] == 'G')
+                  <td>{{$displayTolakkk['program']}}-{{$displayTolakk['kelulusan2']}}</td>
+                  @else
+                  <td>{{$displayTolakkk['program']}}-N{{$displayTolakk['kelulusan2']}}</td>
+                  @endif
+
+                  @endif
+                  @endforeach
+                  @else
+                  @if ($displayTolakk['kelulusan1'] == 'L' || $displayTolakk['kelulusan1'] == 'G')
+                  <td>{{$displayTolakkk['program']}}-{{$displayTolakk['kelulusan1']}}</td>
+                  @else
+                  <td>{{$displayTolakkk['program']}}-N{{$displayTolakk['kelulusan1']}}</td>
+                  @endif
+                  <td></td>
                         @endif
                         <td>{{$displayTolakk['cert_related_program']}}</td>
                         <td>{{$displayTolakk['code_center']}}</td>
                         <td>{{$displayTolakk['TarikhProses']}}</td>
                         <td>
-
+                        <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                  <a href="" class="btn-sm btn-warning">Temuduga</a>
+                    <a href="{{ route('batalPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
+                      Batal
+                    </a>
 
                         </td>
 
                       </tr>
                       @endforeach
+                      <tr class="text-center">
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  
+                 
+                  <td>nizam</td>
+                  <td>nizam</td>
+                 
+                 
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>nizam</td>
+                  <td>
+                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                  <a href="" class="btn-sm btn-warning">Temuduga</a>
+                    <a href="" class="btn-sm btn-danger deletePusatTemuduga"> 
+                      Batal
+                    </a>
+                 
+              
+                 
+                  </td>
+                 
+                </tr>
                     </tbody>
                   </table>
                 </div>
@@ -275,7 +373,7 @@
                         <th>Sijil</th>
                         <th>P.T'Duga</th>
                         <th>T.Proses</th>
-                        <th>{!! __('locale.Action') !!}</th>
+                        
                       </tr>
 
                     </thead>
@@ -297,23 +395,37 @@
                         <td>{{$displayBelumProsess['state']}}</td>
                         @if ($total == '2')
                         @foreach ($displayBelumProsess as $displayBelumProsesss)
-                        <td>{{$displayBelumProsesss['program']}}</td>
-                        <td>{{$displayBelumProsesss['program']}}</td>
-                        @endforeach
-                        @else
-                        <td>{{$displayBelumProsess['program']}}</td>
-                        <td></td>
+                        @if($loop->first)
+                  @if ($displayBelumProsess['kelulusan1'] == 'L' || $displayBelumProsess['kelulusan1'] == 'G')
+                  <td>{{$displayBelumProsesss['program']}}-{{$displayBelumProsess['kelulusan1']}}</td>
+                  @else
+                  <td>{{$displayBelumProsesss['program']}}-N{{$displayBelumProsess['kelulusan1']}}</td>
+                  @endif
+                  @else
+                  @if ($ddisplayBelumProsess['kelulusan2'] == 'L' || $displayBelumProsess['kelulusan2'] == 'G')
+                  <td>{{$displayBelumProsesss['program']}}-{{$displayBelumProsess['kelulusan2']}}</td>
+                  @else
+                  <td>{{$displayBelumProsesss['program']}}-N{{$displayBelumProsess['kelulusan2']}}</td>
+                  @endif
+
+                  @endif
+                  @endforeach
+                  @else
+                  @if ($displayTemudugaa['kelulusan1'] == 'L' || $displayBelumProsess['kelulusan1'] == 'G')
+                  <td>{{$displayBelumProsesss['program']}}-{{$displayBelumProsess['kelulusan1']}}</td>
+                  @else
+                  <td>{{$displayBelumProsesss['program']}}-N{{$displayBelumProsess['kelulusan1']}}</td>
+                  @endif
+                  <td></td>
                         @endif
                         <td>{{$displayBelumProsess['cert_related_program']}}</td>
                         <td>{{$displayBelumProsess['code_center']}}</td>
                         <td>{{$displayBelumProsess['TarikhProses']}}</td>
-                        <td>
-
-
-                        </td>
+                      
 
                       </tr>
                       @endforeach
+                      
                     </tbody>
                   </table>
                 </div>

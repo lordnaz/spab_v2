@@ -124,6 +124,14 @@ class OpenCenterInterviewController extends Controller
         $addNewPanelInterview->status = true;
         $addNewPanelInterview->save();
 
+        $update = CenterInterview::where('center_id', $req->center_id)->update([
+            'status_center' =>'AKTIF',
+           
+
+        ]);
+
+
+
         $status="berjaya";
         }
         else{
