@@ -426,5 +426,33 @@ return [
     "Full Time" => "Sepenuh Masa",
     "Half Time" => "Separuh Masa",
 
+    //Keputusan Permohonan
+    "Application Decision" => "Keputusan Permohonan",
+    "No Process" => "Belum Proses",
+    "Call Interview" => "Panggil Temuduga",
+    "Failed Interview" => "Gagal dan Tidak Panggil Temuduga",
+    "No Attend Interview" => "Tidak Hadir Temuduga",
+    "Attend Interview" => "Hadir Temuduga",
+    "Failed Interview 2" => "Gagal Temuduga",
+    "Accept Offer" => "Terima Tawaran",
+    "Decline Offer" => "Tolak Tawaran",
+    "Listed" => "Daftar",
+    "Semester" => "Semester",
+    "Year" => "Tahun",
+    "Place Interview" => "Tempat",
+    "Date Interview" => "Tarikh",
+    "Time" => "Masa",
+    "Interview Information" => "Maklumat Temuduga",
+    "Registration Information" => "Maklumat Pendaftaran",
+
+    //Balasan Calon
+    "Accept" => "Terima",
+    "Candidate Replies Detail" => "Butiran Balasan Calon",
+    "Candidate Replies" => "Balasan Calon",
+    "Hostel Application" => "Mohon Asrama",
+    "Yes" => "Ya",
+    "No" => "Tidak",
+
+
 ];
 

@@ -427,4 +427,32 @@ return [
     "Full Time" => "Full-Time",
     "Half Time" => "Half-Time",
 
+    //Keputusan Permohonan
+    "Application Decision" => "Application Decision",
+    "No Process" => "Not Yet Processed",
+    "Call Interview" => "Call for An Interview",
+    "Failed Interview" => "Failed and Did Not Call for An Interview",
+    "No Attend Interview" => "Did Not Attend the Interview",
+    "Attend Interview" => "Attend the Interview",
+    "Failed Interview 2" => "Failed the Interview",
+    "Accept Offer" => "Accept the Offer",
+    "Decline Offer" => "Decline the Offer",
+    "Listed" => "Listed",
+    "Semester" => "Semester",
+    "Year" => "Year",
+    "Place Interview" => "Place",
+    "Date Interview" => "Date",
+    "Time" => "Time",
+    "Interview Information" => "Interview Information",
+    "Registration Information" => "Registration Information",
+
+    //Balasan Calon
+    "Accept" => "Accept",
+    "Candidate Replies Detail" => "Candidate Replies Detail",
+    "Candidate Replies" => "Candidate Replies",
+    "Hostel Application" => "Hostel Application",
+    "Yes" => "Yes",
+    "No" => "No",
+
+
 ];
