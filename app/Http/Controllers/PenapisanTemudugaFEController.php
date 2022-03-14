@@ -171,7 +171,7 @@ class PenapisanTemudugaFEController extends Controller
             'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
         ])->post(getenv('ENDPOINT').'/api/emprosesanTemuduga', $param);
 
-        return redirect()->route('PenapisanTemuduga');
+        return redirect()->route('penapisan-ajaxTemuduga')->with('code', $req->proses);
 
     }
 

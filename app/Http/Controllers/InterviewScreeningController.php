@@ -439,7 +439,7 @@ class InterviewScreeningController extends Controller
 
                                             if($grade->grade >= $offer->val_grade){
 
-                                                $syarat[$i] = $syarat + 1;
+                                                $syarat[$i] = $syarat[$i] + 1;
                                             }
                                             else{
 
@@ -466,7 +466,7 @@ class InterviewScreeningController extends Controller
 
                                             $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
-                                                'kelulusan1' => 'L',                                           
+                                                'kelulusan1' => $syarat[$i],                                           
                                                 'TarikhProses' => $currentdt,
                                                 
                 
@@ -486,7 +486,7 @@ class InterviewScreeningController extends Controller
 
                                         $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
-                                            'kelulusan1' => 'L',                                           
+                                            'kelulusan1' => $syarat[$i],                                           
                                             'TarikhProses' => $currentdt,
                                             'center_id' => $ProsesCenterr->center_id
             
@@ -509,8 +509,13 @@ class InterviewScreeningController extends Controller
                                             'TarikhProses' => $currentdt,
             
                                         ]);
+
+                                        $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
-                                
+                                            'status_temuduga' => 'Tolak',
+            
+                                        ]);
+                              
 
 
                                     }
@@ -527,7 +532,7 @@ class InterviewScreeningController extends Controller
 
                                             $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
-                                                'kelulusan2' => 'L',                                           
+                                                'kelulusan2' => $syarat[$i],                                           
                                                 'TarikhProses' => $currentdt,
                                                 
                 
@@ -543,11 +548,11 @@ class InterviewScreeningController extends Controller
 
                                         else{
 
-                                        if($Proses->kelulusan1 == 'L'){
+                                        if($Proses->status_temuduga == 'Temuduga'){
 
                                             $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
-                                                'kelulusan2' => 'L',                                           
+                                                'kelulusan2' => $syarat[$i],                                           
                                                 'TarikhProses' => $currentdt,
                                                 
                 
@@ -566,7 +571,7 @@ class InterviewScreeningController extends Controller
                                         $ProsesCenterrr = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->inRandomOrder()->first();
                                         $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
-                                            'kelulusan2' => 'L',                                           
+                                            'kelulusan2' => $syarat[$i],                                           
                                             'TarikhProses' => $currentdt,
                                             'center_id' => $ProsesCenterrr->center_id,
             
@@ -591,7 +596,7 @@ class InterviewScreeningController extends Controller
             
                                         ]);
 
-                                        if($syarat[1] >= 4){
+                                        if($Proses->status_temuduga == 'Temuduga'){
             
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
@@ -661,7 +666,7 @@ class InterviewScreeningController extends Controller
 
                                             $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
-                                                'kelulusan1' => 'L',                                           
+                                                'kelulusan1' => $syaratt,                                           
                                                 'TarikhProses' => $currentdt,
                                                 
                 
@@ -681,7 +686,7 @@ class InterviewScreeningController extends Controller
 
                                         $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
-                                            'kelulusan1' => 'L',                                           
+                                            'kelulusan1' => $syaratt,                                           
                                             'TarikhProses' => $currentdt,
                                             'center_id' => $ProsesCenterr->center_id
             
