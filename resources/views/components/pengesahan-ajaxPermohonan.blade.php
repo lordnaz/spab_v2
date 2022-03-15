@@ -40,14 +40,15 @@
     
                  
 
-                  
+        
     
                   <div id="program_list" class="col-sm-10">
-                  <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
+                  <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax" name ="ajax">
                     <!-- <select class="select2 form-select" id="program_list" name="program_list"> -->
-                        <option value="{{ route('display_pengesahan_permohonan') }}" selected>{!! __('locale.Please Choose') !!}</option>
+                        <option value="" selected>{!! __('locale.Please Choose') !!}</option>
+                        <option value="{{ route('display_pengesahan_permohonan') }}" >{!! __('locale.All') !!}</option>
                         @foreach ($datas2 as $datas22)
-                        <option data-avatar="1-small.png" value="{{ route('filterByProgram',  Crypt::encrypt($datas22['program_id'])) }}">{{$datas22['code']}} - {{$datas22['program']}}</option>
+                        <option data-avatar="1-small.png" value="{{ route('filterByProgram',  Crypt::encrypt($datas22['program_id'])) }}"{{(old('ajax') == $datas2?'selected':'')}}>{{$datas22['code']}} - {{$datas22['program']}}</option>
                        @endforeach
                     </select>
                   </div>

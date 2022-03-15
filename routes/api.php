@@ -117,6 +117,7 @@ Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [Permohonan
 Route::middleware('auth:sanctum')->post('sahkan', [PengesahanPermohonanAPIController::class, 'sahkan']);
 Route::middleware('auth:sanctum')->post('tolak_pengesahan_pemohon', [PengesahanPermohonanAPIController::class, 'tolak_pengesahan_pemohon']);
 Route::middleware('auth:sanctum')->post('batal_pengesahan_pemohon', [PengesahanPermohonanAPIController::class, 'batal_pengesahan_pemohon']);
+Route::middleware('auth:sanctum')->post('AjaxView2', [PengesahanPermohonanAPIController::class, 'AjaxView2']);
 
 //Penawaran Permohonan
 Route::middleware('auth:sanctum')->get('/display_penawaran', [PenawaranPermohonanAPIController::class, 'display_penawaran']);

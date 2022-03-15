@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserDetail;
 use App\Models\StatusPermohonan;
+use App\Models\ProgramApplied;
+use App\Models\program;
+
+
 
 
 class PengesahanPermohonanAPIController extends Controller
@@ -215,4 +219,35 @@ class PengesahanPermohonanAPIController extends Controller
 
     //     return response()->json($data);
     // }
+
+
+
+    public function AjaxView2(Request $req)
+    {
+
+       
+
+        $displaybyProgram = ProgramApplied::join('user_details', 'program_applied.nric', '=', 'user_details.nric')
+        ->join('all_status_permohonan','user_details.nric','=','all_status_permohonan.nric')
+        ->where('program_applied.program_id', $req->code)
+        ->get();
+       
+            // $displaybyProgram = UserDetail::join('program_applied', 'user_details.nric', '=', 'program_applied.nric')
+            //     ->where('program_applied.program_id', $req->code)
+            //     ->get();
+
+             $displayAllProgram = program::where('status', true)->get();
+
+            
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => 'succesfull',
+            'displaybyProgram' => $displaybyProgram,
+            'displayAllProgram' => $displayAllProgram,
+
+        ];
+
+        return response()->json($data);
+    } 
 }

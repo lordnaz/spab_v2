@@ -402,6 +402,7 @@ return [
     "Reject" => "Reject",
     "Cancel" => "Cancel",
     "Yes" => "Yes",
+    "All" => "All",
     "Cancellation of Application Status" => "Cancellation of Application Status",
     "Cancel the confirmation of the application or rejection of the application that has been made" => "Cancel the confirmation of the application or rejection of the application that has been made",
     //Bukak pusat temuduga

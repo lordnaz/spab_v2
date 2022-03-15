@@ -164,8 +164,33 @@ class PengesahanPermohonanFEController extends Controller
 
     }
 
+    public function filterByProgram($code){
 
-    
+        $code = decrypt($code);
+
+       
+
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Permohonan"],['name' => "Pengesahan Permohonan"]
+        ];
+
+        $request = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        ])->post(getenv('ENDPOINT').'/api/AjaxView2', [
+            'code' => $code,
+        ]);
+     
+        $datas = $request['displaybyProgram'];
+        $datas2 = $request['displayAllProgram'];
+  
+        return view('components.pengesahan-ajaxPermohonan', ['breadcrumbs' => $breadcrumbs])->with('datas', $datas)->with('datas2',$datas2);
+      
+
+    }
+
+
+ 
 
 
 
