@@ -16,6 +16,7 @@ use App\Http\Controllers\FE_ScheduleInterviewController;
 use App\Http\Controllers\FE_PenawaranPermohonanController;
 use App\Http\Controllers\FE_KeputusanPermohonanController;
 use App\Http\Controllers\FE_BalasanCalonController;
+use App\Http\Controllers\FE_PendaftaranPelajarController;
 
 
 /*
@@ -127,6 +128,10 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     //Balasan Calon
     Route::get('balasancalon', [FE_BalasanCalonController::class, 'balasancalon'])->name('balasancalon');
     Route::get('details_balasancalon', [FE_BalasanCalonController::class, 'details_balasancalon'])->name('details_balasancalon');
+
+    //Pendaftaran Program Pelajar Baru
+    Route::get('pendaftaranpelajar', [FE_PendaftaranPelajarController::class, 'pendaftaranpelajar'])->name('pendaftaranpelajar');
+    Route::get('details_balasancalon', [FE_PendaftaranPelajarController::class, 'details_balasancalon'])->name('details_balasancalon');
 
 });
 

@@ -453,6 +453,34 @@ return [
     "Yes" => "Ya",
     "No" => "Tidak",
 
+    //Pendaftaran Pelajar
+    "Student Registration" => "Pendaftaran Pelajar",
+    "Candidate/Student Information" => "Maklumat Calon/Pelajar",
+    "no_matriks" => "No. Matriks",
+    "Male" => "Lelaki",
+    "Female" => "Perempuan",
+    "Malay" => "Melayu",
+    "Chinese" => "Cina",
+    "Indian" => "India",
+    "Others" => "Lain-lain",
+    "Hostel Room" => "Bilik Asrama",
+    "Not Yet" => "Belum",
+    "Payment Information" => "Maklumat Bayaran",
+    "no_resit" => "No. Resit",
+    "Total Payment" => "Jumlah Bayaran",
+    "Bank" => "Bank",
+    "Payment Type" => "Jenis Bayaran",
+    "Cash" => "Tunai",
+    "Bank Transfer" => "Pemindahan Bank",
+    "For Payment" => "Untuk Bayaran",
+    "Save" => "Simpan",
+    "Cancel" => "Batal",
+    "Cancel Receipt" => "Batal Resit",
+    "Fee Type" => "Jenis Yuran",
+    "Amount" => "Amaun",
+    "Print" => "Print",
+
+
 
 ];
 

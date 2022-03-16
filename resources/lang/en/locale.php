@@ -454,5 +454,33 @@ return [
     "Yes" => "Yes",
     "No" => "No",
 
+    //Pendaftaran Pelajar
+    "Student Registration" => "Student Registration",
+    "Candidate/Student Information" => "Candidate/Student Information",
+    "no_matriks" => "Matrics Number",
+    "Male" => "Male",
+    "Female" => "Female",
+    "Malay" => "Malay",
+    "Chinese" => "Chinese",
+    "Indian" => "Indian",
+    "Others" => "Others",
+    "Hostel Room" => "Hostel Room",
+    "Not Yet" => "Not Yet",
+    "Payment Information" => "Payment Information",
+    "no_resit" => "Receipt Number",
+    "Total Payment" => "Total Payment",
+    "Bank" => "Bank",
+    "Payment Type" => "Payment Type",
+    "Cash" => "Cash",
+    "Bank Transfer" => "Bank Transfer",
+    "For Payment" => "For Payment",
+    "Save" => "Save",
+    "Cancel" => "Cancel",
+    "Cancel Receipt" => "Cancel Receipt",
+    "Fee Type" => "Type of Fee",
+    "Amount" => "Amount",
+    "Print" => "Print",
+
+
 
 ];
