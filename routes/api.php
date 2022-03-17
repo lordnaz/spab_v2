@@ -15,6 +15,7 @@ use App\Http\Controllers\KeputusanPermohonanAPIController;
 use App\Http\Controllers\BalasanCalonAPIController;
 use App\Http\Controllers\OpenCenterInterviewController;
 use App\Http\Controllers\InterviewScreeningController;
+use App\Http\Controllers\IVSchedulingController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -102,8 +103,11 @@ Route::middleware('auth:sanctum')->post('updateScreeningIVapplicantById', [Inter
 //IVScheduling 
 Route::middleware('auth:sanctum')->get('/getAllPlaceIVapplicant', [IVSchedulingController::class, 'getAllPlaceIVapplicant']);
 Route::middleware('auth:sanctum')->post('getAllApplicantDetailbyPlaceIV', [IVSchedulingController::class, 'getAllApplicantDetailbyPlaceIV']);
-Route::middleware('auth:sanctum')->post('getIVSessionbyCenter', [IVSchedulingController::class, 'getIVSessionbyCenter']);
-Route::middleware('auth:sanctum')->post('updatePlaceIVapplicantById', [IVSchedulingController::class, 'updatePlaceIVapplicantById']);
+Route::middleware('auth:sanctum')->post('AjaxSesi', [IVSchedulingController::class, 'AjaxSesi']);
+Route::middleware('auth:sanctum')->post('AjaxCenter', [IVSchedulingController::class, 'AjaxCenter']);
+Route::middleware('auth:sanctum')->post('UpdateJadualSesi', [IVSchedulingController::class, 'UpdateJadualSesi']);
+Route::middleware('auth:sanctum')->post('KosongkanSesi', [IVSchedulingController::class, 'KosongkanSesi']);
+
 
 //Permohonan
 Route::middleware('auth:sanctum')->post('/add_permohonan', [PermohonanAPIController::class, 'add_permohonan']);

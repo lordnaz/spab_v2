@@ -12,7 +12,7 @@ use App\Http\Controllers\PusatTemudugaFEController;
 use App\Http\Controllers\OpenPusatTemudugaFEController;
 use App\Http\Controllers\PengesahanPermohonanFEController;
 use App\Http\Controllers\PenapisanTemudugaFEController;
-
+use App\Http\Controllers\PenjadualanTemudugaFEController;
 use App\Http\Controllers\FE_ScheduleInterviewController;
 
 /*
@@ -118,6 +118,13 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('display_pengesahan_permohonan', [PengesahanPermohonanFEController::class, 'display_pengesahan_permohonan'])->name('display_pengesahan_permohonan');
     Route::get('sahkan_permohonan/{code}', [PengesahanPermohonanFEController::class, 'sahkan_permohonan'])->name('sahkan_permohonan');
     Route::get('tolak_permohonan/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan'])->name('tolak_permohonan');
+
+    //Penjadualan temuduga
+    Route::get('penjadualan_temuduga', [PenjadualanTemudugaFEController::class, 'penjadualan_temuduga'])->name('penjadualan_temuduga');
+    Route::get('PenjadualanTemuduga/{code}', [PenjadualanTemudugaFEController::class, 'PenjadualanTemuduga'])->name('PenjadualanTemuduga');
+    Route::post('AjaxSesi', [PenjadualanTemudugaFEController::class, 'AjaxSesi'])->name('AjaxSesi');
+    Route::post('JadualSesi', [PenjadualanTemudugaFEController::class, 'JadualSesi'])->name('JadualSesi');
+    Route::post('KosongkanSesi', [PenjadualanTemudugaFEController::class, 'KosongkanSesi'])->name('KosongkanSesi');
 
 });
 

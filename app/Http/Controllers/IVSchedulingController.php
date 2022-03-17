@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\AppplicantIVSession;
 use App\Models\UserDetail;
 use App\Models\SessionInterview;
+use App\Models\ScreeningIV;
+use App\Models\AsasInterview;
 
 class IVSchedulingController extends Controller
 {
@@ -14,13 +16,30 @@ class IVSchedulingController extends Controller
     public function getAllPlaceIVapplicant(){
 
 
-        $displayAllPlaceIVapplicant = AppplicantIVSession::distinct()->get('iv_place_selected');
+        $DataCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->orderBy('asas_interview.asas_id', 'asc')->where('asas_interview.status', true)->get();
+        $FirstCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->orderBy('asas_interview.asas_id', 'asc')->where('asas_interview.status', true)->first();
+        $Sesi = SessionInterview::where('asas_id', $FirstCenter->asas_id)->where('status', true)->orderBy('number_session', 'asc')->get();
+        $FirstSesi = SessionInterview::where('asas_id', $FirstCenter->asas_id)->where('status', true)->orderBy('number_session', 'asc')->first();
+
+        $displayTable = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
+            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+            ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
+            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+            ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+            ->where('all_status_permohonan.status_temuduga', 'Temuduga')
+            ->where('screening_interview.center_id', $FirstCenter->center_id)
+            ->get();
 
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' => $displayAllPlaceIVapplicant
+            'DataCenter' => $DataCenter,
+            'FirstCenter' => $FirstCenter,
+            'Sesi' => $Sesi,
+            'FirstSesi' => $FirstSesi,
+            'displayTable' => $displayTable,
             
         ];
 
@@ -28,89 +47,165 @@ class IVSchedulingController extends Controller
 
     }
 
-//display the applicant that choose by the same place iv
-
-    public function getAllApplicantDetailbyPlaceIV (Request $req){
+    public function AjaxCenter(Request $req){
 
 
+        $DataCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->orderBy('asas_interview.asas_id', 'asc')->where('asas_interview.status', true)->get();
+        $FirstCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->where('asas_id', $req->type)->first();
+        $Sesi = SessionInterview::where('asas_id', $FirstCenter->asas_id)->where('status', true)->orderBy('number_session', 'asc')->get();
+        $FirstSesi = SessionInterview::where('asas_id', $FirstCenter->asas_id)->where('status', true)->first();
 
-        $displayAllApplicantDetailbyPlaceIV = UserDetail::where('user_details.nric','desc')->join('applicant_iv_session','user_details.nric','=','applicant_iv_session.nric')
-        ->where('applicant_iv_session.nric.iv_place_selected',$req->iv_place_selected)
-        ->get();
-        
-       
+        $displayTable = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
+            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+            ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
+            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+            ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+            ->where('all_status_permohonan.status_temuduga', 'Temuduga')
+            ->where('screening_interview.center_id', $FirstCenter->center_id)
+            ->get();
+
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' =>[
-                'nric' => $displayAllApplicantDetailbyPlaceIV->nric,
-                'name' => $displayAllApplicantDetailbyPlaceIV->name,
-                'number_session' => $displayAllApplicantDetailbyPlaceIV->number_session,
-                'date_session' => $displayAllApplicantDetailbyPlaceIV->date_session,
-                'time_session' => $displayAllApplicantDetailbyPlaceIV->time_session
-   
-                
-            ]
+            'DataCenter' => $DataCenter,
+            'FirstCenter' => $FirstCenter,
+            'Sesi' => $Sesi,
+            'FirstSesi' => $FirstSesi,
+            'displayTable' => $displayTable,
+            
         ];
 
-
         return response()->json($data);
+
     }
 
-//display detail session for each center
-    public function getIVSessionbyCenter (Request $req){
+    public function AjaxSesi(Request $req){
 
-        $displayIVSessionbyCenter = SessionInterview::where('status_center',$req->status_center)->get();
 
-        
-       
+       $FindAsas = SessionInterview::where('session_id', $req->type)->first();
+        $Sesi = SessionInterview::where('asas_id', $FindAsas->asas_id)->where('status', true)->orderBy('number_session', 'asc')->get();
+        $FirstSesi = SessionInterview::where('session_id', $req->type)->where('status', true)->orderBy('number_session', 'asc')->first();
+
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' =>[
-                'number_session' => $displayIVSessionbyCenter->number_session,
-                'date_session' => $displayIVSessionbyCenter->date_session,
-                'time_session' => $displayIVSessionbyCenter->time_session
-   
-                
-            ]
+            'Sesi' => $Sesi,
+            'FirstSesi' => $FirstSesi,
+            
         ];
 
-
         return response()->json($data);
+
     }
 
+    public function UpdateJadualSesi(Request $req)
+    {
 
+        if(!empty($req->checkbox)){
+         if(is_array($req->checkbox)){ 
+        foreach($req->checkbox as $req->checkboxx){
+       
+        $update = ScreeningIV::where('nric', $req->checkboxx)->update([
+            
+                'session_id' => $req->session_id,
+                'TarikhHadir' => $req->TarikhHadir,
+                'MasaFrom' => $req->MasaFrom,
+                'MasaTo' => $req->MasaTo,
+                'catatan_temuduga' => $req->catatan_temuduga,
+                
 
+            ]);
 
-//update session assign for the applicant
+        }
+    }
+        else{
 
-    public function updatePlaceIVapplicantById(Request $req){
-        $user_name = auth()->User()->name;
-        $currentdt = date('Y-m-d H:i:s');
-        $updatePlaceIVapplicantById = AppplicantIVSession::where('nric',$req->nric)->update
-        ([
+            $update = ScreeningIV::where('nric', $req->checkboxx)->update([
+                
+                'session_id' => $req->session_id,
+                'TarikhHadir' => $req->TarikhHadir,
+                'MasaFrom' => $req->MasaFrom,
+                'MasaTo' => $req->MasaTo,
+                'catatan_temuduga' => $req->catatan_temuduga,
+                
+    
+            ]);
+        }
+    $status="Berjaya";
+    
+    }
+    else{
 
-            'number_session' => $updateCenterInterviewybId->number_session,
-            'date_session' => $updateCenterInterviewybId->date_session,
-            'time_session' => $updateCenterInterviewybId->time_session,
-            'description_admin' => $updateCenterInterviewybId->description_admin,
-            'updated_by' => $user_name,
-            'updated_at' => $currentdt
-        ]);
+        $status = "Tidak Berjaya";
+    }
+
+        
+       
 
         $data = [
-            'status' => 'success',
+            'status' => $status,
             'code' => '000',
             'description' => 'succesfull'
         ];
 
         return response()->json($data);
-
     }
 
+    public function KosongkanSesi(Request $req)
+    {
+
+        if(!empty($req->checkbox)){
+         if(is_array($req->checkbox)){ 
+        foreach($req->checkbox as $req->checkboxx){
+       
+        $update = ScreeningIV::where('nric', $req->checkboxx)->update([
+            
+                'session_id' => NULL,
+                'TarikhHadir' => NULL,
+                'MasaFrom' => NULL,
+                'MasaTo' => NULL,
+                'catatan_temuduga' => NULL,
+                
+
+            ]);
+
+        }
+    }
+        else{
+
+            $update = ScreeningIV::where('nric', $req->checkboxx)->update([
+                
+                'session_id' => NULL,
+                'TarikhHadir' => NULL,
+                'MasaFrom' => NULL,
+                'MasaTo' => NULL,
+                'catatan_temuduga' => NULL,
+                
+    
+            ]);
+        }
+    $status="Berjaya";
+    
+    }
+    else{
+
+        $status = "Tidak Berjaya";
+    }
+
+        
+       
+
+        $data = [
+            'status' => $status,
+            'code' => '000',
+            'description' => 'succesfull'
+        ];
+
+        return response()->json($data);
+    }
 
 
 }
