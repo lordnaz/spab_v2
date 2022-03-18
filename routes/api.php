@@ -16,6 +16,7 @@ use App\Http\Controllers\BalasanCalonAPIController;
 use App\Http\Controllers\OpenCenterInterviewController;
 use App\Http\Controllers\InterviewScreeningController;
 use App\Http\Controllers\IVSchedulingController;
+use App\Http\Controllers\ResultInterviewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -117,8 +118,15 @@ Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [Permohonan
 Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPIController::class, 'update_permohonan']);
 
 //InterviewResult
-Route::middleware('auth:sanctum')->get('/getAllApplicantIvResult', [ResultInterviewController::class, 'getAllApplicantIvResult']);
-Route::middleware('auth:sanctum')->post('updateApplicantIvResultById', [ResultInterviewController::class, 'updateApplicantIvResultById']);
+Route::middleware('auth:sanctum')->get('/DataKeputusanTemuduga', [ResultInterviewController::class, 'DataKeputusanTemuduga']);
+Route::middleware('auth:sanctum')->post('RouteCenter', [ResultInterviewController::class, 'RouteCenter']);
+Route::middleware('auth:sanctum')->post('hadirTemuduga', [ResultInterviewController::class, 'hadirTemuduga']);
+Route::middleware('auth:sanctum')->post('TidakHadirTemuduga', [ResultInterviewController::class, 'TidakHadirTemuduga']);
+Route::middleware('auth:sanctum')->post('batalTemuduga', [ResultInterviewController::class, 'batalTemuduga']);
+Route::middleware('auth:sanctum')->post('PostHadirTemuduga', [ResultInterviewController::class, 'PostHadirTemuduga']);
+Route::middleware('auth:sanctum')->post('PostTidakHadir', [ResultInterviewController::class, 'PostTidakHadir']);
+
+
 //Pengensahan Permohonan
 //Route::middleware('auth:sanctum')->get('/display_pengesahan', [PengesahanPermohonanAPIController::class, 'display_pengesahan']);
 

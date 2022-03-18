@@ -46,14 +46,14 @@
                             </div>
                             <div class="col-sm-1">
 
-                                <input type="time" id="MasaFrom" name="MasaFrom" @if(!empty($FirstSesi['TarikhFrom']) == 'null') value="{{Carbon\Carbon::parse($FirstSesi['TarikhFrom'])->format('H:i:s')}}" min="{{Carbon\Carbon::parse($FirstSesi['TarikhFrom'])->format('H:i:s')}}" max="{{Carbon\Carbon::parse($FirstSesi['TarikhTo'])->format('H:i:s')}}" @else value="08:00"@endif>
+                                <input type="time" id="MasaFrom" name="MasaFrom" @if(!empty($FirstSesi['TarikhFrom'])) value="{{Carbon\Carbon::parse($FirstSesi['TarikhFrom'])->format('H:i:s')}}" min="{{Carbon\Carbon::parse($FirstSesi['TarikhFrom'])->format('H:i:s')}}" max="{{Carbon\Carbon::parse($FirstSesi['TarikhTo'])->format('H:i:s')}}" @else value="08:00"@endif>
 
                             </div>
 
                             
                             <div style="padding-left:7px;" class="col-sm-2">
                             -
-                                <input type="time" id="MasaTo" name="MasaTo" @if(!empty($FirstSesi['TarikhTo']) == 'null') value="{{Carbon\Carbon::parse($FirstSesi['TarikhTo'])->format('H:i:s')}}" min="{{Carbon\Carbon::parse($FirstSesi['TarikhFrom'])->format('H:i:s')}}" max="{{Carbon\Carbon::parse($FirstSesi['TarikhTo'])->format('H:i:s')}}" @else value="08:00"@endif>
+                                <input type="time" id="MasaTo" name="MasaTo" @if(!empty($FirstSesi['TarikhTo'])) value="{{Carbon\Carbon::parse($FirstSesi['TarikhTo'])->format('H:i:s')}}" min="{{Carbon\Carbon::parse($FirstSesi['TarikhFrom'])->format('H:i:s')}}" max="{{Carbon\Carbon::parse($FirstSesi['TarikhTo'])->format('H:i:s')}}" @else value="08:00"@endif>
                             </div>
 
                         </div>

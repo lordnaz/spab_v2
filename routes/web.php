@@ -14,6 +14,7 @@ use App\Http\Controllers\PengesahanPermohonanFEController;
 use App\Http\Controllers\PenapisanTemudugaFEController;
 use App\Http\Controllers\PenjadualanTemudugaFEController;
 use App\Http\Controllers\FE_ScheduleInterviewController;
+use App\Http\Controllers\KeputusanTemudugaFEController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,6 +126,15 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('AjaxSesi', [PenjadualanTemudugaFEController::class, 'AjaxSesi'])->name('AjaxSesi');
     Route::post('JadualSesi', [PenjadualanTemudugaFEController::class, 'JadualSesi'])->name('JadualSesi');
     Route::post('KosongkanSesi', [PenjadualanTemudugaFEController::class, 'KosongkanSesi'])->name('KosongkanSesi');
+
+    //Keputusan temuduga
+    Route::get('keputusan_temuduga', [KeputusanTemudugaFEController::class, 'keputusan_temuduga'])->name('keputusan_temuduga');
+    Route::get('KeputusanTemuduga/{code}', [KeputusanTemudugaFEController::class, 'KeputusanTemuduga'])->name('KeputusanTemuduga');
+    Route::get('hadirTemuduga/{code}', [KeputusanTemudugaFEController::class, 'hadirTemuduga'])->name('hadirTemuduga');
+    Route::get('batalTemuduga/{code}', [KeputusanTemudugaFEController::class, 'batalTemuduga'])->name('batalTemuduga');
+    Route::post('updateHadirTemuduga', [KeputusanTemudugaFEController::class, 'updateHadirTemuduga'])->name('updateHadirTemuduga');
+    Route::post('updateTidakHadirTemuduga', [KeputusanTemudugaFEController::class, 'updateTidakHadirTemuduga'])->name('updateTidakHadirTemuduga');
+
 
 });
 
