@@ -17,23 +17,51 @@ use App\Models\StatusPermohonan;
 use App\Models\SubjectGrade;
 use App\Models\PenawaranPermohonan;
 use App\Models\program;
+use App\Models\AppplicantIVSession;
+use App\Models\CenterInterview;
+use App\Models\SessionInterview;
+use App\Models\ScreeningIV;
 
 class KeputusanPermohonanAPIController extends Controller
 {
     //
+
+
+    public function display_all_permohonan_pengesahan()
+    {
+        $displayUser = UserDetail::orderBy('id', 'desc')->get();
+
+
+        $data = [
+            'status' => 'success',
+            'code' => '000',
+            'description' => 'succesfull',
+            'dataa' => $displayUser,
+        ];
+        return response()->json($data);
+    }
+
+
     public function display_keputusanbynric(Request $req)
     {
 
-        $displaypenawaran = UserDetail::join('penawaran_permohonan', 'nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->get();
-        $displayy = program::where('status', true)->get();
+        
+        $displaypenawaran = UserDetail::where('nric',$req->code)->first();
+        $displayDataPengesahan = PenawaranPermohonan::where('nric',$req->code)->first();
+        $displayDataInterview = AppplicantIVSession::join('interview_center','interview_center.center_id','=','applicant_iv_session.center_id')->where('nric',$req->code)->first();
+
+       
 
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
             'data' => $displaypenawaran,
-            'dataa' => $displayy,
+            'dataa' => $displayDataPengesahan,
+            'dataaa' => $displayDataInterview,
+           
         ];
+        return response()->json($data);
     }
 
 }

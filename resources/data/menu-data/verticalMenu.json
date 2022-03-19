@@ -72,6 +72,12 @@
           "name": "Application Confirmation",
           "icon": "circle",
           "slug": "registration"
+        },
+        {
+          "url": "keputusanpermohonan",
+          "name": "Application Results",
+          "icon": "circle",
+          "slug": "registration"
         }
       ]
     },

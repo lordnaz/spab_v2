@@ -454,5 +454,6 @@ return [
     "Yes" => "Yes",
     "No" => "No",
 
-
+ //Keputusan Permohonan
+ "Application Results" => "Application Results",
 ];

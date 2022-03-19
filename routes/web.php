@@ -123,6 +123,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //Keputusan Permohonan
     Route::get('keputusanpermohonan', [FE_KeputusanPermohonanController::class, 'keputusanpermohonan'])->name('keputusanpermohonan');
+    Route::get('keputusanpermohonanybNRIC/{code}', [FE_KeputusanPermohonanController::class, 'keputusanpermohonanybNRIC'])->name('keputusanpermohonanybNRIC');
 
     //Balasan Calon
     Route::get('balasancalon', [FE_BalasanCalonController::class, 'balasancalon'])->name('balasancalon');

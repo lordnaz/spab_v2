@@ -126,7 +126,8 @@ Route::middleware('auth:sanctum')->post('/hadir_penawaran', [PenawaranPermohonan
 Route::middleware('auth:sanctum')->post('/KIV_penawaran', [PenawaranPermohonanAPIController::class, 'KIV_permohonan']);
 
 //Keputusan Permohonan
-Route::middleware('auth:sanctum')->get('/display_keputusanbynric', [KeputusanPermohonanAPIController::class, '/display_keputusanbynric']);
+Route::middleware('auth:sanctum')->get('/display_all_permohonan_pengesahan', [KeputusanPermohonanAPIController::class, '/display_all_permohonan_pengesahan']);
+Route::middleware('auth:sanctum')->post('display_keputusanbynric', [KeputusanPermohonanAPIController::class, 'display_keputusanbynric']);
 
 //Balasan Calon Permohonan
 Route::middleware('auth:sanctum')->get('/display_balasan', [BalasanCalonAPIController::class, '/display_balasan']);
