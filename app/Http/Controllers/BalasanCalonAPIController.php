@@ -25,43 +25,103 @@ class BalasanCalonAPIController extends Controller
     public function display_balasan()
     {
 
-       
-        $balasan = UserDetail::join('program_applied', 'nric', '=', 'user_details.nric')->join('all_status_permohonan', 'nric', '=', 'user_details.nric')->join('penawaran_permohonan', 'nric', '=', 'user_details.nric')->where('all_status_permohonan.status_offer', "Ditawarkan")->get();
-       
 
+        $display = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+        
+        ->where(function($q){
+
+            
+
+            $q->where('all_status_permohonan.status_offer', "TAWAR") 
+            ->orWhere('all_status_permohonan.status_offer', "TERIMA TAWARAN")
+            ->orWhere('all_status_permohonan.status_offer', "TOLAK TAWARAN");
+            })
+            ->where('user_details.status','!=', "2")
+            ->get();
+
+
+      
+        $displayTawar = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+        ->where(function($q2){
+        $q2->where('all_status_permohonan.status_offer', "TAWAR");
+        })
+        ->where('user_details.status','!=', "2")
+        ->get();
+        $displayTerima = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+        ->where(function($q3){
+        $q3->where('all_status_permohonan.status_offer', "TERIMA TAWARAN");
+        })
+        ->where('user_details.status','!=', "2")
+        ->get();
+        $displayTolak = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+        ->where(function($q4){
+        $q4->where('all_status_permohonan.status_offer', "TOLAK TAWARAN");
+        })
+        ->where('user_details.status','!=', "2")
+        ->get();
+        
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' => $balasan,
-           
+            'display' => $display,
+            'displayTawar' => $displayTawar,
+            'displayTerima' => $displayTerima,
+            'displayTolak' => $displayTolak,
             
         ];
+        return response()->json($data);
     }
 
     public function display_balasanbynric(Request $req)
     {
 
-       
-        $balasan = UserDetail::join('program_applied', 'nric', '=', 'user_details.nric')->join('all_status_permohonan', 'nric', '=', 'user_details.nric')->join('penawaran_permohonan', 'nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->get();
+        $display = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+        ->where('all_status_permohonan.status_offer', "TAWAR")
+        ->orWhere('all_status_permohonan.status_offer', "TERIMA TAWARAN")
+        ->orWhere('all_status_permohonan.status_offer', "TOLAK TAWARAN")
+        ->get();
+        $displaybyNRIC = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+    
+            ->where('user_details.nric',$req->code)
+            ->first();
+        $displayTawar = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+        ->where('all_status_permohonan.status_offer', "TAWAR")
+        ->where('user_details.nric',$req->code)
+        ->get();
+        $displayTerima = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+        ->where('all_status_permohonan.status_offer', "TERIMA TAWARAN")
+        ->where('user_details.nric',$req->code)
+        ->get();
+        $displayTolak = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
+        ->where('all_status_permohonan.status_offer', "TOLAK TAWARAN")
+        ->where('user_details.nric',$req->code)
+        ->get();
        
 
         $data = [
             'status' => 'success',
             'code' => '000',
             'description' => 'succesfull',
-            'data' => $balasan,
-                  
+            'display' => $display,
+            'displayTawar' => $displayTawar,
+            'displayTerima' => $displayTerima,
+            'displayTolak' => $displayTolak,
+            'displaybyNRIC'=> $displaybyNRIC
+            
         ];
+        return response()->json($data);
     }
 
-    public function terima(Request $req)
+    public function balasan_terima(Request $req)
     {
 
 
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
-            'balasan_calon' => 'Terima',        
+            'balasan_calon' => $req->balasan_calon,   
+            'status_offer' => $req->balasan_calon,   
+            'balasan_calon_description' => $req->balasan_calon_description,    
         ]);
 
         $data = [
@@ -73,22 +133,8 @@ class BalasanCalonAPIController extends Controller
         return response()->json($data);
     }
 
-    public function tolak(Request $req)
-    {
 
 
-        $update = StatusPermohonan::where('nric',$req->nric)->update
-        ([
-            'balasan_calon' => 'Tolak',        
-        ]);
 
-        $data = [
-            'status' => 'success',
-            'code' => '000',
-            'description' => 'successful',
-        ];
-
-        return response()->json($data);
-    }
 
 }

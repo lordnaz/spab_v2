@@ -453,6 +453,8 @@ return [
     "Hostel Application" => "Hostel Application",
     "Yes" => "Yes",
     "No" => "No",
+    "Candidate Reply" => "Candidate Reply",
+    "Cancel" => "Cancel",
 
  //Keputusan Permohonan
  "Application Results" => "Application Results",

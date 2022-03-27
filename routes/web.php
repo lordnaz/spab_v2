@@ -127,7 +127,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //Balasan Calon
     Route::get('balasancalon', [FE_BalasanCalonController::class, 'balasancalon'])->name('balasancalon');
-    Route::get('details_balasancalon', [FE_BalasanCalonController::class, 'details_balasancalon'])->name('details_balasancalon');
+    Route::get('details_balasancalon/{code}', [FE_BalasanCalonController::class, 'details_balasancalon'])->name('details_balasancalon');
+    Route::get('details_balasancalonbynricTerima/{code}', [FE_BalasanCalonController::class, 'details_balasancalonbynricTerima'])->name('details_balasancalonbynricTerima');
+    Route::get('details_balasancalonbynricTolak/{code}', [FE_BalasanCalonController::class, 'details_balasancalonbynricTolak'])->name('details_balasancalonbynricTolak');
+    Route::get('details_balasancalonbynricBatal/{code}', [FE_BalasanCalonController::class, 'details_balasancalonbynricBatal'])->name('details_balasancalonbynricBatal');
+    Route::post('balasan_permohonan', [FE_BalasanCalonController::class, 'balasan_permohonan'])->name('balasan_permohonan');
 
 });
 

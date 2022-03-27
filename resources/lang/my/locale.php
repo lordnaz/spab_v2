@@ -452,6 +452,8 @@ return [
     "Hostel Application" => "Mohon Asrama",
     "Yes" => "Ya",
     "No" => "Tidak",
+    "Candidate Reply" => "Balasan Calon",
+    "Cancel" => "Batal",
 
     //Keputusan Permohonan
     "Application Results" => "Keputusan Permohonan",
