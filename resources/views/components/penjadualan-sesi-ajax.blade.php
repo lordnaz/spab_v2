@@ -108,7 +108,7 @@ $(document).ready(function(){
    {
    console.log(response);
    $("#Sesi").html(response);
-    
+  feather.replace()
    }
                         });  
                     });  

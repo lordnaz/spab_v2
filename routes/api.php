@@ -137,11 +137,14 @@ Route::middleware('auth:sanctum')->post('/tolak_pengesahan_pemohon', [Pengesahan
 
 //Penawaran Permohonan
 Route::middleware('auth:sanctum')->get('/display_penawaran', [PenawaranPermohonanAPIController::class, 'display_penawaran']);
-Route::middleware('auth:sanctum')->post('/display_penawarabynric', [PenawaranPermohonanAPIController::class, '/display_penawarabynric']);
-Route::middleware('auth:sanctum')->post('/tawar_penawaran', [PenawaranPermohonanAPIController::class, 'tawar_permohonan']);
+Route::middleware('auth:sanctum')->post('/display_penawaran_ajax', [PenawaranPermohonanAPIController::class, 'display_penawaran_ajax']);
+Route::middleware('auth:sanctum')->post('/display_penawarabynric', [PenawaranPermohonanAPIController::class, 'display_penawarabynric']);
+Route::middleware('auth:sanctum')->post('/tawar_penawaran', [PenawaranPermohonanAPIController::class, 'tawar_penawaran']);
 Route::middleware('auth:sanctum')->post('/tolak_penawaran', [PenawaranPermohonanAPIController::class, 'tolak_penawaran']);
-Route::middleware('auth:sanctum')->post('/hadir_penawaran', [PenawaranPermohonanAPIController::class, 'hadir_permohonan']);
-Route::middleware('auth:sanctum')->post('/KIV_penawaran', [PenawaranPermohonanAPIController::class, 'KIV_permohonan']);
+Route::middleware('auth:sanctum')->post('/hadir_penawaran', [PenawaranPermohonanAPIController::class, 'hadir_penawaran']);
+Route::middleware('auth:sanctum')->post('/KIV_penawaran', [PenawaranPermohonanAPIController::class, 'KIV_penawaran']);
+Route::middleware('auth:sanctum')->post('/AjaxTawaran', [PenawaranPermohonanAPIController::class, 'AjaxTawaran']);
+Route::middleware('auth:sanctum')->post('/pemprosesanTawaran', [PenawaranPermohonanAPIController::class, 'pemprosesanTawaran']);
 
 //Keputusan Permohonan
 Route::middleware('auth:sanctum')->get('/display_keputusanbynric', [KeputusanPermohonanAPIController::class, '/display_keputusanbynric']);

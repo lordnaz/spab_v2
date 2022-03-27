@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Crypt;
 use App\Models\ScreeningIV;
 
 class PenapisanTemudugaFEController extends Controller
@@ -169,10 +170,18 @@ class PenapisanTemudugaFEController extends Controller
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/emprosesanTemuduga', $param);
+        ])->post(getenv('ENDPOINT').'/api/pemprosesanTemuduga', $param);
 
-        return redirect()->route('penapisan-ajaxTemuduga')->with('code', $req->proses);
+        if($req->proses = "Semua"){
 
+            return redirect()->route('PenapisanTemuduga');
+        }
+
+        else{
+
+            return redirect()->route('ajaxtemuduga', $req->proses);
+
+        }
     }
 
 }

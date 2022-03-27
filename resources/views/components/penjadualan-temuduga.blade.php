@@ -249,7 +249,7 @@
                     <a id="kosong" class="btn btn-outline-secondary me-1">Kosongkan</a>
 
 
-                        <button type="submit" class="btn btn-success">
+                        <button id="firstbut" type="submit" class="btn btn-success">
 
                             <i data-feather="plus-circle" class="me-25"></i>
                             <span>{!! __('locale.Add') !!}</span>
@@ -298,6 +298,7 @@ $(document).ready(function(){
    {
    console.log(response);
    $("#Sesi").html(response);
+  feather.replace()
     
    }
                         });  

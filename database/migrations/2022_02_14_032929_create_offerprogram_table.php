@@ -18,6 +18,7 @@ class CreateOfferprogramTable extends Migration
             $table->string('mode');
             $table->string('notes');
             $table->integer('quota');
+            $table->integer('quota_semasa');
             $table->string('registration_date');
             $table->string('registration_time');
             $table->string('registration_venue');
