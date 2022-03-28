@@ -19,8 +19,8 @@ class CreateProgramAppliedTable extends Migration
             $table->foreignId('program_id')->index()->nullable();
             $table->foreignId('program_id2')->index()->nullable();        
             $table->string('program_name')->nullable();
-            $table->string('created_by')->nullable();
-            $table->string('modified_by')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('modified_by')->nullable();
             $table->timestamps();
         });
     }

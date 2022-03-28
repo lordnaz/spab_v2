@@ -85,6 +85,9 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     // Permohonan  
     Route::get('registration', [FE_PermohonanController::class, 'registration'])->name('registration');
     Route::post('add_permohonan', [FE_PermohonanController::class, 'add_permohonan'])->name('add_permohonan');
+    Route::post('draft_one', [FE_PermohonanController::class, 'draft_one'])->name('draft_one');
+    Route::post('draft_two', [FE_PermohonanController::class, 'draft_two'])->name('draft_two');
+    
   
 
 });

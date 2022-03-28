@@ -312,14 +312,15 @@ return [
     "Birth Certificate" => "Birth Certificate No.",
     "Nationality" => "Nationality",
     "Phone_No" => "Telephone Number",
+    "DUN" => "DUN",
     "House_No" => "House Phone Number",
     "Parliament" => "Parliament",
     "Status_Marriage" => "Status",
-    "Partner_Name" => "Name",
-    "Partner_Address" => "Address",
+    "Partner_Name" => "Partnet Name",
+    "Partner_Address" => "Mailing Address",
     "Partner_Phone_No" => "Phone Number",
     "Partner_House_No" => "House Number",
-    "Guardian_Name" => "Name",
+    "Guardian_Name" => "Name Mother/Father/Guardian",
     "Guardian_Nric_Old" => "NRIC (Old)",
     "Guardian_Nric_New" => "NRIC (New)",
     "Guardian_Phone_No" => "Phone Number",
@@ -390,6 +391,8 @@ return [
     "Club" => "Club/Activities",
     "Role" => "Role",
     "Year_taken" => "Year",
+    "Reference & Program" => "Reference & Program",
+    "Chosen Program" => "Chosen Program",
 
 
     //pusat temuduga
