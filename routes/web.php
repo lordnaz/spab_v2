@@ -182,8 +182,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('/tawar_penawaran', [PenawaranPermohonanFEController::class, 'tawar_penawaran'])->name('tawar_penawaran');
     Route::post('/pemprosesanTawaran', [PenawaranPermohonanFEController::class, 'pemprosesanTawaran'])->name('pemprosesanTawaran');
 
-
-
+    
+    Route::get('sahkan_permohonan_id/{code}', [PengesahanPermohonanFEController::class, 'sahkan_permohonan_id'])->name('sahkan_permohonan_id');
+    Route::get('tolak_permohonan_id/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan_id'])->name('tolak_permohonan_id');
+    Route::get('batal_permohonan/{code}', [PengesahanPermohonanFEController::class, 'batal_permohonan'])->name('batal_permohonan');
+    Route::get('/filterByProgram/{code}', [PengesahanPermohonanFEController::class, 'filterByProgram'])->name('filterByProgram');
 });
 
 

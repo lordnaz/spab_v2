@@ -132,8 +132,10 @@ Route::middleware('auth:sanctum')->post('PostTidakHadir', [ResultInterviewContro
 
 Route::middleware('auth:sanctum')->get('/display_permohonan', [PengesahanPermohonanAPIController::class, 'display_permohonan']);
 Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [PermohonanAPIController::class, '/display_permohonanbynric']);
-Route::middleware('auth:sanctum')->post('/sahkan', [PengesahanPermohonanAPIController::class, 'sahkan']);
-Route::middleware('auth:sanctum')->post('/tolak_pengesahan_pemohon', [PengesahanPermohonanAPIController::class, 'tolak_pengesahan_pemohon']);
+Route::middleware('auth:sanctum')->post('sahkan', [PengesahanPermohonanAPIController::class, 'sahkan']);
+Route::middleware('auth:sanctum')->post('tolak_pengesahan_pemohon', [PengesahanPermohonanAPIController::class, 'tolak_pengesahan_pemohon']);
+Route::middleware('auth:sanctum')->post('batal_pengesahan_pemohon', [PengesahanPermohonanAPIController::class, 'batal_pengesahan_pemohon']);
+Route::middleware('auth:sanctum')->post('AjaxView2', [PengesahanPermohonanAPIController::class, 'AjaxView2']);
 
 //Penawaran Permohonan
 Route::middleware('auth:sanctum')->get('/display_penawaran', [PenawaranPermohonanAPIController::class, 'display_penawaran']);
@@ -157,3 +159,6 @@ Route::middleware('auth:sanctum')->post('/tolak', [BalasanCalonAPIController::cl
 Route::middleware('auth:sanctum')->post('/display_balasanbynric', [BalasanCalonAPIController::class, '/display_balasanbynric']);
 Route::middleware('auth:sanctum')->post('balasan_terima', [BalasanCalonAPIController::class, 'balasan_terima']);
 
+
+//pengesahan permhonan add on API
+Route::middleware('auth:sanctum')->post('getSahkanbyID', [PengesahanPermohonanAPIController::class, 'getSahkanbyID']);

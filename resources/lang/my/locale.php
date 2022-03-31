@@ -404,6 +404,11 @@ return [
     "Application Confirmation" => "Pengesahan Permohonan",
     "Confirm" => "Sahkan",
     "Reject" => "Tolak",
+    "Cancel" => "Batal",
+    "Yes" => "Ya",
+    "All" => "Semua",
+    "Cancellation of Application Status" => "Pembatalan Status Permohonan",
+    "Cancel the confirmation of the application or rejection of the application that has been made" => "Membatalkan pengesahan permohonan atau penolakan permohonan yang telah dibuat",
     //Bukak pusat temuduga
     "Bukak Temuduga" => "Bukak Temuduga",
     //Jadual Temuduga
