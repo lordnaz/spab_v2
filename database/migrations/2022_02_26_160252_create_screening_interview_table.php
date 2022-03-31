@@ -17,6 +17,7 @@ class CreateScreeningInterviewTable extends Migration
             $table->id('screening_id');
             $table->foreignId('nric')->index();
             $table->foreignId('center_id')->index();
+            $table->foreignId('session_id')->nullable()->index();
             $table->string('kelulusan1')->nullable();
             $table->string('kelulusan2')->nullable();
             $table->dateTime('TarikhProses')->nullable();

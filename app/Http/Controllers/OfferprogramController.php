@@ -19,6 +19,7 @@ class OfferprogramController extends Controller
         $addprogram->mode = $req->mode;
         $addprogram->notes = $req->notes;
         $addprogram->quota = $req->quota;
+        $addprogram->quota_semasa = 0;
         $addprogram->registration_date = $req->registration_date;
         $addprogram->registration_time = $req->registration_time;
         $addprogram->registration_venue = $req->registration_venue;

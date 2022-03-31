@@ -15,6 +15,8 @@ use App\Http\Controllers\KeputusanPermohonanAPIController;
 use App\Http\Controllers\BalasanCalonAPIController;
 use App\Http\Controllers\OpenCenterInterviewController;
 use App\Http\Controllers\InterviewScreeningController;
+use App\Http\Controllers\IVSchedulingController;
+use App\Http\Controllers\ResultInterviewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -91,13 +93,22 @@ Route::middleware('auth:sanctum')->post('deleteSessionInterviewbyId', [OpenCente
 
 //InterviewScreening 
 Route::middleware('auth:sanctum')->get('/getAllScreeningIVapplicant', [InterviewScreeningController::class, 'getAllScreeningIVapplicant']);
+Route::middleware('auth:sanctum')->post('AjaxView', [InterviewScreeningController::class, 'AjaxView']);
+Route::middleware('auth:sanctum')->post('batalPenapisan', [InterviewScreeningController::class, 'batalPenapisan']);
+Route::middleware('auth:sanctum')->post('tolakPenapisan', [InterviewScreeningController::class, 'tolakPenapisan']);
+Route::middleware('auth:sanctum')->post('temudugaPenapisan', [InterviewScreeningController::class, 'temudugaPenapisan']);
+Route::middleware('auth:sanctum')->post('KemaskiniTemuduga', [InterviewScreeningController::class, 'KemaskiniTemuduga']);
+Route::middleware('auth:sanctum')->post('pemprosesanTemuduga', [InterviewScreeningController::class, 'pemprosesanTemuduga']);
 Route::middleware('auth:sanctum')->post('updateScreeningIVapplicantById', [InterviewScreeningController::class, 'updateScreeningIVapplicantById']);
 
 //IVScheduling 
 Route::middleware('auth:sanctum')->get('/getAllPlaceIVapplicant', [IVSchedulingController::class, 'getAllPlaceIVapplicant']);
 Route::middleware('auth:sanctum')->post('getAllApplicantDetailbyPlaceIV', [IVSchedulingController::class, 'getAllApplicantDetailbyPlaceIV']);
-Route::middleware('auth:sanctum')->post('getIVSessionbyCenter', [IVSchedulingController::class, 'getIVSessionbyCenter']);
-Route::middleware('auth:sanctum')->post('updatePlaceIVapplicantById', [IVSchedulingController::class, 'updatePlaceIVapplicantById']);
+Route::middleware('auth:sanctum')->post('AjaxSesi', [IVSchedulingController::class, 'AjaxSesi']);
+Route::middleware('auth:sanctum')->post('AjaxCenter', [IVSchedulingController::class, 'AjaxCenter']);
+Route::middleware('auth:sanctum')->post('UpdateJadualSesi', [IVSchedulingController::class, 'UpdateJadualSesi']);
+Route::middleware('auth:sanctum')->post('KosongkanSesi', [IVSchedulingController::class, 'KosongkanSesi']);
+
 
 //Permohonan
 Route::middleware('auth:sanctum')->post('/add_permohonan', [PermohonanAPIController::class, 'add_permohonan']);
@@ -107,8 +118,15 @@ Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [Permohonan
 Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPIController::class, 'update_permohonan']);
 
 //InterviewResult
-Route::middleware('auth:sanctum')->get('/getAllApplicantIvResult', [ResultInterviewController::class, 'getAllApplicantIvResult']);
-Route::middleware('auth:sanctum')->post('updateApplicantIvResultById', [ResultInterviewController::class, 'updateApplicantIvResultById']);
+Route::middleware('auth:sanctum')->get('/DataKeputusanTemuduga', [ResultInterviewController::class, 'DataKeputusanTemuduga']);
+Route::middleware('auth:sanctum')->post('RouteCenter', [ResultInterviewController::class, 'RouteCenter']);
+Route::middleware('auth:sanctum')->post('hadirTemuduga', [ResultInterviewController::class, 'hadirTemuduga']);
+Route::middleware('auth:sanctum')->post('TidakHadirTemuduga', [ResultInterviewController::class, 'TidakHadirTemuduga']);
+Route::middleware('auth:sanctum')->post('batalTemuduga', [ResultInterviewController::class, 'batalTemuduga']);
+Route::middleware('auth:sanctum')->post('PostHadirTemuduga', [ResultInterviewController::class, 'PostHadirTemuduga']);
+Route::middleware('auth:sanctum')->post('PostTidakHadir', [ResultInterviewController::class, 'PostTidakHadir']);
+
+
 //Pengensahan Permohonan
 //Route::middleware('auth:sanctum')->get('/display_pengesahan', [PengesahanPermohonanAPIController::class, 'display_pengesahan']);
 
@@ -119,11 +137,14 @@ Route::middleware('auth:sanctum')->post('/tolak_pengesahan_pemohon', [Pengesahan
 
 //Penawaran Permohonan
 Route::middleware('auth:sanctum')->get('/display_penawaran', [PenawaranPermohonanAPIController::class, 'display_penawaran']);
-Route::middleware('auth:sanctum')->post('/display_penawarabynric', [PenawaranPermohonanAPIController::class, '/display_penawarabynric']);
-Route::middleware('auth:sanctum')->post('/tawar_penawaran', [PenawaranPermohonanAPIController::class, 'tawar_permohonan']);
+Route::middleware('auth:sanctum')->post('/display_penawaran_ajax', [PenawaranPermohonanAPIController::class, 'display_penawaran_ajax']);
+Route::middleware('auth:sanctum')->post('/display_penawarabynric', [PenawaranPermohonanAPIController::class, 'display_penawarabynric']);
+Route::middleware('auth:sanctum')->post('/tawar_penawaran', [PenawaranPermohonanAPIController::class, 'tawar_penawaran']);
 Route::middleware('auth:sanctum')->post('/tolak_penawaran', [PenawaranPermohonanAPIController::class, 'tolak_penawaran']);
-Route::middleware('auth:sanctum')->post('/hadir_penawaran', [PenawaranPermohonanAPIController::class, 'hadir_permohonan']);
-Route::middleware('auth:sanctum')->post('/KIV_penawaran', [PenawaranPermohonanAPIController::class, 'KIV_permohonan']);
+Route::middleware('auth:sanctum')->post('/hadir_penawaran', [PenawaranPermohonanAPIController::class, 'hadir_penawaran']);
+Route::middleware('auth:sanctum')->post('/KIV_penawaran', [PenawaranPermohonanAPIController::class, 'KIV_penawaran']);
+Route::middleware('auth:sanctum')->post('/AjaxTawaran', [PenawaranPermohonanAPIController::class, 'AjaxTawaran']);
+Route::middleware('auth:sanctum')->post('/pemprosesanTawaran', [PenawaranPermohonanAPIController::class, 'pemprosesanTawaran']);
 
 //Keputusan Permohonan
 Route::middleware('auth:sanctum')->get('/display_all_permohonan_pengesahan', [KeputusanPermohonanAPIController::class, '/display_all_permohonan_pengesahan']);

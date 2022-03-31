@@ -19,6 +19,9 @@ use App\Http\Controllers\FE_BalasanCalonController;
 use App\Http\Controllers\FE_PendaftaranPelajarController;
 use App\Http\Controllers\PendaftaranPelajarAPIController;
 
+use App\Http\Controllers\PenjadualanTemudugaFEController;
+use App\Http\Controllers\KeputusanTemudugaFEController;
+use App\Http\Controllers\PenawaranPermohonanFEController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +104,14 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //penapisan temuduga
     Route::get('/PenapisanTemuduga', [PenapisanTemudugaFEController::class, 'PenapisanTemuduga'])->name('PenapisanTemuduga');
+    Route::get('/Penapisantemuduga/{code}', [PenapisanTemudugaFEController::class, 'ajaxtemuduga'])->name('Penapisantemuduga');
+    Route::get('batalPenapisan/{code}', [PenapisanTemudugaFEController::class, 'batalPenapisan'])->name('batalPenapisan');
+    Route::get('tolakPenapisan/{code}', [PenapisanTemudugaFEController::class, 'tolakPenapisan'])->name('tolakPenapisan');
+    Route::get('temudugaPenapisan/{code}', [PenapisanTemudugaFEController::class, 'temudugaPenapisan'])->name('temudugaPenapisan');
+    Route::post('/KemaskiniTemuduga', [PenapisanTemudugaFEController::class, 'KemaskiniTemuduga'])->name('KemaskiniTemuduga');
+    Route::post('/pemprosesanTemuduga', [PenapisanTemudugaFEController::class, 'pemprosesanTemuduga'])->name('pemprosesanTemuduga');
+   
+
     //penjadualan temuduga
     Route::get('jadualtemuduga', [FE_ScheduleInterviewController::class, 'jadualtemuduga'])->name('jadualtemuduga');
     Route::get('details_jadualtemuduga/{code}', [FE_ScheduleInterviewController::class, 'details_jadualtemuduga'])->name('details_jadualtemuduga');
@@ -144,6 +155,34 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('applicantinfo', [ PendaftaranPelajarAPIController::class, "applicantinfo" ])->name('applicantinfo');
     Route::post('updateapplicantinfo', [ PendaftaranPelajarAPIController::class, "updateapplicantinfo" ])->name('updateapplicantinfo');
     Route::get('cancelstatusapplicant/{code}', [ PendaftaranPelajarAPIController::class, "cancelstatusapplicant" ])->name('cancelstatusapplicant');
+
+    //Penjadualan temuduga nizam
+    Route::get('penjadualan_temuduga', [PenjadualanTemudugaFEController::class, 'penjadualan_temuduga'])->name('penjadualan_temuduga');
+    Route::get('PenjadualanTemuduga/{code}', [PenjadualanTemudugaFEController::class, 'PenjadualanTemuduga'])->name('PenjadualanTemuduga');
+    Route::post('AjaxSesi', [PenjadualanTemudugaFEController::class, 'AjaxSesi'])->name('AjaxSesi');
+    Route::post('JadualSesi', [PenjadualanTemudugaFEController::class, 'JadualSesi'])->name('JadualSesi');
+    Route::post('KosongkanSesi', [PenjadualanTemudugaFEController::class, 'KosongkanSesi'])->name('KosongkanSesi');
+
+    //Keputusan temuduga
+    Route::get('keputusan_temuduga', [KeputusanTemudugaFEController::class, 'keputusan_temuduga'])->name('keputusan_temuduga');
+    Route::get('KeputusanTemuduga/{code}', [KeputusanTemudugaFEController::class, 'KeputusanTemuduga'])->name('KeputusanTemuduga');
+    Route::get('hadirTemuduga/{code}', [KeputusanTemudugaFEController::class, 'hadirTemuduga'])->name('hadirTemuduga');
+    Route::get('batalTemuduga/{code}', [KeputusanTemudugaFEController::class, 'batalTemuduga'])->name('batalTemuduga');
+    Route::post('updateHadirTemuduga', [KeputusanTemudugaFEController::class, 'updateHadirTemuduga'])->name('updateHadirTemuduga');
+    Route::post('updateTidakHadirTemuduga', [KeputusanTemudugaFEController::class, 'updateTidakHadirTemuduga'])->name('updateTidakHadirTemuduga');
+
+    //Penawaran Permohonan
+    Route::get('/PenawaranPermohonan', [PenawaranPermohonanFEController::class, 'PenawaranPermohonan'])->name('PenawaranPermohonan');
+    Route::get('/Penawaranpermohonan/{code}', [PenawaranPermohonanFEController::class, 'AjaxPenawaranPermohonan'])->name('Penawaranpermohonan');
+    Route::get('KIV_penawaran/{code}', [PenawaranPermohonanFEController::class, 'KIV_penawaran'])->name('KIV_penawaran');
+    Route::get('tolak_penawaran/{code}', [PenawaranPermohonanFEController::class, 'tolak_penawaran'])->name('tolak_penawaran');
+    Route::get('hadir_penawaran/{code}', [PenawaranPermohonanFEController::class, 'hadir_penawaran'])->name('hadir_penawaran');
+    Route::get('display_penawarabynric/{code}', [PenawaranPermohonanFEController::class, 'display_penawarabynric'])->name('display_penawarabynric');
+    Route::post('/AjaxTawaran', [PenawaranPermohonanFEController::class, 'AjaxTawaran'])->name('AjaxTawaran');
+    Route::post('/tawar_penawaran', [PenawaranPermohonanFEController::class, 'tawar_penawaran'])->name('tawar_penawaran');
+    Route::post('/pemprosesanTawaran', [PenawaranPermohonanFEController::class, 'pemprosesanTawaran'])->name('pemprosesanTawaran');
+
+
 
 });
 

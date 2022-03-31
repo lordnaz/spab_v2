@@ -8,6 +8,7 @@ use App\Models\SessionInterview;
 use App\Models\PanelSessionInterview;
 use App\Models\AsasInterview;
 use App\Models\PanelInterview;
+use App\Models\ScreeningIV;
 
 class OpenCenterInterviewController extends Controller
 {
@@ -88,9 +89,9 @@ class OpenCenterInterviewController extends Controller
     public function deleteSesi(Request $req)
     {
         
-        
+        $exists = ScreeningIV::where('session_id', $req->code)->exists();
 
-       
+       if(!$exists){
         $update = SessionInterview::where('session_id', $req->code)->update([
 
                 'status' => false,           
@@ -98,7 +99,10 @@ class OpenCenterInterviewController extends Controller
             ]);
 
             $status="berjaya";
-
+        }
+        else{
+            $status="Tidak Berjaya";
+        }
 
         $data = [
             'status' => 'success',
@@ -123,6 +127,14 @@ class OpenCenterInterviewController extends Controller
         $addNewPanelInterview->catatan = $req->catatan;
         $addNewPanelInterview->status = true;
         $addNewPanelInterview->save();
+
+        $update = CenterInterview::where('center_id', $req->center_id)->update([
+            'status_center' =>'AKTIF',
+           
+
+        ]);
+
+
 
         $status="berjaya";
         }
@@ -223,6 +235,9 @@ class OpenCenterInterviewController extends Controller
     public function UpdateSesi(Request $req)
     {
 
+        $exists = ScreeningIV::where('asas_id', $req->session_id)->exists();
+
+        if(!$exists){
         $update = SessionInterview::where('session_id', $req->session_id)->update([
             
                 'TarikhFrom' => $req->TarikhFrom,
@@ -236,8 +251,15 @@ class OpenCenterInterviewController extends Controller
 
             ]);
 
+            $status = 'Berjaya';
+        }
+        else{
+
+            $status = 'Tidak Berjaya';
+        }
+
         $data = [
-            'status' => 'success',
+            'status' => $status,
             'code' => '000',
             'description' => 'succesfull'
         ];
