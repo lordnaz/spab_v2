@@ -135,11 +135,11 @@
              
 
               @foreach ($displayTawar as $displayTawars)
-              @php
+            
             
                            
-             @endphp
-                <tr class="text-center" >
+           
+                <tr class="text-center">
                   <td>{{$count++}}</td>
                   <td>{{$displayTawars['nric']}}</td>
                   <td>{{$displayTawars['name']}}</td>
@@ -151,7 +151,6 @@
             
                   <td>
                   <div class="btn-group">
-
                   <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>&nbsp;
                   <a href="{{route('details_balasancalonbynricTerima', Crypt::encrypt($displayTawars['nric'])) }}" class="btn-sm btn-success">Terima</a>&nbsp;
                   <a href="{{route('details_balasancalonbynricTolak', Crypt::encrypt($displayTawars['nric'])) }}" class="btn-sm btn-danger">Tolak</a>
@@ -198,10 +197,9 @@
               @endphp
 
               @foreach ($displayTerima as $displayTerimas)
-              @php
             
-                           
-             @endphp
+            
+          
                 <tr class="text-center">
                 <td>{{$count++}}</td>
                   <td>{{$displayTerimas['nric']}}</td>
@@ -259,10 +257,7 @@
               @endphp
 
               @foreach ($displayTolak as $displayTolaks)
-              @php
-           
-                           
-             @endphp
+             
                 <tr class="text-center">
                 <td>{{$count++}}</td>
                   <td>{{$displayTolaks['nric']}}</td>

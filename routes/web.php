@@ -129,10 +129,15 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //Keputusan Permohonan
     Route::get('keputusanpermohonan', [FE_KeputusanPermohonanController::class, 'keputusanpermohonan'])->name('keputusanpermohonan');
+    Route::get('keputusanpermohonanybNRIC/{code}', [FE_KeputusanPermohonanController::class, 'keputusanpermohonanybNRIC'])->name('keputusanpermohonanybNRIC');
 
     //Balasan Calon
     Route::get('balasancalon', [FE_BalasanCalonController::class, 'balasancalon'])->name('balasancalon');
-    Route::get('details_balasancalon', [FE_BalasanCalonController::class, 'details_balasancalon'])->name('details_balasancalon');
+    Route::get('details_balasancalon/{code}', [FE_BalasanCalonController::class, 'details_balasancalon'])->name('details_balasancalon');
+    Route::get('details_balasancalonbynricTerima/{code}', [FE_BalasanCalonController::class, 'details_balasancalonbynricTerima'])->name('details_balasancalonbynricTerima');
+    Route::get('details_balasancalonbynricTolak/{code}', [FE_BalasanCalonController::class, 'details_balasancalonbynricTolak'])->name('details_balasancalonbynricTolak');
+    Route::get('details_balasancalonbynricBatal/{code}', [FE_BalasanCalonController::class, 'details_balasancalonbynricBatal'])->name('details_balasancalonbynricBatal');
+    Route::post('balasan_permohonan', [FE_BalasanCalonController::class, 'balasan_permohonan'])->name('balasan_permohonan');
 
     //Pendaftaran Program Pelajar Baru
     Route::get('pendaftaranpelajar', [FE_PendaftaranPelajarController::class, 'pendaftaranpelajar'])->name('pendaftaranpelajar');

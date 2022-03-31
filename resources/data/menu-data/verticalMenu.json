@@ -72,6 +72,18 @@
           "name": "Application Confirmation",
           "icon": "circle",
           "slug": "registration"
+        },
+        {
+          "url": "keputusanpermohonan",
+          "name": "Application Results",
+          "icon": "circle",
+          "slug": "registration"
+        },
+        {
+          "url": "balasancalon",
+          "name": "Candidate Reply",
+          "icon": "circle",
+          "slug": "registration"
         }
       ]
     },

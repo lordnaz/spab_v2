@@ -456,6 +456,8 @@ return [
     "Hostel Application" => "Hostel Application",
     "Yes" => "Yes",
     "No" => "No",
+    "Candidate Reply" => "Candidate Reply",
+    "Cancel" => "Cancel",
 
     //Pendaftaran Pelajar
     "Student Registration" => "Student Registration",
@@ -488,4 +490,6 @@ return [
 
 
 
+ //Keputusan Permohonan
+ "Application Results" => "Application Results",
 ];
