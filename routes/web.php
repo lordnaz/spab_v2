@@ -12,8 +12,13 @@ use App\Http\Controllers\PusatTemudugaFEController;
 use App\Http\Controllers\OpenPusatTemudugaFEController;
 use App\Http\Controllers\PengesahanPermohonanFEController;
 use App\Http\Controllers\PenapisanTemudugaFEController;
-
 use App\Http\Controllers\FE_ScheduleInterviewController;
+use App\Http\Controllers\FE_PenawaranPermohonanController;
+use App\Http\Controllers\FE_KeputusanPermohonanController;
+use App\Http\Controllers\FE_BalasanCalonController;
+use App\Http\Controllers\FE_PendaftaranPelajarController;
+use App\Http\Controllers\PendaftaranPelajarAPIController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -114,6 +119,26 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('draft_two', [FE_PermohonanController::class, 'draft_two'])->name('draft_two');
     
   
+
+    //Penawaran Permohonan
+    Route::get('penawaranpermohonan', [FE_PenawaranPermohonanController::class, 'penawaranpermohonan'])->name('penawaranpermohonan');
+    Route::get('penawaranpermohonan_new_page', [FE_PenawaranPermohonanController::class, 'penawaranpermohonan_new_page'])->name('penawaranpermohonan_new_page');
+    Route::get('details_penawaranpermohonan/{code}', [FE_PenawaranPermohonanController::class, 'details_penawaranpermohonan'])->name('details_penawaranpermohonan');
+    Route::post('update_penawaranpermohonan', [FE_PenawaranPermohonanController::class, 'update_penawaranpermohonan'])->name('update_penawaranpermohonan');
+    Route::get('delete_penawaranpermohonan/{code}', [FE_PenawaranPermohonanController::class, 'delete_penawaranpermohonan'])->name('delete_penawaranpermohonan');
+
+    //Keputusan Permohonan
+    Route::get('keputusanpermohonan', [FE_KeputusanPermohonanController::class, 'keputusanpermohonan'])->name('keputusanpermohonan');
+
+    //Balasan Calon
+    Route::get('balasancalon', [FE_BalasanCalonController::class, 'balasancalon'])->name('balasancalon');
+    Route::get('details_balasancalon', [FE_BalasanCalonController::class, 'details_balasancalon'])->name('details_balasancalon');
+
+    //Pendaftaran Program Pelajar Baru
+    Route::get('pendaftaranpelajar', [FE_PendaftaranPelajarController::class, 'pendaftaranpelajar'])->name('pendaftaranpelajar');
+    Route::post('applicantinfo', [ PendaftaranPelajarAPIController::class, "applicantinfo" ])->name('applicantinfo');
+    Route::post('updateapplicantinfo', [ PendaftaranPelajarAPIController::class, "updateapplicantinfo" ])->name('updateapplicantinfo');
+    Route::get('cancelstatusapplicant/{code}', [ PendaftaranPelajarAPIController::class, "cancelstatusapplicant" ])->name('cancelstatusapplicant');
 
 });
 

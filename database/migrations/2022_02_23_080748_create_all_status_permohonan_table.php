@@ -17,6 +17,7 @@ class CreateAllStatusPermohonanTable extends Migration
             $table->id('status_id');
             $table->foreignId('nric')->index();
             $table->string('status_validation')->nullable();
+            $table->string('status_pendaftaran')->nullable();
             $table->string('modified_by_validation')->nullable();
             $table->timestamp('updated_date_validation')->nullable();
             $table->string('status_offer')->nullable();
