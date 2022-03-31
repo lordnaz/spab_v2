@@ -5,6 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\Models\UserDetail;
+use App\Models\UserDetailSub;
+use App\Models\ApplicantExperiences;
+use App\Models\ArtInvolve;
+use App\Models\ClubActivities;
+use App\Models\CourseTaken;
+use App\Models\MuetResult;
+use App\Models\ProgramApplied;
+use App\Models\QualificationPermohonan;
+use App\Models\SponsorDetails;
+use App\Models\StatusPermohonan;
+use App\Models\SubjectGrade;
+use App\Models\PenawaranPermohonan;
+use App\Models\program;
+
 class FE_PermohonanController extends Controller
 {
     //
@@ -30,6 +45,210 @@ class FE_PermohonanController extends Controller
 
         return view('components.permohonan-baru', ['breadcrumbs' => $breadcrumbs], compact('email'));
     }
+
+    public function draft_one(Request $req){
+        // return $req;
+        // $random_string = chr(rand(65,90)) . chr(rand(65,90)) . chr(rand(65,90));
+        // $random_number = rand(10000000,99999999);
+        // $no_siri = $random_string.$random_number;
+
+        $usersession = auth()->user()->name;
+        $nric = $req->nric;
+        $code = '000';
+
+        if($nric != ''){
+
+            $exists = UserDetail::where('nric', $nric)->exists();
+
+            if($exists){
+
+                $check_siri = UserDetail::where('nric', $nric)->first();
+
+                // if no_siri not exist, then let empty 
+                // if($check_siri->no_siri != null || $check_siri->no_siri != ''){
+                //     $no_siri = null;
+                // }
+
+                try {
+                    $save_draft = UserDetail::where('nric', $nric)
+                    ->update([
+                        // 'no_siri' => $no_siri,
+                        'nric' => $nric,
+                        'name' => $req->name,
+                        'short_name' => $req->short_name,
+                        'email' => $req->email,
+                        'date_of_birth' => $req->date_of_birth,
+                        'place_of_birth' => $req->place_of_birth,
+                        'race' => $req->race,
+                        'address_1' => $req->address_1,
+                        'state' => $req->state,
+                        'gender' => $req->gender,
+                        'birth_cert_no' => $req->birth_cert_no,
+                        'nationality' => $req->nationality,
+                        'tel_house' => $req->house_no,
+                        'phone_no' => $req->phone_no,
+                        'dun' => $req->dun,
+                        'parliament' => $req->parliament,
+                        'status_admission' => 'Draft',
+                        'created_by' => $usersession,
+                        ]);
+                }
+                catch (exception $e) {
+                    $code = '001';
+                }
+
+            }else{
+                $code = '002';
+            }
+            
+        }else{
+            $code = '002';
+        }
+
+        switch ($code) {
+            case '001':
+                $data = [
+                    'status' => 'failed',
+                    'code' => $code,
+                    'description' => 'draft failed to be saved',
+                ];
+                break;
+            case '002':
+                $data = [
+                    'status' => 'failed',
+                    'code' => $code,
+                    'description' => 'NRIC not exist!',
+                ];
+                break;
+            default:
+                $data = [
+                    'status' => 'success',
+                    'code' => $code,
+                    'description' => 'draft successfully submitted',
+                ];
+                break;
+        }
+
+        return $data; 
+    }
+
+
+    public function draft_two(Request $req){
+        // return $req;
+        // $random_string = chr(rand(65,90)) . chr(rand(65,90)) . chr(rand(65,90));
+        // $random_number = rand(10000000,99999999);
+        // $no_siri = $random_string.$random_number;
+
+        $usersession = auth()->user()->id;
+        $nric = $req->nric;
+        $code = '000';
+
+        if($nric != ''){
+
+            $exists = UserDetailSub::where('nric', $nric)->exists();
+
+            if($exists){
+                // if exist update 
+                try {
+                    $save_draft = UserDetailSub::where('nric', $nric)
+                    ->update([
+                        'status_marriage' => $req->status_marriage,
+                        'partner_name' => $req->partner_name,
+                        'partner_address_1' => $req->partner_address_1,
+                        'partner_no_tel' => $req->partner_no_tel,
+                        'partner_no_phonehouse' => $req->partner_no_phonehouse,
+                        'guardian_name' => $req->guardian_name,
+                        'guardian_nric_old' => $req->guardian_nric_old,
+                        'guardian_nric_new' => $req->guardian_nric_new,
+                        'guardian_no_tel' => $req->guardian_no_tel,
+                        'guardian_no_phonehouse' => $req->guardian_no_phonehouse,
+                        'guardian_address_1' => $req->guardian_address_1,
+                        'guardian_email' => $req->guardian_email,
+                        'guardian_income' => $req->guardian_income,
+                        'guardian_occupation' => $req->guardian_occupation,
+                        'number_of_dependents' => $req->guardian_dependent,
+                        'relationship_guardian' => $req->relationship_guardian,
+                        'kin_name' => $req->kin_name,
+                        'kin_relationship' => $req->kin_relationship,
+                        'kin_no_tel' => $req->kin_no_tel,
+                        'kin_no_phonehouse' => $req->kin_no_phonehouse,
+                        'kin_email' => $req->kin_email,
+                        'kin_address_1' => $req->kin_address_1,
+                        'created_by' => $usersession,
+                        ]);
+                }
+                catch (exception $e) {
+                    $code = '001';
+                }
+
+            }else{
+
+                // if not exist create  
+
+                try {
+                    $detail_sub = new UserDetailSub;
+                    $detail_sub->nric = $nric;
+                    $detail_sub->status_marriage = $req->status_marriage;
+                    $detail_sub->partner_name = $req->partner_name;
+                    $detail_sub->partner_address_1 = $req->partner_address_1;
+                    $detail_sub->partner_no_tel = $req->partner_no_tel;
+                    $detail_sub->partner_no_phonehouse = $req->partner_no_phonehouse;
+                    $detail_sub->guardian_name = $req->guardian_name;
+                    $detail_sub->guardian_nric_old = $req->guardian_nric_old;
+                    $detail_sub->guardian_nric_new = $req->guardian_nric_new;
+                    $detail_sub->guardian_no_tel = $req->guardian_no_tel;
+                    $detail_sub->guardian_no_phonehouse = $req->guardian_no_phonehouse;
+                    $detail_sub->guardian_address_1 = $req->guardian_address_1;
+                    $detail_sub->guardian_email = $req->guardian_email;
+                    $detail_sub->guardian_income = $req->guardian_income;
+                    $detail_sub->guardian_occupation = $req->guardian_occupation;
+                    $detail_sub->number_of_dependents = $req->number_of_dependents;
+                    $detail_sub->relationship_guardian = $req->relationship_guardian;
+                    $detail_sub->kin_name = $req->kin_name;
+                    $detail_sub->kin_relationship = $req->kin_relationship;
+                    $detail_sub->kin_no_tel = $req->kin_no_tel;
+                    $detail_sub->kin_no_phonehouse = $req->kin_no_phonehouse;
+                    $detail_sub->kin_email = $req->kin_email;
+                    $detail_sub->kin_address_1 = $req->kin_address_1;
+                    $detail_sub->created_by = $usersession;
+                    $detail_sub->save();
+
+                } catch (exception $e) {
+                    $code = '001';
+                }
+            }
+            
+        }else{
+            $code = '002';
+        }
+
+        switch ($code) {
+            case '001':
+                $data = [
+                    'status' => 'failed',
+                    'code' => $code,
+                    'description' => 'draft failed to be saved',
+                ];
+                break;
+            case '002':
+                $data = [
+                    'status' => 'failed',
+                    'code' => $code,
+                    'description' => 'NRIC not exist!',
+                ];
+                break;
+            default:
+                $data = [
+                    'status' => 'success',
+                    'code' => $code,
+                    'description' => 'draft successfully submitted',
+                ];
+                break;
+        }
+
+        return $data; 
+    }
+
 
     public function add_permohonan(Request $req){
 

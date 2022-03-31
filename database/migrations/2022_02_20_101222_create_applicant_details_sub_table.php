@@ -15,7 +15,7 @@ class CreateApplicantDetailsSubTable extends Migration
     {
         Schema::create('applicant_details_sub', function (Blueprint $table) {
             $table->id('application_id');
-            $table->foreignId('nric')->index();
+            $table->string('nric')->unique();
             $table->string('status_marriage')->nullable();
             $table->string('partner_name')->nullable();
             $table->string('partner_address_1')->nullable();
@@ -45,8 +45,8 @@ class CreateApplicantDetailsSubTable extends Migration
             $table->string('kin_address_1')->nullable();
             $table->string('kin_address_2')->nullable();
             $table->string('kin_address_3')->nullable();
-            $table->string('created_by')->nullable();
-            $table->string('modified_by')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('modified_by')->nullable();
             $table->timestamps();
         });
     }

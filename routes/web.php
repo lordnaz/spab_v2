@@ -110,6 +110,10 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('display_pengesahan_permohonan', [PengesahanPermohonanFEController::class, 'display_pengesahan_permohonan'])->name('display_pengesahan_permohonan');
     Route::get('sahkan_permohonan/{code}', [PengesahanPermohonanFEController::class, 'sahkan_permohonan'])->name('sahkan_permohonan');
     Route::get('tolak_permohonan/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan'])->name('tolak_permohonan');
+    Route::post('draft_one', [FE_PermohonanController::class, 'draft_one'])->name('draft_one');
+    Route::post('draft_two', [FE_PermohonanController::class, 'draft_two'])->name('draft_two');
+    
+  
 
 });
 

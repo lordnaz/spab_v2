@@ -316,14 +316,15 @@ return [
     "Birth Certificate" => "No. Sijil Kelahiran",
     "Nationality" => "Kewargenegaraan",
     "Phone_No" => "Nombor Telefon",
+    "DUN" => "DUN",
     "House_No" => "Nombor Telefon Rumah",
     "Parliament" => "Parlimen",
     "Status_Marriage" => "Status",
-    "Partner_Name" => "Nama",
-    "Partner_Address" => "Alamat",
+    "Partner_Name" => "Nama Pasangan",
+    "Partner_Address" => "Alamat Surat-Menyurat",
     "Partner_Phone_No" => "Nombor Telefon",
     "Partner_House_No" => "Nombor Telefon Rumah",
-    "Guardian_Name" => "Nama",
+    "Guardian_Name" => "Nama Ibu/Bapa/Penjaga",
     "Guardian_Nric_Old" => "No. Kad Pengenalan (Lama)",
     "Guardian_Nric_New" => "No. Kad Pengenalan (Baru)",
     "Guardian_Phone_No" => "Nombor Telefon",
@@ -390,6 +391,8 @@ return [
     "Club" => "Kelab/Persatuan",
     "Role" => "Jawatan",
     "Year_taken" => "Tahun",
+    "Reference & Program" => "Rujukan & Program",
+    "Chosen Program" => "Pilihan Program",
 
 
     //pusat temuduga
