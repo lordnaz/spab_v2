@@ -471,6 +471,8 @@ return [
     "Bank" => "Bank",
     "Payment Type" => "Jenis Bayaran",
     "Cash" => "Tunai",
+    "Cheque" => "Cek",
+    "Credit Card" => "Kad Kredit",
     "Bank Transfer" => "Pemindahan Bank",
     "For Payment" => "Untuk Bayaran",
     "Save" => "Simpan",

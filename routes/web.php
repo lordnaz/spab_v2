@@ -17,6 +17,7 @@ use App\Http\Controllers\FE_PenawaranPermohonanController;
 use App\Http\Controllers\FE_KeputusanPermohonanController;
 use App\Http\Controllers\FE_BalasanCalonController;
 use App\Http\Controllers\FE_PendaftaranPelajarController;
+use App\Http\Controllers\PendaftaranPelajarAPIController;
 
 
 /*
@@ -131,7 +132,9 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //Pendaftaran Program Pelajar Baru
     Route::get('pendaftaranpelajar', [FE_PendaftaranPelajarController::class, 'pendaftaranpelajar'])->name('pendaftaranpelajar');
-    Route::get('details_balasancalon', [FE_PendaftaranPelajarController::class, 'details_balasancalon'])->name('details_balasancalon');
+    Route::post('applicantinfo', [ PendaftaranPelajarAPIController::class, "applicantinfo" ])->name('applicantinfo');
+    Route::post('updateapplicantinfo', [ PendaftaranPelajarAPIController::class, "updateapplicantinfo" ])->name('updateapplicantinfo');
+    Route::get('cancelstatusapplicant/{code}', [ PendaftaranPelajarAPIController::class, "cancelstatusapplicant" ])->name('cancelstatusapplicant');
 
 });
 

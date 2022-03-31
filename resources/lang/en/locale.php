@@ -472,6 +472,8 @@ return [
     "Bank" => "Bank",
     "Payment Type" => "Payment Type",
     "Cash" => "Cash",
+    "Cheque" => "Cheque",
+    "Credit Card" => "Credit Card",
     "Bank Transfer" => "Bank Transfer",
     "For Payment" => "For Payment",
     "Save" => "Save",

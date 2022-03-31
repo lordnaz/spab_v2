@@ -133,3 +133,4 @@ Route::middleware('auth:sanctum')->get('/display_balasan', [BalasanCalonAPIContr
 Route::middleware('auth:sanctum')->post('/terima', [BalasanCalonAPIController::class, '/terima']);
 Route::middleware('auth:sanctum')->post('/tolak', [BalasanCalonAPIController::class, '/tolak']);
 Route::middleware('auth:sanctum')->post('/display_balasanbynric', [BalasanCalonAPIController::class, '/display_balasanbynric']);
+
