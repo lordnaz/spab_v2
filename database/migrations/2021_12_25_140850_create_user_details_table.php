@@ -43,8 +43,8 @@ class CreateUserDetailsTable extends Migration
             $table->dateTime('date_application')->nullable();
             $table->dateTime('date_acceptance')->nullable();
             $table->boolean('status')->default(true);
-            $table->string('created_by')->nullable();
-            $table->string('modified_by')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('modified_by')->nullable();
             $table->timestamps();
         });
     }

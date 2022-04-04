@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Models\UserDetail;
+use App\Models\ApplicantDetailSub;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -44,9 +45,18 @@ class CreateNewUser implements CreatesNewUsers
             'user_id' => $userId,
             'name' => $input['name'],
             'nric' => $input['nric'],
-            'status' => "CALON",
+            // 'status' => "CALON",
             'phone_no' => $input['phoneno'],
-            'password' => Hash::make($input['password']),
+            'created_by' => $userId,
+            'modified_by' => $userId,
+            // 'password' => Hash::make($input['password']),
+        ]);
+
+        $details = ApplicantDetailSub::create([
+            'nric' => $input['nric'],
+            // 'status' => "CALON",
+            'created_by' => $userId,
+            'modified_by' => $userId,
         ]);
 
         return $create;

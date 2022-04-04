@@ -9,7 +9,9 @@
 
 <!-- @php 
 
-$test = Auth::user()->usersdetail->bank_name;
+
+$test = Auth::user()->usersdetail_sub->nric;
+
 
 var_dump($test);
 
