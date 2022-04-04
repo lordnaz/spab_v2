@@ -33,6 +33,6 @@ class CreateQualificationPermohonanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qualification');
+        Schema::dropIfExists('qualification_permohonan');
     }
 }
