@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\Offerprogram;
+use App\Models\UserDetail;
 
 class PenawaranPermohonanFEController extends Controller
 {
@@ -40,6 +42,7 @@ class PenawaranPermohonanFEController extends Controller
         $cadang1hadir = $responseBody['cadang1hadir'];
         $cadang2hadir = $responseBody['cadang2hadir'];
         $programhadir = $responseBody['programhadir'];
+        $program = $responseBody['program'];
         
 
 
@@ -47,7 +50,7 @@ class PenawaranPermohonanFEController extends Controller
         ->with('ditawar', $ditawar)->with('cadang1ditawar', $cadang1ditawar)->with('cadang2ditawar', $cadang2ditawar)->with('programditawar', $programditawar)
         ->with('ditolak', $ditolak)->with('cadang1ditolak', $cadang1ditolak)->with('cadang2ditolak', $cadang2ditolak)->with('programditolak', $programditolak)
         ->with('kiv', $kiv)->with('cadang1kiv', $cadang1kiv)->with('cadang2kiv', $cadang2kiv)->with('programkiv', $programkiv)
-        ->with('hadir', $hadir)->with('cadang1hadir', $cadang1hadir)->with('cadang2hadir', $cadang2hadir)->with('programhadir', $programhadir);
+        ->with('hadir', $hadir)->with('cadang1hadir', $cadang1hadir)->with('cadang2hadir', $cadang2hadir)->with('programhadir', $programhadir)->with('program', $program);
 
     }
 
@@ -83,6 +86,7 @@ class PenawaranPermohonanFEController extends Controller
         $cadang1hadir = $request['cadang1hadir'];
         $cadang2hadir = $request['cadang2hadir'];
         $programhadir = $request['programhadir'];
+        $program = $request['program'];
         
 
 
@@ -90,7 +94,7 @@ class PenawaranPermohonanFEController extends Controller
         ->with('ditawar', $ditawar)->with('cadang1ditawar', $cadang1ditawar)->with('cadang2ditawar', $cadang2ditawar)->with('programditawar', $programditawar)
         ->with('ditolak', $ditolak)->with('cadang1ditolak', $cadang1ditolak)->with('cadang2ditolak', $cadang2ditolak)->with('programditolak', $programditolak)
         ->with('kiv', $kiv)->with('cadang1kiv', $cadang1kiv)->with('cadang2kiv', $cadang2kiv)->with('programkiv', $programkiv)
-        ->with('hadir', $hadir)->with('cadang1hadir', $cadang1hadir)->with('cadang2hadir', $cadang2hadir)->with('programhadir', $programhadir)->with('code', $code);
+        ->with('hadir', $hadir)->with('cadang1hadir', $cadang1hadir)->with('cadang2hadir', $cadang2hadir)->with('programhadir', $programhadir)->with('code', $code)->with('program', $program);
 
     }
 
@@ -173,7 +177,7 @@ class PenawaranPermohonanFEController extends Controller
 
        
 
-        return view('components.penawaran-permohonan', ['breadcrumbs' => $breadcrumbs])
+        return view('components.penawaran-permohonan-tawaran', ['breadcrumbs' => $breadcrumbs])
         ->with('displaypenawaran', $displaypenawaran)->with('program', $program);
 
     }
@@ -194,6 +198,7 @@ class PenawaranPermohonanFEController extends Controller
         ];
 
 
+
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
@@ -205,7 +210,7 @@ class PenawaranPermohonanFEController extends Controller
 
 
         return view('components.penawaran-permohonan-tawar-ajax', ['breadcrumbs' => $breadcrumbs])
-        ->with('displaypenawaran', $displaypenawaran)->with('program', $program)->with('offer', $offer);
+        ->with('displaypenawaran', $displaypenawaran)->with('program', $program)->with('offer', $offer)->with('id', $req->program);
     }
 
     public function tawar_penawaran(Request $req){
@@ -213,7 +218,7 @@ class PenawaranPermohonanFEController extends Controller
         
         //update details
         $param = [
-            
+            'nric' => $req->nric,
             'program_tawar' => $req->program_tawar,
             'sem' => $req->sem,
             'tahun' => $req->tahun,

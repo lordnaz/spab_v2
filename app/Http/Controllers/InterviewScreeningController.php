@@ -8,6 +8,7 @@ use App\Models\UserDetail;
 use App\Models\StatusPermohonan;
 use App\Models\AsasInterview;
 use App\Models\CenterInterview;
+use App\Models\ProgramApplied;
 use App\Models\SubjectGrade;
 use App\Models\Qualification;
 
@@ -20,34 +21,28 @@ class InterviewScreeningController extends Controller
 
 
         $displayBelumProses = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-            ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
             ->where('all_status_permohonan.status_temuduga', 'Belum proses')
             ->get();
 
         $displayTemuduga = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
             ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
             ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
             ->where('all_status_permohonan.status_temuduga', 'Temuduga')
             ->get();
+            
 
         $displayTolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-            ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric') 
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
             ->where('all_status_permohonan.status_temuduga', 'Tolak')
             ->get();
 
+        $tolak = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
 
-
+      
+       
         $data = [
             'status' => 'success',
             'code' => '000',
@@ -55,7 +50,7 @@ class InterviewScreeningController extends Controller
             'displayBelumProses' => $displayBelumProses,
             'displayTemuduga' => $displayTemuduga,
             'displayTolak' => $displayTolak,
-
+            'tolak' => $tolak,
         ];
 
         return response()->json($data);
@@ -65,63 +60,47 @@ class InterviewScreeningController extends Controller
     {
 
         if ($req->type == "Semua") {
-            $displayBelumProses = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-                ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-                ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-                ->join('program', 'program.program_id', '=', 'program_applied.program_id')
-                ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-                ->where('all_status_permohonan.status_temuduga', 'Belum proses')
-                ->get();
+            $displayBelumProses =  UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
+            ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+            ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+            ->get();
 
             $displayTemuduga = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
                 ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-                ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-                ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+                ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')               
                 ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                 ->where('all_status_permohonan.status_temuduga', 'Temuduga')
                 ->get();
 
-            $displayTolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-                ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-                ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-                ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+            $displayTolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric') 
+                ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')               
                 ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                 ->where('all_status_permohonan.status_temuduga', 'Tolak')
                 ->get();
+                $tolak = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
         } else {
 
-            $displayBelumProses = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-                ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-                ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-                ->join('program', 'program.program_id', '=', 'program_applied.program_id')
-                ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-                ->where('all_status_permohonan.status_temuduga', 'Belum proses')
-                ->where('user_details.state', $req->type)
-                ->get();
+            $displayBelumProses =  UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
+            ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+            ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+            ->where('user_details.state', $req->type)
+            ->get();
 
-            $displayTemuduga = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+            $displayTemuduga = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')              
                 ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-                ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-                ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+                ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')           
                 ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                 ->where('all_status_permohonan.status_temuduga', 'Temuduga')
                 ->where('user_details.state', $req->type)
                 ->get();
 
-            $displayTolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-                ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-                ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
-                ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+            $displayTolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')             
+                ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')                
                 ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                 ->where('all_status_permohonan.status_temuduga', 'Tolak')
                 ->where('user_details.state', $req->type)
                 ->get();
+                $tolak = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
         }
 
 
@@ -132,7 +111,7 @@ class InterviewScreeningController extends Controller
             'displayBelumProses' => $displayBelumProses,
             'displayTemuduga' => $displayTemuduga,
             'displayTolak' => $displayTolak,
-
+            'tolak' => $tolak,
         ];
 
         return response()->json($data);
@@ -305,7 +284,6 @@ class InterviewScreeningController extends Controller
 
                 $ProsesUser = UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                     ->join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                    ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
                     ->where('all_status_permohonan.status_temuduga', 'Belum proses')
                     ->get();
             }
@@ -313,8 +291,7 @@ class InterviewScreeningController extends Controller
             else{
 
                 $ProsesUser = UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-                    ->join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                    ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+                    ->join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')                 
                     ->where('all_status_permohonan.status_temuduga', 'Belum proses')
                     ->where('user_details.state', $req->proses)
                     ->get();
@@ -326,7 +303,7 @@ class InterviewScreeningController extends Controller
 
                     if ($Proses->cert_related_program == 'Ada Sijil') {
 
-                        $existCenter = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->exists();
+                        $existCenter = AsasInterview::where('status', true)->where('negeri','LIKE', '%'.$Proses->state.'%')->exists();
 
                         if (!$existCenter) {
 
@@ -346,7 +323,7 @@ class InterviewScreeningController extends Controller
 
                         else{
 
-                        $ProsesCenter = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->inRandomOrder()->first();
+                        $ProsesCenter = AsasInterview::where('status', true)->where('negeri','LIKE', '%'.$Proses->state.'%')->inRandomOrder()->first();
 
                         $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
@@ -456,8 +433,8 @@ class InterviewScreeningController extends Controller
 
                                     if($i == 1){
 
-                                        $existCenter = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->exists();
-                                        
+                                      
+                                        $existCenter = AsasInterview::where('status', true)->where('negeri','LIKE', '%'.$Proses->state.'%')->exists();
                                         
                                     
                                     if($syarat[$i] >= 4){
@@ -482,7 +459,7 @@ class InterviewScreeningController extends Controller
                                         }
 
                                       else{
-                                        $ProsesCenterr = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->inRandomOrder()->first();
+                                        $ProsesCenterr = AsasInterview::where('status', true)->where('negeri','LIKE', '%'.$Proses->state.'%')->inRandomOrder()->first();
 
                                         $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
@@ -525,7 +502,7 @@ class InterviewScreeningController extends Controller
 
                                     if($syarat[$i] >= 4){
 
-                                        $existCenterrr = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->exists();
+                                        $existCenterrr = AsasInterview::where('status', true)->where('negeri','LIKE', '%'.$Proses->state.'%')->exists();
 
                                         if(!$existCenterrr)
                                         {
@@ -568,7 +545,7 @@ class InterviewScreeningController extends Controller
 
                                         else{
                                         
-                                        $ProsesCenterrr = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->inRandomOrder()->first();
+                                        $ProsesCenterrr = AsasInterview::where('status', true)->where('negeri','LIKE', '%'.$Proses->state.'%')->inRandomOrder()->first();
                                         $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 
                                             'kelulusan2' => $syarat[$i],                                           
@@ -656,7 +633,7 @@ class InterviewScreeningController extends Controller
 
                                    
 
-                                        $existCenter = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->exists();
+                                    $existCenter = AsasInterview::where('status', true)->where('negeri','LIKE', '%'.$Proses->state.'%')->exists();
                                         
                                         
                                     
@@ -682,7 +659,7 @@ class InterviewScreeningController extends Controller
                                         }
 
                                       else{
-                                        $ProsesCenterr = AsasInterview::where('status', true)->whereIn('negeri', $Proses->state)->inRandomOrder()->first();
+                                        $ProsesCenterr = AsasInterview::where('status', true)->where('negeri','LIKE', '%'.$Proses->state.'%')->inRandomOrder()->first();
 
                                         $updateScreeningIV = ScreeningIV::where('nric', $Proses->nric)->update([
 

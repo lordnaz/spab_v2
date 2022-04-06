@@ -27,12 +27,11 @@ class PenawaranPermohonanAPIController extends Controller
     {
 
        //ditawar
-        $ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->where('all_status_permohonan.status_offer', 'Ditawarkan')->get();
         $cadang1ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -41,28 +40,27 @@ class PenawaranPermohonanAPIController extends Controller
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->select('program.code as cadang1code')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->get();
         $cadang2ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->select('program.code as cadang2code')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->get();
         $programditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->select('program.code as programtawar')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->get();
 
-        $ditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $ditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->where('all_status_permohonan.status_offer', 'Ditolak')->get();
         $cadang1ditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -71,28 +69,27 @@ class PenawaranPermohonanAPIController extends Controller
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditolak')->select('program.code as cadang1code')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditolak')->get();
         $cadang2ditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditolak')->select('program.code as cadang2code')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditolak')->get();
         $programditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditolak')->select('program.code as programtawar')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditolak')->get();
 
-        $kiv = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $kiv = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->get();
         $cadang1kiv  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -101,28 +98,27 @@ class PenawaranPermohonanAPIController extends Controller
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->select('program.code as cadang1code')->get();
+        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->get();
         $cadang2kiv  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->select('program.code as cadang2code')->get();
+        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->get();
         $programkiv  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->select('program.code as programtawar')->get();
+        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->get();
 
-        $hadir = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $hadir = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->get();
         $cadang1hadir  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -131,26 +127,26 @@ class PenawaranPermohonanAPIController extends Controller
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->select('program.code as cadang1code')->get();
+        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->get();
         $cadang2hadir  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->select('program.code as cadang2code')->get();
+        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->get();
         $programhadir  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->select('program.code as programtawar')->get();
+        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->get();
 
 
 
 
-       
+        $program = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
        
 
         $data = [
@@ -173,6 +169,7 @@ class PenawaranPermohonanAPIController extends Controller
             'cadang1hadir' => $cadang1hadir,
             'cadang2hadir' => $cadang2hadir,
             'programhadir' => $programhadir,
+            'program' => $program,
                     
         ];
 
@@ -183,12 +180,11 @@ class PenawaranPermohonanAPIController extends Controller
     {
 
        //ditawar
-        $ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->where('all_status_permohonan.status_offer', 'Ditawarkan')->where('user_details.state', $req->type)->get();
         $cadang1ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -197,28 +193,27 @@ class PenawaranPermohonanAPIController extends Controller
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->where('user_details.state', $req->type)->select('program.code as cadang1code')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->where('user_details.state', $req->type)->get();
         $cadang2ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->where('user_details.state', $req->type)->select('program.code as cadang2code')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->where('user_details.state', $req->type)->get();
         $programditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->where('user_details.state', $req->type)->select('program.code as programtawar')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditawarkan')->where('user_details.state', $req->type)->get();
 
-        $ditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $ditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->where('all_status_permohonan.status_offer', 'Ditolak')->where('user_details.state', $req->type)->get();
         $cadang1ditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -227,28 +222,27 @@ class PenawaranPermohonanAPIController extends Controller
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditolak')->where('user_details.state', $req->type)->select('program.code as cadang1code')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditolak')->where('user_details.state', $req->type)->get();
         $cadang2ditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditolak')->where('user_details.state', $req->type)->select('program.code as cadang2code')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditolak')->where('user_details.state', $req->type)->get();
         $programditolak = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Ditolak')->where('user_details.state', $req->type)->select('program.code as programtawar')->get();
+        ->where('all_status_permohonan.status_offer', 'Ditolak')->where('user_details.state', $req->type)->get();
 
-        $kiv = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $kiv = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->where('user_details.state', $req->type)->get();
         $cadang1kiv  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -257,28 +251,27 @@ class PenawaranPermohonanAPIController extends Controller
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->where('user_details.state', $req->type)->select('program.code as cadang1code')->get();
+        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->where('user_details.state', $req->type)->get();
         $cadang2kiv  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->where('user_details.state', $req->type)->select('program.code as cadang2code')->get();
+        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->where('user_details.state', $req->type)->get();
         $programkiv  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->where('user_details.state', $req->type)->select('program.code as programtawar')->get();
+        ->where('all_status_permohonan.status_offer', 'Dalam Pemerhatian (KIV)')->where('user_details.state', $req->type)->get();
 
-        $hadir = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $hadir = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-        ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->where('user_details.state', $req->type)->get();
         $cadang1hadir  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -287,24 +280,24 @@ class PenawaranPermohonanAPIController extends Controller
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->where('user_details.state', $req->type)->select('program.code as cadang1code')->get();
+        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->where('user_details.state', $req->type)->get();
         $cadang2hadir  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->where('user_details.state', $req->type)->select('program.code as cadang2code')->get();
+        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->where('user_details.state', $req->type)->get();
         $programhadir  = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
         ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->where('user_details.state', $req->type)->select('program.code as programtawar')->get();
+        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')->where('user_details.state', $req->type)->get();
 
 
-
+        $program = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
 
        
        
@@ -329,6 +322,7 @@ class PenawaranPermohonanAPIController extends Controller
             'cadang1hadir' => $cadang1hadir,
             'cadang2hadir' => $cadang2hadir,
             'programhadir' => $programhadir,
+            'program' => $program,
                     
         ];
 
@@ -338,9 +332,9 @@ class PenawaranPermohonanAPIController extends Controller
     public function display_penawarabynric(Request $req)
     {
 
-        $displaypenawaran = UserDetail::join('penawaran_permohonan', 'nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->first();
+        $displaypenawaran = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->first();
         $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
-
+       
         $data = [
             'status' => 'success',
             'code' => '000',
@@ -356,25 +350,69 @@ class PenawaranPermohonanAPIController extends Controller
 
     public function tawar_penawaran(Request $req)
     {
-        $currentdt = date('d-m-Y H:i:s');
+        $currentdt = date('Y-m-d H:i:s');
 
-        $update = PenawaranPermohonan::where('nric', $req->nric)->update(
-            [
+        $logic = PenawaranPermohonan::where('nric',$req->nric)->first();
+
+        if($logic->program_tawar != NULL){
+
+            if($logic->program_tawar != $req->program_tawar)
+
+            $program = Offerprogram::where('program_id', $logic->program_tawar)->first();
+
+            $quotasemasa = $program->quota_semasa - 1;
+
+            $updatequota = Offerprogram::where('program_id', $logic->program_tawar)->update
+            ([
+                'quota_semasa' => $quotasemasa,        
+            ]);
+
+            $program2 = Offerprogram::where('program_id', $req->program_tawar)->first();
+
+            $quotasemasa2 = $program2->quota_semasa + 1;
+
+            $updatequota = Offerprogram::where('program_id', $req->program_tawar)->update
+            ([
+                'quota_semasa' => $quotasemasa2,        
+            ]);
+
+        }else{
+
+            $program = Offerprogram::where('program_id', $req->program_tawar)->first();
+
+            $quotasemasa = $program->quota_semasa + 1;
+
+            $updatequota = Offerprogram::where('program_id', $req->program_tawar)->update
+            ([
+                'quota_semasa' => $quotasemasa,        
+            ]);
+
+        }
+        
+        $update = StatusPermohonan::where('nric',$req->nric)->update
+        ([
+            'status_offer' => 'Ditawarkan',        
+        ]);
+
+
+        $update = PenawaranPermohonan::where('nric', $req->nric)->update
+        ([
                 'program_tawar' => $req->program_tawar,
+                'TarikhTawar' => $currentdt,
                 'sem' => $req->sem,
                 'tahun' => $req->tahun,
                 'tarikh_daftar' => $req->tarikh_daftar,
                 'masa_daftar' => $req->masa_daftar,
                 'tempat_daftar' => $req->tempat_daftar,
                 'catatan' => $req->catatan,
-                'tarikh_tawar' => $currentdt,
-            ]
-        );
+                  
+            ]);
 
-        $update = StatusPermohonan::where('nric',$req->nric)->update
-        ([
-            'status_offer' => 'Ditawarkan',        
-        ]);
+        
+
+
+
+        
 
         $data = [
             'status' => 'success',
@@ -388,6 +426,20 @@ class PenawaranPermohonanAPIController extends Controller
     public function tolak_penawaran(Request $req)
     {
 
+        $logic = PenawaranPermohonan::where('nric',$req->nric)->first();
+
+        if($logic->program_tawar != NULL){
+
+            $program = Offerprogram::where('program_id', $logic->program_tawar)->first();
+
+            $quotasemasa = $program->quota_semasa - 1;
+
+            $updatequota = Offerprogram::where('program_id', $logic->program_tawar)->update
+            ([
+                'quota_semasa' => $quotasemasa,        
+            ]);
+
+        }
 
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
@@ -397,15 +449,16 @@ class PenawaranPermohonanAPIController extends Controller
         $update = PenawaranPermohonan::where('nric',$req->nric)->update
         ([
             'program_tawar' => NULL,       
-            'tarikh_tawar' => NULL,  
+            'TarikhTawar' => NULL,  
             'tarikh_daftar' => NULL, 
             'masa_daftar' => NULL,   
             'tempat_daftar' => NULL,   
             'catatan' => NULL,   
             'sem' => NULL,   
-            'sesi' => NULL, 
+            'tahun' => NULL, 
            
         ]);
+        
 
         $data = [
             'status' => 'success',
@@ -413,12 +466,28 @@ class PenawaranPermohonanAPIController extends Controller
             'description' => 'successful',
         ];
 
+    
+
         return response()->json($data);
     }
 
     public function KIV_penawaran(Request $req)
     {
 
+        $logic = PenawaranPermohonan::where('nric',$req->nric)->first();
+
+        if($logic->program_tawar != NULL){
+
+            $program = Offerprogram::where('program_id', $logic->program_tawar)->first();
+
+            $quotasemasa = $program->quota_semasa - 1;
+
+            $updatequota = Offerprogram::where('program_id', $logic->program_tawar)->update
+            ([
+                'quota_semasa' => $quotasemasa,        
+            ]);
+
+        }
 
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
@@ -428,14 +497,17 @@ class PenawaranPermohonanAPIController extends Controller
         $update = PenawaranPermohonan::where('nric',$req->nric)->update
         ([
             'program_tawar' => NULL,       
-            'tarikh_tawar' => NULL,  
+            'TarikhTawar' => NULL,  
             'tarikh_daftar' => NULL, 
             'masa_daftar' => NULL,   
             'tempat_daftar' => NULL,   
             'catatan' => NULL,  
             'sem' => NULL,   
-            'sesi' => NULL,     
+            'tahun' => NULL,     
         ]);
+
+      
+        
 
         $data = [
             'status' => 'success',
@@ -449,6 +521,21 @@ class PenawaranPermohonanAPIController extends Controller
     public function hadir_penawaran(Request $req)
     {
 
+        $logic = PenawaranPermohonan::where('nric',$req->nric)->first();
+
+        if($logic->program_tawar != NULL){
+
+            $program = Offerprogram::where('program_id', $logic->program_tawar)->first();
+
+            $quotasemasa = $program->quota_semasa - 1;
+
+            $updatequota = Offerprogram::where('program_id', $logic->program_tawar)->update
+            ([
+                'quota_semasa' => $quotasemasa,        
+            ]);
+
+        }
+
 
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
@@ -458,14 +545,16 @@ class PenawaranPermohonanAPIController extends Controller
         $update = PenawaranPermohonan::where('nric',$req->nric)->update
         ([
             'program_tawar' => NULL,       
-            'tarikh_tawar' => NULL,  
+            'TarikhTawar' => NULL,  
             'tarikh_daftar' => NULL, 
             'masa_daftar' => NULL,   
             'tempat_daftar' => NULL,   
             'catatan' => NULL,  
             'sem' => NULL,   
-            'sesi' => NULL,     
+            'tahun' => NULL,     
         ]);
+
+      
 
         $data = [
             'status' => 'success',
@@ -479,7 +568,7 @@ class PenawaranPermohonanAPIController extends Controller
     public function AjaxTawaran(Request $req)
     {
 
-        $displaypenawaran = UserDetail::join('penawaran_permohonan', 'nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->first();
+        $displaypenawaran = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->first();
         $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
         $offer = Offerprogram::where('program_id', $req->program)->first();
 
@@ -548,9 +637,8 @@ class PenawaranPermohonanAPIController extends Controller
 
                 $ProsesUser = UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                     ->join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                    ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
-                    ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-                    ->where('all_status_permohonan.status_temuduga', 'Hadir Temuduga')
+                    ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')                   
+                    ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')
                     ->get();
             }
 
@@ -558,9 +646,8 @@ class PenawaranPermohonanAPIController extends Controller
 
                 $ProsesUser = UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                     ->join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                    ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
-                    ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-                    ->where('all_status_permohonan.status_temuduga', 'Hadir Temuduga')
+                    ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')                 
+                    ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')
                     ->where('user_details.state', $req->proses)
                     ->get();
 
@@ -585,8 +672,7 @@ class PenawaranPermohonanAPIController extends Controller
                         $program = Offerprogram::where('program_id', $User->cadang1)->first();
                         $proses =  UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
-                        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-                        ->where('all_status_permohonan.status_temuduga', 'Hadir Temuduga')
+                        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')
                         ->where('penawaran_permohonan.cadang1', $User->cadang1)
                         ->orWhere('penawaran_permohonan.cadang2', $User->cadang1)
                         ->orderBy('penawaran_permohonan.markah', 'desc')->get();
@@ -596,13 +682,9 @@ class PenawaranPermohonanAPIController extends Controller
                             if($pro->nric == $User->nric){
 
                                 $total = $total + 1;
-                                break;
-                            }
-                            else{
                                 
-                                $total = $total + 1;
-
                             }
+            
 
                         }
 
@@ -612,8 +694,8 @@ class PenawaranPermohonanAPIController extends Controller
 
                             $update = PenawaranPermohonan::where('nric',$User->nric)->update
                             ([
-                                'program_tawar' => $User->cadang1,       
-                                'tarikh_tawar' => $currentdt,  
+                                'program_tawar' => $program->program_id,       
+                                'TarikhTawar' => $currentdt,  
                                 'tarikh_daftar' => $program->registration_date, 
                                 'masa_daftar' => $program->registration_time,   
                                 'tempat_daftar' => $program->registration_venue,   
@@ -629,7 +711,7 @@ class PenawaranPermohonanAPIController extends Controller
 
                             $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
-                                'status_offer' => 'Ditawar',        
+                                'status_offer' => 'Ditawarkan',        
                             ]);
                         }
                         else{
@@ -640,6 +722,12 @@ class PenawaranPermohonanAPIController extends Controller
                             ]);
                         }
 
+                    }else{
+
+                        $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
+                            ([
+                                'status_offer' => 'Dalam Pemerhatian (KIV)',        
+                            ]);
                     }
 
                     if($User->program_tawar == NULL){
@@ -648,8 +736,7 @@ class PenawaranPermohonanAPIController extends Controller
                         $program2 = Offerprogram::where('program_id', $User->cadang2)->first();
                         $proses2 =  UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                         ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
-                        ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-                        ->where('all_status_permohonan.status_temuduga', 'Hadir Temuduga')
+                        ->where('all_status_permohonan.status_offer', 'Hadir Temuduga')
                         ->where('penawaran_permohonan.cadang1', $User->cadang2)
                         ->orWhere('penawaran_permohonan.cadang2', $User->cadang2)
                         ->orderBy('penawaran_permohonan.markah', 'desc')->get();
@@ -659,13 +746,9 @@ class PenawaranPermohonanAPIController extends Controller
                             if($pro2->nric == $User->nric){
 
                                 $total2 = $total2 + 1;
-                                break;
-                            }
-                            else{
                                 
-                                $total2 = $total2 + 1;
-
                             }
+                            
 
                         }
 
@@ -674,8 +757,8 @@ class PenawaranPermohonanAPIController extends Controller
                             $quotasemasa2 = $program2->quota_semasa + 1;
                             $update = PenawaranPermohonan::where('nric',$User->nric)->update
                             ([
-                                'program_tawar' => $User->cadang2,       
-                                'tarikh_tawar' => $currentdt,  
+                                'program_tawar' => $program2->program_id,       
+                                'TarikhTawar' => $currentdt,  
                                 'tarikh_daftar' => $program2->registration_date, 
                                 'masa_daftar' => $program2->registration_time,   
                                 'tempat_daftar' => $program2->registration_venue,   
@@ -689,7 +772,7 @@ class PenawaranPermohonanAPIController extends Controller
 
                             $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
-                                'status_offer' => 'Ditawar',        
+                                'status_offer' => 'Ditawarkan',        
                             ]);
                         }
                         else{
@@ -701,6 +784,7 @@ class PenawaranPermohonanAPIController extends Controller
                         }
 
                     }
+                   
                 }
 
                 }

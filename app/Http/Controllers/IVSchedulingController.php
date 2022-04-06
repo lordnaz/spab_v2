@@ -8,6 +8,7 @@ use App\Models\UserDetail;
 use App\Models\SessionInterview;
 use App\Models\ScreeningIV;
 use App\Models\AsasInterview;
+use App\Models\ProgramApplied;
 
 class IVSchedulingController extends Controller
 {
@@ -22,14 +23,14 @@ class IVSchedulingController extends Controller
         $FirstSesi = SessionInterview::where('asas_id', $FirstCenter->asas_id)->where('status', true)->orderBy('number_session', 'asc')->first();
 
         $displayTable = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
             ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-            ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+            ->leftjoin('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')          
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
             ->where('all_status_permohonan.status_temuduga', 'Temuduga')
             ->where('screening_interview.center_id', $FirstCenter->center_id)
             ->get();
+
+            $program = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
 
         $data = [
             'status' => 'success',
@@ -40,6 +41,7 @@ class IVSchedulingController extends Controller
             'Sesi' => $Sesi,
             'FirstSesi' => $FirstSesi,
             'displayTable' => $displayTable,
+            'program' => $program,
             
         ];
 
@@ -56,14 +58,13 @@ class IVSchedulingController extends Controller
         $FirstSesi = SessionInterview::where('asas_id', $FirstCenter->asas_id)->where('status', true)->first();
 
         $displayTable = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-            ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
-            ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+        ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+        ->leftjoin('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')          
+        ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
             ->where('all_status_permohonan.status_temuduga', 'Temuduga')
             ->where('screening_interview.center_id', $FirstCenter->center_id)
             ->get();
+            $program = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
 
         $data = [
             'status' => 'success',
@@ -74,6 +75,7 @@ class IVSchedulingController extends Controller
             'Sesi' => $Sesi,
             'FirstSesi' => $FirstSesi,
             'displayTable' => $displayTable,
+            'program' => $program,
             
         ];
 
@@ -123,7 +125,7 @@ class IVSchedulingController extends Controller
     }
         else{
 
-            $update = ScreeningIV::where('nric', $req->checkboxx)->update([
+            $update = ScreeningIV::where('nric', $req->checkbox)->update([
                 
                 'session_id' => $req->session_id,
                 'TarikhHadir' => $req->TarikhHadir,

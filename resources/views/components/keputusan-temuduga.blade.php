@@ -30,7 +30,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h4 class="card-title">Penjadualan Temuduga</h4>
+                    <h4 class="card-title">Keputusan Temuduga</h4>
                 </div>
 
                 <!--Search Form -->
@@ -85,10 +85,10 @@
                 $count = 1;
               @endphp
 
-                        @foreach ($displayTable And $cadang1 And $cadang2 as $displayTablee)
+                        @foreach ($displayTable as $displayTablee)
               @php
-             $total = count($displayTablee['program_applid']);
-                           
+             
+              $too = 0;           
              @endphp
                 <tr class="text-center" >
                     <td>{{$count++}}</td>
@@ -96,42 +96,65 @@
                   <td>{{$displayTablee['name']}}</td>
                   <td>{{$displayTablee['type_program_applied']}}</td>
                   <td>{{$displayTablee['state']}}</td>
-                  @if ($total == '2')
-                  @foreach ($displayTablee as $displayTableee)
+                
+                  @foreach ($program as $Program)
+                
+                @if ($Program['nric'] == $displayTablee['nric'])
+                @php 
+                $too = $too + 1;
+                @endphp
+                @if($loop->first)
+                @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G')
+                <td>{{$Program['program']}}-{{$displayTablee['kelulusan1']}}</td>
+                @else
+                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan1']}}</td>
+                @endif
+                @else
+                @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
+                <td>{{$Program['program']}}-{{$displayTablee['kelulusan2']}}</td>
+                @else
+                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan2']}}</td>
+                @endif
 
-                  @if($loop->first)
-                  @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G' )
-                  <td>{{$displayTableee['program']}}-{{$displayTablee['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayTableee['program']}}-N{{$displayTablee['kelulusan1']}}</td>
-                  @endif
-                  @else
-                  @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
-                  <td>{{$displayTableee['program']}}-{{$displayTablee['kelulusan2']}}</td>
-                  @else
-                  <td>{{$displayTableee['program']}}-N{{$displayTablee['kelulusan2']}}</td>
-                  @endif
+                @endif
+                @endif
 
+                @endforeach
+                @if ($too == 1)
+                <td></td>
+                @endif
+                  <td>{{$displayTablee['cert_related_program']}}</td>
+                  @if(!empty($cadang1))
+                  @foreach ($cadang1 as $Cadang1)
+                  @if($Cadang1['nric'] == $displayTablee['nric'])
+                  <td>{{$Cadang1['program']}}</td>
+                  @else
+                  <td></td>
                   @endif
                   @endforeach
                   @else
-                  @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G')
-                  <td>{{$displayTableee['program']}}-{{$displayTablee['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayTableee['program']}}-N{{$displayTablee['kelulusan1']}}</td>
-                  @endif
                   <td></td>
                   @endif
-                  <td>{{$displayTablee['cert_related_program']}}</td>
-                  <td>{{$displayTablee['cadang1code']}}</td>
-                  <td>{{$displayTablee['cadang2code']}}</td>
+                  
+                  @if(!empty($cadang2))
+                  @foreach($cadang2 as $Cadang2)
+                  @if($Cadang2['nric'] == $displayTablee['nric'])
+                  <td>{{$Cadang2['program']}}</td>
+                  @else
+                  <td></td>
+                  @endif
+                  @endforeach
+                  @else
+                  <td></td>
+                  @endif
+
                   <td>{{$displayTablee['markah']}}</td>
                   <td>{{$displayTablee['status_temuduga']}}</td>
                   
                   <td>
 
                   <a href="{{ route('hadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}" class="btn-sm btn-warning">Hadir</a>
-                  <a href="{{ route('TidakhadirTemudugar', Crypt::encrypt($displayTablee['nric'])) }}" class="btn-sm btn-warning">Tidak Hadir</a>
+                  <a href="{{ route('TidakhadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}" class="btn-sm btn-warning">Tidak Hadir</a>
                   <a href="{{ route('batalTemuduga', Crypt::encrypt($displayTablee['nric'])) }}" class="btn-sm btn-danger"> 
                       Batal
                     </a>

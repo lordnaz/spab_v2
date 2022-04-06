@@ -124,7 +124,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     //Pengesahan Permohonan
     Route::get('display_pengesahan_permohonan', [PengesahanPermohonanFEController::class, 'display_pengesahan_permohonan'])->name('display_pengesahan_permohonan');
-    Route::get('sahkan_permohonan/{code}', [PengesahanPermohonanFEController::class, 'sahkan_permohonan'])->name('sahkan_permohonan');
+    Route::post('sahkan_permohonan', [PengesahanPermohonanFEController::class, 'sahkan_permohonan'])->name('sahkan_permohonan');
     Route::get('tolak_permohonan/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan'])->name('tolak_permohonan');
     Route::post('draft_one', [FE_PermohonanController::class, 'draft_one'])->name('draft_one');
     Route::post('draft_two', [FE_PermohonanController::class, 'draft_two'])->name('draft_two');
@@ -167,6 +167,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('keputusan_temuduga', [KeputusanTemudugaFEController::class, 'keputusan_temuduga'])->name('keputusan_temuduga');
     Route::get('KeputusanTemuduga/{code}', [KeputusanTemudugaFEController::class, 'KeputusanTemuduga'])->name('KeputusanTemuduga');
     Route::get('hadirTemuduga/{code}', [KeputusanTemudugaFEController::class, 'hadirTemuduga'])->name('hadirTemuduga');
+    Route::get('TidakhadirTemuduga/{code}', [KeputusanTemudugaFEController::class, 'TidakhadirTemuduga'])->name('TidakhadirTemuduga');
     Route::get('batalTemuduga/{code}', [KeputusanTemudugaFEController::class, 'batalTemuduga'])->name('batalTemuduga');
     Route::post('updateHadirTemuduga', [KeputusanTemudugaFEController::class, 'updateHadirTemuduga'])->name('updateHadirTemuduga');
     Route::post('updateTidakHadirTemuduga', [KeputusanTemudugaFEController::class, 'updateTidakHadirTemuduga'])->name('updateTidakHadirTemuduga');
@@ -182,7 +183,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('/tawar_penawaran', [PenawaranPermohonanFEController::class, 'tawar_penawaran'])->name('tawar_penawaran');
     Route::post('/pemprosesanTawaran', [PenawaranPermohonanFEController::class, 'pemprosesanTawaran'])->name('pemprosesanTawaran');
 
-    
+     //Pengesahan Permohonan
+     Route::get('display_pengesahan_permohonan', [PengesahanPermohonanFEController::class, 'display_pengesahan_permohonan'])->name('display_pengesahan_permohonan');
+     Route::post('sahkan_permohonan', [PengesahanPermohonanFEController::class, 'sahkan_permohonan'])->name('sahkan_permohonan');
+     Route::get('tolak_permohonan/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan'])->name('tolak_permohonan');
+
     Route::get('sahkan_permohonan_id/{code}', [PengesahanPermohonanFEController::class, 'sahkan_permohonan_id'])->name('sahkan_permohonan_id');
     Route::get('tolak_permohonan_id/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan_id'])->name('tolak_permohonan_id');
     Route::get('batal_permohonan/{code}', [PengesahanPermohonanFEController::class, 'batal_permohonan'])->name('batal_permohonan');

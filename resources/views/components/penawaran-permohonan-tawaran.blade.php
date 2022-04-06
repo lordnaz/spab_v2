@@ -145,7 +145,7 @@
 
 
                                 <div class="col-sm-3 offset-sm-9">
-                                    <a href="{{ route('PusatTemudugaTable') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Back') !!}</a>
+                                    <a href="{{ route('PenawaranPermohonan') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Back') !!}</a>
 
 
                                     <button type="submit" class="btn btn-success">

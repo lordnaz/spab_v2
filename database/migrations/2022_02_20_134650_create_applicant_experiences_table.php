@@ -24,7 +24,7 @@ class CreateApplicantExperiencesTable extends Migration
             $table->string('no_faks')->nullable();
             $table->boolean('cert_related_program')->default(false);
             $table->string('description_cert')->nullable();
-            $table->boolean('work_exp_related_program')->default(false);
+            $table->string('work_exp_related_program')->nullable();
             $table->string('description_work_exp')->nullable();
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();

@@ -48,7 +48,7 @@
                                         <label class="col-form-label">Panel 1:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <select class="select2 form-select" id="type" name="cadang1" readonly>
+                                        <select class="form-control" id="basicSelect" name="cadang1" disabled="true">
                                             <option selected disabled>{!! __('locale.Please Choose') !!}</option>
                                             @foreach ($program as $programs)
                                             <option value="{{$programs['program_id']}}">{{$programs['code']}} - {{$programs['program']}}</option>
@@ -64,7 +64,7 @@
                                         <label class="col-form-label">Panel 2:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <select class="select2 form-select" id="type" name="cadang2" readonly>
+                                        <select class="form-control" id="basicSelect" name="cadang2" disabled="true">
                                             <option selected disabled>{!! __('locale.Please Choose') !!}</option>
                                             @foreach ($program as $programs)
                                             <option value="{{$programs['program_id']}}">{{$programs['code']}} - {{$programs['program']}}</option>

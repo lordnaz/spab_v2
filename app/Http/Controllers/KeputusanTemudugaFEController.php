@@ -28,9 +28,10 @@ class KeputusanTemudugaFEController extends Controller
         $displayTable = $responseBody['displayTable'];
         $cadang1 = $responseBody['cadang1'];
         $cadang2 = $responseBody['cadang2'];
+        $program = $responseBody['program'];
 
         return view('components.keputusan-temuduga', ['breadcrumbs' => $breadcrumbs])
-        ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('displayTable', $displayTable)->with('cadang1', $cadang1)->with('cadang2', $cadang2);
+        ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('displayTable', $displayTable)->with('cadang1', $cadang1)->with('cadang2', $cadang2)->with('program', $program);
 
     }
 
@@ -184,7 +185,7 @@ class KeputusanTemudugaFEController extends Controller
 
         $param = [
             
-            'type' => $code,
+            'code' => $code,
         
             
         ];
@@ -195,6 +196,7 @@ class KeputusanTemudugaFEController extends Controller
             'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
         ])->post(getenv('ENDPOINT').'/api/batalTemuduga', $param);
 
+        
        
        
         return redirect()->route('keputusan_temuduga');

@@ -495,4 +495,12 @@ return [
 
  //Keputusan Permohonan
  "Application Results" => "Application Results",
+
+ //penawaran permohonan
+
+ "Penawaran Permohonan" => "Application Offer",
+ "Penapisan Temuduga" => "Interview Screening",
+ "Penjadualan Temuduga" => "Interview Scheduling",
+ "Keputusan Temuduga" => "Interview Result"
+ 
 ];

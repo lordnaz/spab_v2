@@ -84,43 +84,47 @@
 
                         @foreach ($displayTable as $displayTablee)
               @php
-             $total = count($displayTablee['program_applid']);
+           
+              $too = 0;
                            
              @endphp
                 <tr class="text-center" >
                   <td><input type="checkbox" name="checkbox" value="{{$displayTablee['nric']}}" /></td>
                   <td>{{$displayTablee['nric']}}</td>
                   <td>{{$displayTablee['name']}}</td>
-                  @if ($total == '2')
-                  @foreach ($displayTablee as $displayTableee)
+                 
+                  @foreach ($program as $Program)
+                
+                @if ($Program['nric'] == $displayTablee['nric'])
+                @php 
+                $too = $too + 1;
+                @endphp
+                @if($loop->first)
+                @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G')
+                <td>{{$Program['program']}}-{{$displayTablee['kelulusan1']}}</td>
+                @else
+                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan1']}}</td>
+                @endif
+                @else
+                @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
+                <td>{{$Program['program']}}-{{$displayTablee['kelulusan2']}}</td>
+                @else
+                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan2']}}</td>
+                @endif
 
-                  @if($loop->first)
-                  @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G' )
-                  <td>{{$displayTableee['program']}}-{{$displayTablee['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayTableee['program']}}-N{{$displayTablee['kelulusan1']}}</td>
-                  @endif
-                  @else
-                  @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
-                  <td>{{$displayTableee['program']}}-{{$displayTablee['kelulusan2']}}</td>
-                  @else
-                  <td>{{$displayTableee['program']}}-N{{$displayTablee['kelulusan2']}}</td>
-                  @endif
+                @endif
+                @endif
 
-                  @endif
-                  @endforeach
-                  @else
-                  @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G')
-                  <td>{{$displayTableee['program']}}-{{$displayTablee['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayTableee['program']}}-N{{$displayTablee['kelulusan1']}}</td>
-                  @endif
-                  <td></td>
-                  @endif
+                @endforeach
+                @if ($too == 1)
+                <td></td>
+                @endif
                   <td>{{$displayTablee['number_session']}}</td>
-                  <td>{{Carbon\Carbon::parse($displayTablee['TarikhHadir'])->format('Y-m-d')}}</td>
-                  <td>{{Carbon\Carbon::parse($displayTablee['MasaFrom'])->format('H:i:s')}}</td>
-                  <td>{{Carbon\Carbon::parse($displayTablee['MasaTo'])->format('H:i:s')}}</td>
+                  <td>{{$displayTablee['TarikhHadir'] ? Carbon\Carbon::parse($displayTablee['TarikhHadir'])->format('Y-m-d') : ' '}}
+            
+                  </td>
+                  <td>{{$displayTablee['MasaFrom'] ? Carbon\Carbon::parse($displayTablee['MasaFrom'])->format('H:i:s') : ' '}}</td>
+                  <td>{{$displayTablee['MasaTo'] ? Carbon\Carbon::parse($displayTablee['MasaTo'])->format('H:i:s') : ' '}}</td>
                   
                   <td>
                  
@@ -129,32 +133,8 @@
                  
                 </tr>
              @endforeach
-                            <tr class="text-center">
-                                <td><input type="checkbox" name="checkbox[]" id="checkbox" value="Muhammad" /></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                            </tr>
-                            <tr class="text-center">
-                                <td><input type="checkbox" name="checkbox[]" id="checkbox" value="Sazrul" /></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                            </tr>
+             
+                        
 
                         </tbody>
                     </table>
@@ -311,7 +291,7 @@ $(document).ready(function(){
     $('#kosong').click(function(){  
                       var presence = [];
                       var sesi = $('#myselect').val();
-                      $.each($("input[id='checkbox']:checked"), function(){
+                      $.each($("input[name='checkbox']:checked"), function(){
                 presence.push($(this).val());                
             });
                         $.ajax({  
@@ -327,11 +307,12 @@ $(document).ready(function(){
                             success:function(response)
    {
    
-   return response;
+    console.log(response);
    
     
    }
                         });  
+                        table.ajax.reload();
                     });  
 
 })
