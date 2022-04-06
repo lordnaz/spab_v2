@@ -289,7 +289,7 @@
                     <a href="{{ route('pendaftaranpelajar') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Cancel') !!}</a>
                     <a href="{{ route('pendaftaranpelajar') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Cancel Receipt') !!}</a>
                     <a href="" class="btn btn-outline-secondary me-1">{!! __('locale.Details') !!}</a>
-                    <a href="" class="btn btn-outline-secondary me-1">{!! __('locale.Print') !!}</a>
+                    <a href="{{ route('printreceipt') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Print') !!}</a>
                     <button type="submit" class="btn btn-success">
                     <i data-feather="plus-circle" class="me-25"></i>
                     <span>{!! __('locale.Save') !!}</span>

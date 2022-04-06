@@ -90,13 +90,12 @@ class PendaftaranPelajarAPIController extends Controller
         $updateapplicant3= StatusPermohonan::find($code);
         $updateapplicant3->status_pendaftaran='BELUM';
         $updateapplicant3->save();
-
-
-
     }
 
+    public function printreceipt(){
 
-
+        return view('components.print-receipt');
+    }
 
     
 }

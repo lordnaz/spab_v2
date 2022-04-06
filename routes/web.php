@@ -155,6 +155,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('applicantinfo', [ PendaftaranPelajarAPIController::class, "applicantinfo" ])->name('applicantinfo');
     Route::post('updateapplicantinfo', [ PendaftaranPelajarAPIController::class, "updateapplicantinfo" ])->name('updateapplicantinfo');
     Route::get('cancelstatusapplicant/{code}', [ PendaftaranPelajarAPIController::class, "cancelstatusapplicant" ])->name('cancelstatusapplicant');
+    Route::get('printreceipt', [PendaftaranPelajarAPIController::class, 'printreceipt'])->name('printreceipt');
 
     //Penjadualan temuduga nizam
     Route::get('penjadualan_temuduga', [PenjadualanTemudugaFEController::class, 'penjadualan_temuduga'])->name('penjadualan_temuduga');
