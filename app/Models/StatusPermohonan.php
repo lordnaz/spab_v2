@@ -12,4 +12,9 @@ class StatusPermohonan extends Model
     protected $table = 'all_status_permohonan';
     
     protected $primaryKey = 'status_id';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

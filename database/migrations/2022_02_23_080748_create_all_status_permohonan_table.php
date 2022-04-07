@@ -15,7 +15,10 @@ class CreateAllStatusPermohonanTable extends Migration
     {
         Schema::create('all_status_permohonan', function (Blueprint $table) {
             $table->id('status_id');
-            $table->foreignId('nric')->index();
+            $table->string('no_siri')->nullable();
+            $table->string('job_id')->unique();
+            $table->string('nric');
+            $table->string('study_mode');
             $table->string('status_validation')->nullable();
             $table->string('status_pendaftaran')->nullable();
             $table->string('modified_by_validation')->nullable();
@@ -26,6 +29,8 @@ class CreateAllStatusPermohonanTable extends Migration
             $table->string('status_temuduga')->nullable();
             $table->string('modified_by_offer')->nullable();
             $table->timestamp('updated_date_offer')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('modified_by')->nullable();
             $table->timestamps();
         });
     }

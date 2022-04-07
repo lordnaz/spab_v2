@@ -484,10 +484,10 @@
 
             <div class="mb-1 col-md-6">
               <label class="form-label" for="vertical-status_marriage">{!! __('locale.Type_Program_Applied') !!}</label>
-              <select class="form-select w-100" id="type_program_applied" name="type_program_applied">
+              <select class="form-select w-100 type_program_applied" id="type_program_applied" name="type_program_applied">
               <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                <option value="Full Time">Full-Time</option>
-                <option value="Half Time">Half-Time</option>
+                <option value="Full Time" @if(Auth::user()->status_regis->study_mode == "Full Time") selected @endif>Full-Time</option>
+                <option value="Half Time" @if(Auth::user()->status_regis->study_mode == "Half Time") selected @endif>Half-Time</option>
               </select>
             </div>
 
@@ -498,10 +498,9 @@
               <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
               <select class="form-select w-100 program_one" id="program_one" name="program_one">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                <option value="Melayu">Melayu</option>
-                <option value="Cina">Cina</option>
-                <option value="India">India</option>
-                <option value="Lain-lain">Lain-lain</option>
+                @foreach ($programs as $program)
+                <option value="{{$program->code}}" @if($program->code == $program_one_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
+                @endforeach
               </select>
             </div>
 
@@ -509,10 +508,9 @@
               <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
               <select class="form-select w-100 program_two" id="program_two" name="program_two">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                <option value="Melayu">Melayu</option>
-                <option value="Cina">Cina</option>
-                <option value="India">India</option>
-                <option value="Lain-lain">Lain-lain</option>
+                @foreach ($programs as $program)
+                <option value="{{$program->code}}" @if($program->code == $program_two_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
+                @endforeach
               </select>
             </div>
           </div>
@@ -579,22 +577,23 @@
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
+
       </div>
 
       <div id="qualification" class="content" role="tabpanel" aria-labelledby="qualification-step-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Address</h5>
-          <small>Enter Your Address.</small>
+          <h5 class="mb-0">MUET</h5>
+          <small>Malaysian University English Test</small>
         </div>
         <form>
           <div class="row">
             <div class="mb-1 col-md-4">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Year_Muet') !!}</label>
-              <input type="text" id="vertical-last-name" name="year_muet" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="year_muet" class="form-control" placeholder="" />
             </div>
             <div class="mb-1 col-md-4">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Place_Muet') !!}</label>
-              <input type="text" id="vertical-last-name" name="place_muet" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="place_muet" class="form-control" placeholder="" />
             </div>
             <div class="mb-1 col-md-4">
               <label class="form-label" for="vertical-band">{!! __('locale.Band') !!}</label>
@@ -612,15 +611,15 @@
           <div class="row">
             <div class="mb-1 col-md-4">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Speaking_Grade') !!}</label>
-              <input type="text" id="vertical-last-name" name="speaking_grade" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="speaking_grade" class="form-control" placeholder="" />
             </div>
             <div class="mb-1 col-md-4">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Reading_Grade') !!}</label>
-              <input type="text" id="vertical-last-name" name="reading_grade" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="reading_grade" class="form-control" placeholder="" />
             </div>
             <div class="mb-1 col-md-4">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Writing_Grade') !!}</label>
-              <input type="text" id="vertical-last-name" name="writing_grade" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="writing_grade" class="form-control" placeholder="" />
             </div>
           </div>
           <br>
@@ -630,21 +629,21 @@
           <div class="row">
             <div class="mb-1 col-md-6">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Year_Others') !!}</label>
-              <input type="text" id="vertical-last-name" name="year_others_qc" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="year_others_qc" class="form-control" placeholder="" />
             </div>
             <div class="mb-1 col-md-6">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Institution_Others') !!}</label>
-              <input type="text" id="vertical-last-name" name="institution_others_qc" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="institution_others_qc" class="form-control" placeholder="" />
             </div>
           </div>
           <div class="row">
             <div class="mb-1 col-md-6">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Grade_Others') !!}</label>
-              <input type="text" id="vertical-last-name" name="grade_others_qc" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="grade_others_qc" class="form-control" placeholder="" />
             </div>
             <div class="mb-1 col-md-6">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Specialization_Others') !!}</label>
-              <input type="text" id="vertical-last-name" name="specialization_others_qc" class="form-control" placeholder="Doe" />
+              <input type="text" id="vertical-last-name" name="specialization_others_qc" class="form-control" placeholder="" />
             </div>
           </div>
         </form>

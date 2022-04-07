@@ -15,10 +15,13 @@ class CreateProgramAppliedTable extends Migration
     {
         Schema::create('program_applied', function (Blueprint $table) {
             $table->id('program_applid');
-            $table->foreignId('nric')->index();
-            $table->foreignId('program_id')->index()->nullable();       
-            $table->string('created_by')->nullable();
-            $table->string('modified_by')->nullable();
+            $table->string('nric')->index();
+            $table->string('job_id');
+            $table->string('program_id')->index()->nullable();   
+            $table->string('type')->nullable();    
+            $table->string('sequence')->nullable();   
+            $table->integer('created_by')->nullable();
+            $table->integer('modified_by')->nullable();
             $table->timestamps();
         });
     }

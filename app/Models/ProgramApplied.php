@@ -12,4 +12,14 @@ class ProgramApplied extends Model
     protected $table = 'program_applied';
     
     protected $primaryKey = 'program_applid';
+
+    protected $fillable = [
+        'nric',
+        'program_id',
+        'type',
+        'created_by',
+        'modified_by',
+        'created_at',
+        'updated_at',
+    ];
 }
