@@ -1087,6 +1087,8 @@ if (typeof jQuery.validator === 'function') {
   })
 }
 
+
+
 // Add validation class to input-group (input group validation fix, currently disabled but will be useful in future)
 /* function inputGroupValidation(el) {
   var validEl,

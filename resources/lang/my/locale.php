@@ -493,7 +493,7 @@ return [
     "Cancel Receipt" => "Batal Resit",
     "Fee Type" => "Jenis Yuran",
     "Amount" => "Amaun",
-    "Print" => "Print",
+    "Print" => "Cetak",
 
 
 
