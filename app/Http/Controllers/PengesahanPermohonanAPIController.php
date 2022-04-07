@@ -40,7 +40,8 @@ class PengesahanPermohonanAPIController extends Controller
 
         $sahkan = StatusPermohonan::where('nric', $req->nric)->update([
             'updated_date_validation' => $currentdt,
-            'status_validation' => 'SAH'  
+            'status_validation' => 'SAH' ,
+            'status_temuduga' => 'BELOM PROSES'
     
             ]);
 

@@ -207,6 +207,11 @@
                             </div>                
                         </div>
                     </form>
+
+                    <div class="col-sm-3 offset-sm-11">
+                <a href="{{ route('keputusanpermohonan') }}" class="btn btn-outline-danger me-1">{!! __('locale.Back') !!}</a>
+           
+              </div>
                 </div>
             </div>
         </div>
