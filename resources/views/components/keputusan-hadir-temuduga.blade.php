@@ -48,8 +48,8 @@
                                         <label class="col-form-label">Panel 1:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <select class="select2 form-select" id="type" name="cadang1">
-                                            <option disabled>{!! __('locale.Please Choose') !!}</option>
+                                        <select class="form-control" id="basicSelect" name="cadang1">
+                                            <option selected disabled>{!! __('locale.Please Choose') !!}</option>
                                             @foreach ($program as $programs)
                                             <option value="{{$programs['program_id']}}" @if(!empty($dataPelajar['cadang1'])) @if($programs['program_id'] == $dataPelajar['cadang1']) selected @endif @endif>{{$programs['code']}} - {{$programs['program']}}</option>
                                             @endforeach
@@ -64,8 +64,8 @@
                                         <label class="col-form-label">Panel 2:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <select class="select2 form-select" id="type" name="cadang2">
-                                            <option disabled>{!! __('locale.Please Choose') !!}</option>
+                                        <select class="form-control" id="basicSelect" name="cadang2">
+                                            <option selected disabled>{!! __('locale.Please Choose') !!}</option>
                                             @foreach ($program as $programs)
                                             <option value="{{$programs['program_id']}}" @if(!empty($dataPelajar['cadang2'])) @if($programs['program_id'] == $dataPelajar['cadang2']) selected @endif @endif>{{$programs['code']}} - {{$programs['program']}}</option>
                                             @endforeach

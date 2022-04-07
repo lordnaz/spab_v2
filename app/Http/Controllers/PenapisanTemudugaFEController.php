@@ -29,10 +29,11 @@ class PenapisanTemudugaFEController extends Controller
         $displayBelumProses = $responseBody['displayBelumProses'];
         $displayTemuduga = $responseBody['displayTemuduga'];
         $displayTolak = $responseBody['displayTolak'];
-        
+        $tolak = $responseBody['tolak'];
 
 
-        return view('components.penapisan-temuduga-table', ['breadcrumbs' => $breadcrumbs])->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak);
+        return view('components.penapisan-temuduga-table', ['breadcrumbs' => $breadcrumbs])->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)
+        ->with('displayTolak', $displayTolak)->with('tolak', $tolak);
 
     }
 
@@ -52,9 +53,10 @@ class PenapisanTemudugaFEController extends Controller
         $displayBelumProses = $request['displayBelumProses'];
         $displayTemuduga = $request['displayTemuduga'];
         $displayTolak = $request['displayTolak'];
+        $tolak = $request['tolak'];
 
         
-        return view('components.penapisan-ajaxTemuduga')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak)->with('code', $code);
+        return view('components.penapisan-ajaxTemuduga')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak)->with('code', $code)->with('tolak', $tolak);
 
     }
 

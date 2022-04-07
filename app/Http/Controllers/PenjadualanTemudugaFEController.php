@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use App\Models\SessionInterview;
+use Carbon\Carbon;
 
 class PenjadualanTemudugaFEController extends Controller
 {
@@ -29,9 +30,10 @@ class PenjadualanTemudugaFEController extends Controller
         $Sesi = $responseBody['Sesi'];
         $FirstSesi = $responseBody['FirstSesi'];
         $displayTable = $responseBody['displayTable'];
+        $program = $responseBody['program'];
 
         return view('components.penjadualan-temuduga', ['breadcrumbs' => $breadcrumbs])
-        ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('Sesi', $Sesi)->with('FirstSesi', $FirstSesi)->with('displayTable', $displayTable);
+        ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('Sesi', $Sesi)->with('FirstSesi', $FirstSesi)->with('displayTable', $displayTable)->with('program', $program);
 
     }
 
@@ -59,9 +61,10 @@ class PenjadualanTemudugaFEController extends Controller
         $Sesi = $request['Sesi'];
         $FirstSesi = $request['FirstSesi'];
         $displayTable = $request['displayTable'];
+        $program = $request['program'];
 
         return view('components.PenjadualanTemuduga', ['breadcrumbs' => $breadcrumbs])
-        ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('Sesi', $Sesi)->with('FirstSesi', $FirstSesi)->with('displayTable', $displayTable);
+        ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('Sesi', $Sesi)->with('FirstSesi', $FirstSesi)->with('displayTable', $displayTable)->with('program', $program);
 
     }
 
@@ -94,18 +97,24 @@ class PenjadualanTemudugaFEController extends Controller
 
         $id = SessionInterview::where('session_id', $req->session_id)->first();
 
+        $TarikhHadir = Carbon::parse($req->TarikhHadir)->format('Y-m-d');
+        $MasaFrom = Carbon::parse($req->MasaFrom)->format('Y-m-d H:i:s');
+        $MasaTo = Carbon::parse($req->MasaTo)->format('Y-m-d H:i:s');
+  
+        
+        
+       
         $param = [
             
             'session_id' => $req->session_id,
-            'TarikhHadir' => $req->TarikhHadir,
-            'MasaFrom' => $req->MasaFrom,
-            'MasaTo' => $req->MasaTo,
+            'TarikhHadir' => $TarikhHadir,
+            'MasaFrom' => $MasaFrom,
+            'MasaTo' => $MasaTo,
             'catatan_temuduga' => $req->catatan_temuduga,
             'checkbox' => $req->checkbox,
-                 
-            
+                       
         ];
-
+      
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',

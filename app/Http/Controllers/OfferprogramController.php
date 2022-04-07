@@ -14,6 +14,9 @@ class OfferprogramController extends Controller
 
         $user_id = auth()->User()->name;
 
+        $exits = program::where('program_id', $req->program_id)->where('status',true)->exits();
+
+        if(!$exits){
         $addprogram = new Offerprogram;
         $addprogram->program_id = $req->program_id;
         $addprogram->mode = $req->mode;
@@ -29,7 +32,7 @@ class OfferprogramController extends Controller
         $addprogram->status = true;
         $addprogram->created_by = $user_id;
         $addprogram->save();
-
+        }
         $data = [
             'status' => 'success',
             'code' => '000',

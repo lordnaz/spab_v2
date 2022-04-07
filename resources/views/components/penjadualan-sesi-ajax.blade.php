@@ -124,7 +124,7 @@ $(document).ready(function(){
                       var Tarikh = $('#TarikhHadir').val();
                       var Masa1 = $('#MasaFrom').val();
                       var Masa2 = $('#MasaTo').val();
-                      $.each($("input[id='checkbox']:checked"), function(){
+                      $.each($("input[name='checkbox']:checked"), function(){
                 presence.push($(this).val());
 
                       
@@ -145,7 +145,7 @@ $(document).ready(function(){
                             
                             success:function(response)
    {
-    return response;
+    table.ajax.reload();
    
     
    }
@@ -159,7 +159,7 @@ $(document).ready(function(){
     $('#kosong').click(function(){  
                       var presence = [];
                       var sesi = $('#myselect').val();
-                      $.each($("input[id='checkbox']:checked"), function(){
+                      $.each($("input[name='checkbox']:checked"), function(){
                 presence.push($(this).val());                
             });
                         $.ajax({  

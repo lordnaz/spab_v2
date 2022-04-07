@@ -12,6 +12,7 @@ use App\Models\AsasInterview;
 use App\Models\PenawaranPermohonan;
 use App\Models\Offerprogram;
 use App\Models\StatusPermohonan;
+use App\Models\ProgramApplied;
 
 class ResultInterviewController extends Controller
 {
@@ -24,17 +25,15 @@ class ResultInterviewController extends Controller
         $DataCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->orderBy('asas_interview.asas_id', 'asc')->where('asas_interview.status', true)->get();
         $FirstCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->orderBy('asas_interview.asas_id', 'asc')->where('asas_interview.status', true)->first();
 
-        $displayTable = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
+        $displayTable = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')       
             ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
             ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
-            ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
+            ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')          
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-            ->where('all_status_permohonan.status_temuduga', 'Temuduga')
-            ->where('all_status_permohonan.status_temuduga', 'Hadir')
-            ->where('all_status_permohonan.status_temuduga', 'Tidak Hadir')
             ->where('screening_interview.center_id', $FirstCenter->center_id)
+            ->orWhere('all_status_permohonan.status_temuduga', 'Temuduga')
+            ->orWhere('all_status_permohonan.status_temuduga', 'Hadir')
+            ->orWhere('all_status_permohonan.status_temuduga', 'Tidak Hadir')       
             ->get();
 
             $cadang1 = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -43,15 +42,25 @@ class ResultInterviewController extends Controller
             ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
             ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-            ->where('all_status_permohonan.status_temuduga', 'Temuduga')
-            ->where('all_status_permohonan.status_temuduga', 'Hadir')
-            ->where('all_status_permohonan.status_temuduga', 'Tidak Hadir')
             ->where('screening_interview.center_id', $FirstCenter->center_id)
-            ->select('program.code as cadang1code')
+            ->orWhere('all_status_permohonan.status_temuduga', 'Temuduga')
+            ->orWhere('all_status_permohonan.status_temuduga', 'Hadir')
+            ->orWhere('all_status_permohonan.status_temuduga', 'Tidak Hadir')     
             ->get();
 
             $cadang2 = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')->where('all_status_permohonan.status_temuduga', 'Temuduga')->where('all_status_permohonan.status_temuduga', 'Hadir')->where('all_status_permohonan.status_temuduga', 'Tidak Hadir')->where('screening_interview.center_id', $FirstCenter->center_id)->select('program.code as cadang2code')->get();
+            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+            ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
+            ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
+            ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
+            ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+            ->where('screening_interview.center_id', $FirstCenter->center_id)
+            ->orWhere('all_status_permohonan.status_temuduga', 'Temuduga')
+            ->orWhere('all_status_permohonan.status_temuduga', 'Hadir')
+            ->orWhere('all_status_permohonan.status_temuduga', 'Tidak Hadir')     
+            ->get();
+
+            $program = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
 
         $data = [
             'status' => 'success',
@@ -62,6 +71,7 @@ class ResultInterviewController extends Controller
             'displayTable' => $displayTable,
             'cadang1' => $cadang1,
             'cadang2' => $cadang2,
+            'program' => $program,
             
         ];
 
@@ -76,25 +86,42 @@ class ResultInterviewController extends Controller
         $FirstCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->where('asas_id', $req->type)->first();
        
 
-        $displayTable = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('program_applied', 'program_applied.nric', '=', 'user_details.nric')
-            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
-            ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
-            ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
-            ->join('program', 'program.program_id', '=', 'program_applied.program_id')
-            ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-            ->where('all_status_permohonan.status_temuduga', 'Temuduga')
-            ->where('all_status_permohonan.status_temuduga', 'Hadir')
-            ->where('all_status_permohonan.status_temuduga', 'Tidak Hadir')
-            ->where('screening_interview.center_id', $FirstCenter->center_id)
-            ->get();
+        $displayTable = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')       
+        ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+        ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
+        ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')          
+        ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+        ->where('screening_interview.center_id', $FirstCenter->center_id)
+        ->orWhere('all_status_permohonan.status_temuduga', 'Temuduga')
+        ->orWhere('all_status_permohonan.status_temuduga', 'Hadir')
+        ->orWhere('all_status_permohonan.status_temuduga', 'Tidak Hadir')       
+        ->get();
 
-            $cadang1 = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')->where('all_status_permohonan.status_temuduga', 'Temuduga')->where('all_status_permohonan.status_temuduga', 'Hadir')->where('all_status_permohonan.status_temuduga', 'Tidak Hadir')->where('screening_interview.center_id', $FirstCenter->center_id)->get();
+        $cadang1 = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
+        ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+        ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
+        ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
+        ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang1')
+        ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+        ->where('screening_interview.center_id', $FirstCenter->center_id)
+        ->orWhere('all_status_permohonan.status_temuduga', 'Temuduga')
+        ->orWhere('all_status_permohonan.status_temuduga', 'Hadir')
+        ->orWhere('all_status_permohonan.status_temuduga', 'Tidak Hadir')     
+        ->get();
 
-            $cadang2 = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-            ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')->where('all_status_permohonan.status_temuduga', 'Temuduga')->where('all_status_permohonan.status_temuduga', 'Hadir')->where('all_status_permohonan.status_temuduga', 'Tidak Hadir')->where('screening_interview.center_id', $FirstCenter->center_id)->get();
+        $cadang2 = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
+        ->join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+        ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
+        ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')
+        ->join('program', 'program.program_id', '=', 'penawaran_permohonan.cadang2')
+        ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+        ->where('screening_interview.center_id', $FirstCenter->center_id)
+        ->orWhere('all_status_permohonan.status_temuduga', 'Temuduga')
+        ->orWhere('all_status_permohonan.status_temuduga', 'Hadir')
+        ->orWhere('all_status_permohonan.status_temuduga', 'Tidak Hadir')     
+        ->get();
 
+        $program = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
         $data = [
             'status' => 'success',
             'code' => '000',
@@ -102,6 +129,9 @@ class ResultInterviewController extends Controller
             'DataCenter' => $DataCenter,
             'FirstCenter' => $FirstCenter,
             'displayTable' => $displayTable,
+            'cadang1' => $cadang1,
+            'cadang2' => $cadang2,
+            'program' => $program,
             
         ];
 
@@ -118,7 +148,7 @@ class ResultInterviewController extends Controller
 
         $dataPelajar = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
             ->where('user_details.nric', $req->type)           
-            ->get();
+            ->first();
 
             $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
 
@@ -151,6 +181,7 @@ class ResultInterviewController extends Controller
 
             $updatestatus = StatusPermohonan::where('nric', $req->nric)->update([
                 'status_temuduga' => 'Hadir',
+                'status_offer' => 'Hadir Temuduga'
 
             ]);
         }
@@ -167,6 +198,7 @@ class ResultInterviewController extends Controller
 
         $updatestatus = StatusPermohonan::where('nric', $req->nric)->update([
             'status_temuduga' => 'Hadir',
+            'status_offer' => 'Hadir Temuduga'
 
         ]);
 
@@ -189,7 +221,7 @@ class ResultInterviewController extends Controller
 
         $dataPelajar = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
             ->where('user_details.nric', $req->type)           
-            ->get();
+            ->first();
 
             $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
 
@@ -220,6 +252,7 @@ class ResultInterviewController extends Controller
 
             $updatestatus = StatusPermohonan::where('nric', $req->nric)->update([
                 'status_temuduga' => 'Tidak Hadir',
+                'status_offer' => 'Tidak Hadir'
 
             ]);
         }
@@ -236,6 +269,7 @@ class ResultInterviewController extends Controller
 
         $updatestatus = StatusPermohonan::where('nric', $req->nric)->update([
             'status_temuduga' => 'Tidak Hadir',
+            'status_offer' => 'Tidak Hadir'
 
         ]);
 
@@ -275,6 +309,7 @@ class ResultInterviewController extends Controller
 
         $updatestatus = StatusPermohonan::where('nric', $req->code)->update([
             'status_temuduga' => 'Temuduga',
+            'status_offer' => NULL
 
         ]);
 
@@ -283,7 +318,7 @@ class ResultInterviewController extends Controller
         $data = [
             'status' => 'failed',
             'code' => '001',
-            'description' => 'program failed to update'
+            'description' => 'program failed to update',
         ];
 
         return response()->json($data);

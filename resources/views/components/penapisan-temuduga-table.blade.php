@@ -29,7 +29,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-          <h4 class="card-title">{!! __('locale.Interview Setting') !!}</h4>
+          <h4 class="card-title">Penapisan Temuduga</h4>
         </div>
         
         <!--Search Form -->
@@ -153,15 +153,16 @@
             </thead>
             @php  
                 $count = 1;
+              
               @endphp
               
             <tbody>
              
 
               @foreach ($displayTemuduga as $displayTemudugaa)
-              @php
-             $total = count($displayTemudugaa['program']);
-                           
+              @php  
+               
+               $too = 0;
              @endphp
                 <tr class="text-center" >
                   <td>{{$count++}}</td>
@@ -169,32 +170,33 @@
                   <td>{{$displayTemudugaa['name']}}</td>
                   <td>{{$displayTemudugaa['type_program_applied']}}</td>
                   <td>{{$displayTemudugaa['state']}}</td>
-                  @if ($total == '2')
-                  @foreach ($displayTemudugaa as $displayTemudugaaa)
+                  
+                  @foreach ($tolak as $Tolak)
+                
+                @if ($Tolak['nric'] == $displayTemudugaa['nric'])
+                @php 
+                $too = $too + 1;
+                @endphp
+                @if($loop->first)
+                @if ($displayTemudugaa['kelulusan1'] == 'L' || $displayTemudugaa['kelulusan1'] == 'G')
+                <td>{{$Tolak['program']}}-{{$displayTemudugaa['kelulusan1']}}</td>
+                @else
+                <td>{{$Tolak['program']}}-N{{$displayTemudugaa['kelulusan1']}}</td>
+                @endif
+                @else
+                @if ($displayTemudugaa['kelulusan2'] == 'L' || $displayTemudugaa['kelulusan2'] == 'G')
+                <td>{{$Tolak['program']}}-{{$displayTemudugaa['kelulusan2']}}</td>
+                @else
+                <td>{{$Tolak['program']}}-N{{$displayTemudugaa['kelulusan2']}}</td>
+                @endif
 
-                  @if($loop->first)
-                  @if ($displayTemudugaa['kelulusan1'] == 'L' || $displayTemudugaa['kelulusan1'] == 'G' )
-                  <td>{{$displayTemudugaaa['program']}}-{{$displayTemudugaa['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayTemudugaaa['program']}}-N{{$displayTemudugaa['kelulusan1']}}</td>
-                  @endif
-                  @else
-                  @if ($displayTemudugaa['kelulusan2'] == 'L' || $displayTemudugaa['kelulusan2'] == 'G')
-                  <td>{{$displayTemudugaaa['program']}}-{{$displayTemudugaa['kelulusan2']}}</td>
-                  @else
-                  <td>{{$displayTemudugaaa['program']}}-N{{$displayTemudugaa['kelulusan2']}}</td>
-                  @endif
+                @endif
+                @endif
 
-                  @endif
-                  @endforeach
-                  @else
-                  @if ($displayTemudugaa['kelulusan1'] == 'L' || $displayTemudugaa['kelulusan1'] == 'G')
-                  <td>{{$displayTemudugaaa['program']}}-{{$displayTemudugaa['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayTemudugaaa['program']}}-N{{$displayTemudugaa['kelulusan1']}}</td>
-                  @endif
-                  <td></td>
-                  @endif
+                @endforeach
+                @if ($too == 1)
+                <td></td>
+                @endif
                   <td>{{$displayTemudugaa['cert_related_program']}}</td>
                   <td>{{$displayTemudugaa['code_center']}}</td>
                   <td>{{$displayTemudugaa['TarikhProses']}}</td>
@@ -210,34 +212,7 @@
                  
                 </tr>
              @endforeach
-             <tr class="text-center">
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  
-                 
-                  <td>nizam</td>
-                  <td>nizam</td>
-                 
-                 
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
-                  <a href="" class="btn-sm btn-warning">Temuduga</a>
-                  <a href="" class="btn-sm btn-warning">Tolak</a>
-                    <a href="" class="btn-sm btn-danger deletePusatTemuduga"> 
-                      Batal
-                    </a>
-                 
-              
-                 
-                  </td>
-                 
-                </tr>
+           
             
             </tbody>
             
@@ -273,46 +248,50 @@
             <tbody>
               @php  
                 $count = 1;
+                
               @endphp
+              
 
               @foreach ($displayTolak as $displayTolakk)
-              @php
-             $total = count($displayTolakk['program']);
-                           
-             @endphp
+              @php  
+               
+                $to = 0;
+              @endphp
                 <tr class="text-center">
                   <td></td>
                   <td>{{$displayTolakk['nric']}}</td>
                   <td>{{$displayTolakk['name']}}</td>
                   <td>{{$displayTolakk['type_program_applied']}}</td>
                   <td>{{$displayTolakk['state']}}</td>
-                  @if ($total == '2')
-                  @foreach ($displayTolakk as $displayTolakkk)
+                 
+                  @foreach ($tolak as $Tolak)
+                
+                  @if ($Tolak['nric'] == $displayTolakk['nric'])
+                  @php 
+                  $to = $to + 1;
+                  @endphp
                   @if($loop->first)
                   @if ($displayTolakk['kelulusan1'] == 'L' || $displayTolakk['kelulusan1'] == 'G')
-                  <td>{{$displayTolakkk['program']}}-{{$displayTolakk['kelulusan1']}}</td>
+                  <td>{{$Tolak['program']}}-{{$displayTolakk['kelulusan1']}}</td>
                   @else
-                  <td>{{$displayTolakkk['program']}}-N{{$displayTolakk['kelulusan1']}}</td>
+                  <td>{{$Tolak['program']}}-N{{$displayTolakk['kelulusan1']}}</td>
                   @endif
                   @else
                   @if ($displayTolakk['kelulusan2'] == 'L' || $displayTolakk['kelulusan2'] == 'G')
-                  <td>{{$displayTolakkk['program']}}-{{$displayTolakk['kelulusan2']}}</td>
+                  <td>{{$Tolak['program']}}-{{$displayTolakk['kelulusan2']}}</td>
                   @else
-                  <td>{{$displayTolakkk['program']}}-N{{$displayTolakk['kelulusan2']}}</td>
+                  <td>{{$Tolak['program']}}-N{{$displayTolakk['kelulusan2']}}</td>
                   @endif
 
                   @endif
-                  @endforeach
-                  @else
-                  @if ($displayTolakk['kelulusan1'] == 'L' || $displayTolakk['kelulusan1'] == 'G')
-                  <td>{{$displayTolakkk['program']}}-{{$displayTolakk['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayTolakkk['program']}}-N{{$displayTolakk['kelulusan1']}}</td>
                   @endif
+
+                  @endforeach
+                  @if ($to == 1)
                   <td></td>
                   @endif
                   <td>{{$displayTolakk['cert_related_program']}}</td>
-                  <td>{{$displayTolakk['code_center']}}</td>
+                  <td></td>
                   <td>{{$displayTolakk['TarikhProses']}}</td>
                   <td>
                   <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
@@ -325,33 +304,7 @@
                  
                 </tr>
              @endforeach
-             <tr class="text-center">
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  
-                 
-                  <td>nizam</td>
-                  <td>nizam</td>
-                 
-                 
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>nizam</td>
-                  <td>
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
-                  <a href="" class="btn-sm btn-warning">Temuduga</a>
-                    <a href="" class="btn-sm btn-danger deletePusatTemuduga"> 
-                      Batal
-                    </a>
-                 
-              
-                 
-                  </td>
-                 
-                </tr>
+            
             </tbody>
           </table>
         </div>
@@ -387,44 +340,18 @@
               @endphp
 
               @foreach ($displayBelumProses as $displayBelumProsess)
-              @php
-             $total = count($displayBelumProsess['program']);
-                           
-             @endphp
+  
                 <tr class="text-center">
                   <td></td>
                   <td>{{$displayBelumProsess['nric']}}</td>
                   <td>{{$displayBelumProsess['name']}}</td>
                   <td>{{$displayBelumProsess['type_program_applied']}}</td>
                   <td>{{$displayBelumProsess['state']}}</td>
-                  @if ($total == '2')
-                  @foreach ($displayBelumProsess as $displayBelumProsesss)
-                  @if($loop->first)
-                  @if ($displayBelumProsess['kelulusan1'] == 'L' || $displayBelumProsess['kelulusan1'] == 'G')
-                  <td>{{$displayBelumProsesss['program']}}-{{$displayBelumProsess['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayBelumProsesss['program']}}-N{{$displayBelumProsess['kelulusan1']}}</td>
-                  @endif
-                  @else
-                  @if ($ddisplayBelumProsess['kelulusan2'] == 'L' || $displayBelumProsess['kelulusan2'] == 'G')
-                  <td>{{$displayBelumProsesss['program']}}-{{$displayBelumProsess['kelulusan2']}}</td>
-                  @else
-                  <td>{{$displayBelumProsesss['program']}}-N{{$displayBelumProsess['kelulusan2']}}</td>
-                  @endif
-
-                  @endif
-                  @endforeach
-                  @else
-                  @if ($displayTemudugaa['kelulusan1'] == 'L' || $displayBelumProsess['kelulusan1'] == 'G')
-                  <td>{{$displayBelumProsesss['program']}}-{{$displayBelumProsess['kelulusan1']}}</td>
-                  @else
-                  <td>{{$displayBelumProsesss['program']}}-N{{$displayBelumProsess['kelulusan1']}}</td>
-                  @endif
                   <td></td>
-                  @endif
+                  <td></td>            
                   <td>{{$displayBelumProsess['cert_related_program']}}</td>
-                  <td>{{$displayBelumProsess['code_center']}}</td>
-                  <td>{{$displayBelumProsess['TarikhProses']}}</td>
+                  <td></td>
+                  <td></td>
                 
                  
                 </tr>

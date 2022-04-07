@@ -495,6 +495,12 @@ return [
     "Amount" => "Amaun",
     "Print" => "Cetak",
 
+    //Penawaran Permohonan
+    "Penawaran Permohonan" => "Penawaran Permohonan",
+    "Penapisan Temuduga" => "Penapisan Temuduga",
+    "Penjadualan Temuduga" => "Penjadualan Temuduga",
+    "Keputusan Temuduga" => "Keputusan Temuduga"
+
 
 
 ];

@@ -38,7 +38,7 @@
                                             <select class="select2 form-select" id="myselect" name="program_tawar">
                                                 <option selected disabled>{!! __('locale.Please Choose') !!}</option>
                                                 @foreach ($program as $programs)
-                                                <option value="{{$programs['program_id']}}" @if(!empty($displaypenawaran['cadang1'])) @if($programs['program_id'] == $displaypenawaran['program_tawar']) selected @endif @endif>{{$programs['code']}} - {{$programs['program']}}</option>
+                                                <option value="{{$programs['program_id']}}" @if($programs['program_id'] == $id) selected @endif >{{$programs['code']}} - {{$programs['program']}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -132,7 +132,7 @@
 
 
                                 <div class="col-sm-3 offset-sm-9">
-                                    <a href="{{ route('PusatTemudugaTable') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Back') !!}</a>
+                                    <a href="{{ route('PenawaranPermohonan') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Back') !!}</a>
 
 
                                     <button type="submit" class="btn btn-success">

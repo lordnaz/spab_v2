@@ -53,6 +53,24 @@
           "name": "Bukak Temuduga",
           "icon": "circle",
           "slug": "program"
+        },
+        {
+          "url": "PenapisanTemuduga",
+          "name": "Penapisan Temuduga",
+          "icon": "circle",
+          "slug": "program"
+        },
+        {
+          "url": "penjadualan_temuduga",
+          "name": "Penjadualan Temuduga",
+          "icon": "circle",
+          "slug": "program"
+        },
+        {
+          "url": "keputusan_temuduga",
+          "name": "Keputusan Temuduga",
+          "icon": "circle",
+          "slug": "program"
         }
       ]
     },
@@ -70,6 +88,12 @@
         {
           "url": "display_pengesahan_permohonan",
           "name": "Application Confirmation",
+          "icon": "circle",
+          "slug": "registration"
+        },
+        {
+          "url": "PenawaranPermohonan",
+          "name": "Penawaran Permohonan",
           "icon": "circle",
           "slug": "registration"
         },
