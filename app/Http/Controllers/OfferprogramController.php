@@ -14,7 +14,7 @@ class OfferprogramController extends Controller
 
         $user_id = auth()->User()->name;
 
-        $exits = program::where('program_id', $req->program_id)->where('status',true)->exits();
+        $exits = Offerprogram::where('program_id', $req->program_id)->where('status',true)->exists();
 
         if(!$exits){
         $addprogram = new Offerprogram;
