@@ -79,4 +79,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(ProgramApplied::class, 'created_by');
     }
+
+    public function status_regis()
+    {
+        return $this->hasOne(StatusPermohonan::class, 'created_by');
+    }
 }

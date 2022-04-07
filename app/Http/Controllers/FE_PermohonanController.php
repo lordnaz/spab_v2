@@ -15,14 +15,48 @@ use App\Models\MuetResult;
 use App\Models\ProgramApplied;
 use App\Models\QualificationPermohonan;
 use App\Models\SponsorDetails;
-use App\Models\StatusPermohonan;
 use App\Models\SubjectGrade;
 use App\Models\PenawaranPermohonan;
-use App\Models\program;
+use App\Models\program as Program;
+use App\Models\StatusPermohonan as SubmitApplication;
 
 class FE_PermohonanController extends Controller
 {
+    
     //
+    public function regis_all(){
+
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Permohonan"], ['name' => "Senarai Permohonan"]
+        ];
+
+        // $request = Request::create('/api/display_allprogram', 'GET');
+        // $response = Route::dispatch($request);
+
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        
+        // $responseBody = json_decode($response->getContent(), true);
+
+        // $datas = $responseBody['data'];
+
+        // return view('components.program-setting', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+
+        $userid = auth()->user()->id;
+
+        $userdetails = UserDetail::where('created_by', $userid)->first();
+
+        $applications = SubmitApplication::where('nric', $userdetails->nric)->get();
+
+        // check if have active application, then disable button new registration 
+        $active_exist = SubmitApplication::where('nric', $userdetails->nric)
+                                        ->where('status_validation', 'DRAFT')
+                                        ->orWhere('status_validation', 'DALAM PROSES')
+                                        ->exists();
+
+        return view('components.permohonan-main', ['breadcrumbs' => $breadcrumbs], compact('applications', 'active_exist'));
+    }
+
     public function registration(){
 
         $breadcrumbs = [
@@ -43,7 +77,23 @@ class FE_PermohonanController extends Controller
 
         $email = auth()->user()->email;
 
-        return view('components.permohonan-baru', ['breadcrumbs' => $breadcrumbs], compact('email'));
+        $programs = Program::all();
+
+        $userid = auth()->user()->id;
+        $userdetails = UserDetail::where('created_by', $userid)->first();
+        $applications = SubmitApplication::where('nric', $userdetails->nric)->first();
+
+        $applied_program_one = ProgramApplied::where('job_id', $applications->job_id)
+                                            ->where('sequence', 'program_one')->first();
+        $program_one_id = $applied_program_one->program_id;
+
+        $applied_program_two = ProgramApplied::where('job_id', $applications->job_id)
+                                            ->where('sequence', 'program_two')->first();;
+        $program_two_id = $applied_program_two->program_id;
+
+
+        return view('components.permohonan-baru', ['breadcrumbs' => $breadcrumbs], 
+        compact('email', 'programs', 'program_one_id', 'program_two_id'));
     }
 
     public function draft_one(Request $req){
@@ -52,7 +102,7 @@ class FE_PermohonanController extends Controller
         // $random_number = rand(10000000,99999999);
         // $no_siri = $random_string.$random_number;
 
-        $usersession = auth()->user()->name;
+        $usersession = auth()->user()->id;
         $nric = $req->nric;
         $code = '000';
 
@@ -62,7 +112,7 @@ class FE_PermohonanController extends Controller
 
             if($exists){
 
-                $check_siri = UserDetail::where('nric', $nric)->first();
+                // $check_siri = UserDetail::where('nric', $nric)->first();
 
                 // if no_siri not exist, then let empty 
                 // if($check_siri->no_siri != null || $check_siri->no_siri != ''){
@@ -89,7 +139,7 @@ class FE_PermohonanController extends Controller
                         'phone_no' => $req->phone_no,
                         'dun' => $req->dun,
                         'parliament' => $req->parliament,
-                        'status_admission' => 'Draft',
+                        // 'status_admission' => 'Draft',
                         'created_by' => $usersession,
                         ]);
                 }
@@ -103,6 +153,30 @@ class FE_PermohonanController extends Controller
             
         }else{
             $code = '002';
+        }
+
+        $submission = SubmitApplication::where('nric', $nric)
+                                        ->where('status_validation', 'DRAFT')
+                                        ->orWhere('status_validation', 'DALAM PROSES')
+                                        ->exists();
+
+        if($code == '000' && $submission != true) {
+
+            // If update is success and DRAFT submission OR PROCESSED submission not exist, then can insert new DRAFT submission
+            // Fatin kena update kalau ada lagi status lain selain dari DALAM PROSES, untuk allow new submission
+
+            $random_string = chr(rand(65,90)) . chr(rand(65,90)) . chr(rand(65,90));
+            $random_number = rand(10000000,99999999);
+            $job_id = $random_string.$random_number;
+
+            $submit = new SubmitApplication;
+            $submit->nric = $nric;
+            $submit->job_id = $job_id;
+            $submit->status_validation = 'DRAFT';
+            $submit->created_by = $usersession;
+            $submit->modified_by = $usersession;
+            $submit->save();
+
         }
 
         switch ($code) {
@@ -247,6 +321,85 @@ class FE_PermohonanController extends Controller
         }
 
         return $data; 
+    }
+
+    public function draft_three(Request $req){
+
+        $usersession = auth()->user()->id;
+        $type = $req->type_program_applied;
+        $program_one = $req->program_one;
+        $program_two = $req->program_two;
+        $nric = $req->nric;
+        $code = '000';
+
+        $application = SubmitApplication::where('nric', $nric)
+                                        ->where('status_validation', 'DRAFT')
+                                        ->orWhere('status_validation', 'DALAM PROSES')
+                                        ->first();
+
+        // update study mode
+        $save_draft = SubmitApplication::where('nric', $nric)
+                                        ->where('job_id', $application->job_id)
+                                        ->update([
+                                            'study_mode' => $type,
+                                            ]);
+
+        $check_program_one = ProgramApplied::where('job_id', $application->job_id)
+                                            ->where('sequence', 'program_one');
+
+        if(!$check_program_one){
+            if($program_one != ''){
+                $program_applied = new ProgramApplied;
+                $program_applied->nric = $nric;
+                $program_applied->job_id = $application->job_id;
+                $program_applied->program_id = $program_one;
+                $program_applied->sequence = 'program_one';
+                $program_applied->created_by = $usersession;
+                $program_applied->modified_by = $usersession;
+                $program_applied->save();
+            }
+        }else{
+            // If exist, update data 
+            $save_one = ProgramApplied::where('nric', $nric)
+                                        ->where('job_id', $application->job_id)
+                                        ->where('sequence', 'program_one')
+                                        ->update([
+                                            'program_id' => $program_one,
+                                            ]);
+        }
+
+        $check_program_two = ProgramApplied::where('job_id', $application->job_id)
+                                            ->where('sequence', 'program_two');
+        
+        if(!$check_program_two){
+            if($program_two != ''){
+                $program_applied = new ProgramApplied;
+                $program_applied->nric = $nric;
+                $program_applied->program_id = $program_two;
+                $program_applied->job_id = $application->job_id;
+                $program_applied->sequence = 'program_two';
+                $program_applied->created_by = $usersession;
+                $program_applied->modified_by = $usersession;
+                $program_applied->save();
+            }
+        }else{
+            // If exist, update data 
+            $save_two = ProgramApplied::where('nric', $nric)
+                                        ->where('job_id', $application->job_id)
+                                        ->where('sequence', 'program_two')
+                                        ->update([
+                                            'program_id' => $program_two,
+                                            ]);
+        }
+
+        $data = [
+            'status' => 'success',
+            'code' => $code,
+            'description' => 'draft successfully submitted',
+        ];
+
+        return $data; 
+
     }
 
 

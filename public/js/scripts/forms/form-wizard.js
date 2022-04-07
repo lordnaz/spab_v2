@@ -170,6 +170,42 @@ $(function () {
     
   });
 
+
+  $('.draftThree').on('click', function (event) {
+
+    let data = {
+      'nric' : $('.nric').val(),
+      'type_program_applied' : $('.type_program_applied').val(),
+      'program_one' : $('.program_one').val(),
+      'program_two' : $('.program_two').val()
+    }
+
+    $.ajax({
+      url: "draft_three",
+      dataType: 'json',
+      type: 'POST',
+      data: data,
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      success: function(data, status) {
+        console.log("The returned data", data);
+
+        if(data.code == '000'){
+          successToast(data.description)
+        }else{
+          errorToast(data.description)
+        }
+      }
+      // ,
+      // beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + tokenString ); } //set tokenString before send
+    });
+    
+  });
+
   // formOne valid
 
   function formOneValid(){
@@ -248,6 +284,39 @@ $(function () {
 
     $.ajax({
       url: "draft_two",
+      dataType: 'json',
+      type: 'POST',
+      data: data,
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      success: function(data, status) {
+        console.log("The returned data", data);
+
+        if(data.code == '000'){
+          // successToast(data.description)
+        }else{
+          // errorToast(data.description)
+        }
+      }
+      // ,
+      // beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + tokenString ); } //set tokenString before send
+    });
+  }
+
+  function formThreeValid(){
+    let data = {
+      'nric' : $('.nric').val(),
+      'type_program_applied' : $('.type_program_applied').val(),
+      'program_one' : $('.program_one').val(),
+      'program_two' : $('.program_two').val()
+    }
+
+    $.ajax({
+      url: "draft_three",
       dataType: 'json',
       type: 'POST',
       data: data,
@@ -393,9 +462,6 @@ $(function () {
           relationship_guardian: {
             required: true
           },
-          guardian_nric_old: {
-            required: true
-          },
           guardian_nric_new: {
             required: true
           },
@@ -441,6 +507,16 @@ $(function () {
           },
 
 
+          //program
+          type_program_applied: {
+            required: true
+          },
+          program_one: {
+            required: true
+          },
+          program_two: {
+            required: true
+          },
 
 
           // END
@@ -514,7 +590,7 @@ $(function () {
                 formTwoValid()
                 break;
               case 'draftThree':
-                formTwoValid()
+                formThreeValid()
                 break;
               default:
                 // alert('do nothing')

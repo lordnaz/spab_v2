@@ -46,7 +46,7 @@
           "url": "pusattemuduga",
           "name": "Pusat Temuduga",
           "icon": "circle",
-          "slug": "program"
+          "slug": "pusattemuduga"
         },
         {
           "url": "PusatTemudugaTable",
@@ -70,7 +70,7 @@
           "url": "keputusan_temuduga",
           "name": "Keputusan Temuduga",
           "icon": "circle",
-          "slug": "program"
+          "slug": "PusatTemudugaTable"
         }
       ]
     },
@@ -80,16 +80,16 @@
       "slug": "",
       "submenu": [
         {
-          "url": "registration",
-          "name": "New Registration",
+          "url": "regis_all",
+          "name": "Registration Details",
           "icon": "circle",
-          "slug": "registration"
+          "slug": "regis_all"
         },
         {
           "url": "display_pengesahan_permohonan",
           "name": "Application Confirmation",
           "icon": "circle",
-          "slug": "registration"
+          "slug": "display_pengesahan_permohonan"
         },
         {
           "url": "PenawaranPermohonan",
@@ -101,21 +101,15 @@
           "url": "keputusanpermohonan",
           "name": "Application Results",
           "icon": "circle",
-          "slug": "registration"
+          "slug": "keputusanpermohonan"
         },
         {
           "url": "balasancalon",
           "name": "Candidate Reply",
           "icon": "circle",
-          "slug": "registration"
+          "slug": "balasancalon"
         }
       ]
-    },
-    {
-      "url": "transactions",
-      "name": "Transactions",
-      "icon": "dollar-sign",
-      "slug": "transactions"
     }
   ]
 }
