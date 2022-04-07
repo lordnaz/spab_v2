@@ -152,13 +152,11 @@ Route::middleware('auth:sanctum')->post('/pemprosesanTawaran', [PenawaranPermoho
 Route::middleware('auth:sanctum')->get('/display_all_permohonan_pengesahan', [KeputusanPermohonanAPIController::class, '/display_all_permohonan_pengesahan']);
 Route::middleware('auth:sanctum')->post('display_keputusanbynric', [KeputusanPermohonanAPIController::class, 'display_keputusanbynric']);
 
-//Balasan Calon Permohonan
-Route::middleware('auth:sanctum')->get('/display_balasan', [BalasanCalonAPIController::class, '/display_balasan']);
-Route::middleware('auth:sanctum')->post('/terima', [BalasanCalonAPIController::class, '/terima']);
-Route::middleware('auth:sanctum')->post('/tolak', [BalasanCalonAPIController::class, '/tolak']);
-Route::middleware('auth:sanctum')->post('/display_balasanbynric', [BalasanCalonAPIController::class, '/display_balasanbynric']);
-Route::middleware('auth:sanctum')->post('balasan_terima', [BalasanCalonAPIController::class, 'balasan_terima']);
 
+//Balasan Calon Permohonan
+Route::middleware('auth:sanctum')->get('/display_balasan', [BalasanCalonAPIController::class, 'display_balasan']);
+Route::middleware('auth:sanctum')->post('balasan_terima', [BalasanCalonAPIController::class, 'balasan_terima']);
+Route::middleware('auth:sanctum')->post('display_balasanbynric', [BalasanCalonAPIController::class, 'display_balasanbynric']);
 
 //pengesahan permhonan add on API
 Route::middleware('auth:sanctum')->post('getSahkanbyID', [PengesahanPermohonanAPIController::class, 'getSahkanbyID']);
