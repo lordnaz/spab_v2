@@ -137,45 +137,45 @@ class ProgrammeController extends Controller
 
     public function add_new_offered_program(Request $req){
 
-        $data = $req->input();
+        // $data = $req->input();
 
-        $user_id = auth()->user()->name;
+        // $user_id = auth()->user()->name;
 
-        try {
-            $addprogram = new Offerprogram;
-            $addprogram->program_id = $req->program_id;
-            $addprogram->mode = $req->mode;
-            $addprogram->notes = $req->notes;
-            $addprogram->quota = $req->quota;
-            $addprogram->quota_semasa = 0;
-            $addprogram->registration_date = $req->registration_date;
-            $addprogram->registration_time = $req->registration_time;
-            $addprogram->registration_venue = $req->registration_venue;
-            $addprogram->status_aktif = "tidak aktif";
-            $addprogram->status_validate = "tiada pelajar";
-            $addprogram->qualification_text = "nothing";
-            $addprogram->status = true;
-            $addprogram->created_by = $user_id;
-            $addprogram->save();
+        // try {
+        //     $addprogram = new Offerprogram;
+        //     $addprogram->program_id = $req->program_id;
+        //     $addprogram->mode = $req->mode;
+        //     $addprogram->notes = $req->notes;
+        //     $addprogram->quota = $req->quota;
+        //     $addprogram->quota_semasa = 0;
+        //     $addprogram->registration_date = $req->registration_date;
+        //     $addprogram->registration_time = $req->registration_time;
+        //     $addprogram->registration_venue = $req->registration_venue;
+        //     $addprogram->status_aktif = "tidak aktif";
+        //     $addprogram->status_validate = "tiada pelajar";
+        //     $addprogram->qualification_text = "nothing";
+        //     $addprogram->status = true;
+        //     $addprogram->created_by = $user_id;
+        //     $addprogram->save();
 
-        } catch (\Throwable $th) {
-            echo 'ERROR';
+        // } catch (\Throwable $th) {
+        //     echo 'ERROR';
 
-            die();
-        }
+        //     die();
+        // }
         
 
-        // $param = [
+        $param = [
 
             
-        //     'program_id' => $req->program_id,
-        //     'mode' => $req->mode,
-        //     'quota' => $req->quota,
-        //     'notes' => $req->notes,
-        //     'registration_date' => $req->registration_date,
-        //     'registration_time' => $req->registration_time,
-        //     'registration_venue' => $req->registration_venue,
-        // ];
+            'program_id' => $req->program_id,
+            'mode' => $req->mode,
+            'quota' => $req->quota,
+            'notes' => $req->notes,
+            'registration_date' => $req->registration_date,
+            'registration_time' => $req->registration_time,
+            'registration_venue' => $req->registration_venue,
+        ];
 
         
         $breadcrumbs = [
@@ -183,10 +183,10 @@ class ProgrammeController extends Controller
         ];
 
 
-        // $request = Http::withHeaders([
-        //     'Content-Type' => 'application/json',
-        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        // ])->post(getenv('ENDPOINT').'/api/new_offerprogram', $param);
+        $request = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        ])->post(getenv('ENDPOINT').'/api/new_offerprogram', $param);
 
         // return $request;
         // die();
