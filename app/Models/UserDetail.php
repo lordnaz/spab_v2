@@ -14,7 +14,10 @@ class UserDetail extends Model
     
     protected $fillable = [
         'nric',
+        'name',
         'phone_no',
+        'created_by',
+        'modified_by',
         'created_at',
         'updated_at',
     ];

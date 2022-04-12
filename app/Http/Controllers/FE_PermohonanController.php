@@ -46,7 +46,19 @@ class FE_PermohonanController extends Controller
 
         $userdetails = UserDetail::where('created_by', $userid)->first();
 
-        $applications = SubmitApplication::where('nric', $userdetails->nric)->get();
+        $check_applications = SubmitApplication::where('nric', $userdetails->nric)->exists();
+
+        
+
+        $applications = null;
+
+        if($check_applications){
+            $applications = SubmitApplication::where('nric', $userdetails->nric)->get();
+        }
+
+        // return 'data'.$applications;
+        // die();
+        
 
         // check if have active application, then disable button new registration 
         $active_exist = SubmitApplication::where('nric', $userdetails->nric)
@@ -81,15 +93,51 @@ class FE_PermohonanController extends Controller
 
         $userid = auth()->user()->id;
         $userdetails = UserDetail::where('created_by', $userid)->first();
+
+
+        $random_string = chr(rand(65,90)) . chr(rand(65,90)) . chr(rand(65,90));
+        $random_number = rand(10000000,99999999);
+        $job_id = $random_string.$random_number;
+
+        $check_job_id = SubmitApplication::where('nric', $userdetails->nric)
+                                        ->where('status_validation', 'DRAFT')
+                                        ->orWhere('status_validation', 'DALAM PROSES')
+                                        ->exists();
+
+        if(!$check_job_id){
+            $create_job = new SubmitApplication;
+            $create_job->nric = $userdetails->nric;
+            $create_job->job_id = $job_id;
+            $create_job->status_validation = 'DRAFT';
+            $create_job->created_by = $userid;
+            $create_job->modified_by = $userid;
+            $create_job->save();
+        }
+        
         $applications = SubmitApplication::where('nric', $userdetails->nric)->first();
 
-        $applied_program_one = ProgramApplied::where('job_id', $applications->job_id)
-                                            ->where('sequence', 'program_one')->first();
-        $program_one_id = $applied_program_one->program_id;
 
-        $applied_program_two = ProgramApplied::where('job_id', $applications->job_id)
-                                            ->where('sequence', 'program_two')->first();;
-        $program_two_id = $applied_program_two->program_id;
+        $check_one = ProgramApplied::where('job_id', $applications->job_id)
+                                    ->where('sequence', 'program_one')->exists();
+        $program_one_id = "NOT_EXIST";
+        
+        if($check_one){
+            $applied_program_one = ProgramApplied::where('job_id', $applications->job_id)
+                                            ->where('sequence', 'program_one')->first();                                   
+            $program_one_id = $applied_program_one->program_id;
+        }
+        
+
+        $check_two = ProgramApplied::where('job_id', $applications->job_id)
+                                    ->where('sequence', 'program_two')->exists();
+        $program_two_id = 'NOT_EXIST';
+
+        if($check_two){
+            $applied_program_two = ProgramApplied::where('job_id', $applications->job_id)
+                                            ->where('sequence', 'program_two')->first();
+            $program_two_id = $applied_program_two->program_id;
+        }
+        
 
 
         return view('components.permohonan-baru', ['breadcrumbs' => $breadcrumbs], 

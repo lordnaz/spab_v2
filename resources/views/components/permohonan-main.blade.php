@@ -59,19 +59,21 @@
                 $count = 1;
               @endphp
 
-              @foreach ($applications as $application)
-                <tr class="text-center">
-                  <td>{{$count++}}</td>
-                  <td>{{$application['job_id']}}</td>
-                  <td>Permohonan Baru</td>
-                  <td>{{$application['status_validation']}}</td>
-                  <td>{{ \Carbon\Carbon::parse($application['created_at'])}}</td>
-                  <td>
-                    <a href="{{ route('details_program', Crypt::encrypt($application['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
-                  </td>
-                 
-                </tr>
-              @endforeach
+              @if($applications)
+                @foreach ($applications as $application)
+                  <tr class="text-center">
+                    <td>{{$count++}}</td>
+                    <td>{{$application['job_id']}}</td>
+                    <td>Permohonan Baru</td>
+                    <td>{{$application['status_validation']}}</td>
+                    <td>{{ \Carbon\Carbon::parse($application['created_at'])}}</td>
+                    <td>
+                      <a href="{{ route('details_program', Crypt::encrypt($application['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+                    </td>
+                  
+                  </tr>
+                @endforeach
+              @endif
               
             </tbody>
           </table>

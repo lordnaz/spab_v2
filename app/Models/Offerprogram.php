@@ -12,6 +12,22 @@ class Offerprogram extends Model
     protected $table = 'offerprogram';
     protected  $primaryKey = 'offerprogram_id';
 
+    protected $fillable = [
+        'program_id',
+        'mode',
+        'notes',
+        'quota',
+        'quota_semasa',
+        'registration_date',
+        'registration_time',
+        'registration_venue',
+        'status_aktif',
+        'status_validate',
+        'qualification_text',
+        'status',
+        'created_by',
+    ];
+
     protected $hidden = [
         'offerprogram_id',
     ];
