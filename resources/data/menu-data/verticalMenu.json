@@ -24,7 +24,7 @@
           "slug": "offered-program"
         },
         {
-          "url": "app/invoice/edit",
+          "url": "pendaftaranpelajar",
           "name": "Student Registration",
           "icon": "circle",
           "slug": "app-invoice-edit"
