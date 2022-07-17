@@ -19,6 +19,7 @@ class PendaftaranPelajarAPIController extends Controller
         $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
         
 
+        
         return view('components.pendaftaran-pelajar-detail')->with('data',$displayapplicantinfo)->with('dataa',$program);
     }
 
@@ -27,23 +28,15 @@ class PendaftaranPelajarAPIController extends Controller
         $displayapplicantinfo = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')->join('pendaftaran_pelajar', 'pendaftaran_pelajar.nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->first();
         $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
 
-        $updateapplicant= UserDetail::find($req->nric);
-        $updateapplicant->name=$req->name;
-        $updateapplicant->date_of_birth=$req->date_of_birth;
-        $updateapplicant->gender=$req->gender;
-        $updateapplicant->race=$req->race;
-        $updateapplicant->address_1=$req->address_1;
-        $updateapplicant->phone_no=$req->phone_no;
-        $updateapplicant->description=$req->description;
-        $updateapplicant->save();
+       
 
-        $updateapplicant2= PenawaranPermohonan::find($req->nric);
-        $updateapplicant2->program_tawar=$req->program_tawar;
-        $updateapplicant2->save();
+      
 
-        $updateapplicant3= StatusPermohonan::find($req->nric);
-        $updateapplicant3->status_pendaftaran='DAFTAR';
-        $updateapplicant3->save();
+        $save_draft = StatusPermohonan::where('nric', $req->nric)
+                ->update([
+                    'status_pendaftaran' => 'DAFTAR',
+                    'status_global' => 'DAFTAR',
+                    ]);
 
         $exists = PendaftaranPelajar::where('nric', $req->nric)->exists();
         if(!$exists){      
@@ -87,9 +80,15 @@ class PendaftaranPelajarAPIController extends Controller
     
         $code = decrypt($code);
 
-        $updateapplicant3= StatusPermohonan::find($code);
-        $updateapplicant3->status_pendaftaran='BELUM';
-        $updateapplicant3->save();
+        
+
+        $save_draft = StatusPermohonan::where('nric', $code)
+        ->update([
+            'status_pendaftaran' => NULL,
+            'status_global' => 'TERIMA TAWARAN',
+            ]);
+
+            return redirect()->route('pendaftaranpelajar');
     }
 
     public function printreceipt(){

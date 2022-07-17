@@ -48,7 +48,7 @@
     <div class="mb-1">
       <x-jet-label class="form-label" for="name" value="{{ __('Name') }}" />
       <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
-        wire:model.defer="state.name" autocomplete="name" />
+      wire:model.defer="state.name" autocomplete="name" />
       <x-jet-input-error for="name" />
     </div>
 
@@ -59,6 +59,27 @@
         wire:model.defer="state.email" />
       <x-jet-input-error for="email" />
     </div>
+    <div class="mb-1">
+   
+    <x-jet-label class="form-label" for="email" value="{{ __('Race') }}" />
+              <select class="form-select w-100 race" id="race" wire:model.defer="state.race">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                <option value="Melayu" @if($state['race'] == "Melayu") selected @else  @endif>Melayu</option>
+                <option value="Cina" @if($state['race'] == "Cina") selected @else  @endif>Cina</option>
+                <option value="India" @if($state['race'] == "India") selected @else  @endif>India</option>
+                <option value="Lain-lain" @if($state['race'] == "Lain-lain") selected @else  @endif>Lain-lain</option>
+              </select>
+    </div>
+
+    <div class="mb-1">
+              
+              <x-jet-label class="form-label" for="email" value="{{ __('Gender') }}" />
+              <select class="form-select w-100 gender" id="gender" wire:model.defer="state.gender">
+                <option label="">{!! __('locale.Please Choose') !!}</option>
+                <option value="Male" @if($state['gender'] == "Male") selected @else  @endif>Male</option>
+                <option value="Female" @if($state['gender'] == "Female") selected @else  @endif>Female</option>
+              </select>
+            </div>
   </x-slot>
 
   <x-slot name="actions">

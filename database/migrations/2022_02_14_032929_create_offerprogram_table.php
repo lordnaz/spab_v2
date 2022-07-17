@@ -26,6 +26,7 @@ class CreateOfferprogramTable extends Migration
             $table->string('status_aktif');
             $table->string('status_validate');
             $table->boolean('status')->default(true);
+            $table->string('job_id')->nullable();
             $table->string('created_by');
             $table->foreignId('program_id')->index();
             $table->timestamps();

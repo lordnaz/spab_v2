@@ -22,7 +22,7 @@ class InterviewScreeningController extends Controller
 
         $displayBelumProses = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-            ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+            ->where('all_status_permohonan.status_temuduga', 'BELUM PROSES')
             ->get();
 
         $displayTemuduga = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -62,7 +62,7 @@ class InterviewScreeningController extends Controller
         if ($req->type == "Semua") {
             $displayBelumProses =  UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-            ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+            ->where('all_status_permohonan.status_temuduga', 'BELUM PROSES')
             ->get();
 
             $displayTemuduga = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
@@ -82,7 +82,7 @@ class InterviewScreeningController extends Controller
 
             $displayBelumProses =  UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
             ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-            ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+            ->where('all_status_permohonan.status_temuduga', 'BELUM PROSES')
             ->where('user_details.state', $req->type)
             ->get();
 
@@ -135,7 +135,8 @@ class InterviewScreeningController extends Controller
             ]);
 
         $updatestatus = StatusPermohonan::where('nric', $req->code)->update([
-                'status_temuduga' => 'Belum proses',
+                'status_temuduga' => 'BELUM PROSES',
+                'status_global' => 'DISAHKAN',
 
             ]);
 
@@ -165,6 +166,7 @@ class InterviewScreeningController extends Controller
 
         $updatestatus = StatusPermohonan::where('nric', $req->code)->update([
                 'status_temuduga' => 'Tolak',
+                'status_global' => 'PENAPISAN DITOLAK' ,
 
             ]);
 
@@ -185,7 +187,7 @@ class InterviewScreeningController extends Controller
 
 
 
-        $detailTemuduga = ScreeningIV::where('nric', $req->code)->first();
+        $detailTemuduga = ScreeningIV::join('user_details', 'user_details.nric', '=', 'screening_interview.nric')->where('screening_interview.nric', $req->code)->first();
         $detailCenter = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
 
 
@@ -217,6 +219,7 @@ class InterviewScreeningController extends Controller
 
         $updatestatus = StatusPermohonan::where('nric', $req->nric)->update([
                 'status_temuduga' => 'Temuduga',
+                'status_global' => 'DITEMUDUGA' ,
 
             ]);
 
@@ -240,7 +243,7 @@ class InterviewScreeningController extends Controller
             $opencenter = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
 
             $User = UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
-                ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+                ->where('all_status_permohonan.status_temuduga', 'BELUM PROSES')
                 ->get();
 
             foreach ($User as $Users) {
@@ -284,7 +287,7 @@ class InterviewScreeningController extends Controller
 
                 $ProsesUser = UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                     ->join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')
-                    ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+                    ->where('all_status_permohonan.status_temuduga', 'BELUM PROSES')
                     ->get();
             }
 
@@ -292,7 +295,7 @@ class InterviewScreeningController extends Controller
 
                 $ProsesUser = UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
                     ->join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')                 
-                    ->where('all_status_permohonan.status_temuduga', 'Belum proses')
+                    ->where('all_status_permohonan.status_temuduga', 'BELUM PROSES')
                     ->where('user_details.state', $req->proses)
                     ->get();
 
@@ -317,6 +320,7 @@ class InterviewScreeningController extends Controller
                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
 
                                     'status_temuduga' => 'Tolak',
+                                    'status_global' => 'PENAPISAN DITOLAK' ,
 
                                 ]);
                         }
@@ -337,6 +341,7 @@ class InterviewScreeningController extends Controller
                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
 
                                 'status_temuduga' => 'Temuduga',
+                                'status_global' => 'DITEMUDUGA' ,
 
                             ]);
 
@@ -347,7 +352,7 @@ class InterviewScreeningController extends Controller
 
                     else {
 
-                        $gradeExists = SubjectGrade::where('nric', $Proses->nric)->where('type_qualification', 'SPM')->where('subject_list', 'BM')->exists();
+                        $gradeExists = SubjectGrade::where('nric', $Proses->nric)->where('type_qualification', 'SPM')->where('subject_list', 'Bahasa Melayu')->exists();
 
                         if(!$gradeExists){
 
@@ -362,6 +367,7 @@ class InterviewScreeningController extends Controller
                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
 
                                 'status_temuduga' => 'Tolak',
+                                'status_global' => 'PENAPISAN DITOLAK' ,
 
                             ]);
 
@@ -371,7 +377,7 @@ class InterviewScreeningController extends Controller
 
                         else{
 
-                            $grade = SubjectGrade::where('nric', $Proses->nric)->where('type_qualification', 'SPM')->where('subject_list', 'BM')->first();
+                            $grade = SubjectGrade::where('nric', $Proses->nric)->where('type_qualification', 'SPM')->where('subject_list', 'Bahasa Melayu')->first();
 
                             if($grade->grade <= 3){
 
@@ -386,6 +392,7 @@ class InterviewScreeningController extends Controller
                                 $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
     
                                     'status_temuduga' => 'Tolak',
+                                    'status_global' => 'PENAPISAN DITOLAK' ,
     
                                 ]);
 
@@ -397,7 +404,7 @@ class InterviewScreeningController extends Controller
                                 $syarat[1] = 1;
                                 $syarat[2] = 1;
 
-                                $gradelist = SubjectGrade::where('nric', $Proses->nric)->where('type_qualification', 'SPM')->where('subject_list', '!=', 'BM')->get();
+                                $gradelist = SubjectGrade::where('nric', $Proses->nric)->where('type_qualification', 'SPM')->where('subject_list', '!=', 'Bahasa Melayu')->get();
 
                                 if (count($Proses->program_applid) == 2){
 
@@ -452,6 +459,7 @@ class InterviewScreeningController extends Controller
                                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                                 'status_temuduga' => 'Tolak',
+                                                'status_global' => 'DPENAPISAN DITOLAK' ,
                 
                                             ]);
 
@@ -472,6 +480,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Temuduga',
+                                            'status_global' => 'DITEMUDUGA' ,
             
                                         ]);
 
@@ -490,6 +499,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Tolak',
+                                            'status_global' => 'PENAPISAN DITOLAK' ,
             
                                         ]);
                               
@@ -518,6 +528,7 @@ class InterviewScreeningController extends Controller
                                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                                 'status_temuduga' => 'Tolak',
+                                                'status_global' => 'PENAPISAN DITOLAK' ,
                 
                                             ]);
 
@@ -538,6 +549,7 @@ class InterviewScreeningController extends Controller
                                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                                 'status_temuduga' => 'Temuduga',
+                                                'status_global' => 'DITEMUDUGA' ,
                 
                                             ]);
 
@@ -557,6 +569,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Temuduga',
+                                            'status_global' => 'DITEMUDUGA' ,
             
                                         ]);
                                         }
@@ -578,6 +591,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Temuduga',
+                                            'status_global' => 'DITEMUDUGA' ,
             
                                         ]);
                                     }
@@ -586,6 +600,7 @@ class InterviewScreeningController extends Controller
                                     $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                         'status_temuduga' => 'Tolak',
+                                        'status_global' => 'PENAPISAN DITOLAK' ,
         
                                     ]);
 
@@ -652,6 +667,7 @@ class InterviewScreeningController extends Controller
                                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                                 'status_temuduga' => 'Tolak',
+                                                'status_global' => 'PENAPISAN DITOLAK' ,
                 
                                             ]);
 
@@ -672,6 +688,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Temuduga',
+                                            'status_global' => 'DITEMUDUGA' ,
             
                                         ]);
 
@@ -690,6 +707,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                             'status_temuduga' => 'Tolak',
+                                            'status_global' => 'PENAPISAN DITOLAK' ,
             
                                         ]);                            
 

@@ -115,6 +115,15 @@ class ProgramQualificationController extends Controller
                 'status' => $req->status,
                   
             ]);
+
+            
+        $delete = Qualification::where('qualificationid', $req->qualificationid)->first();
+
+        if($delete->status == false){
+
+            $data = Qualification::find($req->qualificationid);
+            $data->delete();
+        }
            
         
 

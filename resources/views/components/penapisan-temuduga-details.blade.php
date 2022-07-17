@@ -20,7 +20,7 @@
                         @csrf
                         <div class="row">
 
-                        <input hidden type="text" id="code" class="form-control" name="screening_id" value="{{$detailTemuduga['screening_id']}}"/>
+                        <input hidden type="text" id="" class="form-control" name="screening_id" value="{{$detailTemuduga['screening_id']}}"/>
 
 
                         <div class="col-12">

@@ -56,7 +56,7 @@
                                     <label class="col-form-label" for="name">{!! __('locale.Status') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="name" class="form-control" name="name" placeholder=""value="{{$datas['status'] ?? ''}}"readonly/>
+                                    <input type="text" id="name" class="form-control" name="name" placeholder=""value="{{$datas['status_global'] ?? ''}}"readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                     <label class="col-form-label" for="name">{!! __('locale.Program') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="name" class="form-control" name="name" placeholder=""value="{{$datass['program_tawar'] ?? ''}}"readonly/>
+                                    <input type="text" id="name" class="form-control" name="name" placeholder=""value="{{$datass['code'] ?? ''}} {{$datass['program'] ?? ''}}"readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                     <label class="col-form-label" for="name">{!! __('locale.Type_Program_Applied') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="name" class="form-control" name="name" placeholder=""value="{{$datas['type_program_applied'] ?? ''}}"readonly/>
+                                    <input type="text" id="name" class="form-control" name="name" placeholder=""value="{{$datas['study_mode'] ?? ''}}"readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                     <label class="col-form-label" for="semester">{!! __('locale.Semester') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="semester" class="form-control" name="semester" placeholder=""value="{{$datass['type_program_applied'] ?? ''}}"readonly/>
+                                    <input type="text" id="semester" class="form-control" name="semester" placeholder=""value="{{$datass['sem'] ?? ''}}"readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                                     <label class="col-form-label" for="year">{!! __('locale.Year') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="year" class="form-control" name="year" placeholder=""readonly/>
+                                    <input type="text" id="year" class="form-control" name="year" placeholder="" value="{{$datass['tahun'] ?? ''}}"readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                     <label class="col-form-label" for="year">{!! __('locale.Place Interview') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="year" class="form-control" name="year" placeholder=""value="{{$datasss['iv_place_selected'] ?? ''}}"readonly/>
+                                    <input type="text" id="year" class="form-control" name="year" placeholder=""value="{{$datasss['place_description'] ?? ''}}"readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                                     <label class="col-form-label" for="year">{!! __('locale.Date Interview') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="year" class="form-control" name="year" placeholder=""value="{{$datasss['date_session'] ?? ''}}"readonly/>
+                                    <input type="text" id="year" class="form-control" name="year" placeholder=""value="{{Carbon\Carbon::parse($datasss['DateFrom'])->format('Y-m-d')}} - {{Carbon\Carbon::parse($datasss['DateTo'])->format('Y-m-d')}}"readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -162,49 +162,13 @@
                                     <label class="col-form-label" for="year">{!! __('locale.Time') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="year" class="form-control" name="year" placeholder=""value="{{$datasss['time_session'] ?? ''}}"readonly/>
+                                    <input type="text" id="year" class="form-control" name="year" placeholder=""value="{{Carbon\Carbon::parse($datasss['TarikhFrom'])->format('H:i:s')}} - {{Carbon\Carbon::parse($datasss['TarikhTo'])->format('H:i:s')}}"readonly/>
                                 </div>
                                 </div>
                             </div>
 
 
-                            <div class="content-header">
-                            <h5 class="mb-0">{!! __('locale.Registration Information') !!}</h5>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="mb-1 row">
-                                <div class="col-sm-2">
-                                    <label class="col-form-label" for="place">{!! __('locale.Place Interview') !!}</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" id="place" class="form-control" name="place" placeholder=""readonly/>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="mb-1 row">
-                                <div class="col-sm-2">
-                                    <label class="col-form-label" for="place">{!! __('locale.Date Interview') !!}</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" id="place" class="form-control" name="place" placeholder=""readonly/>
-                                </div>
-                                </div>
-                            </div>
-              
-
-                            <div class="col-12">
-                                <div class="mb-1 row">
-                                <div class="col-sm-2">
-                                    <label class="col-form-label" for="year">{!! __('locale.Time') !!}</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <input type="text" id="year" class="form-control" name="year" placeholder=""readonly/>
-                                </div>
-                                </div>
-                            </div>                
+                                          
                         </div>
                     </form>
 

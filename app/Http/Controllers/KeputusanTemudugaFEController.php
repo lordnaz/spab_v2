@@ -11,9 +11,7 @@ class KeputusanTemudugaFEController extends Controller
     //
     public function keputusan_temuduga(){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
-        ];
+     
 
         $request = Request::create('/api/DataKeputusanTemuduga', 'GET');
         $response = Route::dispatch($request);
@@ -30,16 +28,14 @@ class KeputusanTemudugaFEController extends Controller
         $cadang2 = $responseBody['cadang2'];
         $program = $responseBody['program'];
 
-        return view('components.keputusan-temuduga', ['breadcrumbs' => $breadcrumbs])
+        return view('components.keputusan-temuduga')
         ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('displayTable', $displayTable)->with('cadang1', $cadang1)->with('cadang2', $cadang2)->with('program', $program);
 
     }
 
     public function KeputusanTemuduga($code){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
-        ];
+      
 
         $param = [
             
@@ -60,7 +56,7 @@ class KeputusanTemudugaFEController extends Controller
         $cadang1 = $request['cadang1'];
         $cadang2 = $request['cadang2'];
 
-        return view('components.KeputusanTemuduga', ['breadcrumbs' => $breadcrumbs])
+        return view('components.KeputusanTemuduga')
         ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('displayTable', $displayTable)->with('cadang1', $cadang1)->with('cadang2', $cadang2);;
 
     }
@@ -70,9 +66,7 @@ class KeputusanTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
-        ];
+       
 
         $param = [
             
@@ -91,7 +85,7 @@ class KeputusanTemudugaFEController extends Controller
         $program = $request['program'];
        
 
-        return view('components.keputusan-hadir-temuduga', ['breadcrumbs' => $breadcrumbs])
+        return view('components.keputusan-hadir-temuduga')
         ->with('dataPelajar', $dataPelajar)->with('program', $program);
 
     }
@@ -108,9 +102,7 @@ class KeputusanTemudugaFEController extends Controller
             'nric' => $req->nric,
         ];
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
-        ];
+        
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -126,9 +118,7 @@ class KeputusanTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
-        ];
+       
 
         $param = [
             
@@ -147,7 +137,7 @@ class KeputusanTemudugaFEController extends Controller
         $program = $request['program'];
        
 
-        return view('components.keputusan-tidak-hadir-temuduga', ['breadcrumbs' => $breadcrumbs])
+        return view('components.keputusan-tidak-hadir-temuduga')
         ->with('dataPelajar', $dataPelajar)->with('program', $program);
 
     }
@@ -161,9 +151,7 @@ class KeputusanTemudugaFEController extends Controller
             'nric' => $req->nric,
         ];
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
-        ];
+       
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -179,9 +167,7 @@ class KeputusanTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
-        ];
+       
 
         $param = [
             

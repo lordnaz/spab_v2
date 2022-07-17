@@ -20,6 +20,9 @@ class CreateCourseTakenTable extends Migration
             $table->string('course_organizer')->nullable();
             $table->string('place_taken')->nullable();
             $table->string('year_taken')->nullable();
+            $table->string('sequence')->nullable();
+            $table->boolean('status')->default(true);
+            $table->string('job_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();
             $table->timestamps();

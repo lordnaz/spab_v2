@@ -85,16 +85,19 @@ class ProgramController extends Controller
 
     public function update_program(Request $req){
 
+        
+
         $update = program::where('program_id',$req->program_id)->update
         ([
 
+                
         'code' => $req->code,
-        'program' => $req->program,
+        'program' => $req->name,
         'type' => $req->type,
         'faculty' => $req->faculty,
         'field' => $req->field,
         'sub_field' => $req->sub_field,
-        'notes' => $req->notes
+        'notes' => $req->note
 
         ]);
 

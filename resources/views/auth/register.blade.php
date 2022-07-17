@@ -89,7 +89,7 @@
             </div>
 
             <div class="mb-1">
-              <label for="register-phoneno" class="form-label">{!! __('locale.phone_no') !!}</label>
+              <label for="register-phoneno" class="form-label">Nombor Telefon</label>
               <input type="number" class="form-control @error('phoneno') is-invalid @enderror" id="register-phoneno"
                 name="phoneno" aria-describedby="register-phoneno" tabindex="1"/>
               @error('phoneno')

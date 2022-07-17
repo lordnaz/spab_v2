@@ -28,7 +28,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-          <h4 class="card-title">{!! __('locale.Interview Setting') !!}</h4>
+          <h4 class="card-title">Penawaran Permohonan</h4>
         </div>
 
         <!--Search Form -->
@@ -44,18 +44,18 @@
                 <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
                   <option value="{{ route('PenawaranPermohonan') }}" selected>Semua</option>
 
-                  <option value="{{ route('Penawaranpermohonan', 'Johor Darul Takzim') }}">Johor Darul Takzim</option>
-
-                  <option value="{{ route('Penawaranpermohonan', 'Kedah Darul Aman') }}">Kedah Darul Aman</option>
-                  <option value="{{ route('Penawaranpermohonan', 'Kelantan Darul Naim') }}">Kelantan Darul Naim</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Johor') }}">Johor Darul Takzim</option>
+                  
+                  <option value="{{ route('Penawaranpermohonan', 'Kedah') }}">Kedah Darul Aman</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Kelantan') }}">Kelantan Darul Naim</option>
                   <option value="{{ route('Penawaranpermohonan', 'Melaka') }}">Melaka</option>
-                  <option value="{{ route('Penawaranpermohonan', 'Negeri Sembilan Darul Khusus') }}">Negeri Sembilan Darul Khusus</option>
-                  <option value="{{ route('Penawaranpermohonan', 'Pahang Darul Makmur') }}">Pahang Darul Makmur</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Negeri Sembilan') }}">Negeri Sembilan Darul Khusus</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Pahang') }}">Pahang Darul Makmur</option>
                   <option value="{{ route('Penawaranpermohonan', 'Pulau Pinang') }}">Pulau Pinang</option>
-                  <option value="{{ route('Penawaranpermohonan', 'Perak Darul Ridzuan') }}">Perak Darul Ridzuan</option>
-                  <option value="{{ route('Penawaranpermohonan', 'Perlis Indra Kayangan') }}">Perlis Indra Kayangan</option>
-                  <option value="{{ route('Penawaranpermohonan', 'JSelangor Darul Ehsan') }}">Selangor Darul Ehsan</option>
-                  <option value="{{ route('Penawaranpermohonan', 'Terengganu Darul Iman') }}">Terengganu Darul Iman</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Perak') }}">Perak Darul Ridzuan</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Perlis') }}">Perlis Indra Kayangan</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Selangor') }}">Selangor Darul Ehsan</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Terengganu') }}">Terengganu Darul Iman</option>
                   <option value="{{ route('Penawaranpermohonan', 'Sabah') }}">Sabah</option>
                   <option value="{{ route('Penawaranpermohonan', 'Sarawak') }}">Sarawak</option>
                   <option value="{{ route('Penawaranpermohonan', 'W.P Kuala Lumpur') }}">W.P Kuala Lumpur</option>

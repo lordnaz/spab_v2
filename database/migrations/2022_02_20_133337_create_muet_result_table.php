@@ -22,6 +22,7 @@ class CreateMuetResultTable extends Migration
             $table->string('reading_grade')->nullable();
             $table->string('writing_grade')->nullable();
             $table->string('band')->nullable();
+            $table->string('job_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();
             $table->timestamps();

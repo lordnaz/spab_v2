@@ -18,14 +18,15 @@ class CreateApplicantExperiencesTable extends Migration
             $table->foreignId('nric')->index();
             $table->string('job_type')->nullable();
             $table->string('monthly_income')->nullable();
-            $table->string('year_working')->nullable();
+            $table->dateTime('year_working')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_address')->nullable();
             $table->string('no_faks')->nullable();
-            $table->boolean('cert_related_program')->default(false);
+            $table->string('cert_related_program')->nullable();
             $table->string('description_cert')->nullable();
             $table->string('work_exp_related_program')->nullable();
             $table->string('description_work_exp')->nullable();
+            $table->string('job_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();
             $table->timestamps();

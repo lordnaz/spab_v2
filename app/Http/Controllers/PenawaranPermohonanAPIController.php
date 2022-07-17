@@ -356,7 +356,7 @@ class PenawaranPermohonanAPIController extends Controller
 
         if($logic->program_tawar != NULL){
 
-            if($logic->program_tawar != $req->program_tawar)
+            if($logic->program_tawar != $req->program_tawar){
 
             $program = Offerprogram::where('program_id', $logic->program_tawar)->first();
 
@@ -375,6 +375,7 @@ class PenawaranPermohonanAPIController extends Controller
             ([
                 'quota_semasa' => $quotasemasa2,        
             ]);
+        }
 
         }else{
 
@@ -391,7 +392,9 @@ class PenawaranPermohonanAPIController extends Controller
         
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
-            'status_offer' => 'Ditawarkan',        
+            'status_offer' => 'Ditawarkan', 
+            'status_global' => 'PENAWARAN DITAWAR' ,   
+            'status_temuduga' => 'Ditawarkan',    
         ]);
 
 
@@ -443,7 +446,9 @@ class PenawaranPermohonanAPIController extends Controller
 
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
-            'status_offer' => 'Ditolak',        
+            'status_offer' => 'Ditolak',
+            'status_global' => 'PENAWARAN DITOLAK' ,   
+            'status_temuduga' => 'Ditolak',     
         ]);
 
         $update = PenawaranPermohonan::where('nric',$req->nric)->update
@@ -491,7 +496,9 @@ class PenawaranPermohonanAPIController extends Controller
 
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
-            'status_offer' => 'Dalam Pemerhatian (KIV)',        
+            'status_offer' => 'Dalam Pemerhatian (KIV)',  
+            'status_global' => 'PENAWARAN DALAM PERMERHATIAN' ,  
+            'status_temuduga' => 'Kiv',    
         ]);
 
         $update = PenawaranPermohonan::where('nric',$req->nric)->update
@@ -539,7 +546,9 @@ class PenawaranPermohonanAPIController extends Controller
 
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
-            'status_offer' => 'Hadir Temuduga',        
+            'status_offer' => 'Hadir Temuduga',    
+            'status_global' => 'HADIR TEMUDUGA' , 
+            'status_temuduga' => 'Hadir',   
         ]);
 
         $update = PenawaranPermohonan::where('nric',$req->nric)->update
@@ -661,7 +670,8 @@ class PenawaranPermohonanAPIController extends Controller
 
                     $update = StatusPermohonan::where('nric',$User->nric)->update
                     ([
-                        'status_offer' => 'Ditolak',        
+                        'status_offer' => 'Ditolak',  
+                        'status_temuduga' => 'Ditolak',      
                     ]);
 
                 }
@@ -679,16 +689,19 @@ class PenawaranPermohonanAPIController extends Controller
 
                         foreach ($proses as $pro){
 
-                            if($pro->nric == $User->nric){
+                            if($pro->nric != $User->nric){
 
                                 $total = $total + 1;
+                                 
                                 
                             }
             
 
                         }
 
-                        if ($total <= $program->quota){
+                        $totalquota1 = $program->quota_semasa + $total;
+
+                        if ($totalquota1 < $program->quota){
 
                             $quotasemasa = $program->quota_semasa + 1;
 
@@ -711,14 +724,16 @@ class PenawaranPermohonanAPIController extends Controller
 
                             $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
-                                'status_offer' => 'Ditawarkan',        
+                                'status_offer' => 'Ditawarkan',    
+                                'status_temuduga' => 'Ditawarkan',    
                             ]);
                         }
                         else{
 
                             $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
-                                'status_offer' => 'Dalam Pemerhatian (KIV)',        
+                                'status_offer' => 'Dalam Pemerhatian (KIV)', 
+                                'status_temuduga' => 'KIV',       
                             ]);
                         }
 
@@ -726,11 +741,12 @@ class PenawaranPermohonanAPIController extends Controller
 
                         $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
-                                'status_offer' => 'Dalam Pemerhatian (KIV)',        
+                                'status_offer' => 'Dalam Pemerhatian (KIV)',   
+                                'status_temuduga' => 'KIV',     
                             ]);
                     }
 
-                    if($User->program_tawar == NULL){
+                    if($User->status_offer != 'Ditawarkan'){
                     if($User->cadang2 != NULL){
 
                         $program2 = Offerprogram::where('program_id', $User->cadang2)->first();
@@ -752,7 +768,9 @@ class PenawaranPermohonanAPIController extends Controller
 
                         }
 
-                        if ($total2 <= $program2->quota){
+                        $totalquota2 = $program2->quota_semasa + $total2;
+
+                        if ($totalquota2 < $program2->quota){
 
                             $quotasemasa2 = $program2->quota_semasa + 1;
                             $update = PenawaranPermohonan::where('nric',$User->nric)->update
@@ -772,14 +790,16 @@ class PenawaranPermohonanAPIController extends Controller
 
                             $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
-                                'status_offer' => 'Ditawarkan',        
+                                'status_offer' => 'Ditawarkan',      
+                                'status_temuduga' => 'tawar',  
                             ]);
                         }
                         else{
 
                             $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
-                                'status_offer' => 'Dalam Pemerhatian (KIV)',        
+                                'status_offer' => 'Dalam Pemerhatian (KIV)',   
+                                'status_temuduga' => 'KIV',     
                             ]);
                         }
 

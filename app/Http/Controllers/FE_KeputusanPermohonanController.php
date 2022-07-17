@@ -11,11 +11,9 @@ class FE_KeputusanPermohonanController extends Controller
     //
     public function keputusanpermohonan(){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Kemasukan"], ['name' => "Keputusan Permohonan"]
-        ];
+      
 
-        $request = Request::create('/api/display_permohonan', 'GET');
+        $request = Request::create('/api/display_all_permohonan_pengesahan', 'GET');
         $response = Route::dispatch($request);
 
         $request->headers->set('Content-Type', 'application/json');
@@ -23,19 +21,17 @@ class FE_KeputusanPermohonanController extends Controller
         
         $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['data'];
+        $datas = $responseBody['dataa'];
 
         
-        return view('components.keputusan-permohonan-table', ['breadcrumbs' => $breadcrumbs])->with('datas', $datas);
+        return view('components.keputusan-permohonan-table')->with('datas', $datas);
 
     }
     public function keputusanpermohonanybNRIC($code){
 
         $code = decrypt($code);
         
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Kemasukan"], ['name' => "Keputusan Permohonan"]
-        ];
+       
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -50,7 +46,7 @@ class FE_KeputusanPermohonanController extends Controller
         $datasss = $request['dataaa'];
         // $datassss = $request['dataaaa'];
         
-        return view('components.keputusan-permohonan-new', ['breadcrumbs' => $breadcrumbs])->with('datas', $datas)->with('datass',$datass)->with('datasss',$datasss);
+        return view('components.keputusan-permohonan-new')->with('datas', $datas)->with('datass',$datass)->with('datasss',$datasss);
       
 
 

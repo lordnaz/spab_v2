@@ -63,6 +63,8 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('add_new', [ProgrammeController::class, 'add_new'])->name('add_new');
     Route::get('details_program/{code}', [ProgrammeController::class, 'details_program'])->name('details_program');
     Route::post('add_new_program', [ ProgrammeController::class, "add_new_program" ])->name('add_new_program');
+    Route::post('update_details_program', [ ProgrammeController::class, "update_details_program" ])->name('update_details_program');
+    Route::get('delete_details_program/{code}', [ProgrammeController::class, 'delete_details_program'])->name('delete_details_program');
     // Route::get('delete_prog/{code}', [ProgrammeController::class, 'delete_prog'])->name('delete_prog');
 
     // Offered Program   
@@ -129,6 +131,16 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('draft_one', [FE_PermohonanController::class, 'draft_one'])->name('draft_one');
     Route::post('draft_two', [FE_PermohonanController::class, 'draft_two'])->name('draft_two');
     Route::post('draft_three', [FE_PermohonanController::class, 'draft_three'])->name('draft_three');
+    Route::post('draft_empat', [FE_PermohonanController::class, 'draft_empat'])->name('draft_empat');
+    Route::post('draft_lima', [FE_PermohonanController::class, 'draft_lima'])->name('draft_lima');
+    Route::post('draft_enam', [FE_PermohonanController::class, 'draft_enam'])->name('draft_enam');
+    Route::post('draft_tujuh', [FE_PermohonanController::class, 'draft_tujuh'])->name('draft_tujuh');
+    Route::post('draft_lapan', [FE_PermohonanController::class, 'draft_lapan'])->name('draft_lapan');
+    Route::post('draft_sembilan', [FE_PermohonanController::class, 'draft_sembilan'])->name('draft_sembilan');
+    Route::post('draft_sepuluh', [FE_PermohonanController::class, 'draft_sepuluh'])->name('draft_sepuluh');
+    Route::post('/returnpage', [FE_PermohonanController::class, 'returnpage'])->name('returnpage');
+    Route::get('butiran/{code}', [FE_PermohonanController::class, 'butiran'])->name('butiran');
+    
     
     Route::get('display_pengesahan_permohonan', [PengesahanPermohonanFEController::class, 'display_pengesahan_permohonan'])->name('display_pengesahan_permohonan');
     Route::post('sahkan_permohonan', [PengesahanPermohonanFEController::class, 'sahkan_permohonan'])->name('sahkan_permohonan');
@@ -149,6 +161,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     //Keputusan Permohonan
     Route::get('keputusanpermohonan', [FE_KeputusanPermohonanController::class, 'keputusanpermohonan'])->name('keputusanpermohonan');
     Route::get('keputusanpermohonanybNRIC/{code}', [FE_KeputusanPermohonanController::class, 'keputusanpermohonanybNRIC'])->name('keputusanpermohonanybNRIC');
+    Route::get('/keputusanpermohonan/{code}', [FE_KeputusanPermohonanController::class, 'ajaxpermohonan'])->name('Keputusanpermohonan');
 
     //Balasan Calon
     Route::get('balasancalon', [FE_BalasanCalonController::class, 'balasancalon'])->name('balasancalon');

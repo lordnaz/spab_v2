@@ -32,26 +32,7 @@
           <h4 class="card-title">{!! __('locale.Interview Setting') !!}</h4>
         </div>
         
-        <div id="program_list"class="card-body mt-2" >
-          
-
-    
-                 
-
-                  
-    
-          <div id="program_list" class="col-sm-10">
-          <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
-            
-                <option value="{{ route('balasancalon') }}" >{!! __('locale.Please Choose') !!}</option>
-                @foreach ($display as $displays)
-                <option data-avatar="1-small.png" value="{{ route('details_balasancalon',  Crypt::encrypt($displays['nric'])) }}">{{$displays['nric']}}</option>
-               @endforeach
-            </select>
-          </div>
-  
-             
-        </div>
+        
 
 
         
@@ -141,7 +122,7 @@
              @endphp
                 <tr class="text-center" >
                   <td>{{$count++}}</td>
-                  <td>{{$displayTawars['nric']}}</td>
+                  <td>{{$displayTawars['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTawars['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTawars['name']}}</td>
                   <td>{{$displayTawars['type_program_applied']}}</td>
                   <td>{{$displayTawars['status_offer']}}</td>
@@ -152,7 +133,7 @@
                   <td>
                   <div class="btn-group">
 
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>&nbsp;
+                  
                   <a href="{{route('details_balasancalonbynricTerima', Crypt::encrypt($displayTawars['nric'])) }}" class="btn-sm btn-success">Terima</a>&nbsp;
                   <a href="{{route('details_balasancalonbynricTolak', Crypt::encrypt($displayTawars['nric'])) }}" class="btn-sm btn-danger">Tolak</a>
 </div>
@@ -204,7 +185,7 @@
              @endphp
                 <tr class="text-center">
                 <td>{{$count++}}</td>
-                  <td>{{$displayTerimas['nric']}}</td>
+                  <td>{{$displayTerimas['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTerimas['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTerimas['name']}}</td>
                   <td>{{$displayTerimas['type_program_applied']}}</td>
                   <td>{{$displayTerimas['status_offer']}}</td>
@@ -214,7 +195,7 @@
              
                   <td>
                   <div class="btn-group">
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>&nbsp;
+                
                   <a href="{{route('details_balasancalonbynricTolak', Crypt::encrypt($displayTerimas['nric'])) }}" class="btn-sm btn-danger">Tolak</a>&nbsp;
                     <a href="{{route('details_balasancalonbynricBatal', Crypt::encrypt($displayTerimas['nric'])) }}" class="btn-sm btn-danger "> 
                       Batal
@@ -265,7 +246,7 @@
              @endphp
                 <tr class="text-center">
                 <td>{{$count++}}</td>
-                  <td>{{$displayTolaks['nric']}}</td>
+                  <td>{{$displayTolaks['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTolaks['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTolaks['name']}}</td>
                   <td>{{$displayTolaks['type_program_applied']}}</td>
                   <td>{{$displayTolaks['status_offer']}}</td>
@@ -275,7 +256,7 @@
               
                   <td>
                   <div class="btn-group">
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                  
                   <a href="{{route('details_balasancalonbynricTerima', Crypt::encrypt($displayTolaks['nric'])) }}" class="btn-sm btn-success">Terima</a>
                     <a href="{{route('details_balasancalonbynricBatal', Crypt::encrypt($displayTolaks['nric'])) }}" class="btn-sm btn-danger "> 
                       Batal

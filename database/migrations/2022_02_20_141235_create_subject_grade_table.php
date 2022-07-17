@@ -16,9 +16,13 @@ class CreateSubjectGradeTable extends Migration
         Schema::create('subject_grade', function (Blueprint $table) {
             $table->id('subject_gradeid');
             $table->foreignId('nric')->index();
+            $table->string('year')->nullable();
             $table->string('subject_list')->nullable();
             $table->integer('grade')->nullable();
             $table->string('type_qualification')->nullable();
+            $table->string('sequence')->nullable();
+            $table->boolean('status')->default(true);
+            $table->string('job_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();
             $table->timestamps();

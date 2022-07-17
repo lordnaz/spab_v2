@@ -78,6 +78,7 @@ class OfferprogramController extends Controller
 
         ]);
 
+
         $data = [
             'status' => 'success',
             'code' => '000',
@@ -134,11 +135,16 @@ class OfferprogramController extends Controller
 
         $user_name = auth()->User()->name;
 
+        $quota = Offerprogram::where('offerprogram_id', $req->code)->first();
+
+        if($quota->quota_semasa == 0){
+
         $deletePanel = Offerprogram::where('offerprogram_id', $req->code)->update([
             
             'status' => false    
     
             ]);
+        }
     
 
         $data = [

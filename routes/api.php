@@ -40,8 +40,7 @@ Route::middleware('auth:sanctum')->get('/get_rate', [TransactionController::clas
 Route::middleware('auth:sanctum')->post('/add_program', [ProgramController::class, 'add_program']);
 Route::middleware('auth:sanctum')->get('/display_allprogram', [ProgramController::class, 'display_allprogram']);
 Route::middleware('auth:sanctum')->post('/display_program', [ProgramController::class, 'display_program_by_code']);
-Route::middleware('auth:sanctum')->post('/update_program', [ProgramController::class, 'update_program']);
-Route::middleware('auth:sanctum')->post('/delete_program', [ProgramController::class, 'delete_program']);
+
 
 //OfferedProgram Route
 Route::middleware('auth:sanctum')->post('/new_offerprogram', [OfferprogramController::class, 'new_offerprogram']);
@@ -58,6 +57,7 @@ Route::middleware('auth:sanctum')->post('/add_ProgramQualification', [ProgramQua
 Route::middleware('auth:sanctum')->get('/getProgramQualificationDetails/{id}', [ProgramQualificationController::class, 'get_detailsbyid']);
 Route::middleware('auth:sanctum')->post('/update_offerprogram', [ProgramQualificationController::class, 'update']);
 Route::middleware('auth:sanctum')->post('/deleteProgramQualification', [ProgramQualificationController::class, 'delete']);
+Route::middleware('auth:sanctum')->post('/update_ProgramQualification', [ProgramQualificationController::class, 'update_ProgramQualification']);
 
 //PanelInterview 
 Route::middleware('auth:sanctum')->post('/addNewPanel', [PanelInterviewController::class, 'addNewPanel']);
@@ -110,12 +110,12 @@ Route::middleware('auth:sanctum')->post('UpdateJadualSesi', [IVSchedulingControl
 Route::middleware('auth:sanctum')->post('KosongkanSesi', [IVSchedulingController::class, 'KosongkanSesi']);
 
 
-//Permohonan
-Route::middleware('auth:sanctum')->post('/add_permohonan', [PermohonanAPIController::class, 'add_permohonan']);
-Route::middleware('auth:sanctum')->get('/display_permohonan', [PermohonanAPIController::class, 'display_permohonan']);
-Route::middleware('auth:sanctum')->post('/delete_permohonan', [PermohonanAPIController::class, 'delete_permohonan']);
-Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [PermohonanAPIController::class, 'display_permohonanbynric']);
-Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPIController::class, 'update_permohonan']);
+// //Permohonan
+// Route::middleware('auth:sanctum')->post('/add_permohonan', [PermohonanAPIController::class, 'add_permohonan']);
+// Route::middleware('auth:sanctum')->get('/display_permohonan', [PermohonanAPIController::class, 'display_permohonan']);
+// Route::middleware('auth:sanctum')->post('/delete_permohonan', [PermohonanAPIController::class, 'delete_permohonan']);
+// Route::middleware('auth:sanctum')->post('/display_permohonanbynric', [PermohonanAPIController::class, 'display_permohonanbynric']);
+// Route::middleware('auth:sanctum')->post('/update_permohonan', [PermohonanAPIController::class, 'update_permohonan']);
 
 //InterviewResult
 Route::middleware('auth:sanctum')->get('/DataKeputusanTemuduga', [ResultInterviewController::class, 'DataKeputusanTemuduga']);
@@ -149,7 +149,7 @@ Route::middleware('auth:sanctum')->post('/AjaxTawaran', [PenawaranPermohonanAPIC
 Route::middleware('auth:sanctum')->post('/pemprosesanTawaran', [PenawaranPermohonanAPIController::class, 'pemprosesanTawaran']);
 
 //Keputusan Permohonan
-Route::middleware('auth:sanctum')->get('/display_all_permohonan_pengesahan', [KeputusanPermohonanAPIController::class, '/display_all_permohonan_pengesahan']);
+Route::middleware('auth:sanctum')->get('/display_all_permohonan_pengesahan', [KeputusanPermohonanAPIController::class, 'display_all_permohonan_pengesahan']);
 Route::middleware('auth:sanctum')->post('display_keputusanbynric', [KeputusanPermohonanAPIController::class, 'display_keputusanbynric']);
 
 

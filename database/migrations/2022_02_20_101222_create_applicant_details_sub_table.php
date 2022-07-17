@@ -45,6 +45,7 @@ class CreateApplicantDetailsSubTable extends Migration
             $table->string('kin_address_1')->nullable();
             $table->string('kin_address_2')->nullable();
             $table->string('kin_address_3')->nullable();
+            $table->string('job_id')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('modified_by')->nullable();
             $table->timestamps();

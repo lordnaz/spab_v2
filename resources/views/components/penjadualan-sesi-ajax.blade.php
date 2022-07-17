@@ -117,7 +117,12 @@ $(document).ready(function(){
 
 //ajaxpostsesi
 $(document).ready(function(){
-    $('button[type="submit"]').click(function(){  
+    $('button[type="submit"]').click(function(){ 
+        setTimeout(
+                  function() 
+                  {
+                     location.reload();
+                  }, 0001);     
                       var presence = [];
                       var sesi = $('#myselect').val();
                       var catatan = $('#catatan').val();
@@ -157,6 +162,11 @@ $(document).ready(function(){
 //ajaxkosongkan
 $(document).ready(function(){
     $('#kosong').click(function(){  
+        setTimeout(
+                  function() 
+                  {
+                     location.reload();
+                  }, 0001);    
                       var presence = [];
                       var sesi = $('#myselect').val();
                       $.each($("input[name='checkbox']:checked"), function(){

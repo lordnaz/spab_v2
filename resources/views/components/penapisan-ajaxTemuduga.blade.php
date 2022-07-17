@@ -44,17 +44,17 @@
                 <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
                   <option value="{{ route('PenapisanTemuduga') }}" selected>Semua</option>
 
-                  <option value="{{ route('Penapisantemuduga', 'Johor Darul Takzim') }}" @if($code=='Johor Darul Takzim' ) selected @endif>Johor Darul Takzim</option>
-                  <option value="{{ route('Penapisantemuduga', 'Kedah Darul Aman') }}" @if($code=='Kedah Darul Aman' ) selected @endif>Kedah Darul Aman</option>
-                  <option value="{{ route('Penapisantemuduga', 'Kelantan Darul Naim') }}" @if($code == 'Kelantan Darul Naim') selected @endif>Kelantan Darul Naim</option>
+                  <option value="{{ route('Penapisantemuduga', 'Johor') }}" @if($code=='Johor' ) selected @endif>Johor Darul Takzim</option>
+                  <option value="{{ route('Penapisantemuduga', 'Kedah') }}" @if($code=='Kedah' ) selected @endif>Kedah Darul Aman</option>
+                  <option value="{{ route('Penapisantemuduga', 'Kelantan') }}" @if($code == 'Kelantan') selected @endif>Kelantan Darul Naim</option>
                   <option value="{{ route('Penapisantemuduga', 'Melaka') }}" @if($code == 'Melaka') selected @endif>Melaka</option>
-                  <option value="{{ route('Penapisantemuduga', 'Negeri Sembilan Darul Khusus') }}" @if($code == 'Negeri Sembilan Darul Khusus') selected @endif>Negeri Sembilan Darul Khusus</option>
-                  <option value="{{ route('Penapisantemuduga', 'Pahang Darul Makmur') }}" @if($code == 'Pahang Darul Makmur') selected @endif>Pahang Darul Makmur</option>
+                  <option value="{{ route('Penapisantemuduga', 'Negeri Sembilan') }}" @if($code == 'Negeri Sembilan') selected @endif>Negeri Sembilan Darul Khusus</option>
+                  <option value="{{ route('Penapisantemuduga', 'Pahang') }}" @if($code == 'Pahang') selected @endif>Pahang Darul Makmur</option>
                   <option value="{{ route('Penapisantemuduga', 'Pulau Pinang') }}" @if($code == 'Pulau Pinang') selected @endif>Pulau Pinang</option>
-                  <option value="{{ route('Penapisantemuduga', 'Perak Darul Ridzuan') }}" @if($code == 'Perak Darul Ridzuan') selected @endif>Perak Darul Ridzuan</option>
-                  <option value="{{ route('Penapisantemuduga', 'Perlis Indra Kayangan') }}" @if($code == 'Perlis Indra Kayangan') selected @endif>Perlis Indra Kayangan</option>
-                  <option value="{{ route('Penapisantemuduga', 'JSelangor Darul Ehsan') }}" @if($code == 'Selangor Darul Ehsan') selected @endif>Selangor Darul Ehsan</option>
-                  <option value="{{ route('Penapisantemuduga', 'Terengganu Darul Iman') }}" @if($code == 'Terengganu Darul Iman') selected @endif>Terengganu Darul Iman</option>
+                  <option value="{{ route('Penapisantemuduga', 'Perak') }}" @if($code == 'Perak') selected @endif>Perak Darul Ridzuan</option>
+                  <option value="{{ route('Penapisantemuduga', 'Perlis') }}" @if($code == 'Perlis') selected @endif>Perlis Indra Kayangan</option>
+                  <option value="{{ route('Penapisantemuduga', 'Selangor') }}" @if($code == 'Selangor') selected @endif>Selangor Darul Ehsan</option>
+                  <option value="{{ route('Penapisantemuduga', 'Terengganu') }}" @if($code == 'Terengganu') selected @endif>Terengganu Darul Iman</option>
                   <option value="{{ route('Penapisantemuduga', 'Sabah') }}" @if($code == 'Sabah') selected @endif>Sabah</option>
                   <option value="{{ route('Penapisantemuduga', 'Sarawak') }}" @if($code == 'Sarawak') selected @endif>Sarawak</option>
                   <option value="{{ route('Penapisantemuduga', 'W.P Kuala Lumpur') }}" @if($code == 'W.P Kuala Lumpur') selected @endif>W.P Kuala Lumpur</option>
@@ -198,7 +198,7 @@
                   <td>{{$displayTemudugaa['code_center']}}</td>
                   <td>{{$displayTemudugaa['TarikhProses']}}</td>
                   <td>
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                  <a href="{{ route('butiran', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
                   <a href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                   <a href="{{ route('tolakPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Tolak</a>
                     <a href="{{ route('batalPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-danger"> 
@@ -288,7 +288,7 @@
                   <td></td>
                   <td>{{$displayTolakk['TarikhProses']}}</td>
                   <td>
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                  <a href="{{ route('butiran', Crypt::encrypt($displayTolakk['nric'])) }}" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
                   <a href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                     <a href="{{ route('batalPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
                       Batal

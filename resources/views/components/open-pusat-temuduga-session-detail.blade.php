@@ -52,7 +52,7 @@
   </div>
 
   <div class="col-sm-2">
-    <label class="col-form-label" for="name">{!! __('locale.Program Name') !!}</label>
+    <label class="col-form-label" for="name">Kepada</label>
   </div>
   <div class="col-sm-4">
 
@@ -77,7 +77,7 @@
                   </div>
 
                   <div class="col-sm-2">
-                    <label class="col-form-label" for="name">{!! __('locale.Program Name') !!}</label>
+                    <label class="col-form-label" for="name">Kepada</label>
                   </div>
                   <div class="col-sm-4">
                   <input type="date" id="DateFrom" name="DateTo" value="{{Carbon\Carbon::parse($Displaysession['DateTo'])->format('Y-m-d')}}" >

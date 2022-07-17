@@ -172,6 +172,11 @@
                       <option selected disabled>Please Choose</option>
                       <option id="Mathematic{{$i}}" value="Mathematic">Mathematic</option>
                       <option id="Bahasa Inggeris{{$i}}" value="Bahasa Inggeris">Bahasa Inggeris</option>
+                      <option data-avatar="1-small.png" id="Bahasa Melayu{{$i}}" value="Bahasa Melayu">Bahasa Melayu</option>
+                      <option data-avatar="3-small.png" id="Bahasa Inggeris{{$i}}" value="Bahasa Inggeris">Bahasa Inggeris</option>
+                      <option data-avatar="3-small.png" id="Sains{{$i}}" value="Sains">Sains</option>
+                      <option data-avatar="3-small.png" id="Sejarah{{$i}}" value="Sejarah">Sejarah</option>
+                      <option data-avatar="3-small.png" id="Matematik{{$i}}" value="Matematik">Matematik</option>
                     </select>
                   </div>
                 </div>
@@ -181,8 +186,16 @@
                         <label class="form-label" for="itemcost">Grade</label>
                         <select class="select2 form-select" id="type" name="grade">
                           <option selected disabled>Please Choose</option>
-                          <option data-avatar="1-small.png" id="14{{$i}}" value="14">A+</option>
-                          <option data-avatar="3-small.png" id="13{{$i}}" value="13">A</option>
+                          <option data-avatar="1-small.png" id="10{{$i}}" value="10">A+</option>
+                          <option data-avatar="3-small.png" id="9{{$i}}" value="9">A</option>
+                          <option data-avatar="3-small.png" id="8{{$i}}" value="8">A-</option>
+                          <option data-avatar="3-small.png" id="7{{$i}}" value="7">B+</option>
+                          <option data-avatar="3-small.png" id="6{{$i}}" value="6">B</option>
+                          <option data-avatar="3-small.png" id="5{{$i}}" value="5">C+</option>
+                          <option data-avatar="3-small.png" id="4{{$i}}" value="4">C</option>
+                          <option data-avatar="3-small.png" id="3{{$i}}" value="3">D</option>
+                          <option data-avatar="3-small.png" id="2{{$i}}" value="2">E</option>
+                          <option data-avatar="3-small.png" id="1{{$i}}" value="1">G</option>
                         </select>
                       </div>
                     </div>
@@ -229,7 +242,7 @@
                               
                 <button type="submit" class="btn btn-success">
                   <i data-feather="plus-circle" class="me-25"></i>
-                  <span>{!! __('locale.Submit') !!}</span>
+                  <span>Kemaskini</span>
                 </button>
                 
 
@@ -276,7 +289,7 @@
     
     $("#btn1").click(function() {     
       
-      $("#view").append('<div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subject</label><select class="select2 form-select" id="type" name="subjek"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Mathematic">Mathematic</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="type" name="grade"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="14">A+</option><option data-avatar="3-small.png" value="13">A</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#view").append('<div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subject</label><select class="select2 form-select" id="type" name="subjek"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Bahasa Melayu">Bahasa Melayu</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option><option data-avatar="3-small.png" value="Sains">Sains</option><option data-avatar="3-small.png" value="Sejarah">Sejarah</option><option data-avatar="3-small.png" value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="type" name="grade"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
 
       v = v + 1;
       document.getElementById("currentt").value = v;

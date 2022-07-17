@@ -22,6 +22,7 @@ class CreateProgramTable extends Migration
             $table->string('field');
             $table->string('sub_field');
             $table->string('notes');
+            $table->string('job_id')->nullable();
             $table->boolean('status')->default(true);
             $table->string('created_by');
             $table->timestamps();

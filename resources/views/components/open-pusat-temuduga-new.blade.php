@@ -45,17 +45,17 @@
                                     <select name="negeri[]" class="select2 form-select" id="select2-multiple" multiple>
                                     <optgroup label="Sila Pilih Negeri">
 
-                                            <option value="Johor Darul Takzim">Johor Darul Takzim</option>
-                                            <option value="Kedah Darul Aman">Kedah Darul Aman</option>
-                                            <option value="Kelantan Darul Naim">Kelantan Darul Naim</option>
+                                            <option value="Johor">Johor Darul Takzim</option>
+                                            <option value="Kedah">Kedah Darul Aman</option>
+                                            <option value="Kelantan">Kelantan Darul Naim</option>
                                             <option value="Melaka">Melaka</option>
-                                            <option value="Negeri Sembilan Darul Khusus">Negeri Sembilan Darul Khusus</option>
-                                            <option value="Pahang Darul Makmur">Pahang Darul Makmur</option>
+                                            <option value="Negeri">Negeri Sembilan Darul Khusus</option>
+                                            <option value="Pahang">Pahang Darul Makmur</option>
                                             <option value="Pulau Pinang">Pulau Pinang</option>
-                                            <option value="Perak Darul Ridzuan">Perak Darul Ridzuan</option>
-                                            <option value="Perlis Indra Kayangan">Perlis Indra Kayangan</option>
-                                            <option value="Selangor Darul Ehsan">Selangor Darul Ehsan</option>
-                                            <option value="Terengganu Darul Iman">Terengganu Darul Iman</option>
+                                            <option value="Perak">Perak Darul Ridzuan</option>
+                                            <option value="Perlis">Perlis Indra Kayangan</option>
+                                            <option value="Selangor">Selangor Darul Ehsan</option>
+                                            <option value="Terengganu">Terengganu Darul Iman</option>
                                             <option value="Sabah">Sabah</option>
                                             <option value="Sarawak">Sarawak</option>
                                             <option value="W.P Kuala Lumpur">W.P Kuala Lumpur</option>

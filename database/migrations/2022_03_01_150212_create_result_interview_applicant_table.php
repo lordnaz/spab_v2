@@ -18,6 +18,7 @@ class CreateResultInterviewApplicantTable extends Migration
             $table->foreignId('nric')->index();
             $table->string('marks_iv')->nullable();
             $table->string('status_iv')->nullable();
+            $table->string('job_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

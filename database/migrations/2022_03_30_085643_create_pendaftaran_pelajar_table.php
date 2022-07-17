@@ -16,6 +16,7 @@ class CreatePendaftaranPelajarTable extends Migration
         Schema::create('pendaftaran_pelajar', function (Blueprint $table) {
             $table->id('pendaftaran_id');
             $table->foreignId('nric')->index();
+            $table->string('job_id')->nullable();
             $table->string('no_matriks');
             $table->string('hostel_room');
             $table->string('no_resit');

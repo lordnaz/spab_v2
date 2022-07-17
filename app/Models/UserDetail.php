@@ -12,16 +12,21 @@ class UserDetail extends Model
     protected $table = 'user_details';
     protected  $primaryKey = 'user_detailsid';
     
+
     protected $fillable = [
+        'user_detailsid',
         'nric',
-        'name',
         'phone_no',
-        'created_by',
-        'modified_by',
+        'acc_trading_no',
+        'bank_acc_name',
+        'bank_name',
+        'bank_acc_no',
+        'tnc',
+        'vip_status',
         'created_at',
+        'created_by',
         'updated_at',
     ];
-
     /**
      * Get the user that owns the phone.
      */

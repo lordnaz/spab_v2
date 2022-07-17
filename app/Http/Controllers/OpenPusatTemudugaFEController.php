@@ -16,9 +16,7 @@ class OpenPusatTemudugaFEController extends Controller
     //
     public function AddOpenPusatTemuduga(){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
-        ];
+      
 
         $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
         $response = Route::dispatch($request);
@@ -30,15 +28,13 @@ class OpenPusatTemudugaFEController extends Controller
 
         $datas = $responseBody['data'];
 
-        return view('components.open-pusat-temuduga-new', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        return view('components.open-pusat-temuduga-new', compact('datas'));
 
     }
 
     public function PusatTemudugaTable(){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
-        ];
+       
 
         $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
         $response = Route::dispatch($request);
@@ -50,15 +46,13 @@ class OpenPusatTemudugaFEController extends Controller
 
         $datas = $responseBody['dataa'];
 
-        return view('components.open-pusat-temuduga-table', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        return view('components.open-pusat-temuduga-table', compact('datas'));
 
     }
 
     public function OpenPusatTemudugaDetail(){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
-        ];
+       
 
         $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
         $response = Route::dispatch($request);
@@ -70,7 +64,7 @@ class OpenPusatTemudugaFEController extends Controller
 
         $datas = $responseBody['dataa'];
 
-        return view('components.open-pusat-temuduga-detail', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        return view('components.open-pusat-temuduga-detail', compact('datas'));
 
     }
 
@@ -89,9 +83,7 @@ class OpenPusatTemudugaFEController extends Controller
             
         ];
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
-        ];
+      
 
 
         $request = Http::withHeaders([
@@ -109,9 +101,7 @@ class OpenPusatTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
-        ];
+       
 
 
         $request = Http::withHeaders([
@@ -124,7 +114,7 @@ class OpenPusatTemudugaFEController extends Controller
         $datas = $request['data'];
         $datass = $request['dataa'];
 
-        return view('components.open-pusat-temuduga-detail', ['breadcrumbs' => $breadcrumbs])->with('datas', $datas)->with('datass', $datass);
+        return view('components.open-pusat-temuduga-detail')->with('datas', $datas)->with('datass', $datass);
 
     }
 
@@ -158,9 +148,7 @@ class OpenPusatTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
-        ];
+       
 
 
         $request = Http::withHeaders([
@@ -175,7 +163,7 @@ class OpenPusatTemudugaFEController extends Controller
         $Displaysession = $request['Displaysession'];
         $kiraan = $request['kiraan'];
 
-        return view('components.open-pusat-temuduga-session', ['breadcrumbs' => $breadcrumbs])->with('panel', $Panel)->with('displayasas', $Displayasas)->with('displaysession', $Displaysession)->with('kiraan', $kiraan);
+        return view('components.open-pusat-temuduga-session')->with('panel', $Panel)->with('displayasas', $Displayasas)->with('displaysession', $Displaysession)->with('kiraan', $kiraan);
 
     }
 
@@ -222,9 +210,7 @@ class OpenPusatTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
-        ];
+        
 
 
         $request = Http::withHeaders([
@@ -237,7 +223,7 @@ class OpenPusatTemudugaFEController extends Controller
         $Panel = $request['panel'];
         $Displaysession = $request['Displaysession'];
 
-        return view('components.open-pusat-temuduga-session-detail', ['breadcrumbs' => $breadcrumbs])->with('panel', $Panel)->with('Displaysession', $Displaysession);
+        return view('components.open-pusat-temuduga-session-detail')->with('panel', $Panel)->with('Displaysession', $Displaysession);
 
     }
 
@@ -281,9 +267,7 @@ class OpenPusatTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
-        ];
+       
 
 
         $request = Http::withHeaders([

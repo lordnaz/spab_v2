@@ -29,6 +29,7 @@ class CreatePenawaranPermohonanTable extends Migration
             $table->dateTime('TarikhTawar')->nullable();
             $table->dateTime('TarikhKIV')->nullable();
             $table->dateTime('TarikhTolak')->nullable();
+            $table->string('job_id')->nullable();
             $table->timestamps();
         });
     }

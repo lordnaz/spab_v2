@@ -28,7 +28,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h4 class="card-title">{!! __('locale.Interview Setting') !!}</h4>
+                    <h4 class="card-title">Penawaran Permohonan</h4>
                 </div>
 
                 <!--Search Form -->
@@ -44,23 +44,23 @@
                                 <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
                                     <option value="{{ route('PenawaranPermohonan') }}">Semua</option>
 
-                                    <option value="{{ route('Penawaranpermohonan', 'Johor Darul Takzim') }}" @if($code=='Johor Darul Takzim' ) selected @endif>Johor Darul Takzim</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Kedah Darul Aman') }}" @if($code=='Kedah Darul Aman' ) selected @endif>Kedah Darul Aman</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Kelantan Darul Naim') }}" @if($code=='Kelantan Darul Naim' ) selected @endif>Kelantan Darul Naim</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Melaka') }}" @if($code=='Melaka' ) selected @endif>Melaka</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Negeri Sembilan Darul Khusus') }}" @if($code=='Negeri Sembilan Darul Khusus' ) selected @endif>Negeri Sembilan Darul Khusus</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Pahang Darul Makmur') }}" @if($code=='Pahang Darul Makmur' ) selected @endif>Pahang Darul Makmur</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Pulau Pinang') }}" @if($code=='Pulau Pinang' ) selected @endif>Pulau Pinang</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Perak Darul Ridzuan') }}" @if($code=='Perak Darul Ridzuan' ) selected @endif>Perak Darul Ridzuan</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Perlis Indra Kayangan') }}" @if($code=='Perlis Indra Kayangan' ) selected @endif>Perlis Indra Kayangan</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'JSelangor Darul Ehsan') }}" @if($code=='Selangor Darul Ehsan' ) selected @endif>Selangor Darul Ehsan</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Terengganu Darul Iman') }}" @if($code=='Terengganu Darul Iman' ) selected @endif>Terengganu Darul Iman</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Sabah') }}" @if($code=='Sabah' ) selected @endif>Sabah</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Sarawak') }}" @if($code=='Sarawak' ) selected @endif>Sarawak</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'W.P Kuala Lumpur') }}" @if($code=='W.P Kuala Lumpur' ) selected @endif>W.P Kuala Lumpur</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'W.P Labuan') }}" @if($code=='W.P Labuan' ) selected @endif>W.P Labuan</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'W.P Putrajaya') }}" @if($code=='W.P Putrajaya' ) selected @endif>W.P Putrajaya</option>
-                                    <option value="{{ route('Penawaranpermohonan', 'Lain-lain') }}" @if($code=='Lain-lain' ) selected @endif>Lain-lain</option>
+                 <option value="{{ route('Penawaranpermohonan', 'Johor') }}" @if($code=='Johor' ) selected @endif>Johor Darul Takzim</option>           
+                  <option value="{{ route('Penawaranpermohonan', 'Kedah') }}" @if($code=='Kedah' ) selected @endif>Kedah Darul Aman</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Kelantan') }}" @if($code == 'Kelantan') selected @endif>Kelantan Darul Naim</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Melaka') }}" @if($code == 'Melaka') selected @endif>Melaka</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Negeri Sembilan') }}" @if($code == 'Negeri Sembilan') selected @endif>Negeri Sembilan Darul Khusus</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Pahang') }}" @if($code == 'Pahang') selected @endif>Pahang Darul Makmur</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Pulau Pinang') }}" @if($code == 'Pulau Pinang') selected @endif>Pulau Pinang</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Perak') }}" @if($code == 'Perak') selected @endif>Perak Darul Ridzuan</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Perlis') }}" @if($code == 'Perlis') selected @endif>Perlis Indra Kayangan</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Selangor') }}" @if($code == 'Selangor') selected @endif>Selangor Darul Ehsan</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Terengganu') }}" @if($code == 'Terengganu') selected @endif>Terengganu Darul Iman</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Sabah') }}" @if($code == 'Sabah') selected @endif>Sabah</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Sarawak') }}" @if($code == 'Sarawak') selected @endif>Sarawak</option>
+                  <option value="{{ route('Penawaranpermohonan', 'W.P Kuala Lumpur') }}" @if($code == 'W.P Kuala Lumpur') selected @endif>W.P Kuala Lumpur</option>
+                  <option value="{{ route('Penawaranpermohonan', 'W.P Labuan') }}" @if($code == 'W.P Labuan') selected @endif>W.P Labuan</option>
+                  <option value="{{ route('Penawaranpermohonan', 'W.P Putrajaya') }}" @if($code == 'W.P Putrajaya') selected @endif>W.P Putrajaya</option>
+                  <option value="{{ route('Penawaranpermohonan', 'Lain-lain') }}" @if($code == 'Lain-lain') selected @endif>Lain-lain</option>
                                 </select>
                             </div>
 

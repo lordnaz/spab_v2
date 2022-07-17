@@ -56,6 +56,7 @@ class PengesahanPermohonanFEController extends Controller
             'nric' => $req->nric,
             'name' => $req->name,
             'email' => $req->email,
+            'job_id' => $req->job_id,
            
             
         ];
@@ -83,6 +84,7 @@ class PengesahanPermohonanFEController extends Controller
             'name' => $req->name,
             'email' => $req->email,
             'description_validation' => $req->description_validation,
+            'job_id' => $req->job_id,
            
             
         ];
@@ -104,7 +106,8 @@ class PengesahanPermohonanFEController extends Controller
     public function batal_permohonan($code){
 
         $code = decrypt($code);
-      
+       
+    
 
 
         $request = Http::withHeaders([
@@ -136,9 +139,10 @@ class PengesahanPermohonanFEController extends Controller
         ]);
      
         $datas = $request['data'];
+        $dataa = $request['dataa'];
       
      
-        return view('components.pengesahan-permohonan-details', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        return view('components.pengesahan-permohonan-details', ['breadcrumbs' => $breadcrumbs], compact('datas', 'dataa'));
 
     }
 

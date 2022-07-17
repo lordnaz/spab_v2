@@ -43,7 +43,7 @@ class BalasanCalonAPIController extends Controller
       
         $displayTawar = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')
         ->where(function($q2){
-        $q2->where('all_status_permohonan.status_offer', "TAWAR");
+        $q2->where('all_status_permohonan.status_offer', "Ditawarkan");
         })
         ->where('user_details.status','!=', "2")
         ->get();
@@ -122,6 +122,7 @@ class BalasanCalonAPIController extends Controller
             'balasan_calon' => $req->balasan_calon,   
             'status_offer' => $req->balasan_calon,   
             'balasan_calon_description' => $req->balasan_calon_description,    
+            'status_global' => 'DITERIMA' ,
         ]);
 
         $data = [

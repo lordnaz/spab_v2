@@ -24,6 +24,7 @@ class CreateSessionInterviewTable extends Migration
             $table->string('description')->nullable();
             $table->string('place_description')->nullable();
             $table->boolean('status')->default(true);
+            $table->string('job_id')->nullable();
             $table->json('panel_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

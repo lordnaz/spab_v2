@@ -17,6 +17,7 @@ class CreatePanelSessionIvTable extends Migration
             $table->id('panel_iv_id');
             $table->foreignId('session_id')->index()->nullable();
             $table->foreignId('panel_id')->index()->nullable();
+            $table->string('job_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

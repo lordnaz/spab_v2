@@ -27,6 +27,7 @@ class CreateInterviewPanelTable extends Migration
             $table->string('panel_email')->nullable();
             $table->string('description')->nullable();
             $table->string('panel_status')->nullable();
+            $table->string('job_id')->nullable();
             $table->boolean('status')->default(true);
             $table->string('created_by')->nullable();
             $table->timestamps();

@@ -501,6 +501,7 @@ return [
  "Penawaran Permohonan" => "Application Offer",
  "Penapisan Temuduga" => "Interview Screening",
  "Penjadualan Temuduga" => "Interview Scheduling",
- "Keputusan Temuduga" => "Interview Result"
+ "Keputusan Temuduga" => "Interview Result",
+ "Keputusan Permohonan" => "Application Result"
  
 ];

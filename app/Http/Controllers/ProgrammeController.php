@@ -95,6 +95,58 @@ class ProgrammeController extends Controller
 
     }
 
+    public function update_details_program(Request $req){
+
+        // $data = $req->input();
+
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+        ];
+
+        
+        $update = program::where('program_id',$req->program_id)->update
+        ([
+
+                
+        'code' => $req->code,
+        'program' => $req->program,
+        'type' => $req->type,
+        'faculty' => $req->faculty,
+        'field' => $req->field,
+        'sub_field' => $req->subfield,
+        'notes' => $req->note
+
+        ]);
+
+
+        return redirect()->route('program');
+
+    }
+
+    public function delete_details_program($code){
+
+        // $data = $req->input();
+
+        $breadcrumbs = [
+            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+        ];
+
+        $exist = Offerprogram::where('program_id', $code)->where('status', true)->where('status_aktif', 'aktif')->exists();
+        
+        if(!$exist){
+        $update = program::where('program_id',$code)->update
+        ([
+              
+        'status' => false
+
+        ]);
+    }
+
+
+        return redirect()->route('program');
+
+    }
+
     //OFFERED PROGRAM
 
     public function offered_program(){

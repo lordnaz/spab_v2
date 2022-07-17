@@ -45,18 +45,18 @@
                 <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
                     <option value="{{ route('PenapisanTemuduga') }}" selected>Semua</option>
                     
-                    <option value="{{ route('Penapisantemuduga', 'Johor Darul Takzim') }}">Johor Darul Takzim</option>
+                    <option value="{{ route('Penapisantemuduga', 'Johor') }}">Johor Darul Takzim</option>
                   
-                  <option value="{{ route('Penapisantemuduga', 'Kedah Darul Aman') }}">Kedah Darul Aman</option>
-                  <option value="{{ route('Penapisantemuduga', 'Kelantan Darul Naim') }}">Kelantan Darul Naim</option>
+                  <option value="{{ route('Penapisantemuduga', 'Kedah') }}">Kedah Darul Aman</option>
+                  <option value="{{ route('Penapisantemuduga', 'Kelantan') }}">Kelantan Darul Naim</option>
                   <option value="{{ route('Penapisantemuduga', 'Melaka') }}">Melaka</option>
-                  <option value="{{ route('Penapisantemuduga', 'Negeri Sembilan Darul Khusus') }}">Negeri Sembilan Darul Khusus</option>
-                  <option value="{{ route('Penapisantemuduga', 'Pahang Darul Makmur') }}">Pahang Darul Makmur</option>
+                  <option value="{{ route('Penapisantemuduga', 'Negeri Sembilan') }}">Negeri Sembilan Darul Khusus</option>
+                  <option value="{{ route('Penapisantemuduga', 'Pahang') }}">Pahang Darul Makmur</option>
                   <option value="{{ route('Penapisantemuduga', 'Pulau Pinang') }}">Pulau Pinang</option>
-                  <option value="{{ route('Penapisantemuduga', 'Perak Darul Ridzuan') }}">Perak Darul Ridzuan</option>
-                  <option value="{{ route('Penapisantemuduga', 'Perlis Indra Kayangan') }}">Perlis Indra Kayangan</option>
-                  <option value="{{ route('Penapisantemuduga', 'JSelangor Darul Ehsan') }}">Selangor Darul Ehsan</option>
-                  <option value="{{ route('Penapisantemuduga', 'Terengganu Darul Iman') }}">Terengganu Darul Iman</option>
+                  <option value="{{ route('Penapisantemuduga', 'Perak') }}">Perak Darul Ridzuan</option>
+                  <option value="{{ route('Penapisantemuduga', 'Perlis') }}">Perlis Indra Kayangan</option>
+                  <option value="{{ route('Penapisantemuduga', 'Selangor') }}">Selangor Darul Ehsan</option>
+                  <option value="{{ route('Penapisantemuduga', 'Terengganu') }}">Terengganu Darul Iman</option>
                   <option value="{{ route('Penapisantemuduga', 'Sabah') }}">Sabah</option>
                   <option value="{{ route('Penapisantemuduga', 'Sarawak') }}">Sarawak</option>
                   <option value="{{ route('Penapisantemuduga', 'W.P Kuala Lumpur') }}">W.P Kuala Lumpur</option>
@@ -166,7 +166,7 @@
              @endphp
                 <tr class="text-center" >
                   <td>{{$count++}}</td>
-                  <td>{{$displayTemudugaa['nric']}}</td>
+                  <td>{{$displayTemudugaa['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTemudugaa['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTemudugaa['name']}}</td>
                   <td>{{$displayTemudugaa['type_program_applied']}}</td>
                   <td>{{$displayTemudugaa['state']}}</td>
@@ -201,7 +201,7 @@
                   <td>{{$displayTemudugaa['code_center']}}</td>
                   <td>{{$displayTemudugaa['TarikhProses']}}</td>
                   <td>
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                  
                   <a href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                   <a href="{{ route('tolakPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Tolak</a>
                     <a href="{{ route('batalPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-danger"> 
@@ -259,7 +259,7 @@
               @endphp
                 <tr class="text-center">
                   <td></td>
-                  <td>{{$displayTolakk['nric']}}</td>
+                  <td>{{$displayTolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTolakk['name']}}</td>
                   <td>{{$displayTolakk['type_program_applied']}}</td>
                   <td>{{$displayTolakk['state']}}</td>
@@ -294,7 +294,7 @@
                   <td></td>
                   <td>{{$displayTolakk['TarikhProses']}}</td>
                   <td>
-                  <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                
                   <a href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                     <a href="{{ route('batalPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
                       Batal

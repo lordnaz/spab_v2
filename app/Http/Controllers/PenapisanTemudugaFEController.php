@@ -14,9 +14,7 @@ class PenapisanTemudugaFEController extends Controller
 
     public function PenapisanTemuduga(){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
-        ];
+      
 
         $request = Request::create('/api/getAllScreeningIVapplicant', 'GET');
         $response = Route::dispatch($request);
@@ -32,7 +30,7 @@ class PenapisanTemudugaFEController extends Controller
         $tolak = $responseBody['tolak'];
 
 
-        return view('components.penapisan-temuduga-table', ['breadcrumbs' => $breadcrumbs])->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)
+        return view('components.penapisan-temuduga-table')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)
         ->with('displayTolak', $displayTolak)->with('tolak', $tolak);
 
     }
@@ -115,9 +113,7 @@ class PenapisanTemudugaFEController extends Controller
        
        else{
            
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Panel Temuduga"], ['name' => "ButiranTemuduga"]
-        ];
+       
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -129,19 +125,19 @@ class PenapisanTemudugaFEController extends Controller
         $detailTemuduga= $request['detailTemuduga'];
         $detailCenter= $request['detailCenter'];
 
-        return view('components.penapisan-temuduga-details', ['breadcrumbs' => $breadcrumbs])->with('detailTemuduga', $detailTemuduga)->with('detailCenter', $detailCenter);
+        return view('components.penapisan-temuduga-details')->with('detailTemuduga', $detailTemuduga)->with('detailCenter', $detailCenter);
        }
 
     }
 
     public function KemaskiniTemuduga(Request $req){
 
-        $screening_id = decrypt($req->screening_id);
+        
         //update details
         $param = [
             
             'center_id' => $req->center_id,
-            'screening_id' => $screening_id,
+            'screening_id' => $req->screening_id,
             'nric' => $req->nric,
         
             

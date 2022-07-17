@@ -67,7 +67,7 @@
                   <td>{{$data['faculty']}}</td>
                   <td>
                     <a href="{{ route('details_program', Crypt::encrypt($data['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
-                    <a href="javascript:;" class="btn-sm btn-danger deleteProgram" program-id="{{$data['program_id']}}"> 
+                    <a href="{{ route('delete_details_program', $data['program_id']) }}" class="btn-sm btn-danger deleteProgram"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
                     </a>
                     

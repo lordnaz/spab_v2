@@ -13,9 +13,7 @@ class PenjadualanTemudugaFEController extends Controller
     //
     public function penjadualan_temuduga(){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
-        ];
+      
 
         $request = Request::create('/api/getAllPlaceIVapplicant', 'GET');
         $response = Route::dispatch($request);
@@ -32,17 +30,14 @@ class PenjadualanTemudugaFEController extends Controller
         $displayTable = $responseBody['displayTable'];
         $program = $responseBody['program'];
 
-        return view('components.penjadualan-temuduga', ['breadcrumbs' => $breadcrumbs])
+        return view('components.penjadualan-temuduga')
         ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('Sesi', $Sesi)->with('FirstSesi', $FirstSesi)->with('displayTable', $displayTable)->with('program', $program);
 
     }
 
     public function PenjadualanTemuduga($code){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
-        ];
-
+       
         $param = [
             
             'type' => $code,
@@ -63,7 +58,7 @@ class PenjadualanTemudugaFEController extends Controller
         $displayTable = $request['displayTable'];
         $program = $request['program'];
 
-        return view('components.PenjadualanTemuduga', ['breadcrumbs' => $breadcrumbs])
+        return view('components.PenjadualanTemuduga')
         ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('Sesi', $Sesi)->with('FirstSesi', $FirstSesi)->with('displayTable', $displayTable)->with('program', $program);
 
     }

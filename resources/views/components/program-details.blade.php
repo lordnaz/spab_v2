@@ -1,5 +1,8 @@
-@extends('layouts/contentLayoutMaster')
 
+@extends('layouts/contentLayoutMaster')
+@php
+$test = Session::get('variableName');
+@endphp
 @section('content')
 <!-- Basic Horizontal form layout section start -->
 <section id="basic-horizontal-layouts">
@@ -10,9 +13,11 @@
           <h4 class="card-title">{!! __('locale.Details_2') !!}</h4>
         </div>
         <div class="card-body">
-          <form class="form form-horizontal">
+        <form action="/update_details_program" method="post" enctype="multipart/form-data" accept-charset='UTF-8' class="form form-horizontal">
+        {{@csrf_field()}}
             <div class="row">
-
+           
+            
               <div class="col-12">
                 <div class="mb-1 row">
                   <div class="col-sm-2">
@@ -23,14 +28,14 @@
                   </div>
                 </div>
               </div>
-
+ <input hidden type="text" id="program_id" class="form-control" name="program_id" value="{{$datas['program_id']}}"/>
               <div class="col-12">
                 <div class="mb-1 row">
                   <div class="col-sm-2">
                     <label class="col-form-label" for="name">{!! __('locale.Program Name') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="name" class="form-control" name="name" placeholder="" value="{{$datas['program']}}"/>
+                    <input type="text" id="name" class="form-control" name="program" placeholder="" value="{{$datas['program']}}"/>
                   </div>
                 </div>
               </div>
@@ -41,13 +46,11 @@
                     <label class="col-form-label">{!! __('locale.Type') !!}:</label>
                   </div>
                   <div class="col-sm-10">
-                    <select class="select2 form-select" id="type">
+                    <select class="select2 form-select" id="type" name="type">
                         <option selected disabled>{!! __('locale.Please Choose') !!}</option>
-                        <option data-avatar="1-small.png" value="asasi">{!! __('locale.Foundation') !!}</option>
-                        <option data-avatar="3-small.png" value="diploma">{!! __('locale.Diploma') !!}</option>
-                        <option data-avatar="5-small.png" value="sarjana muda">{!! __('locale.Degree') !!}</option>
-                        <option data-avatar="7-small.png" value="sarjana">{!! __('locale.Master') !!}</option>
-                        <option data-avatar="9-small.png" value="kedoktoran">{!! __('locale.PhD') !!}</option>
+                        <option data-avatar="1-small.png" value="Program Asasi" @if($datas['type'] == 'Program Asasi') selected @endif>{!! __('locale.Foundation') !!}</option>
+                        <option data-avatar="3-small.png" value="Diploma" @if($datas['type'] == 'Diploma') selected @endif>{!! __('locale.Diploma') !!}</option>
+                        <option data-avatar="5-small.png" value="Sarjana Muda" @if($datas['type'] == 'Sarjana Muda') selected @endif>{!! __('locale.Degree') !!}</option>
                     </select>
                   </div>
                 </div>
@@ -59,13 +62,13 @@
                     <label class="col-form-label">{!! __('locale.Faculty') !!}:</label>
                   </div>
                   <div class="col-sm-10">
-                    <select class="select2 form-select" id="type">
+                    <select class="select2 form-select" id="type" name="faculty">
                         <option selected disabled>{!! __('locale.Please Choose') !!}</option>
-                        <option data-avatar="1-small.png" value="asasi">{!! __('locale.Foundation') !!}</option>
-                        <option data-avatar="3-small.png" value="diploma">{!! __('locale.Diploma') !!}</option>
-                        <option data-avatar="5-small.png" value="sarjana muda">{!! __('locale.Degree') !!}</option>
-                        <option data-avatar="7-small.png" value="sarjana">{!! __('locale.Master') !!}</option>
-                        <option data-avatar="9-small.png" value="kedoktoran">{!! __('locale.PhD') !!}</option>
+                        <option data-avatar="1-small.png" value="asasi" @if($datas['faculty'] == 'asasi') selected @endif >{!! __('locale.Foundation') !!}</option>
+                        <option data-avatar="3-small.png" value="diploma"  @if($datas['faculty'] == 'diploma') selected @endif>{!! __('locale.Diploma') !!}</option>
+                        <option data-avatar="5-small.png" value="sarjana muda"  @if($datas['faculty'] == 'sarjana muda') selected @endif>{!! __('locale.Degree') !!}</option>
+                        <option data-avatar="7-small.png" value="sarjana"  @if($datas['faculty'] == 'sarjana') selected @endif>{!! __('locale.Master') !!}</option>
+                        <option data-avatar="9-small.png" value="kedoktoran"  @if($datas['faculty'] == 'kedoktoran') selected @endif>{!! __('locale.PhD') !!}</option>
                     </select>
                   </div>
                 </div>
@@ -104,11 +107,17 @@
                 </div>
               </div>
 
+            
+
               <div class="col-sm-3 offset-sm-9">
-                <a href="{{ route('program') }}" class="btn btn-outline-danger me-1">{!! __('locale.Back') !!}</a>
-                <button type="reset" class="btn btn-primary">{!! __('locale.Update') !!}</button>
+                <a href="{{ route('program') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Back') !!}</a>
+                              
+                <button type="submit" class="btn btn-success">
+                  <i data-feather="plus-circle" class="me-25"></i>
+                  <span>Kemaskini</span>
+                </button>
                 
-                <!-- <button type="reset" class="btn btn-outline-secondary">Back</button> -->
+
               </div>
             </div>
           </form>
@@ -120,23 +129,7 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script>
-       $(document).ready(function() {
-    
-        
-        
-    
-    $("#btn1").click(function() {     
-      
-      $("#view").append('<div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Item Name</label><input type="text" class="form-control" id="itemname" aria-describedby="itemname" placeholder="Vuexy Admin Template" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Cost</label><input type="number" class="form-control" id="itemcost" aria-describedby="itemcost" placeholder="32"/></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>');
-
-      
-    });
-    
-  });
-
   
-    </script>
 </section>
 <!-- Basic Horizontal form layout section end -->
 

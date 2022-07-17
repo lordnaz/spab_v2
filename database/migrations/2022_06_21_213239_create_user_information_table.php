@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserDetailsTable extends Migration
+class CreateUserInformationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateUserDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_details', function (Blueprint $table) {
-            $table->id('user_detailsid');
-            $table->string('nric');
+        Schema::create('user_information', function (Blueprint $table) {
+            $table->id('information_id');
+            $table->string('nric')->unique();
             $table->string('name')->nullable();
             $table->string('short_name')->nullable();
             $table->string('email')->nullable();
@@ -39,7 +39,6 @@ class CreateUserDetailsTable extends Migration
             $table->string('description')->nullable();
             $table->string('status_admission')->nullable();
             $table->string('type_program_applied')->nullable();
-            $table->string('job_id')->nullable();
             $table->dateTime('date_application')->nullable();
             $table->dateTime('date_acceptance')->nullable();
             $table->boolean('status')->default(true);
@@ -56,6 +55,6 @@ class CreateUserDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_details');
+        Schema::dropIfExists('user_information');
     }
 }

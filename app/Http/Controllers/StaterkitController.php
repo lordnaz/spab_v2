@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class StaterkitController extends Controller
 {
@@ -14,6 +15,8 @@ class StaterkitController extends Controller
             $breadcrumbs = [
                 ['link' => "home", 'name' => "Home"], ['name' => "Announcement"]
             ];
+            
+            Session::put('variableName', '2022');
             return view('/content/home', ['breadcrumbs' => $breadcrumbs]);
         }else{
             return view('/auth/login');

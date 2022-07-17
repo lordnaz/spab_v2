@@ -35,6 +35,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'gender' => $input['gender'],
+                'race' => $input['race'],
             ])->save();
         }
     }
@@ -51,6 +53,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'email' => $input['email'],
+            'gender' => $input['gender'],
+            'race' => $input['race'],
             'email_verified_at' => null,
         ])->save();
 

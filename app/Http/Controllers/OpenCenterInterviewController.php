@@ -235,9 +235,9 @@ class OpenCenterInterviewController extends Controller
     public function UpdateSesi(Request $req)
     {
 
-        $exists = ScreeningIV::where('asas_id', $req->session_id)->exists();
+       
 
-        if(!$exists){
+        
         $update = SessionInterview::where('session_id', $req->session_id)->update([
             
                 'TarikhFrom' => $req->TarikhFrom,
@@ -251,15 +251,10 @@ class OpenCenterInterviewController extends Controller
 
             ]);
 
-            $status = 'Berjaya';
-        }
-        else{
-
-            $status = 'Tidak Berjaya';
-        }
+     
 
         $data = [
-            'status' => $status,
+            'status' => 'berjaya',
             'code' => '000',
             'description' => 'succesfull'
         ];

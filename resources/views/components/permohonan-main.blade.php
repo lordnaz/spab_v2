@@ -29,6 +29,7 @@
         </div>
         
         <!--Search Form -->
+        @if ($button=='ada')
         <div class="card-body mt-2">
           <div class="row g-1 md-1">
             <div class="col-md-4">
@@ -39,6 +40,20 @@
             </div>
           </div>
         </div>
+        @else
+        <div class="card-body mt-2">
+          <div class="row g-1 md-1">
+            <div class="col-md-4">
+              
+              <a href="javascript:void(0)" onclick="myAlert()" style="cursor: default;" class="btn btn-success"> 
+                <i data-feather="plus-circle" class="me-25"></i>
+                <span>Permohonan Baru</span>
+              </a>
+              
+            </div>
+          </div>
+        </div>
+        @endif
         <!-- <hr class="my-0" /> -->
         <div class="card-datatable">
           <table class="dt-advanced-search-2 table">
@@ -63,12 +78,12 @@
                 @foreach ($applications as $application)
                   <tr class="text-center">
                     <td>{{$count++}}</td>
-                    <td>{{$application['job_id']}}</td>
+                    <td>{{$application['nric']}}</td>
                     <td>Permohonan Baru</td>
-                    <td>{{$application['status_validation']}}</td>
+                    <td>{{$application['status_global']}}</td>
                     <td>{{ \Carbon\Carbon::parse($application['created_at'])}}</td>
                     <td>
-                      <a href="{{ route('details_program', Crypt::encrypt($application['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+                      <a href="{{ route('butiran', Crypt::encrypt($application['nric'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
                     </td>
                   
                   </tr>
@@ -83,7 +98,11 @@
   </div>
 </section>
 <!--/ Advanced Search -->
-
+<script>
+function myAlert() {
+  alert("Permohonan Telah Dihantar");
+}
+</script>
 
 @endsection
 

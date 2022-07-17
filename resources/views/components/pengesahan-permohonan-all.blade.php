@@ -97,7 +97,7 @@
                 
                   <td>{{$data['date_application']}}</td>
                   <td>{{$data['no_siri']}}</td>
-                  <td>{{$data['nric']}}&nbsp;<a href="" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$data['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($data['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$data['name']}}</td>
               <td>{{$data['status_validation']}}</td>
               <td>{{$data['date_acceptance']}}</td>
@@ -152,7 +152,7 @@ $(document).ready(function(){
                     });  
 
 })
-
+</script>
 
 
 @endsection

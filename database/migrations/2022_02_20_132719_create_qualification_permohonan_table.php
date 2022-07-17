@@ -20,6 +20,9 @@ class CreateQualificationPermohonanTable extends Migration
             $table->string('grade_others_qc')->nullable();
             $table->string('specialization_others_qc')->nullable();
             $table->string('year_others_qc')->nullable();
+            $table->string('sequence')->nullable();
+            $table->boolean('status')->default(true);
+            $table->string('job_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();
             $table->timestamps();

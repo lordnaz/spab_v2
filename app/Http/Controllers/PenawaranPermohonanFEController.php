@@ -14,9 +14,7 @@ class PenawaranPermohonanFEController extends Controller
     //
     public function PenawaranPermohonan(){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
-        ];
+        
 
         $request = Request::create('/api/display_penawaran', 'GET');
         $response = Route::dispatch($request);
@@ -46,7 +44,7 @@ class PenawaranPermohonanFEController extends Controller
         
 
 
-        return view('components.penawaran-permohonan', ['breadcrumbs' => $breadcrumbs])
+        return view('components.penawaran-permohonan')
         ->with('ditawar', $ditawar)->with('cadang1ditawar', $cadang1ditawar)->with('cadang2ditawar', $cadang2ditawar)->with('programditawar', $programditawar)
         ->with('ditolak', $ditolak)->with('cadang1ditolak', $cadang1ditolak)->with('cadang2ditolak', $cadang2ditolak)->with('programditolak', $programditolak)
         ->with('kiv', $kiv)->with('cadang1kiv', $cadang1kiv)->with('cadang2kiv', $cadang2kiv)->with('programkiv', $programkiv)
@@ -56,9 +54,7 @@ class PenawaranPermohonanFEController extends Controller
 
     public function AjaxPenawaranPermohonan($code){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
-        ];
+       
 
 
         //update details
@@ -90,7 +86,7 @@ class PenawaranPermohonanFEController extends Controller
         
 
 
-        return view('components.penawaran-permohonan-ajax', ['breadcrumbs' => $breadcrumbs])
+        return view('components.penawaran-permohonan-ajax')
         ->with('ditawar', $ditawar)->with('cadang1ditawar', $cadang1ditawar)->with('cadang2ditawar', $cadang2ditawar)->with('programditawar', $programditawar)
         ->with('ditolak', $ditolak)->with('cadang1ditolak', $cadang1ditolak)->with('cadang2ditolak', $cadang2ditolak)->with('programditolak', $programditolak)
         ->with('kiv', $kiv)->with('cadang1kiv', $cadang1kiv)->with('cadang2kiv', $cadang2kiv)->with('programkiv', $programkiv)
@@ -159,9 +155,7 @@ class PenawaranPermohonanFEController extends Controller
 
         $code = decrypt($code);
         
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
-        ];
+       
 
 
 
@@ -177,16 +171,14 @@ class PenawaranPermohonanFEController extends Controller
 
        
 
-        return view('components.penawaran-permohonan-tawaran', ['breadcrumbs' => $breadcrumbs])
+        return view('components.penawaran-permohonan-tawaran')
         ->with('displaypenawaran', $displaypenawaran)->with('program', $program);
 
     }
 
     public function AjaxTawaran(Request $req){
 
-        $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
-        ];
+       
         
         //update details
         $param = [
@@ -209,7 +201,7 @@ class PenawaranPermohonanFEController extends Controller
         $offer = $request['offer'];
 
 
-        return view('components.penawaran-permohonan-tawar-ajax', ['breadcrumbs' => $breadcrumbs])
+        return view('components.penawaran-permohonan-tawar-ajax')
         ->with('displaypenawaran', $displaypenawaran)->with('program', $program)->with('offer', $offer)->with('id', $req->program);
     }
 
@@ -228,6 +220,7 @@ class PenawaranPermohonanFEController extends Controller
             'catatan' => $req->catatan,
                   
         ];
+        
 
 
         $request = Http::withHeaders([

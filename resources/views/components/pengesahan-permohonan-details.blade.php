@@ -60,6 +60,8 @@
                 </div>
               </div>
 
+              <input hidden type="text" id="payment_ref_no" class="form-control" name="job_id" placeholder="" value="{{$dataa['job_id']}}"/>
+
 
 
 

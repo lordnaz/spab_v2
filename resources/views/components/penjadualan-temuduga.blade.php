@@ -75,7 +75,7 @@
                                 <th>Tarikh</th>
                                 <th>Masa Mula</th>
                                 <th>Masa Tamat</th>
-                                <th>Pilihan</th>
+                                
                             </tr>
 
                         </thead>
@@ -126,10 +126,7 @@
                   <td>{{$displayTablee['MasaFrom'] ? Carbon\Carbon::parse($displayTablee['MasaFrom'])->format('H:i:s') : ' '}}</td>
                   <td>{{$displayTablee['MasaTo'] ? Carbon\Carbon::parse($displayTablee['MasaTo'])->format('H:i:s') : ' '}}</td>
                   
-                  <td>
-                 
-                    
-                  </td>
+                  
                  
                 </tr>
              @endforeach
@@ -289,6 +286,11 @@ $(document).ready(function(){
 //ajaxkosongkan
 $(document).ready(function(){
     $('#kosong').click(function(){  
+        setTimeout(
+                  function() 
+                  {
+                     location.reload();
+                  }, 0001);    
                       var presence = [];
                       var sesi = $('#myselect').val();
                       $.each($("input[name='checkbox']:checked"), function(){

@@ -25,7 +25,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-          <h4 class="card-title">{!! __('locale.Application Confirmation') !!}</h4>
+          <h4 class="card-title">{!! __('locale.Keputusan Permohonan') !!}</h4>
         </div>
         
         <!--Search Form -->
@@ -56,7 +56,7 @@
                   <td>{{$data['nric']}}</td>
                   <td>{{$data['name']}}</td>
                   <td>{{$data['date_application']}}</td>
-                  <td>{{$data['status']}}</td>
+                  <td>{{$data['status_global']}}</td>
     
               <td>
 

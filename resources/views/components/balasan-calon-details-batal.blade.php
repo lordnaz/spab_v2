@@ -13,7 +13,7 @@
           <form action="/balasan_permohonan" method="post" enctype="multipart/form-data" accept-charset='UTF-8' class="form form-horizontal">
             @csrf  
             <div class="row">
-            <input type="hidden" id="balasan_calon" class="form-control" name="balasan_calon" placeholder="" value="TAWAR"readonly/>
+            <input type="hidden" id="balasan_calon" class="form-control" name="balasan_calon" placeholder="" value="Ditawarkan"readonly/>
               <div class="col-12">
                 <div class="mb-1 row">
                   <div class="col-sm-2">

@@ -71,7 +71,7 @@
                                 </div>
                             </div>
 
-
+                            <input hidden type="text" id="payment_ref_no" class="form-control" name="job_id" placeholder="" value="{{$datass['job_id']}}"/>
 
               <div class="col-sm-3 offset-sm-9">
                 <a href="{{ route('display_pengesahan_permohonan') }}" class="btn btn-outline-danger me-1">{!! __('locale.Back') !!}</a>

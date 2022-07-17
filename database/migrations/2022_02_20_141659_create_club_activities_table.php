@@ -19,6 +19,9 @@ class CreateClubActivitiesTable extends Migration
             $table->string('club')->nullable();
             $table->string('role')->nullable();
             $table->string('year_taken')->nullable();
+            $table->string('sequence')->nullable();
+            $table->boolean('status')->default(true);
+            $table->string('job_id')->nullable();
             $table->string('created_by')->nullable();
             $table->string('modified_by')->nullable();
             $table->timestamps();

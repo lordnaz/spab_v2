@@ -16,6 +16,7 @@ class CreateAsasInterviewTable extends Migration
         Schema::create('asas_interview', function (Blueprint $table) {
             $table->id('asas_id');
             $table->foreignId('center_id')->index();
+            $table->string('job_id')->nullable();
             $table->json('negeri')->nullable();
             $table->string('catatan')->nullable();
             $table->boolean('status')->default(true);

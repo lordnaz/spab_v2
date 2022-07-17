@@ -20,7 +20,7 @@ class PengesahanPermohonanAPIController extends Controller
 
       
 
-        $display = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')->get();
+        $display = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.status_validation', 'DALAM PROSES')->orWhere('all_status_permohonan.status_validation', 'SAH')->orWhere('all_status_permohonan.status_validation', 'TOLAK')->get();
 
      
 
@@ -37,11 +37,12 @@ class PengesahanPermohonanAPIController extends Controller
     public function sahkan(Request $req){
 
         $currentdt = date('Y-m-d H:i:s');
-
+       
         $sahkan = StatusPermohonan::where('nric', $req->nric)->update([
             'updated_date_validation' => $currentdt,
             'status_validation' => 'SAH' ,
-            'status_temuduga' => 'BELOM PROSES'
+            'status_global' => 'DISAHKAN' ,
+            'status_temuduga' => 'BELUM PROSES'
     
             ]);
 
@@ -70,10 +71,21 @@ class PengesahanPermohonanAPIController extends Controller
 
         $currentdt = date('Y-m-d H:i:s');
 
+        
+
         $sahkan = StatusPermohonan::where('nric', $req->code)->update([
             'updated_date_validation' => $currentdt,
-            'status_validation' => 'BELOM DIPROSES'  
+            'status_validation' => 'DALAM PROSES',
+            'status_global' => 'BELUM DISAHKAN',
+            'status_temuduga' => NULL,
+            'description_validation' => NULL,  
     
+            ]);
+
+            $paymentRef = UserDetail::where('nric', $req->code)->update([
+                'updated_at' => $currentdt,
+                'payment_ref_no' => NULL,
+            
             ]);
 
 
@@ -97,7 +109,9 @@ class PengesahanPermohonanAPIController extends Controller
         $sahkan = StatusPermohonan::where('nric', $req->nric)->update([
             'updated_date_validation' => $currentdt,
             'description_validation' => $req->description_validation,
-            'status_validation' => 'TOLAK'  
+            'status_validation' => 'TOLAK', 
+            'status_global' => 'PENGESAHAN DITOLAK', 
+            'status_temuduga' => 'PENGESAHAN DITOLAK'
     
             ]);
 

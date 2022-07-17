@@ -499,7 +499,8 @@ return [
     "Penawaran Permohonan" => "Penawaran Permohonan",
     "Penapisan Temuduga" => "Penapisan Temuduga",
     "Penjadualan Temuduga" => "Penjadualan Temuduga",
-    "Keputusan Temuduga" => "Keputusan Temuduga"
+    "Keputusan Temuduga" => "Keputusan Temuduga",
+    "Keputusan Permohonan" => "Keputusan Permohonan"
 
 
 
