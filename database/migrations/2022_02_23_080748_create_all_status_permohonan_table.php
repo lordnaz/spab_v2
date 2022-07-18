@@ -17,8 +17,8 @@ class CreateAllStatusPermohonanTable extends Migration
             $table->id('status_id');
             $table->string('no_siri')->nullable();
             $table->string('job_id')->nullable();
-            $table->string('nric');
-            $table->string('study_mode');
+            $table->string('nric')->nullable();;
+            $table->string('study_mode')->nullable();;
             $table->string('status_validation')->nullable();
             $table->string('status_pendaftaran')->nullable();
             $table->string('all_status')->nullable();

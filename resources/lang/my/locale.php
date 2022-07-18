@@ -217,17 +217,19 @@ return [
     
     // Navigation Menu
     "app_name" => "SPAB",
-    "Home" => "Dashboard",
+    "Admin_Home" => "Dashboard",
+    "User_Home" => "Dashboard",
     "API Token" => "Token API",
     "Manage Profile" => "Pengurusan Profil",
 
 
     // Vertical Menu
-    "Programme" => "Program",
+    "Admin_Programme" => "Program",
     "Programme Setting" => "Tetapan Program",
     "Activation" => "Program Ditawar",
     "Student Registration" => "Pendaftaran Pelajar",
-    "Intake" => "Kemasukan",
+    "Admin_Intake" => "Kemasukan",
+    "User_Intake" => "Kemasukan",
 
     // program page
     "New Program" => "Program Baru",
@@ -276,7 +278,7 @@ return [
     "Not Active" => "Tidak Aktif",
     "Interview Setting" => "Panel Temuduga",
     "MyKad" => "MyKad",
-    "Interview" => "Temuduga",
+    "Admin_Interview" => "Temuduga",
     "Interview Panel" => "Panel Temuduga",
 
     //pusat temuduga
@@ -410,7 +412,7 @@ return [
     "Cancellation of Application Status" => "Pembatalan Status Permohonan",
     "Cancel the confirmation of the application or rejection of the application that has been made" => "Membatalkan pengesahan permohonan atau penolakan permohonan yang telah dibuat",
     //Bukak pusat temuduga
-    "Bukak Temuduga" => "Bukak Temuduga",
+    "Bukak Temuduga" => "Buka Temuduga",
     //Jadual Temuduga
     "Interview Schedule" => "Penjadualan Temuduga",
     "Program" => "Program",

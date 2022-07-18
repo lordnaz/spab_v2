@@ -15,7 +15,7 @@ class CreateApplicantDetailsSubTable extends Migration
     {
         Schema::create('applicant_details_sub', function (Blueprint $table) {
             $table->id('application_id');
-            $table->string('nric')->unique();
+            $table->string('nric')->nullable();
             $table->string('status_marriage')->nullable();
             $table->string('partner_name')->nullable();
             $table->string('partner_address_1')->nullable();

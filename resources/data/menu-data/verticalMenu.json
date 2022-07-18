@@ -3,12 +3,18 @@
   "menu": [
     {
       "url": "home",
-      "name": "Home",
+      "name": "Admin_Home",
       "icon": "home",
       "slug": "home"
     },
     {
-      "name": "Programme",
+      "url": "home",
+      "name": "User_Home",
+      "icon": "home",
+      "slug": "home"
+    },
+    {
+      "name": "Admin_Programme",
       "icon": "file-text",
       "slug": "",
       "submenu": [
@@ -33,7 +39,7 @@
       ]
     },
     {
-      "name": "Interview",
+      "name": "Admin_Interview",
       "icon": "file-text",
       "slug": "",
       "submenu": [
@@ -76,16 +82,10 @@
       ]
     },
     {
-      "name": "Intake",
+      "name": "Admin_Intake",
       "icon": "file-text",
       "slug": "",
       "submenu": [
-        {
-          "url": "regis_all",
-          "name": "Registration Details",
-          "icon": "circle",
-          "slug": "regis_all"
-        },
         {
           "url": "display_pengesahan_permohonan",
           "name": "Application Confirmation",
@@ -109,6 +109,19 @@
           "name": "Candidate Reply",
           "icon": "circle",
           "slug": "balasancalon"
+        }
+      ]
+    },
+    {
+      "name": "User_Intake",
+      "icon": "file-text",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "regis_all",
+          "name": "Registration Details",
+          "icon": "circle",
+          "slug": "regis_all"
         }
       ]
     }

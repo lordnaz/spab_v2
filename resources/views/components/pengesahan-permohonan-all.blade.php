@@ -104,11 +104,27 @@
               <td>
               
 
-            
+              <!-- Bila dah sah/tolak, boleh tekan batal je untuk ubah status permohonan  -->
+              <div class="btn-group">
+                <button class="btn btn-sm btn-outline-danger">Pilihan</button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a class="dropdown-item" href="{{ route('sahkan_permohonan_id', Crypt::encrypt($data['nric'])) }}">Sahkan</a>
+                  <a class="dropdown-item" href="{{ route('tolak_permohonan_id', Crypt::encrypt($data['nric'])) }}">Tolak</a>
+                  <a class="dropdown-item" href="{{ route('batal_permohonan', Crypt::encrypt($data['nric'])) }}">Batal</a>
+                </div>
+              </div>
                       <!-- <a href="" class="btn-sm btn-warning"> <i data-feather='external-link'></i></a> -->
-                      <a href="{{ route('sahkan_permohonan_id', Crypt::encrypt($data['nric'])) }}" class="btn-sm btn-success" > <i data-feather='external-link'></i>{!! __('locale.Confirm') !!}</a>
+                      <!-- <a href="{{ route('sahkan_permohonan_id', Crypt::encrypt($data['nric'])) }}" class="btn-sm btn-success" > <i data-feather='external-link'></i>{!! __('locale.Confirm') !!}</a>
                       <a href="{{ route('tolak_permohonan_id', Crypt::encrypt($data['nric'])) }}" class="btn-sm btn-danger" > <i data-feather='external-link'></i>{!! __('locale.Reject') !!}</a>
-                      <a href="{{ route('batal_permohonan', Crypt::encrypt($data['nric'])) }}" class="btn btn-sm btn-outline-primary"><i data-feather='external-link'></i>{!! __('locale.Cancel') !!}</a>
+                      <a href="{{ route('batal_permohonan', Crypt::encrypt($data['nric'])) }}" class="btn btn-sm btn-outline-primary"><i data-feather='external-link'></i>{!! __('locale.Cancel') !!}</a> -->
               
               
              

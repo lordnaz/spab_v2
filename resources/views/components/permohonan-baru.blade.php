@@ -201,41 +201,41 @@
             <div class="mb-1 col-md-6">
               <label class="form-label" for="race">{!! __('locale.Race') !!}</label>
               <select class="form-select w-100 race" id="race" name="race">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                <option value="Melayu" @if($form1['race'] == "Melayu") selected @else disabled @endif>Melayu</option>
-                <option value="Cina" @if($form1['race'] == "Cina") selected @else disabled @endif>Cina</option>
-                <option value="India" @if($form1['race'] == "India") selected @else disabled @endif>India</option>
-                <option value="Lain-lain" @if($form1['race'] == "Lain-lain") selected @else disabled @endif>Lain-lain</option>
+                <option label="" selected>{!! __('locale.Please Choose') !!}</option>
+                <option value="Melayu" @if($form1['race'] == "Melayu") selected @else @endif>Melayu</option>
+                <option value="Cina" @if($form1['race'] == "Cina") selected @else @endif>Cina</option>
+                <option value="India" @if($form1['race'] == "India") selected @else @endif>India</option>
+                <option value="Lain-lain" @if($form1['race'] == "Lain-lain") selected @else @endif>Lain-lain</option>
               </select>
             </div>
             <div class="mb-1 col-md-6">
               <label class="form-label" for="state">{!! __('locale.State') !!}</label>
               <select class="select2 w-100 state" id="state" name="state">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                <option value="Perlis" @if($form1['state'] == "Perlis") selected @else disabled @endif>Perlis</option>
-                <option value="Pulau Pinang" @if($form1['state'] == "Pulau Pinang") selected @else disabled @endif>Pulau Pinang</option>
-                <option value="Kedah" @if($form1['state'] == "Kedah") selected @else disabled @endif>Kedah</option>
-                <option value="Terengganu" @if($form1['state'] == "Terengganu") selected @else disabled @endif>Terengganu</option>
-                <option value="Kelantan" @if($form1['state'] == "Kelantan") selected @else disabled @endif>Kelantan</option>
-                <option value="Pahang" @if($form1['state'] == "Pahang") selected @else disabled @endif>Pahang</option>
-                <option value="Perak" @if($form1['state'] == "Perak") selected @else disabled @endif>Perak</option>
-                <option value="Selangor" @if($form1['state'] == "Selangor") selected @else disabled @endif>Selangor</option>
-                <option value="Negeri Sembilan" @if($form1['state'] == "Negeri Sembilan") selected @else disabled @endif>Negeri Sembilan</option>
-                <option value="Melaka" @if($form1['state'] == "Melaka") selected @else disabled @endif>Melaka</option>
-                <option value="W.P Kuala Lumpur" @if($form1['state'] == "W.P Kuala Lumpur") selected @else disabled @endif>W.P Kuala Lumpur</option>
-                <option value="W.P Putrajaya" @if($form1['state'] == "W.P Putrajaya") selected @else disabled @endif>W.P Putrajaya</option>
-                <option value="Johor" @if($form1['state'] == "Johor") selected @else disabled @endif>Johor</option>
-                <option value="Serawak" @if($form1['state'] == "Serawak") selected @else disabled @endif>Serawak</option>
-                <option value="Sabah" @if($form1['state'] == "Sabah") selected @else disabled @endif>Sabah</option>
-                <option value="W.P Labuan" @if($form1['state'] == "W.P Labuan") selected @else disabled @endif>W.P Labuan</option>
+                <option label="" selected>{!! __('locale.Please Choose') !!}</option>
+                <option value="Perlis" @if($form1['state'] == "Perlis") selected @else @endif>Perlis</option>
+                <option value="Pulau Pinang" @if($form1['state'] == "Pulau Pinang") selected @else @endif>Pulau Pinang</option>
+                <option value="Kedah" @if($form1['state'] == "Kedah") selected @else @endif>Kedah</option>
+                <option value="Terengganu" @if($form1['state'] == "Terengganu") selected @else @endif>Terengganu</option>
+                <option value="Kelantan" @if($form1['state'] == "Kelantan") selected @else @endif>Kelantan</option>
+                <option value="Pahang" @if($form1['state'] == "Pahang") selected @else @endif>Pahang</option>
+                <option value="Perak" @if($form1['state'] == "Perak") selected @else @endif>Perak</option>
+                <option value="Selangor" @if($form1['state'] == "Selangor") selected @else @endif>Selangor</option>
+                <option value="Negeri Sembilan" @if($form1['state'] == "Negeri Sembilan") selected @else @endif>Negeri Sembilan</option>
+                <option value="Melaka" @if($form1['state'] == "Melaka") selected @else @endif>Melaka</option>
+                <option value="W.P Kuala Lumpur" @if($form1['state'] == "W.P Kuala Lumpur") selected @else @endif>W.P Kuala Lumpur</option>
+                <option value="W.P Putrajaya" @if($form1['state'] == "W.P Putrajaya") selected @else @endif>W.P Putrajaya</option>
+                <option value="Johor" @if($form1['state'] == "Johor") selected @else @endif>Johor</option>
+                <option value="Serawak" @if($form1['state'] == "Serawak") selected @else @endif>Serawak</option>
+                <option value="Sabah" @if($form1['state'] == "Sabah") selected @else @endif>Sabah</option>
+                <option value="W.P Labuan" @if($form1['state'] == "W.P Labuan") selected @else @endif>W.P Labuan</option>
               </select>
             </div>
             <div class="mb-1 col-md-6">
               <label class="form-label" for="gender">{!! __('locale.Gender') !!}</label>
               <select class="form-select w-100 gender" id="gender" name="gender">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                <option value="Male" @if($form1['gender'] == "Male") selected @else disabled @endif>Male</option>
-                <option value="Female" @if($form1['gender'] == "Female") selected @else disabled @endif>Female</option>
+                <option label="" selected>{!! __('locale.Please Choose') !!}</option>
+                <option value="Male" @if($form1['gender'] == "Lelaki") selected @else @endif>Lelaki</option>
+                <option value="Female" @if($form1['gender'] == "Perempuan") selected @else @endif>Perempuan</option>
               </select>
             </div>
             <div class="mb-1 col-md-6">
@@ -297,9 +297,9 @@
             <div class="mb-1 col-md-6">
               <label class="form-label" for="status_marriage">{!! __('locale.Status_Marriage') !!}</label>
               <select class="form-select w-100 status_marriage" id="status_marriage" name="status_marriage">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                <option value="Married" @if($form2['status_marriage'] == "Married") selected @else disabled @endif)>Married</option>
-                <option value="Single" @if($form2['status_marriage'] == "Single") selected @else disabled @endif)>Single</option>
+                <option label="" selected>{!! __('locale.Please Choose') !!}</option>
+                <option value="Married" @if($form2['status_marriage'] == "Married") selected @else @endif)>Berkahwin</option>
+                <option value="Single" @if($form2['status_marriage'] == "Single") selected @else @endif)>Bujang</option>
               </select>
             </div>
           </div>

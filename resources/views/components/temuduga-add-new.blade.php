@@ -53,7 +53,19 @@
                     <label class="col-form-label" for="name">{!! __('locale.Faculty') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="name" class="form-control" name="panel_faculty" placeholder="" />
+                    <select class="select2 form-select" id="faculty" name="panel_faculty" required>
+                        <option selected disabled>{!! __('locale.Please Choose') !!}</option>
+                        <option data-avatar="1-small.png" value="Muzik">Muzik</option>
+                        <option data-avatar="3-small.png" value="Tari">Tari</option>
+                        <option data-avatar="5-small.png" value="Teater">Teater</option>
+                        <option data-avatar="7-small.png" value="Animasi Dan Multimedia">Animasi Dan Multimedia</option>
+                        <option data-avatar="9-small.png" value="Pengurusan Seni Budaya Dan Warisan">Pengurusan Seni Budaya Dan Warisan</option>
+                        <option data-avatar="7-small.png" value="Seni Halus">Seni Halus</option>
+                        <option data-avatar="7-small.png" value="Penulisan Kretif dan Filem">Penulisan Kretif dan Filem</option>
+                        <option data-avatar="7-small.png" value="Pusat Pengajian Asasi">Pusat Pengajian Asasi</option>
+                        <option data-avatar="7-small.png" value="Pusat Pascasiswazah">Pusat Pascasiswazah</option>
+                        <option data-avatar="7-small.png" value="Diploma Seni Muzik TLDM">Diploma Seni Muzik TLDM</option>
+                    </select>
                   </div>
                 </div>
               </div>

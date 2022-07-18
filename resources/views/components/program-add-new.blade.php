@@ -47,6 +47,8 @@
                         <option data-avatar="1-small.png" value="Program Asasi">{!! __('locale.Foundation') !!}</option>
                         <option data-avatar="3-small.png" value="Diploma">{!! __('locale.Diploma') !!}</option>
                         <option data-avatar="5-small.png" value="Sarjana Muda">{!! __('locale.Degree') !!}</option>
+                        <option data-avatar="5-small.png" value="Sarjana Muda">Sarjana</option>
+                        <option data-avatar="5-small.png" value="Sarjana Muda">Kedoktoran</option>
                     </select>
                   </div>
                 </div>
@@ -55,16 +57,21 @@
               <div class="col-12">
                 <div class="mb-1 row">
                   <div class="col-sm-2">
-                    <label class="col-form-label">{!! __('locale.Faculty') !!}:</label>
+                    <label class="col-form-label">{!! __('locale.Faculty') !!}/Pusat:</label>
                   </div>
                   <div class="col-sm-10">
                     <select class="select2 form-select" id="faculty" name="faculty" required>
                         <option selected disabled>{!! __('locale.Please Choose') !!}</option>
-                        <option data-avatar="1-small.png" value="asasi">{!! __('locale.Foundation') !!}</option>
-                        <option data-avatar="3-small.png" value="diploma">{!! __('locale.Diploma') !!}</option>
-                        <option data-avatar="5-small.png" value="sarjana muda">{!! __('locale.Degree') !!}</option>
-                        <option data-avatar="7-small.png" value="sarjana">{!! __('locale.Master') !!}</option>
-                        <option data-avatar="9-small.png" value="kedoktoran">{!! __('locale.PhD') !!}</option>
+                        <option data-avatar="1-small.png" value="Muzik">Muzik</option>
+                        <option data-avatar="3-small.png" value="Tari">Tari</option>
+                        <option data-avatar="5-small.png" value="Teater">Teater</option>
+                        <option data-avatar="7-small.png" value="Animasi Dan Multimedia">Animasi Dan Multimedia</option>
+                        <option data-avatar="9-small.png" value="Pengurusan Seni Budaya Dan Warisan">Pengurusan Seni Budaya Dan Warisan</option>
+                        <option data-avatar="7-small.png" value="Seni Halus">Seni Halus</option>
+                        <option data-avatar="7-small.png" value="Penulisan Kretif dan Filem">Penulisan Kretif dan Filem</option>
+                        <option data-avatar="7-small.png" value="Pusat Pengajian Asasi">Pusat Pengajian Asasi</option>
+                        <option data-avatar="7-small.png" value="Pusat Pascasiswazah">Pusat Pascasiswazah</option>
+                        <option data-avatar="7-small.png" value="Diploma Seni Muzik TLDM">Diploma Seni Muzik TLDM</option>
                     </select>
                   </div>
                 </div>
@@ -98,7 +105,7 @@
                     <label class="col-form-label" for="label-textarea">{!! __('locale.Notes') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <textarea class="form-control" id="label-textarea" name="notes" rows="4" placeholder="...." required></textarea>
+                    <textarea class="form-control" id="label-textarea" name="notes" rows="4" placeholder="...."></textarea>
                   </div>
                 </div>
               </div>

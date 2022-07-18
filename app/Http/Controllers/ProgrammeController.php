@@ -172,26 +172,40 @@ class ProgrammeController extends Controller
         $breadcrumbs = [
             ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
         ];
+
+        // $existOffered = Offerprogram::get();
+
+        // return $existOffered;
+
+        // die();
+
+        // if($existOffered != null){
+        //     $display = program::whereNotExists(
+        //         function($query) {
+        //             $query->from('Offerprogram')
+        //                 ->where('Offerprogram.program_id = program.program_id');
+        //         })
+        //         ->where('program.status', true)
+        //         ->get();
+
+        //     $datas = $display;
+        // }else{
+        //     $datas = null;
+        // }
             
-        $display = program::whereNotExists(
-            function($query) {
-                $query->from('Offerprogram')
-                    ->where('Offerprogram.program_id = program.program_id');
-            })
-            ->where('program.status', true)
-            ->get();
-
-        // $request = Request::create('/api/display_allprogram', 'GET');
-        // $response = Route::dispatch($request);
-
-        // $request->headers->set('Content-Type', 'application/json');
-        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        // $responseBody = json_decode($response->getContent(), true);
 
-        // $datas = $responseBody['data'];
+        $request = Request::create('/api/display_allprogram', 'GET');
+        $response = Route::dispatch($request);
 
-        $datas = $display;
+        $request->headers->set('Content-Type', 'application/json');
+        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        
+        $responseBody = json_decode($response->getContent(), true);
+
+        $datas = $responseBody['data'];
+
+        
 
         return view('components.program-offer-add', ['breadcrumbs' => $breadcrumbs], compact('datas'));
 

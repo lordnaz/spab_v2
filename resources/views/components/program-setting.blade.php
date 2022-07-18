@@ -66,10 +66,27 @@
                   <td>{{$data['type']}}</td>
                   <td>{{$data['faculty']}}</td>
                   <td>
-                    <a href="{{ route('details_program', Crypt::encrypt($data['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-danger">Pilihan</button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a class="dropdown-item" href="{{ route('details_program', Crypt::encrypt($data['code'])) }}">Butiran</a>
+                      <a class="dropdown-item" href="{{ route('delete_details_program', $data['program_id']) }}">Padam</a>
+
+                    </div>
+                  </div>
+                    <!-- <a href="{{ route('details_program', Crypt::encrypt($data['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
                     <a href="{{ route('delete_details_program', $data['program_id']) }}" class="btn-sm btn-danger deleteProgram"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
-                    </a>
+                    </a> -->
                     
                   </td>
                  

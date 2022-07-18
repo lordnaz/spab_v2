@@ -68,17 +68,37 @@
                   <td>{{$data['mode']}}</td>
                   <td>{{$data['quota']}}</td>
                   <td>
-                    @if($data['status_aktif'] == 'aktif')
-                    <span class="badge rounded-pill btn-outline-success">{{$data['status_aktif']}}</span>
-                    @else
-                    <span class="badge rounded-pill btn-outline-danger">{{$data['status_aktif']}}</span>
-                    @endif
+                    @php
+                      if($data['status_aktif'] == 'aktif'){
+                        $btn_color = 'success';
+                      }else{
+                        $btn_color = 'danger';
+                      }
+                    @endphp
+                    <span class="badge rounded-pill btn-outline-{{$btn_color}}">{{$data['status_aktif']}}</span>
                   </td>
                   <td>
-                    <a href="{{ route('details_offered_program', Crypt::encrypt($data['id'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+                    <div class="btn-group">
+                      <button class="btn btn-sm btn-outline-{{$btn_color}}">Pilihan</button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-{{$btn_color}} dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="{{ route('details_offered_program', Crypt::encrypt($data['id'])) }}">Butiran</a>
+                        <a class="dropdown-item" href="{{ route('delete_offered_program', Crypt::encrypt($data['id'])) }}">Padam</a>
+
+                      </div>
+                    </div>
+
+                    <!-- <a href="{{ route('details_offered_program', Crypt::encrypt($data['id'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
                     <a href="{{ route('delete_offered_program', Crypt::encrypt($data['id'])) }}" class="btn-sm btn-danger deleteProgram"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
-                    </a>
+                    </a> -->
                     
                   </td>
                  

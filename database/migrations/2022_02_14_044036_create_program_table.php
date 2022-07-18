@@ -15,13 +15,13 @@ class CreateProgramTable extends Migration
     {
         Schema::create('program', function (Blueprint $table) {
             $table->id('program_id');
-            $table->string('code');
-            $table->string('program');
-            $table->string('type');
-            $table->string('faculty');
-            $table->string('field');
-            $table->string('sub_field');
-            $table->string('notes');
+            $table->string('code')->nullable();
+            $table->string('program')->nullable();
+            $table->string('type')->nullable();
+            $table->string('faculty')->nullable();
+            $table->string('field')->nullable();
+            $table->string('sub_field')->nullable();
+            $table->string('notes')->nullable();
             $table->string('job_id')->nullable();
             $table->boolean('status')->default(true);
             $table->string('created_by');

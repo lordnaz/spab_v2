@@ -15,7 +15,10 @@ class PendaftaranPelajarAPIController extends Controller
     //
     public function applicantinfo(Request $req){
 
-        $displayapplicantinfo = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')->join('pendaftaran_pelajar', 'pendaftaran_pelajar.nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->first();
+        $displayapplicantinfo = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
+        ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
+        ->where('user_details.nric', $req->nric)->first();
+
         $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
         
 
