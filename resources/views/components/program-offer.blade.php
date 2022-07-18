@@ -67,7 +67,13 @@
                   <td>{{$data['program']}}</td>
                   <td>{{$data['mode']}}</td>
                   <td>{{$data['quota']}}</td>
-                  <td>{{$data['status_aktif']}}</td>
+                  <td>
+                    @if($data['status_aktif'] == 'aktif')
+                    <span class="badge rounded-pill btn-outline-success">{{$data['status_aktif']}}</span>
+                    @else
+                    <span class="badge rounded-pill btn-outline-danger">{{$data['status_aktif']}}</span>
+                    @endif
+                  </td>
                   <td>
                     <a href="{{ route('details_offered_program', Crypt::encrypt($data['id'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
                     <a href="{{ route('delete_offered_program', Crypt::encrypt($data['id'])) }}" class="btn-sm btn-danger deleteProgram"> 

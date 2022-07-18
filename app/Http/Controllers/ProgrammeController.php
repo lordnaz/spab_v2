@@ -172,16 +172,26 @@ class ProgrammeController extends Controller
         $breadcrumbs = [
             ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
         ];
+            
+        $display = program::whereNotExists(
+            function($query) {
+                $query->from('Offerprogram')
+                    ->where('Offerprogram.program_id = program.program_id');
+            })
+            ->where('program.status', true)
+            ->get();
 
-        $request = Request::create('/api/display_allprogram', 'GET');
-        $response = Route::dispatch($request);
+        // $request = Request::create('/api/display_allprogram', 'GET');
+        // $response = Route::dispatch($request);
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['data'];
+        // $datas = $responseBody['data'];
+
+        $datas = $display;
 
         return view('components.program-offer-add', ['breadcrumbs' => $breadcrumbs], compact('datas'));
 
@@ -391,17 +401,31 @@ class ProgrammeController extends Controller
 
         $code = decrypt($code);
         
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/delete_offerprogram', [
+        //     'code' => $code,
+        // ]);
 
+        // $user_name = auth()->User()->name;
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/delete_offerprogram', [
-            'code' => $code,
-        ]);
+        $quota = Offerprogram::where('offerprogram_id', $code)->first();
+
+        if($quota->quota_semasa < 1){
+            $deletePanel = Offerprogram::where('offerprogram_id', $code)->delete();
+        }
+    
+
+        // $data = [
+        //     'status' => 'success',
+        //     'code' => '000',
+        //     'description' => 'disable status by'.$user_name.'.'
+        // ];
+
+        // return response()->json($data);
 
        
-
         return redirect()->route('offered_program');
 
     }
