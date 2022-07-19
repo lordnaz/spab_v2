@@ -122,6 +122,12 @@
           "name": "Registration Details",
           "icon": "circle",
           "slug": "regis_all"
+        },
+        {
+          "url": "balasancalon",
+          "name": "Candidate Reply",
+          "icon": "circle",
+          "slug": "balasancalon"
         }
       ]
     }

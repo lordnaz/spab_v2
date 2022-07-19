@@ -159,7 +159,7 @@
                             </div>
                             <div class="col-sm-10">
                                 <select class="form-control" name="session_id" id="myselect">
-                                <option value="" disabled>Pilih Sesi</option>
+                                <option value="" selected>Pilih Sesi</option>
                                     @foreach($Sesi as $Sesii)
                                     <option value="{{$Sesii['session_id']}}">{{$Sesii['number_session']}}</option>
                                     @endforeach
