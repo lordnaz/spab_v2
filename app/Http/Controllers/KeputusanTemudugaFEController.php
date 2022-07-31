@@ -43,7 +43,7 @@ class KeputusanTemudugaFEController extends Controller
         
             
         ];
-
+        
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -55,9 +55,10 @@ class KeputusanTemudugaFEController extends Controller
         $displayTable = $request['displayTable'];
         $cadang1 = $request['cadang1'];
         $cadang2 = $request['cadang2'];
-
+        $program = $request['program'];
+        
         return view('components.KeputusanTemuduga')
-        ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('displayTable', $displayTable)->with('cadang1', $cadang1)->with('cadang2', $cadang2);;
+        ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('displayTable', $displayTable)->with('cadang1', $cadang1)->with('cadang2', $cadang2)->with('program', $program);
 
     }
 

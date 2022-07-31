@@ -37,9 +37,11 @@ class PengesahanPermohonanFEController extends Controller
         $responseBody2 = json_decode($response2->getContent(), true);
 
         $datas2 = $responseBody2['data'];
+        $sah = $responseBody['sah'];
+        $tolak= $responseBody['tolak'];
 
 
-        return view('components.pengesahan-permohonan-all')->with('datas', $datas)->with('datas2',$datas2);
+        return view('components.pengesahan-permohonan-all')->with('datas', $datas)->with('datas2',$datas2)->with('sah',$sah)->with('tolak',$tolak);
         // return view('components.pengesahan-permohonan-detail', ['breadcrumbs' => $breadcrumbs], compact('datas'));
         
 
@@ -190,6 +192,27 @@ class PengesahanPermohonanFEController extends Controller
   
         return view('components.pengesahan-ajaxPermohonan', ['breadcrumbs' => $breadcrumbs])->with('datas', $datas)->with('datas2',$datas2);
       
+
+    }
+
+    public function draft_permohonan($code){
+
+        $code = decrypt($code);
+
+     
+        $currentdt = date('Y-m-d H:i:s');
+       
+        $sahkan = StatusPermohonan::where('nric', $code)->update([
+            'updated_date_validation' => $currentdt,
+            'status_validation' => 'DRAFT' ,
+            'status_global' => 'DRAFT' ,
+            'all_status' => 'DRAFT',
+            'balasan_calon' => NULL
+    
+            ]);
+
+            return redirect()->route('display_pengesahan_permohonan');
+        // return view('components.pengesahan-permohonan-details_tolak', ['breadcrumbs' => $breadcrumbs], compact('datas'));
 
     }
 

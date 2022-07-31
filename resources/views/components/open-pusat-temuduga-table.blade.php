@@ -67,7 +67,7 @@
                     <a href="{{ route('delete_open_temuduga', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
                       <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
                     </a>
-                    <a href="{{ route('sessiontable', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-warning"><i data-feather='external-link'></i>Sesi</a>
+                    &nbsp;<a href="{{ route('sessiontable', Crypt::encrypt($data['asas_id'])) }}" class="btn-sm btn-warning"><i data-feather='external-link'></i>Sesi</a>
                     
                   </td>
                  

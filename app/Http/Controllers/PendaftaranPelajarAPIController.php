@@ -31,7 +31,7 @@ class PendaftaranPelajarAPIController extends Controller
         $displayapplicantinfo = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')->join('pendaftaran_pelajar', 'pendaftaran_pelajar.nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->first();
         $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
 
-       
+        $currentdt = date('Y-m-d H:i:s');
 
       
 
@@ -39,6 +39,8 @@ class PendaftaranPelajarAPIController extends Controller
                 ->update([
                     'status_pendaftaran' => 'DAFTAR',
                     'status_global' => 'DAFTAR',
+                    'balasan_calon' => 'DAFTAR',
+                    'tarikh_pendaftaran' => $currentdt 
                     ]);
 
         $exists = PendaftaranPelajar::where('nric', $req->nric)->exists();
@@ -89,6 +91,7 @@ class PendaftaranPelajarAPIController extends Controller
         ->update([
             'status_pendaftaran' => NULL,
             'status_global' => 'TERIMA TAWARAN',
+            'balasan_calon' => 'TERIMA TAWARAN',
             ]);
 
             return redirect()->route('pendaftaranpelajar');

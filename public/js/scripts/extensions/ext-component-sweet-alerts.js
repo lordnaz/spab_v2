@@ -50,7 +50,7 @@ $(function () {
   if (basicAlert.length) {
     basicAlert.on('click', function () {
       Swal.fire({
-        title: 'Any fool can use a computer',
+        title: 'Permohonan Telah Dihantar',
         customClass: {
           confirmButton: 'btn btn-primary'
         },

@@ -29,8 +29,7 @@ class KeputusanPermohonanAPIController extends Controller
 
     public function display_all_permohonan_pengesahan()
     {
-        $displayUser = UserDetail::orderBy('user_detailsid', 'desc')->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')->where('all_status_permohonan.status_offer', '=', 'Ditawarkan')->orWhere('all_status_permohonan.status_offer', '=', 'Ditolak')
-        ->orWhere('all_status_permohonan.status_offer', '=', 'Dalam Pemerhatian (KIV)')->orWhere('all_status_permohonan.status_offer', '=', 'Hadir Temuduga')->get();
+        $displayUser = UserDetail::orderBy('user_detailsid', 'desc')->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')->where('all_status_permohonan.status_global', '!=', 'DRAFT')->get();
 
 
         $data = [

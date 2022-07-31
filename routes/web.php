@@ -149,6 +149,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('tolak_permohonan_id/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan_id'])->name('tolak_permohonan_id');
     Route::get('batal_permohonan/{code}', [PengesahanPermohonanFEController::class, 'batal_permohonan'])->name('batal_permohonan');
     Route::get('/filterByProgram/{code}', [PengesahanPermohonanFEController::class, 'filterByProgram'])->name('filterByProgram');
+    Route::get('draft_permohonan/{code}', [PengesahanPermohonanFEController::class, 'draft_permohonan'])->name('draft_permohonan');
   
 
     //Penawaran Permohonan

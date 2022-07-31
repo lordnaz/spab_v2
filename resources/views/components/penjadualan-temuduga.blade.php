@@ -101,15 +101,15 @@
                 @endphp
                 @if($loop->first)
                 @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G')
-                <td>{{$Program['program']}}-{{$displayTablee['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-{{$displayTablee['kelulusan1']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-N{{$displayTablee['kelulusan1']}}</td>
                 @endif
                 @else
                 @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
-                <td>{{$Program['program']}}-{{$displayTablee['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-{{$displayTablee['kelulusan2']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-N{{$displayTablee['kelulusan2']}}</td>
                 @endif
 
                 @endif
@@ -158,7 +158,7 @@
                                 <label for="basicSelect" id="select">Sesi</label>
                             </div>
                             <div class="col-sm-10">
-                                <select class="form-control" name="session_id" id="myselect">
+                                <select class="form-control" name="session_id" id="myselect" required>
                                 <option value="" selected>Pilih Sesi</option>
                                     @foreach($Sesi as $Sesii)
                                     <option value="{{$Sesii['session_id']}}">{{$Sesii['number_session']}}</option>
@@ -226,7 +226,7 @@
                     <a id="kosong" class="btn btn-outline-secondary me-1">Kosongkan</a>
 
 
-                        <button id="firstbut" type="submit" class="btn btn-success">
+                        <button id="firstbut" type="submit" class="btn btn-success btn-page-block">
 
                             <i data-feather="plus-circle" class="me-25"></i>
                             <span>{!! __('locale.Add') !!}</span>

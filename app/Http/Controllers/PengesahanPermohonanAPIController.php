@@ -20,8 +20,9 @@ class PengesahanPermohonanAPIController extends Controller
 
       
 
-        $display = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.status_validation', 'DALAM PROSES')->orWhere('all_status_permohonan.status_validation', 'SAH')->orWhere('all_status_permohonan.status_validation', 'TOLAK')->get();
-
+        $display = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.status_validation', 'DALAM PROSES')->get();
+        $sah= UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.status_validation', 'SAH')->get();
+        $tolak = UserDetail::join('all_status_permohonan', 'user_details.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.status_validation', 'TOLAK')->get();
      
 
         $data = [
@@ -29,6 +30,8 @@ class PengesahanPermohonanAPIController extends Controller
             'code' => '000',
             'description' => 'successful',
             'data' => $display,
+            'sah' => $sah,
+            'tolak' => $tolak,
         ];
 
         return response()->json($data);

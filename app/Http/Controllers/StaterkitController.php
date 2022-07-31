@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\StatusPermohonan;
+use App\Models\UserDetail;
+use App\Models\ScreeningIV;
+use App\Models\ProgramApplied;
+use App\Models\program;
 
 class StaterkitController extends Controller
 {
@@ -15,9 +20,22 @@ class StaterkitController extends Controller
             $breadcrumbs = [
                 ['link' => "home", 'name' => "Home"], ['name' => "Announcement"]
             ];
-            
+
+            $userid = auth()->user()->id;
+            $userdetails = UserDetail::where('created_by', $userid)->first();
+            $status = StatusPermohonan::join('screening_interview','screening_interview.nric','=','all_status_permohonan.nric')->join('penawaran_permohonan','penawaran_permohonan.nric','=','all_status_permohonan.nric')->where('all_status_permohonan.nric', $userdetails->nric)->first();
+            $iv = ScreeningIV::where('nric', $userdetails->nric)->first();
+
+            $asasi = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Program Asasi')->count();
+            $diploma = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Diploma')->count();
+            $sarjanamuda = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Sarjana Muda')->count();
+            $sarjana = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Sarjana')->count();
+            $doktor = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Kedoktoran')->count();
+
+
             Session::put('variableName', '2022');
-            return view('/content/home', ['breadcrumbs' => $breadcrumbs]);
+            return view('/content/home', ['breadcrumbs' => $breadcrumbs])->with('status',$status)->with('iv',$iv)->with('asasi',$asasi)->with('diploma',$diploma)
+            ->with('sarjanamuda',$sarjanamuda)->with('sarjana',$sarjana)->with('doktor',$doktor);
         }else{
             return view('/auth/login');
         }

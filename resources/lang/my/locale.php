@@ -502,7 +502,10 @@ return [
     "Penapisan Temuduga" => "Penapisan Temuduga",
     "Penjadualan Temuduga" => "Penjadualan Temuduga",
     "Keputusan Temuduga" => "Keputusan Temuduga",
-    "Keputusan Permohonan" => "Keputusan Permohonan"
+    "Keputusan Permohonan" => "Keputusan Permohonan",
+
+    //pendaftaran pelajar
+    "Admin_Pendaftaranpelajar" => "Pendaftaran"
 
 
 

@@ -137,6 +137,7 @@ class InterviewScreeningController extends Controller
         $updatestatus = StatusPermohonan::where('nric', $req->code)->update([
                 'status_temuduga' => 'BELUM PROSES',
                 'status_global' => 'DISAHKAN',
+                'status_validation' => 'SAH',
 
             ]);
 
@@ -161,6 +162,7 @@ class InterviewScreeningController extends Controller
         $updateScreeningIV = ScreeningIV::where('nric', $req->code)->update([
                 'center_id' => NULL,
                 'status_sesi' =>  NULL,
+                'TarikhProses' =>$currentdt
 
             ]);
 
@@ -214,6 +216,7 @@ class InterviewScreeningController extends Controller
 
         $updateScreeningIV = ScreeningIV::where('screening_id', $req->screening_id)->update([
                 'center_id' => $req->center_id,
+                'TarikhProses' =>$currentdt
 
             ]);
 
@@ -320,6 +323,7 @@ class InterviewScreeningController extends Controller
                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
 
                                     'status_temuduga' => 'Tolak',
+                                    'status_validation' => 'Tolak',
                                     'status_global' => 'PENAPISAN DITOLAK' ,
 
                                 ]);
@@ -341,6 +345,7 @@ class InterviewScreeningController extends Controller
                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
 
                                 'status_temuduga' => 'Temuduga',
+                                'status_validation' => 'Temuduga',
                                 'status_global' => 'DITEMUDUGA' ,
 
                             ]);
@@ -367,6 +372,7 @@ class InterviewScreeningController extends Controller
                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
 
                                 'status_temuduga' => 'Tolak',
+                                'status_validation' => 'Tolak',
                                 'status_global' => 'PENAPISAN DITOLAK' ,
 
                             ]);
@@ -392,6 +398,7 @@ class InterviewScreeningController extends Controller
                                 $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
     
                                     'status_temuduga' => 'Tolak',
+                                    'status_validation' => 'Tolak',
                                     'status_global' => 'PENAPISAN DITOLAK' ,
     
                                 ]);
@@ -459,6 +466,7 @@ class InterviewScreeningController extends Controller
                                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                                 'status_temuduga' => 'Tolak',
+                                                'status_validation' => 'Tolak',
                                                 'status_global' => 'DPENAPISAN DITOLAK' ,
                 
                                             ]);
@@ -480,6 +488,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Temuduga',
+                                            'status_validation' => 'Temuduga',
                                             'status_global' => 'DITEMUDUGA' ,
             
                                         ]);
@@ -499,6 +508,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Tolak',
+                                            'status_validation' => 'Tolak',
                                             'status_global' => 'PENAPISAN DITOLAK' ,
             
                                         ]);
@@ -528,6 +538,7 @@ class InterviewScreeningController extends Controller
                                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                                 'status_temuduga' => 'Tolak',
+                                                'status_validation' => 'Tolak',
                                                 'status_global' => 'PENAPISAN DITOLAK' ,
                 
                                             ]);
@@ -549,6 +560,7 @@ class InterviewScreeningController extends Controller
                                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                                 'status_temuduga' => 'Temuduga',
+                                                'status_validation' => 'Temuduga',
                                                 'status_global' => 'DITEMUDUGA' ,
                 
                                             ]);
@@ -569,6 +581,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Temuduga',
+                                            'status_validation' => 'Temuduga',
                                             'status_global' => 'DITEMUDUGA' ,
             
                                         ]);
@@ -591,6 +604,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Temuduga',
+                                            'status_validation' => 'Temuduga',
                                             'status_global' => 'DITEMUDUGA' ,
             
                                         ]);
@@ -600,6 +614,7 @@ class InterviewScreeningController extends Controller
                                     $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                         'status_temuduga' => 'Tolak',
+                                        'status_validation' => 'Tolak',
                                         'status_global' => 'PENAPISAN DITOLAK' ,
         
                                     ]);
@@ -667,6 +682,7 @@ class InterviewScreeningController extends Controller
                                             $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                                 'status_temuduga' => 'Tolak',
+                                                'status_validation' => 'Tolak',
                                                 'status_global' => 'PENAPISAN DITOLAK' ,
                 
                                             ]);
@@ -688,6 +704,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
             
                                             'status_temuduga' => 'Temuduga',
+                                            'status_validation' => 'Temuduga',
                                             'status_global' => 'DITEMUDUGA' ,
             
                                         ]);
@@ -707,6 +724,7 @@ class InterviewScreeningController extends Controller
                                         $updatestatus = StatusPermohonan::where('nric', $Proses->nric)->update([
                 
                                             'status_temuduga' => 'Tolak',
+                                            'status_validation' => 'Tolak',
                                             'status_global' => 'PENAPISAN DITOLAK' ,
             
                                         ]);                            

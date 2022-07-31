@@ -429,6 +429,7 @@ class PenawaranPermohonanAPIController extends Controller
     public function tolak_penawaran(Request $req)
     {
 
+        $currentdt = date('Y-m-d H:i:s');
         $logic = PenawaranPermohonan::where('nric',$req->nric)->first();
 
         if($logic->program_tawar != NULL){
@@ -457,7 +458,8 @@ class PenawaranPermohonanAPIController extends Controller
             'TarikhTawar' => NULL,  
             'tarikh_daftar' => NULL, 
             'masa_daftar' => NULL,   
-            'tempat_daftar' => NULL,   
+            'tempat_daftar' => NULL,  
+            'TarikhTolak' => $currentdt,   
             'catatan' => NULL,   
             'sem' => NULL,   
             'tahun' => NULL, 
@@ -479,6 +481,7 @@ class PenawaranPermohonanAPIController extends Controller
     public function KIV_penawaran(Request $req)
     {
 
+        $currentdt = date('Y-m-d H:i:s');
         $logic = PenawaranPermohonan::where('nric',$req->nric)->first();
 
         if($logic->program_tawar != NULL){
@@ -507,6 +510,7 @@ class PenawaranPermohonanAPIController extends Controller
             'TarikhTawar' => NULL,  
             'tarikh_daftar' => NULL, 
             'masa_daftar' => NULL,   
+            'TarikhKIV' => $currentdt,  
             'tempat_daftar' => NULL,   
             'catatan' => NULL,  
             'sem' => NULL,   
@@ -603,6 +607,7 @@ class PenawaranPermohonanAPIController extends Controller
             $opencenter = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
 
             $User = UserDetail::join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+                ->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
                 ->where('all_status_permohonan.status_temuduga', 'Belum proses')
                 ->get();
 
@@ -709,6 +714,8 @@ class PenawaranPermohonanAPIController extends Controller
                             ([
                                 'program_tawar' => $program->program_id,       
                                 'TarikhTawar' => $currentdt,  
+                                'TarikhKIV' => $currentdt, 
+                                'TarikhTolak' => $currentdt,   
                                 'tarikh_daftar' => $program->registration_date, 
                                 'masa_daftar' => $program->registration_time,   
                                 'tempat_daftar' => $program->registration_venue,   
@@ -746,7 +753,7 @@ class PenawaranPermohonanAPIController extends Controller
                             ]);
                     }
 
-                    if($User->status_offer != 'Ditawarkan'){
+                    if($User->program_tawar = NULL){
                     if($User->cadang2 != NULL){
 
                         $program2 = Offerprogram::where('program_id', $User->cadang2)->first();
@@ -777,6 +784,8 @@ class PenawaranPermohonanAPIController extends Controller
                             ([
                                 'program_tawar' => $program2->program_id,       
                                 'TarikhTawar' => $currentdt,  
+                                'TarikhKIV' => $currentdt, 
+                                'TarikhTolak' => $currentdt,  
                                 'tarikh_daftar' => $program2->registration_date, 
                                 'masa_daftar' => $program2->registration_time,   
                                 'tempat_daftar' => $program2->registration_venue,   
@@ -803,8 +812,12 @@ class PenawaranPermohonanAPIController extends Controller
                             ]);
                         }
 
+                    }else{
+                        
                     }
                    
+                }else{
+
                 }
 
                 }

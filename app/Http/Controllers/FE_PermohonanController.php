@@ -22,6 +22,7 @@ use App\Models\ScreeningIV;
 use App\Models\Offerprogram;
 use App\Models\DaftarIntake;
 use App\Models\Intake;
+use App\Models\PendaftaranPelajar;
 use App\Models\program as Program;
 use App\Models\StatusPermohonan as SubmitApplication;
 use Carbon\Carbon;
@@ -164,7 +165,13 @@ class FE_PermohonanController extends Controller
                     ]);
             }
 
-          
+            $pendaftaran = PendaftaranPelajar::where('nric', $userdetails->nric)->where('job_id',  $intake)->exists();
+            if(!$pendaftaran){
+            $pendaftarann = new PenawaranPermohonan();
+            $pendaftarann->nric = $userdetails->nric;
+            $pendaftarann->job_id = $intake;
+            $pendaftarann->save();
+            }
             
 
          $penawaranexist = PenawaranPermohonan::where('nric', $userdetails->nric)->where('job_id',  $intake)->exists();
@@ -1438,7 +1445,7 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
     }
 
     public function draft_sepuluh(Request $req){
-
+        $currentdt = date('Y-m-d H:i:s');
         $usersession = auth()->user()->id;
         $nric = $req->nric;
         $code = '000';
@@ -1455,6 +1462,7 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
                     'all_status' => 'BELUM DISAHKAN',
                     'status_global' => 'BELUM DISAHKAN',
                     'status_validation' => 'DALAM PROSES',
+                    'submit_permohonan' => $currentdt
                     
                     ]);
 

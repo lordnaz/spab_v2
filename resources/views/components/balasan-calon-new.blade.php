@@ -21,7 +21,11 @@
 
 
 @section('content')
+@php  
 
+$roles = auth()->user()->role;
+
+@endphp
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Advanced Search -->
 <section id="advanced-search-datatable">
@@ -54,7 +58,7 @@
         </button>
       </div>
       <div class="line">
-        <i data-feather="chevron-right" class="font-medium-2"></i>
+       |
       </div>
       <div class="step" data-target="#personal-info-modern">
         <button type="button" class="step-trigger">
@@ -68,7 +72,7 @@
         </button>
       </div>
       <div class="line">
-        <i data-feather="chevron-right" class="font-medium-2"></i>
+        |
       </div>
       <div class="step" data-target="#address-step-modern">
         <button type="button" class="step-trigger">
@@ -124,7 +128,7 @@
                   <td>{{$count++}}</td>
                   <td>{{$displayTawars['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTawars['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTawars['name']}}</td>
-                  <td>{{$displayTawars['type_program_applied']}}</td>
+                  <td>{{$displayTawars['study_mode']}}</td>
                   <td>{{$displayTawars['status_offer']}}</td>
                   <td>{{$displayTawars['status_offer']}}</td>
                   <td>{{$displayTawars['updated_date_offer']}}</td>
@@ -194,6 +198,7 @@
                   <td>{{$displayTerimas['type_program_applied']}}</td>
              
                   <td>
+                  @if($roles == 'admin')
                   <div class="btn-group">
                 
                   <a href="{{route('details_balasancalonbynricTolak', Crypt::encrypt($displayTerimas['nric'])) }}" class="btn-sm btn-danger">Tolak</a>&nbsp;
@@ -201,6 +206,15 @@
                       Batal
                     </a>
 </div>
+@else
+<div class="btn-group">
+                
+                <a href="{{route('details_balasancalonbynricTolak', Crypt::encrypt($displayTerimas['nric'])) }}" class="btn-sm btn-danger nav-link disabled">Tolak</a>&nbsp;
+                  <a href="{{route('details_balasancalonbynricBatal', Crypt::encrypt($displayTerimas['nric'])) }}" class="btn-sm btn-danger nav-link disabled"> 
+                    Batal
+                  </a>
+</div>
+@endif
                   </td>
                  
                 </tr>
@@ -255,13 +269,23 @@
                   <td>{{$displayTolaks['type_program_applied']}}</td>
               
                   <td>
+                  @if($roles == 'admin')
                   <div class="btn-group">
                   
-                  <a href="{{route('details_balasancalonbynricTerima', Crypt::encrypt($displayTolaks['nric'])) }}" class="btn-sm btn-success">Terima</a>
+                  <a href="{{route('details_balasancalonbynricTerima', Crypt::encrypt($displayTolaks['nric'])) }}" class="btn-sm btn-success">Terima</a>&nbsp;
                     <a href="{{route('details_balasancalonbynricBatal', Crypt::encrypt($displayTolaks['nric'])) }}" class="btn-sm btn-danger "> 
                       Batal
                     </a>
                     </div>
+                    @else
+                    <div class="btn-group">
+                  
+                  <a href="{{route('details_balasancalonbynricTerima', Crypt::encrypt($displayTolaks['nric'])) }}" class="btn-sm btn-success nav-link disabled">Terima</a>
+                    <a href="{{route('details_balasancalonbynricBatal', Crypt::encrypt($displayTolaks['nric'])) }}" class="btn-sm btn-danger nav-link disabled "> 
+                      Batal
+                    </a>
+                    </div>
+                    @endif
                   </td>
                  
                 </tr>

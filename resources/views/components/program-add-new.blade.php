@@ -47,8 +47,8 @@
                         <option data-avatar="1-small.png" value="Program Asasi">{!! __('locale.Foundation') !!}</option>
                         <option data-avatar="3-small.png" value="Diploma">{!! __('locale.Diploma') !!}</option>
                         <option data-avatar="5-small.png" value="Sarjana Muda">{!! __('locale.Degree') !!}</option>
-                        <option data-avatar="5-small.png" value="Sarjana Muda">Sarjana</option>
-                        <option data-avatar="5-small.png" value="Sarjana Muda">Kedoktoran</option>
+                        <option data-avatar="5-small.png" value="Sarjana">Sarjana</option>
+                        <option data-avatar="5-small.png" value="Kedoktoran">Kedoktoran</option>
                     </select>
                   </div>
                 </div>

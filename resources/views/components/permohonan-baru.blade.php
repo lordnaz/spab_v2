@@ -697,6 +697,7 @@
        <div id="view"></div>
        </div>
           </div>
+          <br>
        <div class="row">
        <div class="col-4">
                 <button id="btn1" class="btn btn-icon btn-primary" type="button" data-repeater-create>
@@ -844,6 +845,7 @@
        <div id="pmr"></div>
        </div>
           </div>
+          <br>
        <div class="row">
        <div class="col-4">
                 <button id="btnpmr" class="btn btn-icon btn-primary" type="button" data-repeater-create>
@@ -939,6 +941,7 @@
        <div id="spm"></div>
        </div>
           </div>
+          <br>
        <div class="row">
        <div class="col-4">
                 <button id="btnspm" class="btn btn-icon btn-primary" type="button" data-repeater-create>
@@ -1022,6 +1025,7 @@
        <div id="stpm"></div>
        </div>
           </div>
+          
        <div class="row">
        <div class="col-4">
                 <button id="btnstpm" class="btn btn-icon btn-primary" type="button" data-repeater-create>
@@ -1031,6 +1035,7 @@
                 
               </div>
        </div>
+       <br>
         </form>
         
         <div class="d-flex bd-highlight">
@@ -1118,6 +1123,7 @@
        <div id="form6"></div>
        </div>
           </div>
+          
        <div class="row">
        <div class="col-4">
                 <button id="btnform6" class="btn btn-icon btn-primary" type="button" data-repeater-create>
@@ -1127,7 +1133,7 @@
                 
               </div>
        </div>
-
+       <br>
         </form>
         
         <div class="d-flex bd-highlight">
@@ -1278,6 +1284,7 @@
        <div id="form8"></div>
        </div>
           </div>
+          
        <div class="row">
        <div class="col-4">
                 <button id="btnform8" class="btn btn-icon btn-primary" type="button" data-repeater-create>
@@ -1287,7 +1294,7 @@
                 
               </div>
        </div>
-
+       <br>
         </form>
         
         
@@ -1433,6 +1440,7 @@
        <div id="form10"></div>
        </div>
           </div>
+          
        <div class="row">
        <div class="col-4">
                 <button id="btnform10" class="btn btn-icon btn-primary" type="button" data-repeater-create>
@@ -1442,7 +1450,7 @@
                 
               </div>
        </div>
-          
+       <br>
         </form>
         
         <div class="d-flex justify-content-between">

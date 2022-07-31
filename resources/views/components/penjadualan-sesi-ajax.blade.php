@@ -9,7 +9,7 @@
                                 <label for="basicSelect" name="session_id" id="select">Sesi</label>
                             </div>
                             <div class="col-sm-10">
-                                <select class="form-control" id="myselect">
+                                <select class="form-control" id="myselect" required>
                                 <option value="" disabled>Pilih Sesi</option>
                                     @foreach($Sesi as $Sesii)
                                     <option value="{{$Sesii['session_id']}}" @if($FirstSesi['number_session'] == $Sesii['number_session']) selected @endif>{{$Sesii['number_session']}}</option>
@@ -77,7 +77,7 @@
                         <a id="kosong" class="btn btn-outline-secondary me-1">Kosongkan</a>
 
 
-                        <button type="submit" id="firstbut" class="btn btn-success">
+                        <button type="submit" id="firstbut" class="btn btn-success btn-page-block">
 
                             <i data-feather="plus-circle" class="me-25"></i>
                             <span>{!! __('locale.Add') !!}</span>

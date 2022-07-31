@@ -100,15 +100,15 @@
                 @endphp
                 @if($loop->first)
                 @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G')
-                <td>{{$Program['program']}}-{{$displayTablee['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-{{$displayTablee['kelulusan1']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-N{{$displayTablee['kelulusan1']}}</td>
                 @endif
                 @else
                 @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
-                <td>{{$Program['program']}}-{{$displayTablee['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-{{$displayTablee['kelulusan2']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-N{{$displayTablee['kelulusan2']}}</td>
                 @endif
 
                 @endif
@@ -118,10 +118,12 @@
                 @if ($too == 1)
                 <td></td>
                 @endif
-                  <td>{{$displayTablee['number_session']}}</td>
-                  <td>{{Carbon\Carbon::parse($displayTablee['TarikhHadir'])->format('Y-m-d')}}</td>
-                  <td>{{Carbon\Carbon::parse($displayTablee['MasaFrom'])->format('H:i:s')}}</td>
-                  <td>{{Carbon\Carbon::parse($displayTablee['MasaTo'])->format('H:i:s')}}</td>
+                <td>{{$displayTablee['number_session']}}</td>
+                  <td>{{$displayTablee['TarikhHadir'] ? Carbon\Carbon::parse($displayTablee['TarikhHadir'])->format('Y-m-d') : ' '}}
+            
+                  </td>
+                  <td>{{$displayTablee['MasaFrom'] ? Carbon\Carbon::parse($displayTablee['MasaFrom'])->format('H:i:s') : ' '}}</td>
+                  <td>{{$displayTablee['MasaTo'] ? Carbon\Carbon::parse($displayTablee['MasaTo'])->format('H:i:s') : ' '}}</td>
                   
                   
                  
@@ -154,8 +156,8 @@
                                 <label for="basicSelect" id="select">Sesi</label>
                             </div>
                             <div class="col-sm-10">
-                                <select class="form-control" name="session_id" id="myselect">
-                                <option value="" disabled>Pilih Sesi</option>
+                                <select class="form-control" name="session_id" id="myselect" required>
+                                <option value=""  selected>Pilih Sesi</option>
                                     @foreach($Sesi as $Sesii)
                                     <option value="{{$Sesii['session_id']}}">{{$Sesii['number_session']}}</option>
                                     @endforeach
@@ -222,7 +224,7 @@
                     <a id="kosong" class="btn btn-outline-secondary me-1">Kosongkan</a>
 
 
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success btn-page-block">
 
                             <i data-feather="plus-circle" class="me-25"></i>
                             <span>{!! __('locale.Add') !!}</span>

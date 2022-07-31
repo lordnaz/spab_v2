@@ -42,7 +42,7 @@
               <input hidden type="text" id="code" class="form-control" name="proses" value="Semua"/>
               <div class="col-md-4">
                 <label class="form-label">Negeri:</label>
-                <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
+                <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select " id="ajax">
                     <option value="{{ route('PenapisanTemuduga') }}" selected>Semua</option>
                     
                     <option value="{{ route('Penapisantemuduga', 'Johor') }}">Johor Darul Takzim</option>
@@ -67,7 +67,7 @@
               </div>
 
               <div class="col-sm-4 pt-2">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success btn-page-block">
                                     <i data-feather="plus-circle" class="me-25"></i>
                                     <span>Proses</span>
                                 </button>
@@ -83,6 +83,20 @@
 <section class="modern-horizontal-wizard">
   <div class="bs-stepper wizard-modern modern-wizard-example">
     <div class="bs-stepper-header">
+      <div class="step" data-target="#address-step-modern">
+        <button type="button" class="step-trigger">
+          <span class="bs-stepper-box">
+            <i data-feather="file-text" class="font-medium-3"></i>
+          </span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Belum Proses</span>
+            <span class="bs-stepper-subtitle">Belum Proses</span>
+          </span>
+        </button>
+      </div>
+      <div class="line">
+        |
+      </div>
       <div class="step" data-target="#account-details-modern">
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">
@@ -95,30 +109,16 @@
         </button>
       </div>
       <div class="line">
-        <i data-feather="chevron-right" class="font-medium-2"></i>
+      |
       </div>
       <div class="step" data-target="#personal-info-modern">
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">
-            <i data-feather="user" class="font-medium-3"></i>
+            <i data-feather="file-text" class="font-medium-3"></i>
           </span>
           <span class="bs-stepper-label">
             <span class="bs-stepper-title">Tolak</span>
             <span class="bs-stepper-subtitle">Tolak</span>
-          </span>
-        </button>
-      </div>
-      <div class="line">
-        <i data-feather="chevron-right" class="font-medium-2"></i>
-      </div>
-      <div class="step" data-target="#address-step-modern">
-        <button type="button" class="step-trigger">
-          <span class="bs-stepper-box">
-            <i data-feather="map-pin" class="font-medium-3"></i>
-          </span>
-          <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Belum Proses</span>
-            <span class="bs-stepper-subtitle">Belum Proses</span>
           </span>
         </button>
       </div>
@@ -168,7 +168,7 @@
                   <td>{{$count++}}</td>
                   <td>{{$displayTemudugaa['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTemudugaa['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTemudugaa['name']}}</td>
-                  <td>{{$displayTemudugaa['type_program_applied']}}</td>
+                  <td>{{$displayTemudugaa['study_mode']}}</td>
                   <td>{{$displayTemudugaa['state']}}</td>
                   
                   @foreach ($tolak as $Tolak)
@@ -179,15 +179,15 @@
                 @endphp
                 @if($loop->first)
                 @if ($displayTemudugaa['kelulusan1'] == 'L' || $displayTemudugaa['kelulusan1'] == 'G')
-                <td>{{$Tolak['program']}}-{{$displayTemudugaa['kelulusan1']}}</td>
+                <td>{{$Tolak['code']}}-{{$displayTemudugaa['kelulusan1']}}</td>
                 @else
-                <td>{{$Tolak['program']}}-N{{$displayTemudugaa['kelulusan1']}}</td>
+                <td>{{$Tolak['code']}}-N{{$displayTemudugaa['kelulusan1']}}</td>
                 @endif
                 @else
                 @if ($displayTemudugaa['kelulusan2'] == 'L' || $displayTemudugaa['kelulusan2'] == 'G')
-                <td>{{$Tolak['program']}}-{{$displayTemudugaa['kelulusan2']}}</td>
+                <td>{{$Tolak['code']}}-{{$displayTemudugaa['kelulusan2']}}</td>
                 @else
-                <td>{{$Tolak['program']}}-N{{$displayTemudugaa['kelulusan2']}}</td>
+                <td>{{$Tolak['code']}}-N{{$displayTemudugaa['kelulusan2']}}</td>
                 @endif
 
                 @endif
@@ -201,12 +201,29 @@
                   <td>{{$displayTemudugaa['code_center']}}</td>
                   <td>{{$displayTemudugaa['TarikhProses']}}</td>
                   <td>
-                  
-                  <a href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
+                  <div class="btn-group">
+                <button class="btn btn-sm btn-outline-danger">Pilihan</button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($displayTemudugaa['nric'])) }}">Butiran</a>
+                  <a class="dropdown-item" href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}">Temuduga</a>
+                  <a class="dropdown-item" href="{{ route('tolakPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}">Tolak</a>
+                  <a class="dropdown-item" href="{{ route('batalPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}">Batal</a>
+                </div>
+              </div>
+
+                  <!-- <a href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                   <a href="{{ route('tolakPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-warning">Tolak</a>
                     <a href="{{ route('batalPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}" class="btn-sm btn-danger"> 
                       Batal
-                    </a>
+                    </a> -->
                     
                   </td>
                  
@@ -261,7 +278,7 @@
                   <td></td>
                   <td>{{$displayTolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTolakk['name']}}</td>
-                  <td>{{$displayTolakk['type_program_applied']}}</td>
+                  <td>{{$displayTolakk['study_mode']}}</td>
                   <td>{{$displayTolakk['state']}}</td>
                  
                   @foreach ($tolak as $Tolak)
@@ -272,15 +289,15 @@
                   @endphp
                   @if($loop->first)
                   @if ($displayTolakk['kelulusan1'] == 'L' || $displayTolakk['kelulusan1'] == 'G')
-                  <td>{{$Tolak['program']}}-{{$displayTolakk['kelulusan1']}}</td>
+                  <td>{{$Tolak['code']}}-{{$displayTolakk['kelulusan1']}}</td>
                   @else
-                  <td>{{$Tolak['program']}}-N{{$displayTolakk['kelulusan1']}}</td>
+                  <td>{{$Tolak['code']}}-N{{$displayTolakk['kelulusan1']}}</td>
                   @endif
                   @else
                   @if ($displayTolakk['kelulusan2'] == 'L' || $displayTolakk['kelulusan2'] == 'G')
-                  <td>{{$Tolak['program']}}-{{$displayTolakk['kelulusan2']}}</td>
+                  <td>{{$Tolak['code']}}-{{$displayTolakk['kelulusan2']}}</td>
                   @else
-                  <td>{{$Tolak['program']}}-N{{$displayTolakk['kelulusan2']}}</td>
+                  <td>{{$Tolak['code']}}-N{{$displayTolakk['kelulusan2']}}</td>
                   @endif
 
                   @endif
@@ -294,11 +311,28 @@
                   <td></td>
                   <td>{{$displayTolakk['TarikhProses']}}</td>
                   <td>
-                
+
+                  <div class="btn-group">
+                <button class="btn btn-sm btn-outline-danger">Pilihan</button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($displayTolakk['nric'])) }}">Butiran</a>
+                  <a class="dropdown-item" href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}">Temuduga</a>
+                  <a class="dropdown-item" href="{{ route('batalPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}">Batal</a>                  
+                </div>
+              </div>
+<!--                 
                   <a href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                     <a href="{{ route('batalPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}" class="btn-sm btn-danger deletePusatTemuduga"> 
                       Batal
-                    </a>
+                    </a> -->
                     
                   </td>
                  
@@ -345,7 +379,7 @@
                   <td></td>
                   <td>{{$displayBelumProsess['nric']}}</td>
                   <td>{{$displayBelumProsess['name']}}</td>
-                  <td>{{$displayBelumProsess['type_program_applied']}}</td>
+                  <td>{{$displayBelumProsess['study_mode']}}</td>
                   <td>{{$displayBelumProsess['state']}}</td>
                   <td></td>
                   <td></td>            
@@ -468,5 +502,6 @@ $(document).ready(function(){
   {{-- Page js files --}}
   <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
   <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/extensions/ext-component-blockui.js')) }}"></script>
   
 @endsection

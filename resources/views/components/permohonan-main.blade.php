@@ -8,11 +8,14 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
 @endsection
 
 @section('page-style')
 {{-- Page Css files --}}
 <link rel="stylesheet" type="text/css" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
+<link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
 @endsection
 
 
@@ -45,10 +48,11 @@
           <div class="row g-1 md-1">
             <div class="col-md-4">
               
-              <a href="javascript:void(0)" onclick="myAlert()" style="cursor: default;" class="btn btn-success"> 
-                <i data-feather="plus-circle" class="me-25"></i>
+            <button class="btn btn-success" id="basic-alert">
+                <i data-feather="plus-circle"></i>
                 <span>Permohonan Baru</span>
               </a>
+            </button>
               
             </div>
           </div>
@@ -114,9 +118,12 @@ function myAlert() {
   <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
   {{-- Page js files --}}
   <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/extensions/ext-component-sweet-alerts.js')) }}"></script>
 @endsection

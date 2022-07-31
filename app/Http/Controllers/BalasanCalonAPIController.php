@@ -117,12 +117,14 @@ class BalasanCalonAPIController extends Controller
     {
 
 
+        $currentdt = date('Y-m-d H:i:s');
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
             'balasan_calon' => $req->balasan_calon,   
             'status_offer' => $req->balasan_calon,   
             'balasan_calon_description' => $req->balasan_calon_description,    
             'status_global' => 'DITERIMA' ,
+            'tarikh_balasan' => $currentdt
         ]);
 
         $data = [

@@ -56,8 +56,10 @@
                             <tr class="text-center">
                                 <th></th>
                                 <th>No. Sesi</th>
-                                <th>Tarikh</th>
-                                <th>Masa</th>
+                                <th>Tarikh Mula</th>
+                                <th>Tarikh Tamat</th>
+                                <th>Masa Mula</th>
+                                <th>Masa Tamat</th>
                                 <th></th>
                             </tr>
 
@@ -71,17 +73,12 @@
                             <tr class="text-center">
                                 <td>{{$count++}}</td>
                                 <td>{{$displaysessionn['number_session']}}</td>
+                                <td>{{$displaysessionn['DateFrom'] ? Carbon\Carbon::parse($displaysessionn['DateFrom'])->format('Y-m-d') : ' '}} </td>
                                 <td>
-                                    @if ($displaysessionn['DateFrom'] == $displaysessionn['DateTo'])
-
-                                       {{$displaysessionn['DateFrom'] ? Carbon\Carbon::parse($displaysessionn['DateFrom'])->format('Y-m-d') : ' '}} 
-
-                                       @else
-
-                                       {{$displaysessionn['DateFrom'] ? Carbon\Carbon::parse($displaysessionn['DateFrom'])->format('Y-m-d') : ' '}} - {{$displaysessionn['DateTo'] ? Carbon\Carbon::parse($displaysessionn['DateTo'])->format('Y-m-d') : ' '}}  
-                            @endif
+                                {{$displaysessionn['DateTo'] ? Carbon\Carbon::parse($displaysessionn['DateTo'])->format('Y-m-d') : ' '}}
                             </td>
-                                <td>{{ $displaysessionn['TarikhFrom'] ? Carbon\Carbon::parse($displaysessionn['TarikhFrom'])->format('H:i:s') : ' '}} - {{ $displaysessionn['TarikhTo'] ? Carbon\Carbon::parse($displaysessionn['TarikhTo'])->format('H:i:s') : ' '}}  </td>
+                            <td>{{ $displaysessionn['TarikhFrom'] ? Carbon\Carbon::parse($displaysessionn['TarikhFrom'])->format('H:i:s') : ' '}}</td>
+                                <td>{{ $displaysessionn['TarikhTo'] ? Carbon\Carbon::parse($displaysessionn['TarikhTo'])->format('H:i:s') : ' '}}  </td>
 
                                 <td>
 

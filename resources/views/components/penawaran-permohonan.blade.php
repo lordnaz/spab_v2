@@ -66,7 +66,7 @@
               </div>
 
               <div class="col-sm-4 pt-2">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success btn-page-block">
                   <i data-feather="plus-circle" class="me-25"></i>
                   <span>Proses</span>
                 </button>
@@ -82,6 +82,20 @@
         <section class="modern-horizontal-wizard">
           <div class="bs-stepper wizard-modern modern-wizard-example">
             <div class="bs-stepper-header">
+              <div class="step" data-target="#hadir-temuduga">
+                <button type="button" class="step-trigger">
+                  <span class="bs-stepper-box">
+                    <i data-feather="file-text" class="font-medium-3"></i>
+                  </span>
+                  <span class="bs-stepper-label">
+                    <span class="bs-stepper-title">Hadir Temuduga</span>
+                    <span class="bs-stepper-subtitle">Hadir Temuduga</span>
+                  </span>
+                </button>
+              </div>
+              <div class="line">
+              |
+              </div>
               <div class="step" data-target="#account-details-modern">
                 <button type="button" class="step-trigger">
                   <span class="bs-stepper-box">
@@ -94,12 +108,12 @@
                 </button>
               </div>
               <div class="line">
-                <i data-feather="chevron-right" class="font-medium-2"></i>
+              |
               </div>
               <div class="step" data-target="#personal-info-modern">
                 <button type="button" class="step-trigger">
                   <span class="bs-stepper-box">
-                    <i data-feather="user" class="font-medium-3"></i>
+                    <i data-feather="file-text" class="font-medium-3"></i>
                   </span>
                   <span class="bs-stepper-label">
                     <span class="bs-stepper-title">KIV</span>
@@ -108,30 +122,16 @@
                 </button>
               </div>
               <div class="line">
-                <i data-feather="chevron-right" class="font-medium-2"></i>
+              |
               </div>
               <div class="step" data-target="#address-step-modern">
                 <button type="button" class="step-trigger">
                   <span class="bs-stepper-box">
-                    <i data-feather="map-pin" class="font-medium-3"></i>
+                    <i data-feather="file-text" class="font-medium-3"></i>
                   </span>
                   <span class="bs-stepper-label">
                     <span class="bs-stepper-title">Tolak</span>
                     <span class="bs-stepper-subtitle">Tolak</span>
-                  </span>
-                </button>
-              </div>
-              <div class="line">
-                <i data-feather="chevron-right" class="font-medium-2"></i>
-              </div>
-              <div class="step" data-target="#hadir-temuduga">
-                <button type="button" class="step-trigger">
-                  <span class="bs-stepper-box">
-                    <i data-feather="user" class="font-medium-3"></i>
-                  </span>
-                  <span class="bs-stepper-label">
-                    <span class="bs-stepper-title">Hadir Temuduga</span>
-                    <span class="bs-stepper-subtitle">Hadir Temuduga</span>
                   </span>
                 </button>
               </div>
@@ -184,9 +184,9 @@
                       @endphp
                       <tr class="text-center">
                         <td>{{$count++}}</td>
-                        <td>{{$ditawarr['nric']}}</td>
+                        <td>{{$ditawarr['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($ditawarr['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$ditawarr['name']}}</td>
-                        <td>{{$ditawarr['type_program_applied']}}</td>
+                        <td>{{$ditawarr['study_mode']}}</td>
                         <td>{{$ditawarr['state']}}</td>
                         @foreach ($program as $Program)
                 
@@ -196,15 +196,15 @@
                 @endphp
                 @if($loop->first)
                 @if ($ditawarr['kelulusan1'] == 'L' || $ditawarr['kelulusan1'] == 'G')
-                <td>{{$Program['program']}}-{{$ditawarr['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-{{$ditawarr['kelulusan1']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$ditawarr['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-N{{$ditawarr['kelulusan1']}}</td>
                 @endif
                 @else
                 @if ($ditawarr['kelulusan2'] == 'L' || $ditawarr['kelulusan2'] == 'G')
-                <td>{{$Program['program']}}-{{$ditawarr['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-{{$ditawarr['kelulusan2']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$ditawarr['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-N{{$ditawarr['kelulusan2']}}</td>
                 @endif
 
                 @endif
@@ -221,7 +221,7 @@
                         @if(!empty($cadang1ditawar))
                         @foreach ($cadang1ditawar as $Cadang1ditawar)
                         @if($Cadang1ditawar['nric'] == $ditawarr['nric'])
-                        <td>{{$Cadang1ditawar['program']}}
+                        <td>{{$Cadang1ditawar['code']}}
                         @else
                         <td></td>
                         @endif
@@ -233,7 +233,7 @@
                         @if(!empty($cadang2ditawar))
                         @foreach ($cadang2ditawar as $Cadang2ditawar)
                         @if($Cadang2ditawar['nric'] == $ditawarr['nric'])
-                        <td>{{$Cadang2ditawar['program']}}
+                        <td>{{$Cadang2ditawar['code']}}
                         @else
                         <td></td>
                         @endif
@@ -247,7 +247,7 @@
                         @if(!empty($programditawar))
                         @foreach ($programditawar as $Programditawar)
                         @if($Programditawar['nric'] == $ditawarr['nric'])
-                        <td>{{$Programditawar['program']}}
+                        <td>{{$Programditawar['code']}}
                         @else
                         <td></td>
                         @endif
@@ -258,13 +258,32 @@
                         <td>{{$ditawarr['sem']}}</td>
                         <td>{{$ditawarr['TarikhTawar'] ? Carbon\Carbon::parse($ditawarr['TarikhTawar'])->format('Y-m-d') : ' '}}</td>
                         <td>
-                          <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+
+                        <div class="btn-group">
+                <button class="btn btn-sm btn-outline-danger">Pilihan</button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($ditawarr['nric'])) }}">Butiran</a>
+                  <a class="dropdown-item" href="{{ route('display_penawarabynric', Crypt::encrypt($ditawarr['nric'])) }}">Temuduga</a>
+                  <a class="dropdown-item" href="{{ route('KIV_penawaran', Crypt::encrypt($ditawarr['nric'])) }}">KIV</a>     
+                  <a class="dropdown-item" href="{{ route('tolak_penawaran', Crypt::encrypt($ditawarr['nric'])) }}">Tolak</a>    
+                  <a class="dropdown-item" href="{{ route('hadir_penawaran', Crypt::encrypt($ditawarr['nric'])) }}">Batal</a>            
+                </div>
+              </div>
+                          <!-- <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
                           <a href="{{ route('display_penawarabynric', Crypt::encrypt($ditawarr['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                           <a href="{{ route('KIV_penawaran', Crypt::encrypt($ditawarr['nric'])) }}" class="btn-sm btn-warning">KIV</a>
                           <a href="{{ route('tolak_penawaran', Crypt::encrypt($ditawarr['nric'])) }}" class="btn-sm btn-warning">Tolak</a>
                           <a href="{{ route('hadir_penawaran', Crypt::encrypt($ditawarr['nric'])) }}" class="btn-sm btn-danger">
                             Batal
-                          </a>
+                          </a> -->
 
                         </td>
 
@@ -304,7 +323,7 @@
                         <th>Markah</th>
                         <th>Tawar</th>
                         <th>Sem</th>
-                        <th>T.Tawar</th>
+                        <th>T.KIV</th>
                         <th>{!! __('locale.Action') !!}</th>
                       </tr>
 
@@ -322,9 +341,9 @@
                       @endphp
                       <tr class="text-center">
                         <td>{{$count++}}</td>
-                        <td>{{$kivv['nric']}}</td>
+                        <td>{{$kivv['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($kivv['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$kivv['name']}}</td>
-                        <td>{{$kivv['type_program_applied']}}</td>
+                        <td>{{$kivv['study_mode']}}</td>
                         <td>{{$kivv['state']}}</td>
                         @foreach ($program as $Program)
                 
@@ -334,15 +353,15 @@
                 @endphp
                 @if($loop->first)
                 @if ($kivv['kelulusan1'] == 'L' || $kivv['kelulusan1'] == 'G')
-                <td>{{$Program['program']}}-{{$kivv['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-{{$kivv['kelulusan1']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$kivv['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-N{{$kivv['kelulusan1']}}</td>
                 @endif
                 @else
                 @if ($kivv['kelulusan2'] == 'L' || $kivv['kelulusan2'] == 'G')
-                <td>{{$Program['program']}}-{{$kivv['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-{{$kivv['kelulusan2']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$kivv['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-N{{$kivv['kelulusan2']}}</td>
                 @endif
 
                 @endif
@@ -359,7 +378,7 @@
                         @if(!empty($cadang1kiv))
                         @foreach ($cadang1kiv as $Cadang1kiv)
                         @if($Cadang1kiv['nric'] == $kivv['nric'])
-                        <td>{{$Cadang1kiv['program']}}
+                        <td>{{$Cadang1kiv['code']}}
                         @else
                         <td></td>
                         @endif
@@ -371,7 +390,7 @@
                         @if(!empty($cadang2kiv))
                         @foreach ($cadang2kiv as $Cadang2kiv)
                         @if($Cadang2kiv['nric'] == $kivv['nric'])
-                        <td>{{$Cadang2kiv['program']}}
+                        <td>{{$Cadang2kiv['code']}}
                         @else
                         <td></td>
                         @endif
@@ -385,7 +404,7 @@
                         @if(!empty($programkiv))
                         @foreach ($programkiv as $Programkiv)
                         @if($Programkiv['nric'] == $kivv['nric'])
-                        <td>{{$Programkiv['program']}}
+                        <td>{{$Programkiv['code']}}
                         @else
                         <td></td>
                         @endif
@@ -394,14 +413,31 @@
                         <td></td>
                         @endif
                         <td>{{$kivv['sem']}}</td>
-                        <td>{{$kivv['TarikhTawar'] ? Carbon\Carbon::parse($kivv['TarikhTawar'])->format('Y-m-d') : ' '}} </td>
+                        <td>{{$kivv['TarikhKIV'] ? Carbon\Carbon::parse($kivv['TarikhKIV'])->format('Y-m-d') : ' '}} </td>
                         <td>
-                          <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                        <div class="btn-group">
+                <button class="btn btn-sm btn-outline-danger">Pilihan</button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($kivv['nric'])) }}">Butiran</a>
+                  <a class="dropdown-item" href="{{ route('display_penawarabynric', Crypt::encrypt($kivv['nric'])) }}">Temuduga</a>    
+                  <a class="dropdown-item" href="{{ route('tolak_penawaran', Crypt::encrypt($kivv['nric'])) }}">Tolak</a>    
+                  <a class="dropdown-item" href="{{ route('hadir_penawaran', Crypt::encrypt($kivv['nric'])) }}">Batal</a>            
+                </div>
+              </div>
+                          <!-- <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
                           <a href="{{ route('display_penawarabynric', Crypt::encrypt($kivv['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                           <a href="{{ route('tolak_penawaran', Crypt::encrypt($kivv['nric'])) }}" class="btn-sm btn-warning">Tolak</a>
                           <a href="{{ route('hadir_penawaran', Crypt::encrypt($kivv['nric'])) }}" class="btn-sm btn-danger">
                             Batal
-                          </a>
+                          </a> -->
 
                         </td>
 
@@ -438,7 +474,7 @@
                         <th>Markah</th>
                         <th>Tawar</th>
                         <th>Sem</th>
-                        <th>T.Tawar</th>
+                        <th>T.Tolak</th>
                         <th>{!! __('locale.Action') !!}</th>
 
                       </tr>
@@ -457,9 +493,9 @@
                       @endphp
                       <tr class="text-center">
                         <td>{{$count++}}</td>
-                        <td>{{$ditolakk['nric']}}</td>
+                        <td>{{$ditolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($ditolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$ditolakk['name']}}</td>
-                        <td>{{$ditolakk['type_program_applied']}}</td>
+                        <td>{{$ditolakk['study_mode']}}</td>
                         <td>{{$ditolakk['state']}}</td>
                        
                         @foreach ($program as $Program)
@@ -470,15 +506,15 @@
                 @endphp
                 @if($loop->first)
                 @if ($ditolakk['kelulusan1'] == 'L' || $ditolakk['kelulusan1'] == 'G')
-                <td>{{$Program['program']}}-{{$ditolakk['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-{{$ditolakk['kelulusan1']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$ditolakk['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-N{{$ditolakk['kelulusan1']}}</td>
                 @endif
                 @else
                 @if ($ditolakk['kelulusan2'] == 'L' || $ditolakk['kelulusan2'] == 'G')
-                <td>{{$Program['program']}}-{{$ditolakk['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-{{$ditolakk['kelulusan2']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$ditolakk['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-N{{$ditolakk['kelulusan2']}}</td>
                 @endif
 
                 @endif
@@ -495,7 +531,7 @@
                         @if(!empty($cadang1ditolak))
                         @foreach ($cadang1ditolak as $Cadang1ditolak)
                         @if($Cadang1ditolak['nric'] == $ditolakk['nric'])
-                        <td>{{$Cadang1ditolak['program']}}
+                        <td>{{$Cadang1ditolak['code']}}
                         @else
                         <td></td>
                         @endif
@@ -507,7 +543,7 @@
                         @if(!empty($cadang2ditolak))
                         @foreach ($cadang2ditolak as $Cadang2ditolak)
                         @if($Cadang2ditolak['nric'] == $ditolakk['nric'])
-                        <td>{{$Cadang2ditolak['program']}}
+                        <td>{{$Cadang2ditolak['code']}}
                         @else
                         <td></td>
                         @endif
@@ -521,7 +557,7 @@
                         @if(!empty($programditolak))
                         @foreach ($programditolak as $Programditolak)
                         @if($Programditolak['nric'] == $ditolakk['nric'])
-                        <td>{{$Programditolak['program']}}
+                        <td>{{$Programditolak['pcode']}}
                         @else
                         <td></td>
                         @endif
@@ -530,14 +566,32 @@
                         <td></td>
                         @endif
                         <td>{{$ditolakk['sem']}}</td>
-                        <td>{{$ditolakk['TarikhTawar'] ? Carbon\Carbon::parse($ditolakk['TarikhTawar'])->format('Y-m-d') : ' '}}</td>
+                        <td>{{$ditolakk['TarikhTolak'] ? Carbon\Carbon::parse($ditolakk['TarikhTolak'])->format('Y-m-d') : ' '}}</td>
                         <td>
-                          <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+
+                        <div class="btn-group">
+                <button class="btn btn-sm btn-outline-danger">Pilihan</button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($ditolakk['nric'])) }}">Butiran</a>
+                  <a class="dropdown-item" href="{{ route('display_penawarabynric', Crypt::encrypt($ditolakk['nric'])) }}">Temuduga</a>
+                  <a class="dropdown-item" href="{{ route('KIV_penawaran', Crypt::encrypt($ditolakk['nric'])) }}">KIV</a>        
+                  <a class="dropdown-item" href="{{ route('hadir_penawaran', Crypt::encrypt($ditolakk['nric'])) }}">Batal</a>            
+                </div>
+              </div>
+                          <!-- <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
                           <a href="{{ route('display_penawarabynric', Crypt::encrypt($ditolakk['nric'])) }}" class="btn-sm btn-warning">Temuduga</a>
                           <a href="{{ route('KIV_penawaran', Crypt::encrypt($ditolakk['nric'])) }}" class="btn-sm btn-warning">KIV</a>
                           <a href="{{ route('hadir_penawaran', Crypt::encrypt($ditolakk['nric'])) }}" class="btn-sm btn-danger">
                             Batal
-                          </a>
+                          </a> -->
 
                         </td>
 
@@ -572,7 +626,6 @@
                         <th>Markah</th>
                         <th>Tawar</th>
                         <th>Sem</th>
-                        <th>T.Tawar</th>
                         <th>{!! __('locale.Action') !!}</th>
 
                       </tr>
@@ -591,9 +644,9 @@
                       @endphp
                       <tr class="text-center">
                         <td>{{$count++}}</td>
-                        <td>{{$hadirr['nric']}}</td>
+                        <td>{{$hadirr['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($hadirr['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$hadirr['name']}}</td>
-                        <td>{{$hadirr['type_program_applied']}}</td>
+                        <td>{{$hadirr['study_mode']}}</td>
                         <td>{{$hadirr['state']}}</td>
                        
                         @foreach ($program as $Program)
@@ -604,15 +657,15 @@
                 @endphp
                 @if($loop->first)
                 @if ($hadirr['kelulusan1'] == 'L' || $hadirr['kelulusan1'] == 'G')
-                <td>{{$Program['program']}}-{{$hadirr['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-{{$hadirr['kelulusan1']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$hadirr['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-N{{$hadirr['kelulusan1']}}</td>
                 @endif
                 @else
                 @if ($hadirr['kelulusan2'] == 'L' || $hadirr['kelulusan2'] == 'G')
-                <td>{{$Program['program']}}-{{$hadirr['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-{{$hadirr['kelulusan2']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$hadirr['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-N{{$hadirr['kelulusan2']}}</td>
                 @endif
 
                 @endif
@@ -629,7 +682,7 @@
                         @if(!empty($cadang1hadir))
                         @foreach ($cadang1hadir as $Cadang1hadir)
                         @if($Cadang1hadir['nric'] == $hadirr['nric'])
-                        <td>{{$Cadang1hadir['program']}}
+                        <td>{{$Cadang1hadir['code']}}
                         @else
                         <td></td>
                         @endif
@@ -641,7 +694,7 @@
                         @if(!empty($cadang2hadir))
                         @foreach ($cadang2hadir as $Cadang2hadir)
                         @if($Cadang2hadir['nric'] == $hadirr['nric'])
-                        <td>{{$Cadang2hadir['program']}}
+                        <td>{{$Cadang2hadir['code']}}
                         @else
                         <td></td>
                         @endif
@@ -655,7 +708,7 @@
                         @if(!empty($programhadir))
                         @foreach ($programhadir as $Programhadir)
                         @if($Programhadir['nric'] == $hadirr['nric'])
-                        <td>{{$Programhadir['program']}}
+                        <td>{{$Programhadir['code']}}
                         @else
                         <td></td>
                         @endif
@@ -665,9 +718,9 @@
                         @endif
 
                         <td>{{$hadirr['sem']}}</td>
-                        <td>{{$hadirr['TarikhTawar'] ? Carbon\Carbon::parse($hadirr['TarikhTawar'])->format('Y-m-d') : ' '}}</td>
+                       
                         <td>
-                          <a href="" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                          <a href="{{ route('butiran', Crypt::encrypt($hadirr['nric'])) }}" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
 
 
                         </td>
@@ -713,5 +766,6 @@
 {{-- Page js files --}}
 <script src="{{ asset(mix('js/scripts/tables/table-datatables-advanced.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
+<script src="{{ asset(mix('js/scripts/extensions/ext-component-blockui.js')) }}"></script>
 
 @endsection

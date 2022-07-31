@@ -29,12 +29,6 @@
           "name": "Activation",
           "icon": "circle",
           "slug": "offered-program"
-        },
-        {
-          "url": "pendaftaranpelajar",
-          "name": "Student Registration",
-          "icon": "circle",
-          "slug": "app-invoice-edit"
         }
       ]
     },
@@ -109,6 +103,19 @@
           "name": "Candidate Reply",
           "icon": "circle",
           "slug": "balasancalon"
+        }
+      ]
+    },
+    {
+      "name": "Admin_Pendaftaranpelajar",
+      "icon": "file-text",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "pendaftaranpelajar",
+          "name": "Student Registration",
+          "icon": "circle",
+          "slug": "app-invoice-edit"
         }
       ]
     },

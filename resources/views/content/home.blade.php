@@ -126,7 +126,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">43</h4>
+                  <h4 class="fw-bolder mb-0">{{$asasi}}</h4>
                   <p class="card-text font-small-3 mb-0">ASASI SENI KREATIF</p>
                 </div>
               </div>
@@ -185,7 +185,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">13</h4>
+                  <h4 class="fw-bolder mb-0">{{$diploma}}</h4>
                   <p class="card-text font-small-3 mb-0">DIPLOMA</p>
                 </div>
               </div>
@@ -244,7 +244,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">150</h4>
+                  <h4 class="fw-bolder mb-0">{{$sarjanamuda}}</h4>
                   <p class="card-text font-small-3 mb-0">IJAZAH SARJANA MUDA</p>
                 </div>
               </div>
@@ -303,7 +303,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">40</h4>
+                  <h4 class="fw-bolder mb-0">{{$sarjana}}</h4>
                   <p class="card-text font-small-3 mb-0">IJAZAH SARJANA</p>
                 </div>
               </div>
@@ -362,7 +362,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">5</h4>
+                  <h4 class="fw-bolder mb-0">{{$doktor}}</h4>
                   <p class="card-text font-small-3 mb-0">IJAZAH KEDOKTORAN</p>
                 </div>
               </div>
@@ -425,52 +425,93 @@ $roles = auth()->user()->role;
         <h4 class="card-header">Penjejak Permohonan</h4>
         <div class="card-body pt-1">
           <ul class="timeline ms-50">
+
+          @if($status['all_status'] == 'BELUM DISAHKAN')
             <li class="timeline-item">
               <span class="timeline-point timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Pendaftaran baharu</h6>
-                  <span class="timeline-event-time me-1">2 Jul 2022</span>
+                  <h6>Pendaftaran Baharu</h6>
+                  <span class="timeline-event-time me-1">{{$status['submit_permohonan'] ? Carbon\Carbon::parse($status['submit_permohonan'])->format('d/m/y'): ''}}</span>
                 </div>
-                <p>Dihantar pada 2:12pm</p>
+                <p>Dihantar pada {{$status['submit_permohonan'] ? Carbon\Carbon::parse($status['submit_permohonan'])->format('h:i A'): ''}}</p>
               </div>
             </li>
+            @endif
+            @if($status['status_validation'] == 'SAH' || $status['status_validation'] == 'Temuduga')
             <li class="timeline-item">
               <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Permohonan disahkan </h6>
-                  <span class="timeline-event-time me-1">10 Jul 2022</span>
+                  <h6>Permohonan Disahkan </h6>
+                  <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($status['updated_date_validation'])->format('d/m/y')}}</span>
                 </div>
-                <p>Disahkan pada 10:15am</p> oleh <strong>Dr. Ahmad Nifsu</strong>
+                <p>Disahkan pada {{Carbon\Carbon::parse($status['updated_date_validation'])->format('h:i A')}}</p>
               </div>
             </li>
+            @elseif($status['status_validation'] == 'TOLAK')
+            <li class="timeline-item">
+              <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
+              <div class="timeline-event">
+                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                  <h6>Permohonan Ditolak </h6>
+                  <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($status['updated_date_validation'])->format('d/m/y')}}</span>
+                </div>
+                <p>Ditolak pada {{Carbon\Carbon::parse($status['updated_date_validation'])->format('h:i A')}}</p> 
+              </div>
+            </li>
+            @endif
+            @if($status['status_temuduga'] == 'Temuduga' || $status['status_temuduga'] == 'Hadir' || $status['status_temuduga'] == 'Tidak Hadir' || $status['status_temuduga'] == 'Ditawarkan' || $status['status_temuduga'] == 'Kiv' || $status['status_temuduga'] == 'Ditolak')
             <li class="timeline-item">
               <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Terima Process Temuduga</h6>
-                  <span class="timeline-event-time me-1">10 Jul 2022</span>
+                  <h6>Process Permohonan Terima Temuduga</h6>
+                  <span class="timeline-event-time me-1">{{$status['TarikhProses'] ? Carbon\Carbon::parse($status['TarikhProses'])->format('d/m/y'): ''}}</span>
                 </div>
-                <p>Diterima pada 10:15am</p> oleh <strong>Wan Zuraida</strong>
+                <p>Diterima pada {{$status['TarikhProses'] ? Carbon\Carbon::parse($status['TarikhProses'])->format('h:i A'): ''}}</p> 
               </div>
             </li>
+            @elseif($status['status_temuduga'] == 'Tolak')
+            <li class="timeline-item">
+              <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
+              <div class="timeline-event">
+                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                  <h6>Process Permohonan Ditolak</h6>
+                  <span class="timeline-event-time me-1">{{$status['updated_date_offer'] ? Carbon\Carbon::parse($status['updated_date_offer'])->format('d/m/y'): ''}}</span>
+                </div>
+                <p>Ditolak pada {{$status['updated_date_offer'] ? Carbon\Carbon::parse($status['updated_date_offer'])->format('h:i A'): ''}}</p>
+              </div>
+            </li>
+            @endif
+            @if($status['status_temuduga'] == 'Temuduga' || $status['status_temuduga'] == 'Hadir' || $status['status_temuduga'] == 'Tidak Hadir' || $status['status_temuduga'] == 'Ditawarkan' || $status['status_temuduga'] == 'Kiv' || $status['status_temuduga'] == 'Ditolak')
             <li class="timeline-item">
               <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
                   <h6>Temuduga Berjalan</h6>
-                  <span class="timeline-event-time me-1">12 Jul 2022</span>
+                  <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($iv['updated_at'])->format('d/m/y')}}</span>    
                 </div>
+                <p>Maklumat Temuduga </p>
+                  <p>Tarikh : {{$iv['TarikhHadir'] ? Carbon\Carbon::parse($iv['TarikhHadir'])->format('d/m/y') : ' '}} </p>
+                  <p>Masa : {{$iv['MasaFrom'] ? Carbon\Carbon::parse($iv['MasaFrom'])->format('h:i A') : ' '}} - {{$iv['MasaTo'] ? Carbon\Carbon::parse($iv['MasaTo'])->format('h:i A') : ' '}} </p>
+                  @if ($status['status_temuduga'] == 'Hadir' || $status['status_temuduga'] == 'Ditawarkan' || $status['status_temuduga'] == 'Kiv' || $status['status_temuduga'] == 'Ditolak')
+                  <strong>Hadir Temuduga</strong>
+                  @elseif ($status['status_temuduga'] == 'Tidak Hadir')
+                  <strong>Tidak Hadir Temuduga</strong>
+                  @endif
               </div>
             </li>
+            @endif
+            @if($status['status_offer'] == 'Ditawarkan' || $status['status_offer'] == 'TERIMA TAWARAN' || $status['status_offer'] == 'TOLAK TAWARAN')
             <li class="timeline-item">
-              <span class="timeline-point timeline-point-success timeline-point-indicator"></span>
+              <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Tawaran diterima</h6>
-                  <span class="timeline-event-time me-1">15 Jul 2022</span>
+                  <h6>Tawaran Diterima</h6>
+                  <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($status['TarikhTawar'])->format('d/m/y')}}</span>
                 </div>
+               
                 <p class="mb-0">Surat Tawaran</p>
                 <div class="d-flex flex-row align-items-center mt-50">
                   <img class="me-1" src="{{asset('images/icons/pdf.png')}}" alt="data.json" height="25" />
@@ -478,6 +519,65 @@ $roles = auth()->user()->role;
                 </div>
               </div>
             </li>
+            @elseif ($status['status_offer'] == 'Dalam Pemerhatian (KIV)')
+            <li class="timeline-item">
+              <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
+              <div class="timeline-event">
+                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                  <h6>Dalam Pemerhatian (KIV)</h6>
+                  <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($status['TarikhTawar'])->format('d/m/y')}}</span>
+                </div>
+               
+              </div>
+            </li>
+            @elseif ($status['status_offer'] == 'Ditolak')
+            <li class="timeline-item">
+              <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
+              <div class="timeline-event">
+                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                  <h6>Tawaran Ditolak</h6>
+                  <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($status['TarikhTawar'])->format('d/m/y')}}</span>
+                </div>
+               
+              </div>
+            </li>
+            @endif
+            @if($status['balasan_calon'] == 'TERIMA TAWARAN' || $status['balasan_calon'] == 'DAFTAR')
+            <li class="timeline-item">
+              <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
+              <div class="timeline-event">
+                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                  <h6>Calon Menerima Tawaran</h6>
+                  <span class="timeline-event-time me-1">{{$status['tarikh_balasan'] ? Carbon\Carbon::parse($status['tarikh_balasan'])->format('d/m/y'): ''}}</span>
+                </div>
+           <p> Menerima tawaran pada {{$status['tarikh_balasan'] ? Carbon\Carbon::parse($status['tarikh_balasan'])->format('h:i A'): ''}}</p>
+              </div>
+            </li>
+            @elseif ($status['balasan_calon'] == 'TOLAK TAWARAN')
+            <li class="timeline-item">
+              <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
+              <div class="timeline-event">
+                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                  <h6>Calon Menolak Tawaran</h6>
+                  <span class="timeline-event-time me-1">{{$status['tarikh_balasan'] ? Carbon\Carbon::parse($status['tarikh_balasan'])->format('d/m/y'): ''}}</span>
+                </div>
+                <p> Tawaran ditolak pada {{$status['tarikh_balasan'] ? Carbon\Carbon::parse($status['tarikh_balasan'])->format('h:i A'): ''}}</p>
+              </div>
+            </li>
+            @endif
+            @if($status['status_pendaftaran'] == 'DAFTAR')
+            <li class="timeline-item">
+              <span class="timeline-point timeline-point-success timeline-point-indicator"></span>
+              <div class="timeline-event">
+                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                  <h6>Calon Didaftar Sebagai Pelajar</h6>
+                  <span class="timeline-event-time me-1">{{ Carbon\Carbon::parse($status['tarikh_pendaftaran'])->format('d/m/y')}}</span>
+                </div>
+                <p>Didaftar pada {{ Carbon\Carbon::parse($status['tarikh_pendaftaran'])->format('h:i A')}}</p>
+          
+              </div>
+            </li>
+            @endif
           </ul>
         </div>
       </div>

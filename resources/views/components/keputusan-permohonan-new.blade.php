@@ -151,7 +151,7 @@
                                     <label class="col-form-label" for="year">{!! __('locale.Date Interview') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="year" class="form-control" name="year" placeholder=""value="{{Carbon\Carbon::parse($datasss['DateFrom'])->format('Y-m-d')}} - {{Carbon\Carbon::parse($datasss['DateTo'])->format('Y-m-d')}}"readonly/>
+                                    <input type="text" id="year" class="form-control" name="year" placeholder="" @if($datasss != NULL) value="{{Carbon\Carbon::parse($datasss['DateFrom'])->format('Y-m-d')}} - {{Carbon\Carbon::parse($datasss['DateTo'])->format('Y-m-d')}}" @endif readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                     <label class="col-form-label" for="year">{!! __('locale.Time') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="year" class="form-control" name="year" placeholder=""value="{{Carbon\Carbon::parse($datasss['TarikhFrom'])->format('H:i:s')}} - {{Carbon\Carbon::parse($datasss['TarikhTo'])->format('H:i:s')}}"readonly/>
+                                    <input type="text" id="year" class="form-control" name="year" placeholder="" @if($datasss != NULL) value="{{Carbon\Carbon::parse($datasss['TarikhFrom'])->format('H:i:s')}} - {{Carbon\Carbon::parse($datasss['TarikhTo'])->format('H:i:s')}}" @endif readonly/>
                                 </div>
                                 </div>
                             </div>

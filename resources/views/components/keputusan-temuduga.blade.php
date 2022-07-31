@@ -92,9 +92,9 @@
              @endphp
                 <tr class="text-center" >
                     <td>{{$count++}}</td>
-                  <td>{{$displayTablee['nric']}}</td>
+                  <td>{{$displayTablee['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTablee['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTablee['name']}}</td>
-                  <td>{{$displayTablee['type_program_applied']}}</td>
+                  <td>{{$displayTablee['study_mode']}}</td>
                   <td>{{$displayTablee['state']}}</td>
                 
                   @foreach ($program as $Program)
@@ -105,15 +105,15 @@
                 @endphp
                 @if($loop->first)
                 @if ($displayTablee['kelulusan1'] == 'L' || $displayTablee['kelulusan1'] == 'G')
-                <td>{{$Program['program']}}-{{$displayTablee['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-{{$displayTablee['kelulusan1']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan1']}}</td>
+                <td>{{$Program['code']}}-N{{$displayTablee['kelulusan1']}}</td>
                 @endif
                 @else
                 @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
-                <td>{{$Program['program']}}-{{$displayTablee['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-{{$displayTablee['kelulusan2']}}</td>
                 @else
-                <td>{{$Program['program']}}-N{{$displayTablee['kelulusan2']}}</td>
+                <td>{{$Program['code']}}-N{{$displayTablee['kelulusan2']}}</td>
                 @endif
 
                 @endif
@@ -127,7 +127,7 @@
                   @if(!empty($cadang1))
                   @foreach ($cadang1 as $Cadang1)
                   @if($Cadang1['nric'] == $displayTablee['nric'])
-                  <td>{{$Cadang1['program']}}</td>
+                  <td>{{$Cadang1['code']}}</td>
                   @else
                   <td></td>
                   @endif
@@ -139,7 +139,7 @@
                   @if(!empty($cadang2))
                   @foreach($cadang2 as $Cadang2)
                   @if($Cadang2['nric'] == $displayTablee['nric'])
-                  <td>{{$Cadang2['program']}}</td>
+                  <td>{{$Cadang2['code']}}</td>
                   @else
                   <td></td>
                   @endif
@@ -153,11 +153,28 @@
                   
                   <td>
 
-                  <a href="{{ route('hadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}" class="btn-sm btn-warning">Hadir</a>
+                  <div class="btn-group">
+                <button class="btn btn-sm btn-outline-danger">Pilihan</button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($displayTablee['nric'])) }}">Butiran</a>
+                  <a class="dropdown-item" href="{{ route('hadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}">Hadir</a>
+                  <a class="dropdown-item" href="{{ route('TidakhadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}">Tidak Hadir</a>     
+                  <a class="dropdown-item" href="{{ route('batalTemuduga', Crypt::encrypt($displayTablee['nric'])) }}">Batal</a>               
+                </div>
+              </div>
+                  <!-- <a href="{{ route('hadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}" class="btn-sm btn-warning">Hadir</a>
                   <a href="{{ route('TidakhadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}" class="btn-sm btn-warning">Tidak Hadir</a>
                   <a href="{{ route('batalTemuduga', Crypt::encrypt($displayTablee['nric'])) }}" class="btn-sm btn-danger"> 
                       Batal
-                    </a>
+                    </a> -->
                  
                     
                   </td>
