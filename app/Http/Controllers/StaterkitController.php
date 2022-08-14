@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\StatusPermohonan;
 use App\Models\UserDetail;
+use App\Models\UserInformation;
 use App\Models\ScreeningIV;
 use App\Models\ProgramApplied;
 use App\Models\program;
@@ -26,7 +27,7 @@ class StaterkitController extends Controller
             $display = Session::get('display');
 
             $userid = auth()->user()->id;
-            $userdetails = UserDetail::where('created_by', $userid)->first();
+            $userdetails = UserInformation::where('created_by', $userid)->first();
 
             $exits = StatusPermohonan::where('nric', $userdetails->nric)->exists();
 
@@ -35,7 +36,8 @@ class StaterkitController extends Controller
                 $status = 'Tiada';
             }
             else{
-            $status = StatusPermohonan::join('screening_interview','screening_interview.nric','=','all_status_permohonan.nric')->join('penawaran_permohonan','penawaran_permohonan.nric','=','all_status_permohonan.nric')->where('all_status_permohonan.nric', $userdetails->nric)->first();
+            $status = StatusPermohonan::join('screening_interview','screening_interview.nric','=','all_status_permohonan.nric')->join('penawaran_permohonan','penawaran_permohonan.nric','=','all_status_permohonan.nric')
+            ->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=','all_status_permohonan.nric')->where('all_status_permohonan.nric', $userdetails->nric)->first();
             }
             $iv = ScreeningIV::where('nric', $userdetails->nric)->first();
 
@@ -245,5 +247,13 @@ class StaterkitController extends Controller
 
         
 
+    }
+
+    public function download_tawaran($code){
+
+        $code = decrypt($code);
+        
+        return response()->download(storage_path($code));
+        
     }
 }

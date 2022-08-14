@@ -27,6 +27,7 @@ class CreateAllStatusPermohonanTable extends Migration
             $table->timestamp('submit_permohonan')->nullable();
             $table->string('pengajian')->nullable();
             $table->timestamp('tarikh_balasan')->nullable();
+            $table->timestamp('tarikh_pendaftaran')->nullable();
             $table->timestamp('tarikh_daftar')->nullable();
             $table->string('description_validation')->nullable();
             $table->string('status_offer')->nullable();
@@ -35,7 +36,7 @@ class CreateAllStatusPermohonanTable extends Migration
             $table->string('status_temuduga')->nullable();
             $table->string('status_global')->nullable();
             $table->string('modified_by_offer')->nullable();
-            $table->timestamp('updated_date_offer')->nullable();
+            $table->timestamp('updated_date_offer')->nullable();         
             $table->integer('created_by')->nullable();
             $table->integer('modified_by')->nullable();
             $table->timestamps();

@@ -17,15 +17,16 @@ class CreatePendaftaranPelajarTable extends Migration
             $table->id('pendaftaran_id');
             $table->foreignId('nric')->index();
             $table->string('job_id')->nullable();
-            $table->string('no_matriks');
-            $table->string('hostel_room');
-            $table->string('no_resit');
-            $table->string('total_payment');
-            $table->string('payment_type');
-            $table->string('bank');
-            $table->string('payment_reference');
-            $table->string('payment_details');
-            $table->string('created_by');
+            $table->string('no_matriks')->nullable();
+            $table->string('hostel_room')->nullable();
+            $table->string('no_resit')->nullable();
+            $table->string('total_payment')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('surat_tawaran', 300)->nullable();
+            $table->string('payment_reference')->nullable();
+            $table->string('payment_details')->nullable();
+            $table->string('created_by')->nullable();
             $table->timestamps();
         });
     }

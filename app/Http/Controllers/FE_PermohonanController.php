@@ -28,6 +28,7 @@ use App\Models\StatusPermohonan as SubmitApplication;
 use Carbon\Carbon;
 use Exception;
 use App\Models\Audit;
+use App\Models\UserInformation;
 use PDO;
 
 class FE_PermohonanController extends Controller
@@ -54,7 +55,7 @@ class FE_PermohonanController extends Controller
 
         $userid = auth()->user()->id;
 
-        $userdetails = UserDetail::where('created_by', $userid)->first();
+        $userdetails = UserInformation::where('created_by', $userid)->first();
 
         $check_applications = SubmitApplication::where('nric', $userdetails->nric)->exists();
 
@@ -64,7 +65,7 @@ class FE_PermohonanController extends Controller
         $applications = null;
 
         if($check_applications){
-            $applications = SubmitApplication::where('nric', $userdetails->nric)->where('all_status', 'DRAFT')->orWhere('all_status', 'BELUM DISAHKAN')->get();
+            $applications = SubmitApplication::join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.nric', $userdetails->nric)->where('all_status_permohonan.all_status', 'DRAFT')->orWhere('all_status', 'BELUM DISAHKAN')->get();
         }
 
         // return 'data'.$applications;
@@ -128,7 +129,7 @@ class FE_PermohonanController extends Controller
         $kedoktoran2 = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Separuh Masa')->where('program.type', 'Kedoktoran')->get();
 
         $userid = auth()->user()->id;
-        $userdetails = UserDetail::where('created_by', $userid)->first();
+        $userdetails = UserInformation::where('created_by', $userid)->first();
 
 
         $random_string = chr(rand(65,90)) . chr(rand(65,90)) . chr(rand(65,90));

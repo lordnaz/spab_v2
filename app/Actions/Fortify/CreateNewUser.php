@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Models\UserDetail;
+use App\Models\UserInformation;
 use App\Models\ApplicantDetailSub;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -43,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
         $userId = $create->id;
 
         if($userId){
-            $details = UserDetail::create([
+            $details = UserInformation::create([
                 'user_id' => $userId,
                 'name' => $input['name'],
                 'nric' => $input['nric'],

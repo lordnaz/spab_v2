@@ -227,6 +227,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('audit_trail_detail/{code}', [FE_PendaftaranPelajarController::class, 'audit_trail_detail'])->name('audit_trail_detail');
 
     Route::post('displayajax', [StaterkitController::class, 'displayajax'])->name('displayajax');
+    Route::get('download_tawaran/{code}', [StaterkitController::class, 'download_tawaran'])->name('download_tawaran');
 });
 
 

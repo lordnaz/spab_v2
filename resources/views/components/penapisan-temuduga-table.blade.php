@@ -23,6 +23,14 @@
 @section('content')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div id="spinner" style="display:none">
+<div style="display:flex; justify-content:center; align-items:center; background-color: black; position:fixed; top:0px; left:0px; z-index: 9999; width: 100%; height: 100%;
+opacity:.75;">
+<div class="la-ball-clip-rotate la-dark la-3x">
+    <div></div>
+</div>
+</div>
+</div>
 <!-- Advanced Search -->
 <section id="advanced-search-datatable">
   <div class="row">
@@ -479,6 +487,20 @@ $(document).ready(function(){
                     });  
 
 })
+
+
+  $(document).ready(function(){
+    $('#ajax').change(function(){  
+        setTimeout(
+                  function() 
+                  {
+                    document.getElementById('spinner').style.display = "block";
+                  }, 0001);    
+                                         
+                    });  
+
+})
+
 
 </script>
 

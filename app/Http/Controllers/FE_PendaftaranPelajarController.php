@@ -46,9 +46,11 @@ class FE_PendaftaranPelajarController extends Controller
         $displayapplicantinfo = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
+        ->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=', 'user_details.nric')
         ->where('user_details.nric', $code)->first();
 
 
+        
         return view('components.senarai_daftar_detail')->with('data',$displayapplicantinfo);
     }
 

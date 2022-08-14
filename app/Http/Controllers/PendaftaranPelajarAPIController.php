@@ -70,12 +70,13 @@ class PendaftaranPelajarAPIController extends Controller
             $type = 'surat_permohonan';
 
             $nric = $req->nric;
-            $address1 = $displayapplicantinfo->address1;
+            $address1 = $displayapplicantinfo->address_1;
             $date_created = date('Y-m-d H:i:s');
             $pengajian = $displayapplicantinfo->pengajian;
-            $program = $$displayapplicantinfo->program;
+            $program = $displayapplicantinfo->program;
+            $fullname = $displayapplicantinfo->name;
 
-            $create_surat_permohonan = $this->TemplateProcessing($type, $nric, $address1, $date_created, $pengajian, $program);
+            $create_surat_permohonan = $this->TemplateProcessing($type, $nric, $address1, $date_created, $pengajian, $program, $fullname);
         }
    
 
@@ -155,7 +156,7 @@ class PendaftaranPelajarAPIController extends Controller
     }
 
 
-    function TemplateProcessing($type, $nric, $address1, $date_created, $pengajian, $program)
+    function TemplateProcessing($type, $nric, $address1, $date_created, $pengajian, $program, $fullname)
     {
 
         switch ($type) {
@@ -166,14 +167,26 @@ class PendaftaranPelajarAPIController extends Controller
                 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($templatePath);
 
                 $templateProcessor->setValue('nric', $nric);
-                $templateProcessor->setValue('address1', $address1);
+                $templateProcessor->setValue('address', $address1);
                 $templateProcessor->setValue('date_created', $date_created);
                 $templateProcessor->setValue('pengajian', $pengajian);
                 $templateProcessor->setValue('program', $program);
+                $templateProcessor->setValue('full_name', $fullname);
 
                 $timestamp = date('YmdHis');
 
                 $filename = 'template_created/Surat_Permohonan_'.$timestamp.'.docx';
+
+
+                        
+                
+                $exists = PendaftaranPelajar::where('nric', $nric)
+                ->update([
+    
+                    'surat_tawaran' => $filename,
+                    
+        
+                ]);
 
                 // code to insert filename for application reference
 

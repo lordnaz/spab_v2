@@ -574,8 +574,15 @@ $roles = auth()->user()->role;
                   <h6>Calon Didaftar Sebagai Pelajar</h6>
                   <span class="timeline-event-time me-1">{{ Carbon\Carbon::parse($status['tarikh_pendaftaran'])->format('d/m/y')}}</span>
                 </div>
-                <p>Didaftar pada {{ Carbon\Carbon::parse($status['tarikh_pendaftaran'])->format('h:i A')}}</p>
-          
+                
+                <p>Didaftar pada {{ Carbon\Carbon::parse($status['tarikh_pendaftaran'])->format('h:i A')}} </p>
+                <p class="mb-0">Surat Tawaran</p>
+                <div class="d-flex flex-row align-items-center mt-50">
+                  <img class="me-1" src="{{asset('images/icons/pdf.png')}}" alt="data.json" height="25" />
+                  <a href="{{ route('download_tawaran', Crypt::encrypt($status['surat_tawaran'])) }}">
+                  <h6 class="mb-0">Surat_Tawaran.pdf</h6>
+                  </a>
+                </div>
               </div>
             </li>
             @endif
