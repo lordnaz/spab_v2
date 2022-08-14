@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
+use App\Models\Audit;
+use App\Models\StatusPermohonan;
 
 class FE_BalasanCalonController extends Controller
 {
@@ -121,6 +124,27 @@ class FE_BalasanCalonController extends Controller
 
 
     public function balasan_permohonan(Request $req){
+
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $req->nric)->first();
+
+        $audit = new Audit;
+        $audit->nric = $req->nric;
+        $audit->no_siri = $nosiri->no_siri;
+        if($req->balasan_calon == 'TERIMA TAWARAN'){
+        $audit->penerangan = 'Terima Tawaran';
+        }
+        elseif($req->balasan_calon == 'TOLAK TAWARAN'){
+            $audit->penerangan = 'Tolak Tawaran';
+        }
+        else{
+            $audit->penerangan = 'Batal Tawaran';
+        }
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
 
         $param = [
 

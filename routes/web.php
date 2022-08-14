@@ -215,6 +215,18 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('tolak_permohonan_id/{code}', [PengesahanPermohonanFEController::class, 'tolak_permohonan_id'])->name('tolak_permohonan_id');
     Route::get('batal_permohonan/{code}', [PengesahanPermohonanFEController::class, 'batal_permohonan'])->name('batal_permohonan');
     Route::get('/filterByProgram/{code}', [PengesahanPermohonanFEController::class, 'filterByProgram'])->name('filterByProgram');
+
+    //senarai pendaftaran
+    Route::get('senarai_pelajar', [FE_PendaftaranPelajarController::class, 'senarai_pelajar'])->name('senarai_pelajar');
+    Route::get('senarai_pelajar_detail/{code}', [FE_PendaftaranPelajarController::class, 'senarai_pelajar_detail'])->name('senarai_pelajar_detail');
+    Route::get('sejarah_pelajar', [FE_PendaftaranPelajarController::class, 'sejarah_pelajar'])->name('sejarah_pelajar');
+    Route::post('sejarah_pelajar_detail', [FE_PendaftaranPelajarController::class, 'sejarah_pelajar_detail'])->name('sejarah_pelajar_detail');
+
+    //audit trail
+    Route::get('audit_trail', [FE_PendaftaranPelajarController::class, 'audit_trail'])->name('audit_trail');
+    Route::get('audit_trail_detail/{code}', [FE_PendaftaranPelajarController::class, 'audit_trail_detail'])->name('audit_trail_detail');
+
+    Route::post('displayajax', [StaterkitController::class, 'displayajax'])->name('displayajax');
 });
 
 

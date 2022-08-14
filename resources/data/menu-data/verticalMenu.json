@@ -116,9 +116,34 @@
           "name": "Student Registration",
           "icon": "circle",
           "slug": "app-invoice-edit"
+        },
+        {
+          "url": "senarai_pelajar",
+          "name": "Senarai Pelajar",
+          "icon": "circle",
+          "slug": "app-invoice-edit"
+        },
+        {
+          "url": "sejarah_pelajar",
+          "name": "Sejarah Pelajar",
+          "icon": "circle",
+          "slug": "app-invoice-edit"
         }
       ]
     },
+    {
+      "name": "Admin_Audit_Trail",
+      "icon": "file-text",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "audit_trail",
+          "name": "Audit Trail",
+          "icon": "circle",
+          "slug": "app-invoice-edit"
+        }
+      ]
+    },   
     {
       "name": "User_Intake",
       "icon": "file-text",

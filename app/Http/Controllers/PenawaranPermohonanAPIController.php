@@ -19,6 +19,8 @@ use App\Models\PenawaranPermohonan;
 use App\Models\Offerprogram;
 use App\Models\program;
 use App\Models\AsasInterview;
+use App\Models\Audit;
+use Illuminate\Support\Carbon;
 
 class PenawaranPermohonanAPIController extends Controller
 {
@@ -448,7 +450,7 @@ class PenawaranPermohonanAPIController extends Controller
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
             'status_offer' => 'Ditolak',
-            'status_global' => 'PENAWARAN DITOLAK' ,   
+            'status_global' => 'PENAWARAN DITOLAK',   
             'status_temuduga' => 'Ditolak',     
         ]);
 
@@ -500,7 +502,7 @@ class PenawaranPermohonanAPIController extends Controller
         $update = StatusPermohonan::where('nric',$req->nric)->update
         ([
             'status_offer' => 'Dalam Pemerhatian (KIV)',  
-            'status_global' => 'PENAWARAN DALAM PERMERHATIAN' ,  
+            'status_global' => 'DALAM PEMERHATIAN (KIV)' ,  
             'status_temuduga' => 'Kiv',    
         ]);
 
@@ -602,6 +604,7 @@ class PenawaranPermohonanAPIController extends Controller
 
         $currentdt = date('Y-m-d H:i:s');
 
+        $carbon =new Carbon($currentdt);
         if ($req->proses == 'Semua') {
 
             $opencenter = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
@@ -669,6 +672,17 @@ class PenawaranPermohonanAPIController extends Controller
 
             foreach($ProsesUser as $User){
 
+                
+                $nosiri = StatusPermohonan::where('job_id', $req->display)->where('nric', $User->nric)->first();
+
+                $audit = new Audit;
+                $audit->nric = $User->nric;
+                $audit->no_siri = $nosiri->no_siri;
+                $audit->penerangan = 'Penawaran Diproses';
+                $audit->tarikh_audit = $currentdt;
+                $audit->created_by = $req->id;
+                $audit->save();
+
                 $total = 0;
                 $total2 = 0;
                 if($User->cadang1 == NULL && $User->cadang2 == NULL){
@@ -676,7 +690,8 @@ class PenawaranPermohonanAPIController extends Controller
                     $update = StatusPermohonan::where('nric',$User->nric)->update
                     ([
                         'status_offer' => 'Ditolak',  
-                        'status_temuduga' => 'Ditolak',      
+                        'status_temuduga' => 'Ditolak',    
+                        'status_global' => 'PENAWARAN DITOLAK',   
                     ]);
 
                 }
@@ -718,7 +733,9 @@ class PenawaranPermohonanAPIController extends Controller
                                 'TarikhTolak' => $currentdt,   
                                 'tarikh_daftar' => $program->registration_date, 
                                 'masa_daftar' => $program->registration_time,   
-                                'tempat_daftar' => $program->registration_venue,   
+                                'tempat_daftar' => $program->registration_venue,
+                                'sem' => 1,    
+                                'tahun' => $carbon->year, 
                           
             
                             ]);
@@ -732,7 +749,8 @@ class PenawaranPermohonanAPIController extends Controller
                             $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
                                 'status_offer' => 'Ditawarkan',    
-                                'status_temuduga' => 'Ditawarkan',    
+                                'status_temuduga' => 'Ditawarkan', 
+                                'status_global' => 'PENAWARAN DITAWAR',    
                             ]);
                         }
                         else{
@@ -740,7 +758,8 @@ class PenawaranPermohonanAPIController extends Controller
                             $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
                                 'status_offer' => 'Dalam Pemerhatian (KIV)', 
-                                'status_temuduga' => 'KIV',       
+                                'status_temuduga' => 'KIV',  
+                                'status_global' => 'DALAM PEMERHATIAN (KIV)' ,      
                             ]);
                         }
 
@@ -749,7 +768,8 @@ class PenawaranPermohonanAPIController extends Controller
                         $updatestatus = StatusPermohonan::where('nric',$User->nric)->update
                             ([
                                 'status_offer' => 'Dalam Pemerhatian (KIV)',   
-                                'status_temuduga' => 'KIV',     
+                                'status_temuduga' => 'KIV',  
+                                'status_global' => 'DALAM PEMERHATIAN (KIV)' ,     
                             ]);
                     }
 
@@ -789,6 +809,8 @@ class PenawaranPermohonanAPIController extends Controller
                                 'tarikh_daftar' => $program2->registration_date, 
                                 'masa_daftar' => $program2->registration_time,   
                                 'tempat_daftar' => $program2->registration_venue,   
+                                'sem' => 1,    
+                                'tahun' => $carbon->year,
             
                             ]);
 
@@ -801,6 +823,7 @@ class PenawaranPermohonanAPIController extends Controller
                             ([
                                 'status_offer' => 'Ditawarkan',      
                                 'status_temuduga' => 'tawar',  
+                                'status_global' => 'PENAWARAN DITAWAR' ,  
                             ]);
                         }
                         else{
@@ -809,6 +832,7 @@ class PenawaranPermohonanAPIController extends Controller
                             ([
                                 'status_offer' => 'Dalam Pemerhatian (KIV)',   
                                 'status_temuduga' => 'KIV',     
+                                'status_global' => 'DALAM PEMERHATIAN (KIV)' ,  
                             ]);
                         }
 

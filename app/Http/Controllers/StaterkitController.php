@@ -21,21 +21,151 @@ class StaterkitController extends Controller
                 ['link' => "home", 'name' => "Home"], ['name' => "Announcement"]
             ];
 
+            $usersession = auth()->user()->id;
+           
+            $display = Session::get('display');
+
             $userid = auth()->user()->id;
             $userdetails = UserDetail::where('created_by', $userid)->first();
             $status = StatusPermohonan::join('screening_interview','screening_interview.nric','=','all_status_permohonan.nric')->join('penawaran_permohonan','penawaran_permohonan.nric','=','all_status_permohonan.nric')->where('all_status_permohonan.nric', $userdetails->nric)->first();
             $iv = ScreeningIV::where('nric', $userdetails->nric)->first();
 
-            $asasi = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Program Asasi')->count();
-            $diploma = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Diploma')->count();
-            $sarjanamuda = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Sarjana Muda')->count();
-            $sarjana = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Sarjana')->count();
-            $doktor = ProgramApplied::join('program', 'program.program_id','=' ,'program_applied.program_id')->where('program.type','Kedoktoran')->count();
+            $asasi = StatusPermohonan::where('pengajian', 'Asasi')->where('status_global', '!=', 'DRAFT')->where('job_id', $display)->count();
+            $diploma = StatusPermohonan::where('pengajian', 'Diploma')->where('status_global', '!=', 'DRAFT')->where('job_id', $display)->count();
+            $sarjanamuda = StatusPermohonan::where('pengajian', 'Sarjana Muda')->where('status_global', '!=', 'DRAFT')->where('job_id', $display)->count();
+            $sarjana = StatusPermohonan::where('pengajian', 'Sarjana')->where('status_global', '!=', 'DRAFT')->where('job_id', $display)->count();
+            $doktor = StatusPermohonan::where('pengajian', 'Kedoktoran')->where('status_global', '!=', 'DRAFT')->where('job_id', $display)->count();
 
+            //proses
+            $asasip = StatusPermohonan::where(function($q){
 
-            Session::put('variableName', '2022');
-            return view('/content/home', ['breadcrumbs' => $breadcrumbs])->with('status',$status)->with('iv',$iv)->with('asasi',$asasi)->with('diploma',$diploma)
-            ->with('sarjanamuda',$sarjanamuda)->with('sarjana',$sarjana)->with('doktor',$doktor);
+                $q->where('status_global','DISAHKAN')
+                ->orWhere('status_global','BELUM DISAHKAN')
+                ->orWhere('status_global','DITEMUDUGA')
+                ->orWhere('status_global','HADIR TEMUDUGA')
+                ->orWhere('status_global','PENAWARAN DITAWAR')
+                ->orWhere('status_global','DITERIMA');
+                
+            })->where('pengajian', 'Asasi')->where('job_id', $display)
+            ->count();
+
+            $diplomap = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','DISAHKAN')
+                ->orWhere('status_global','BELUM DISAHKAN')
+                ->orWhere('status_global','DITEMUDUGA')
+                ->orWhere('status_global','HADIR TEMUDUGA')
+                ->orWhere('status_global','PENAWARAN DITAWAR')
+                ->orWhere('status_global','DITERIMA');
+                
+            })->where('pengajian', 'Diploma')->where('job_id', $display)
+            ->count();
+
+            $sarjanamudap = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','DISAHKAN')
+                ->orWhere('status_global','BELUM DISAHKAN')
+                ->orWhere('status_global','DITEMUDUGA')
+                ->orWhere('status_global','HADIR TEMUDUGA')
+                ->orWhere('status_global','PENAWARAN DITAWAR')
+                ->orWhere('status_global','DITERIMA');
+                
+            })->where('pengajian', 'Sarjana Muda')->where('job_id', $display)
+            ->count();
+
+            $sarjanap = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','DISAHKAN')
+                ->orWhere('status_global','BELUM DISAHKAN')
+                ->orWhere('status_global','DITEMUDUGA')
+                ->orWhere('status_global','HADIR TEMUDUGA')
+                ->orWhere('status_global','PENAWARAN DITAWAR')
+                ->orWhere('status_global','DITERIMA');
+                
+            })->where('pengajian', 'Sarjana')->where('job_id', $display)
+            ->count();
+
+            $doktorp = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','DISAHKAN')
+                ->orWhere('status_global','BELUM DISAHKAN')
+                ->orWhere('status_global','DITEMUDUGA')
+                ->orWhere('status_global','HADIR TEMUDUGA')
+                ->orWhere('status_global','PENAWARAN DITAWAR')
+                ->orWhere('status_global','DITERIMA');
+                
+            })->where('pengajian', 'Kedoktoran')->where('job_id', $display)
+            ->count();
+
+            //terima
+            $asasite = StatusPermohonan::where('pengajian', 'Asasi')->where('status_global', 'DAFTAR')->where('job_id', $display)->count();
+            $diplomate = StatusPermohonan::where('pengajian', 'Diploma')->where('status_global', 'DAFTAR')->where('job_id', $display)->count();
+            $sarjanamudate = StatusPermohonan::where('pengajian', 'Sarjana Muda')->where('status_global', 'DAFTAR')->where('job_id', $display)->count();
+            $sarjanate = StatusPermohonan::where('pengajian', 'Sarjana')->where('status_global', 'DAFTAR')->where('job_id', $display)->count();
+            $doktorte = StatusPermohonan::where('pengajian', 'Kedoktoran')->where('status_global', 'DAFTAR')->where('job_id', $display)->count();
+ 
+            //tolak
+            $asasito = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','PENGESAHAN DITOLAK')
+                ->orWhere('status_global','PENAPISAN DITOLAK')
+                ->orWhere('status_global', 'TIDAK HADIR TEMUDUGA')
+                ->orWhere('status_global', 'PENAWARAN DITOLAK')
+                ->orWhere('balasan_calon', 'TOLAK TAWARAN');
+                
+            })->where('pengajian', 'Asasi')->where('job_id', $display)
+            ->count();
+
+            $diplomato = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','PENGESAHAN DITOLAK')
+                ->orWhere('status_global','PENAPISAN DITOLAK')
+                ->orWhere('status_global', 'TIDAK HADIR TEMUDUGA')
+                ->orWhere('status_global', 'PENAWARAN DITOLAK')
+                ->orWhere('balasan_calon', 'TOLAK TAWARAN');
+                
+            })->where('pengajian', 'Diploma')->where('job_id', $display)
+            ->count();
+
+            $sarjanamudato = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','PENGESAHAN DITOLAK')
+                ->orWhere('status_global','PENAPISAN DITOLAK')
+                ->orWhere('status_global', 'TIDAK HADIR TEMUDUGA')
+                ->orWhere('status_global', 'PENAWARAN DITOLAK')
+                ->orWhere('balasan_calon', 'TOLAK TAWARAN');
+                
+            })->where('pengajian', 'Sarjana Muda')->where('job_id', $display)
+            ->count();
+
+            $sarjanato = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','PENGESAHAN DITOLAK')
+                ->orWhere('status_global','PENAPISAN DITOLAK')
+                ->orWhere('status_global', 'TIDAK HADIR TEMUDUGA')
+                ->orWhere('status_global', 'PENAWARAN DITOLAK')
+                ->orWhere('balasan_calon', 'TOLAK TAWARAN');
+                
+            })->where('pengajian', 'Sarjana')->where('job_id', $display)
+            ->count();
+
+            $doktorto = StatusPermohonan::where(function($q){
+
+                $q->where('status_global','PENGESAHAN DITOLAK')
+                ->orWhere('status_global','PENAPISAN DITOLAK')
+                ->orWhere('status_global', 'TIDAK HADIR TEMUDUGA')
+                ->orWhere('status_global', 'PENAWARAN DITOLAK')
+                ->orWhere('balasan_calon', 'TOLAK TAWARAN');
+                
+            })->where('pengajian', 'Kedoktoran')->where('job_id', $display)
+            ->count();
+
+            
+            return view('/content/home', ['breadcrumbs' => $breadcrumbs])->with('display',$display)->with('status',$status)->with('iv',$iv)->with('asasi',$asasi)->with('diploma',$diploma)
+            ->with('sarjanamuda',$sarjanamuda)->with('sarjana',$sarjana)->with('doktor',$doktor)->with('asasip',$asasip)->with('diplomap',$diplomap)
+            ->with('sarjanamudap',$sarjanamudap)->with('sarjanap',$sarjanap)->with('doktorp',$doktorp)->with('asasite',$asasite)->with('diplomate',$diplomate)
+            ->with('sarjanamudate',$sarjanamudate)->with('sarjanate',$sarjanate)->with('doktorte',$doktorte)->with('asasito',$asasito)->with('diplomato',$diplomato)
+            ->with('sarjanamudato',$sarjanamudato)->with('sarjanato',$sarjanato)->with('doktorto',$doktorto);
         }else{
             return view('/auth/login');
         }
@@ -44,6 +174,8 @@ class StaterkitController extends Controller
 
     public function auth(){
         // return view('/auth/login');
+        Session::put('variableName', '2022');
+        Session::put('display', '2022');
         if(auth()->user()){
             $breadcrumbs = [
                 ['link' => "home", 'name' => "Home"], ['name' => "Announcement"]
@@ -96,5 +228,13 @@ class StaterkitController extends Controller
     {
         $pageConfigs = ['blankPage' => true];
         return view('/content/layout-blank', ['pageConfigs' => $pageConfigs]);
+    }
+
+    public function displayajax(Request $req){
+
+        Session::put('display', $req->type);
+
+        
+
     }
 }

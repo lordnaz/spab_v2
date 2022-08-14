@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use App\Models\SessionInterview;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
+use App\Models\Audit;
+use App\Models\StatusPermohonan;
 
 class PenjadualanTemudugaFEController extends Controller
 {
@@ -96,8 +99,23 @@ class PenjadualanTemudugaFEController extends Controller
         $MasaFrom = Carbon::parse($req->MasaFrom)->format('Y-m-d H:i:s');
         $MasaTo = Carbon::parse($req->MasaTo)->format('Y-m-d H:i:s');
   
-        
-        
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+
+        foreach($req->checkbox as $check){
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $check)->first();
+
+        $audit = new Audit;
+        $audit->nric = $check;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Jadual Temuduga Ditetapkan';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
+        }
+
+           
        
         $param = [
             
@@ -126,6 +144,22 @@ class PenjadualanTemudugaFEController extends Controller
    
         
         $id = SessionInterview::where('session_id', $req->session_id)->first();
+
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+
+        foreach($req->checkbox as $check){
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $check)->first();
+
+        $audit = new Audit;
+        $audit->nric = $check;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Jadual Temuduga Dikosongkan';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
+        }
 
         $param = [
             

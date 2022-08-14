@@ -167,6 +167,10 @@
               <input type="text" id="nric" name="nric" class="form-control nric" placeholder="821102082727" readonly value="{{$form1['nric']}}"/>
             </div>
             <div class="mb-1 col-md-6">
+              <label class="form-label" for="nric">No. Siri</label>
+              <input type="text" id="asdas" name="asd" class="form-control asd" placeholder="" readonly value="{{$form1['no_siri']}}"/>
+            </div>
+            <div class="mb-1 col-md-6">
               <label class="form-label" for="name">{!! __('locale.register_name') !!}</label>
               <input type="text" id="name" name="name" class="form-control name" placeholder="John Smith" value="{{$form1['name']}}" readonly/>
             </div>
@@ -241,12 +245,12 @@
         <div class="d-flex bd-highlight">
             <button class="btn btn-outline-secondary btn-prev bd-highlight me-auto" disabled>
               <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-              <span class="align-middle d-sm-inline-block d-none">Previous</span>
+              <span class="align-middle d-sm-inline-block d-none">Kembali</span>
             </button>
 
            
             <button class="btn btn-primary btn-next bd-highlight">
-              <span class="align-middle d-sm-inline-block d-none">Next</span>
+              <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
               <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
             </button>
         </div>
@@ -256,15 +260,19 @@
       
       <div id="personal-info" class="content" role="tabpanel" aria-labelledby="personal-info-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Personal Info</h5>
-          <small>Enter Your Personal Info.</small>
+          <h5 class="mb-0">Maklumat Peribadi</h5>
+          <small>Masukkan Maklumat Peribadi Anda.</small>
         </div>
         <form>
           <div class="row">
 
-            <div class="mb-1 col-md-6">
+          <div class="mb-1 col-md-6">
               <label class="form-label" for="status_marriage">{!! __('locale.Status_Marriage') !!}</label>
-              <input type="text" id="place_of_birth" name="place_of_birth" class="form-control place_of_birth" value="{{$form2['status_marriage']}}"  readonly/>
+              <select class="form-select w-100 status_marriage" id="status_marriage" name="status_marriage" disabled>
+                <option label="" selected>{!! __('locale.Please Choose') !!}</option>
+                <option value="Married" @if($form2['status_marriage'] == "Married") selected @else @endif)>Berkahwin</option>
+                <option value="Single" @if($form2['status_marriage'] == "Single") selected @else @endif)>Bujang</option>
+              </select>
             </div>
           </div>
 
@@ -295,7 +303,7 @@
           <br>
           <hr>
           <div class="content-header">
-            <h5 class="mb-0">Guardian</h5>
+            <h5 class="mb-0">Penjaga</h5>
           </div>
 
           <div class="row">
@@ -366,7 +374,7 @@
           <br>
           <hr>
           <div class="content-header">
-            <h5 class="mb-0">Heirs</h5>
+            <h5 class="mb-0">Waris</h5>
           </div>
 
           <div class="row">
@@ -413,12 +421,12 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -431,7 +439,7 @@
       <div id="program" class="content" role="tabpanel" aria-labelledby="program-step-trigger">
         <div class="content-header">
           <h5 class="mb-0">Rujukan & Program</h5>
-          <small>Fill in the form.</small>
+          <small>Isikan borang.</small>
         </div>
         <form>
           <div class="row">
@@ -522,13 +530,13 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -580,7 +588,7 @@
           </div>
           <br>
           <div class="content-header">
-            <h5 class="mb-0">Other Qualifications</h5>
+            <h5 class="mb-0">Kelayakan Lain</h5>
           </div>
 
            <!-- loop  -->
@@ -678,13 +686,13 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
          
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -693,7 +701,7 @@
       <div id="education" class="content" role="tabpanel" aria-labelledby="education-step-trigger">
         <div class="content-header">
           <h5 class="mb-0">PMR</h5>
-          <small>Enter Your Address.</small>
+         
         </div>
         <form>
           <div class="row">
@@ -897,12 +905,12 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -910,8 +918,8 @@
 
       <div id="art" class="content" role="tabpanel" aria-labelledby="art-step-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Address</h5>
-          <small>Enter Your Address.</small>
+          <h5 class="mb-0">Pengalaman</h5>
+          <small>Pengalaman.</small>
         </div>
         <form>
            <!-- Form 6 -->
@@ -976,13 +984,13 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
         
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1030,13 +1038,13 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
         
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1115,12 +1123,12 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1128,8 +1136,8 @@
 
       <div id="sponsor" class="content" role="tabpanel" aria-labelledby="sponsor-step-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Address</h5>
-          <small>Enter Your Address.</small>
+          <h5 class="mb-0">Penajaan</h5>
+          <small>Penajaan.</small>
         </div>
         <form>
           <div class="row">
@@ -1168,13 +1176,13 @@
 
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
          
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1246,7 +1254,7 @@
         <div class="d-flex justify-content-between">
           <button class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
          
         </div>

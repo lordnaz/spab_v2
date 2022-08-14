@@ -27,6 +27,7 @@ use App\Models\program as Program;
 use App\Models\StatusPermohonan as SubmitApplication;
 use Carbon\Carbon;
 use Exception;
+use App\Models\Audit;
 use PDO;
 
 class FE_PermohonanController extends Controller
@@ -115,7 +116,16 @@ class FE_PermohonanController extends Controller
 
         $intake = Session::get('variableName');
 
-        $programs = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->get();
+        $programs = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Sepenuh Masa')->where('program.type', 'Program Asasi')->get();
+        $programs2 = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Separuh Masa')->where('program.type', 'Program Asasi')->get();
+        $diploma = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Sepenuh Masa')->where('program.type', 'Diploma')->get();
+        $diploma2 = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Separuh Masa')->where('program.type', 'Diploma')->get();
+        $sarjanamuda = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Sepenuh Masa')->where('program.type', 'Sarjana Muda')->get();
+        $sarjanamuda2 = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Separuh Masa')->where('program.type', 'Sarjana Muda')->get();
+        $sarjana = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Sepenuh Masa')->where('program.type', 'Sarjana')->get();
+        $sarjana2 = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Separuh Masa')->where('program.type', 'Sarjana')->get();
+        $kedoktoran = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Sepenuh Masa')->where('program.type', 'Kedoktoran')->get();
+        $kedoktoran2 = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Separuh Masa')->where('program.type', 'Kedoktoran')->get();
 
         $userid = auth()->user()->id;
         $userdetails = UserDetail::where('created_by', $userid)->first();
@@ -134,6 +144,7 @@ class FE_PermohonanController extends Controller
         if(!$check_job_id){
             $create_job = new SubmitApplication;
             $create_job->nric = $userdetails->nric;
+            $create_job->no_siri = $job_id;
             $create_job->job_id = $intake;
             $create_job->all_status = 'DRAFT';
             $create_job->status_global = 'DRAFT';
@@ -167,7 +178,7 @@ class FE_PermohonanController extends Controller
 
             $pendaftaran = PendaftaranPelajar::where('nric', $userdetails->nric)->where('job_id',  $intake)->exists();
             if(!$pendaftaran){
-            $pendaftarann = new PenawaranPermohonan();
+            $pendaftarann = new PendaftaranPelajar();
             $pendaftarann->nric = $userdetails->nric;
             $pendaftarann->job_id = $intake;
             $pendaftarann->save();
@@ -217,7 +228,7 @@ class FE_PermohonanController extends Controller
         
         //form1
 
-        $form1 = UserDetail::where('nric', $userdetails->nric)->where('job_id', $intake)->first();
+        $form1 = UserDetail::join('all_status_permohonan','all_status_permohonan.nric', '=','user_details.nric')->where('user_details.nric', $userdetails->nric)->where('user_details.job_id', $intake)->first();
 
 
          //form2
@@ -346,7 +357,8 @@ class FE_PermohonanController extends Controller
         compact('email', 'programs', 'program_one_id', 'program_two_id'))->with('kelulusanloop', $kelulusanloop)->with('pmr', $pmr)->with('pmryear', $years)
         ->with('spm', $spm)->with('spmyear', $yearsspm)->with('stpm', $stpm)->with('stpmyear', $yearsstpm)->with('form6', $form6)->with('form8', $form8)
         ->with('form10', $form10)->with('form1', $form1)->with('form2', $form2)->with('form3', $form3)->with('form4', $form4)->with('form44', $form44)->with('form7', $form7)
-        ->with('form9', $form9);
+        ->with('form9', $form9)->with('sarjana', $sarjana)->with('sarjanamuda', $sarjanamuda)->with('diploma', $diploma)->with('kedoktoran', $kedoktoran)
+        ->with('sarjana2', $sarjana2)->with('sarjanamuda2', $sarjanamuda2)->with('diploma2', $diploma2)->with('kedoktoran2', $kedoktoran2)->with('programs2', $programs2);
     }
 
     public function draft_one(Request $req){
@@ -599,6 +611,7 @@ class FE_PermohonanController extends Controller
         $type = $req->type_program_applied;
         $program_one = $req->program_one;
         $program_two = $req->program_two;
+        $pengajian = $req->pengajian;
         $nric = $req->nric;
         $code = '000';
         $intake = Session::get('variableName');
@@ -613,6 +626,7 @@ class FE_PermohonanController extends Controller
                                         ->where('job_id', $intake)
                                         ->update([
                                             'study_mode' => $type,
+                                            'pengajian' => $pengajian,
                                             ]);
 
         $check_program_one = ProgramApplied::where('nric', $nric)->where('job_id', $intake)
@@ -1457,6 +1471,16 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
 
         //save status
 
+        $nosiri = SubmitApplication::where('job_id', $intake)->where('nric', $nric)->first();
+
+        $audit = new Audit;
+        $audit->nric = $nric;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Permohonan Dihantar';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
+
         $status = SubmitApplication::where('job_id', $intake)->where('nric', $nric)
                 ->update([
                     'all_status' => 'BELUM DISAHKAN',
@@ -1687,7 +1711,7 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $intake = Session::get('variableName');
         //form1
 
-        $form1 = UserDetail::where('nric', $code)->where('job_id', $intake)->first();
+        $form1 = UserDetail::join('all_status_permohonan','all_status_permohonan.nric', '=','user_details.nric')->where('user_details.nric', $code)->where('user_details.job_id', $intake)->first();
 
 
          //form2

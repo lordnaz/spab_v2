@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Http;
 use App\Models\UserDetail;
 use App\Models\StatusPermohonan;
 use App\Models\program;
+use Illuminate\Support\Facades\Session;
+use App\Models\Audit;
+use App\Models\ProgramApplied;
+
 
 class PengesahanPermohonanFEController extends Controller
 {
@@ -52,6 +56,19 @@ class PengesahanPermohonanFEController extends Controller
 
     public function sahkan_permohonan(Request $req){
 
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $req->nric)->first();
+
+        $audit = new Audit;
+        $audit->nric = $req->nric;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Permohonan Disahkan';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
+
         $param = [
 
             'payment_ref_no' => $req->payment_ref_no,
@@ -59,6 +76,7 @@ class PengesahanPermohonanFEController extends Controller
             'name' => $req->name,
             'email' => $req->email,
             'job_id' => $req->job_id,
+            
            
             
         ];
@@ -79,6 +97,19 @@ class PengesahanPermohonanFEController extends Controller
 
     public function tolak_permohonan(Request $req){
 
+         $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $req->nric)->first();
+
+        $audit = new Audit;
+        $audit->nric = $req->nric;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Permohonan Ditolak';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
+
         $param = [
 
             'payment_ref_no' => $req->payment_ref_no,
@@ -87,6 +118,7 @@ class PengesahanPermohonanFEController extends Controller
             'email' => $req->email,
             'description_validation' => $req->description_validation,
             'job_id' => $req->job_id,
+            
            
             
         ];
@@ -108,10 +140,21 @@ class PengesahanPermohonanFEController extends Controller
     public function batal_permohonan($code){
 
         $code = decrypt($code);
-       
-    
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $code)->first();
+
+        $audit = new Audit;
+        $audit->nric = $code;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Permohonan Dibatalkan';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
 
 
+        $display = Session::get('display');
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
@@ -128,7 +171,7 @@ class PengesahanPermohonanFEController extends Controller
     public function sahkan_permohonan_id($code){
 
         $code = decrypt($code);
-
+        
         $breadcrumbs = [
             ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Permohonan"],['name' => "Pengesahan Permohonan"]
         ];

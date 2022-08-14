@@ -48,11 +48,11 @@ $test = Session::get('variableName');
                   <div class="col-sm-10">
                     <select class="select2 form-select" id="type" name="type">
                         <option selected disabled>{!! __('locale.Please Choose') !!}</option>
-                        <option data-avatar="1-small.png" value="Program Asasi" @if($datas['type'] == 'Program Asasi') selected @endif>{!! __('locale.Foundation') !!}</option>
-                        <option data-avatar="3-small.png" value="Diploma" @if($datas['type'] == 'Diploma') selected @endif>{!! __('locale.Diploma') !!}</option>
-                        <option data-avatar="5-small.png" value="Sarjana Muda" @if($datas['type'] == 'Sarjana Muda') selected @endif>{!! __('locale.Degree') !!}</option>
-                        <option data-avatar="5-small.png" value="Sarjana" @if($datas['type'] == 'Sarjana'>Sarjana</option>
-                        <option data-avatar="5-small.png" value="Kedoktoran" @if($datas['type'] == 'Kedoktoran'>Kedoktoran</option>
+                        <option data-avatar="1-small.png" value="Program Asasi" @if($datas['type'] == "Program Asasi") selected @endif>{!! __('locale.Foundation') !!}</option>
+                        <option data-avatar="3-small.png" value="Diploma" @if($datas['type'] == "Diploma") selected @endif>{!! __('locale.Diploma') !!}</option>
+                        <option data-avatar="5-small.png" value="Sarjana Muda" @if($datas['type'] == "Sarjana Muda") selected @endif>{!! __('locale.Degree') !!}</option>
+                        <option data-avatar="5-small.png" value="Sarjana" @if($datas['type'] == "Sarjana") selected @endif>Ijazah Sarjana</option>
+                        <option data-avatar="5-small.png" value="Kedoktoran" @if($datas['type'] == "Kedoktoran") selected @endif>Ijazah Kedoktoran</option>
                     </select>
                   </div>
                 </div>
@@ -66,15 +66,15 @@ $test = Session::get('variableName');
                   <div class="col-sm-10">
                     <select class="select2 form-select" id="type" name="faculty">
                         <option data-avatar="1-small.png" value="Muzik" @if($datas['faculty'] == 'Muzik') selected @endif >Muzik</option>
-                        <option data-avatar="3-small.png" value="Tari" @if($datas['faculty'] == Tari') selected @endif >Tari</option>
+                        <option data-avatar="3-small.png" value="Tari" @if($datas['faculty'] == "Tari") selected @endif >Tari</option>
                         <option data-avatar="5-small.png" value="Teater" @if($datas['faculty'] == 'Teater') selected @endif >Teater</option>
-                        <option data-avatar="7-small.png" value="Animasi Dan Multimedia" @if($datas['faculty'] == 'Animasi Dan Multimedia') selected @endif >Animasi Dan Multimedia</option>
-                        <option data-avatar="9-small.png" value="Pengurusan Seni Budaya Dan Warisan" @if($datas['faculty'] == 'Pengurusan Seni Budaya Dan Warisan'>Pengurusan Seni Budaya Dan Warisan</option>
-                        <option data-avatar="7-small.png" value="Seni Halus" @if($datas['faculty'] == 'Seni Halus'>Seni Halus</option>
-                        <option data-avatar="7-small.png" value="Penulisan Kretif dan Filem" @if($datas['faculty'] == 'Penulisan Kretif dan Filem'>Penulisan Kretif dan Filem</option>
-                        <option data-avatar="7-small.png" value="Pusat Pengajian Asasi" @if($datas['faculty'] == 'Pusat Pengajian Asasi'>Pusat Pengajian Asasi</option>
-                        <option data-avatar="7-small.png" value="Pusat Pascasiswazah" @if($datas['faculty'] == 'Pusat Pascasiswazah'>Pusat Pascasiswazah</option>
-                        <option data-avatar="7-small.png" value="Diploma Seni Muzik TLDM" @if($datas['faculty'] == 'Diploma Seni Muzik TLDM'>Diploma Seni Muzik TLDM</option>
+                        <option data-avatar="7-small.png" value="Animasi Dan Multimedia" @if($datas['faculty'] == "Animasi Dan Multimedia") selected @endif >Animasi Dan Multimedia</option>
+                        <option data-avatar="9-small.png" value="Pengurusan Seni Budaya Dan Warisan" @if($datas['faculty'] == 'Pengurusan Seni Budaya Dan Warisan') selected @endif>Pengurusan Seni Budaya Dan Warisan</option>
+                        <option data-avatar="7-small.png" value="Seni Halus" @if($datas['faculty'] == 'Seni Halus') selected @endif>Seni Halus</option>
+                        <option data-avatar="7-small.png" value="Penulisan Kretif dan Filem" @if($datas['faculty'] == 'Penulisan Kretif dan Filem') selected @endif>Penulisan Kretif dan Filem</option>
+                        <option data-avatar="7-small.png" value="Pusat Pengajian Asasi" @if($datas['faculty'] == 'Pusat Pengajian Asasi') selected @endif>Pusat Pengajian Asasi</option>
+                        <option data-avatar="7-small.png" value="Pusat Pascasiswazah" @if($datas['faculty'] == 'Pusat Pascasiswazah') selected @endif>Pusat Pascasiswazah</option>
+                        <option data-avatar="7-small.png" value="Diploma Seni Muzik TLDM" @if($datas['faculty'] == 'Diploma Seni Muzik TLDM') selected @endif>Diploma Seni Muzik TLDM</option>
                     </select>
                   </div>
                 </div>

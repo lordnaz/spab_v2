@@ -246,7 +246,7 @@ return [
     "Delete" => "Padam",
     "Foundation" => "Asasi",
     "Diploma" => "Diploma",
-    "Degree" => "Sarjana Muda",
+    "Degree" => "Ijazah Sarjana Muda",
     "Master" => "Sarjana",
     "PhD" => "PhD",
     "Please Choose" => "Sila Pilih",
@@ -505,7 +505,11 @@ return [
     "Keputusan Permohonan" => "Keputusan Permohonan",
 
     //pendaftaran pelajar
-    "Admin_Pendaftaranpelajar" => "Pendaftaran"
+    "Admin_Pendaftaranpelajar" => "Pendaftaran",
+    "Senarai Pelajar" => "Senarai Pelajar",
+    "Sejarah Pelajar" => "Sejarah Pelajar",
+    "Admin_Audit_Trail" => "Audit Trail",
+    "Audit Trail" => "Audit Trail"
 
 
 

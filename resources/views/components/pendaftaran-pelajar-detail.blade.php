@@ -69,7 +69,7 @@
                                     <label class="col-form-label" for="no_matriks">{!! __('locale.no_matriks') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="no_matriks" class="form-control" name="no_matriks" placeholder="" value= "{{$data['no_matriks']}}"/>
+                                    <input type="text" id="no_matriks" class="form-control" name="no_matriks" placeholder="" value= "{{$data['no_matriks']}}" readonly/>
                                 </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                     <label class="col-form-label" for="address_1">{!! __('locale.Address') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="address_1" name="address_1" rows="4" placeholder="" value= "{{$data['address_1']}}"></textarea>
+                                    <textarea class="form-control" id="address_1" name="address_1" rows="4" placeholder="">{{$data['address_1']}}</textarea>
                                 </div>
                                 </div>
                             </div>
@@ -162,12 +162,8 @@
                                     <label class="col-form-label">{!! __('locale.Faculty') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <select class="select2 form-select" id="faculty" name="faculty">
-                                        <option disabled>{!! __('locale.Please Choose') !!}</option>
-                                        @foreach ($dataa as $datas)
-                                        <option value="{{$datas['program_id']}}" @if($data['program_tawar'] == $datas['program_id']) selected @endif>{{$datas['faculty']}}</option>
-                                        @endforeach
-                                    </select>
+                                <input type="text" id="phone_no" class="form-control" name="phone_no" placeholder="" value= "{{$data['faculty']}}" readonly/>
+                                   
                                 </div>
                                 </div>
                             </div>
@@ -187,7 +183,7 @@
                                     <label class="col-form-label" for="hostel_room">{!! __('locale.Hostel Room') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="hostel_room" class="form-control" name="hostel_room" placeholder="" value="{{$data['hostel_room']}}"/>
+                                    <input type="text" id="hostel_room" class="form-control" name="hostel_room" value="{{$data['hostel_room']}}"/>
                                 </div>
                                 </div>
                             </div>
@@ -197,7 +193,7 @@
                                     <label class="col-form-label">{!! __('locale.Status') !!}</label>
                                 </div>
                                 <div class="col-sm-10">
-                                    <input type="text" id="status_pendaftaran" class="form-control" name="status_pendaftaran" placeholder="" value="{{$data['status_pendaftaran']}}"/>
+                                    <input type="text" id="status_pendaftaran" class="form-control" name="status_pendaftaran" placeholder="" value="{{$data['status_global']}}"/>
                                 </div>
                                 </div>
                             </div>
@@ -207,12 +203,12 @@
                        
                                      
                 
-                <div class="d-flex justify-content-between">
-                    <div class="col-sm-7 offset-sm-6">
+                <div>
+                    <div class="col-sm-3 offset-sm-9">
                     <a href="{{ route('cancelstatusapplicant', Crypt::encrypt($data['nric'])) }}" class="btn btn-outline-secondary me-1">{!! __('locale.Cancel') !!}</a>
-                    <a href="{{ route('pendaftaranpelajar') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Cancel Receipt') !!}</a>
+                    <!-- <a href="{{ route('pendaftaranpelajar') }}" class="btn btn-outline-secondary me-1">{!! __('locale.Cancel Receipt') !!}</a>
                     <a href="" class="btn btn-outline-secondary me-1">{!! __('locale.Details') !!}</a>
-                    <a href="" class="btn btn-outline-secondary me-1">{!! __('locale.Print') !!}</a>
+                    <a href="" class="btn btn-outline-secondary me-1">{!! __('locale.Print') !!}</a> -->
                     <button type="submit" class="btn btn-success">
                     <i data-feather="plus-circle" class="me-25"></i>
                     <span>{!! __('locale.Save') !!}</span>

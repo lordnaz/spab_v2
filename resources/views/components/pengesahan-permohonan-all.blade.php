@@ -280,7 +280,7 @@ $roles = auth()->user()->role;
                 <tr class="text-center">
                   <td>{{$count++}}</td>
                 
-                  <td>{{Carbon\Carbon::parse($data['created_at'])->format('Y-m-d')}}</td>
+                  <td>{{Carbon\Carbon::parse($tolakk['created_at'])->format('Y-m-d')}}</td>
                   <td>{{$tolakk['no_siri']}}</td>
                   <td>{{$tolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($tolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$tolakk['name']}}</td>
@@ -306,10 +306,7 @@ $roles = auth()->user()->role;
                   <a class="dropdown-item" href="{{ route('batal_permohonan', Crypt::encrypt($tolakk['nric'])) }}">Batal</a>
                 </div>
               </div>
-                      <!-- <a href="" class="btn-sm btn-warning"> <i data-feather='external-link'></i></a> -->
-                      <!-- <a href="{{ route('sahkan_permohonan_id', Crypt::encrypt($data['nric'])) }}" class="btn-sm btn-success" > <i data-feather='external-link'></i>{!! __('locale.Confirm') !!}</a>
-                      <a href="{{ route('tolak_permohonan_id', Crypt::encrypt($data['nric'])) }}" class="btn-sm btn-danger" > <i data-feather='external-link'></i>{!! __('locale.Reject') !!}</a>
-                      <a href="{{ route('batal_permohonan', Crypt::encrypt($data['nric'])) }}" class="btn btn-sm btn-outline-primary"><i data-feather='external-link'></i>{!! __('locale.Cancel') !!}</a> -->
+                    
               
               
              

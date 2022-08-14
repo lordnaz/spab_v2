@@ -11,6 +11,8 @@ use App\Models\CenterInterview;
 use App\Models\ProgramApplied;
 use App\Models\SubjectGrade;
 use App\Models\Qualification;
+use Illuminate\Support\Facades\Session;
+use App\Models\Audit;
 
 class InterviewScreeningController extends Controller
 {
@@ -306,6 +308,16 @@ class InterviewScreeningController extends Controller
 
 
                 foreach ($ProsesUser as $Proses) {
+
+                    $nosiri = StatusPermohonan::where('job_id', $req->display)->where('nric', $Proses->nric)->first();
+
+                    $audit = new Audit;
+                    $audit->nric = $Proses->nric;
+                    $audit->no_siri = $nosiri->no_siri;
+                    $audit->penerangan = 'Temuduga Diproses';
+                    $audit->tarikh_audit = $currentdt;
+                    $audit->created_by = $req->id;
+                    $audit->save();
 
                     if ($Proses->cert_related_program == 'Ada Sijil') {
 

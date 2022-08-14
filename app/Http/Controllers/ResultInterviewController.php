@@ -186,7 +186,7 @@ class ResultInterviewController extends Controller
             $updatestatus = StatusPermohonan::where('nric', $req->nric)->update([
                 'status_temuduga' => 'Hadir',
                 'status_offer' => 'Hadir Temuduga',
-                'status_global' => 'HADIR TEMUDUGA' ,
+                'status_global' => 'HADIR TEMUDUGA',
 
             ]);
         }
@@ -203,7 +203,8 @@ class ResultInterviewController extends Controller
 
         $updatestatus = StatusPermohonan::where('nric', $req->nric)->update([
             'status_temuduga' => 'Hadir',
-            'status_offer' => 'Hadir Temuduga'
+            'status_offer' => 'Hadir Temuduga',
+            'status_global' => 'HADIR TEMUDUGA',
 
         ]);
 

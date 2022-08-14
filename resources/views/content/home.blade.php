@@ -6,9 +6,16 @@
 
 @php  
 
+$test = Session::get('display');
+
 $roles = auth()->user()->role;
 
 @endphp
+@section('vendor-style')
+  <!-- vendor css files -->
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+@endsection
+
 <!-- Kick start -->
 <!-- <div class="card border-danger">
   <div class="card-header">
@@ -67,7 +74,7 @@ $roles = auth()->user()->role;
   
 </div> -->
 <!--/ Kick start -->
-
+{{$test}}
 @if($roles == 'admin')
 
   <!-- Miscellaneous Charts -->
@@ -81,25 +88,16 @@ $roles = auth()->user()->role;
         <h4 class="card-title">Statistik Permohonan Kemasukan Pelajar Baharu</h4>
         
         <div class="heading-elements">
-        <div class="btn-group">
-          <button
-            type="button"
-            class="btn btn-primary dropdown-toggle"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            2022
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">2020</a>
-            <a class="dropdown-item" href="#">2021</a>
-            <a class="dropdown-item" href="#">2022</a>
-            <a class="dropdown-item" href="#">2023</a>
-            <a class="dropdown-item" href="#">2024</a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a> -->
+        <div class="form-group">
+            
+            <select class="custom-select" id="myselect">
+              <option @if($display == "2020") selected @endif value="2020">2020</option>
+              <option @if($display == "2021") selected @endif value="2021">2021</option>
+              <option @if($display == "2022") selected @endif value="2022">2022</option>
+             
+            </select>
           </div>
-        </div>
+      
           <ul class="list-inline mb-0">
             <!-- <li>
               <a data-action="collapse"><i data-feather="chevron-down"></i></a>
@@ -140,7 +138,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">13</h4>
+                  <h4 class="fw-bolder mb-0">{{$asasite}}</h4>
                   <p class="card-text font-small-3 mb-0">Berjaya</p>
                 </div>
               </div>
@@ -153,7 +151,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">20</h4>
+                  <h4 class="fw-bolder mb-0">{{$asasito}}</h4>
                   <p class="card-text font-small-3 mb-0">Ditolak</p>
                 </div>
               </div>
@@ -167,7 +165,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">10</h4>
+                  <h4 class="fw-bolder mb-0">{{$asasip}}</h4>
                   <p class="card-text font-small-3 mb-0">Dalam Proses</p>
                 </div>
               </div>
@@ -199,7 +197,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">7</h4>
+                  <h4 class="fw-bolder mb-0">{{$diplomate}}</h4>
                   <p class="card-text font-small-3 mb-0">Berjaya</p>
                 </div>
               </div>
@@ -212,7 +210,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">2</h4>
+                  <h4 class="fw-bolder mb-0">{{$diplomato}}</h4>
                   <p class="card-text font-small-3 mb-0">Ditolak</p>
                 </div>
               </div>
@@ -226,7 +224,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">4</h4>
+                  <h4 class="fw-bolder mb-0">{{$diplomap}}</h4>
                   <p class="card-text font-small-3 mb-0">Dalam Proses</p>
                 </div>
               </div>
@@ -258,7 +256,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">125</h4>
+                  <h4 class="fw-bolder mb-0">{{$sarjanamudate}}</h4>
                   <p class="card-text font-small-3 mb-0">Berjaya</p>
                 </div>
               </div>
@@ -271,7 +269,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">10</h4>
+                  <h4 class="fw-bolder mb-0">{{$sarjanamudato}}</h4>
                   <p class="card-text font-small-3 mb-0">Ditolak</p>
                 </div>
               </div>
@@ -285,7 +283,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">15</h4>
+                  <h4 class="fw-bolder mb-0">{{$sarjanamudap}}</h4>
                   <p class="card-text font-small-3 mb-0">Dalam Proses</p>
                 </div>
               </div>
@@ -317,7 +315,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">32</h4>
+                  <h4 class="fw-bolder mb-0">{{$sarjanate}}</h4>
                   <p class="card-text font-small-3 mb-0">Berjaya</p>
                 </div>
               </div>
@@ -330,7 +328,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">2</h4>
+                  <h4 class="fw-bolder mb-0">{{$sarjanato}}</h4>
                   <p class="card-text font-small-3 mb-0">Ditolak</p>
                 </div>
               </div>
@@ -344,7 +342,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">6</h4>
+                  <h4 class="fw-bolder mb-0">{{$sarjanap}}</h4>
                   <p class="card-text font-small-3 mb-0">Dalam Proses</p>
                 </div>
               </div>
@@ -376,7 +374,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">4</h4>
+                  <h4 class="fw-bolder mb-0">{{$doktorte}}</h4>
                   <p class="card-text font-small-3 mb-0">Berjaya</p>
                 </div>
               </div>
@@ -389,7 +387,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">0</h4>
+                  <h4 class="fw-bolder mb-0">{{$doktorto}}</h4>
                   <p class="card-text font-small-3 mb-0">Ditolak</p>
                 </div>
               </div>
@@ -403,7 +401,7 @@ $roles = auth()->user()->role;
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">1</h4>
+                  <h4 class="fw-bolder mb-0">{{$doktorp}}</h4>
                   <p class="card-text font-small-3 mb-0">Dalam Proses</p>
                 </div>
               </div>
@@ -630,7 +628,37 @@ $roles = auth()->user()->role;
 
 
 @endif
+<script>
 
+$(document).ready(function(){
+  $('#myselect').change(function(){  
+    setTimeout(
+                  function() 
+                  {
+                     location.reload();
+                  }, 0001);
+                        var presence = $(this).val();  
+                        $.ajax({  
+                            url:"/displayajax",  
+                            method:"POST", 
+                            dataType:"html", 
+                            data:{
+                                "_token": "{{ csrf_token() }}",
+                                  type:presence,
+                                  },  
+                            
+                            success:function(response)
+   {
+   console.log(response);
+   
+    
+   }
+                        });  
+                    });  
+
+})
+
+  </script>
 
 
 <!-- Page layout -->
@@ -665,4 +693,12 @@ $roles = auth()->user()->role;
   </div>
 </div> -->
 <!--/ Page layout -->
+@endsection
+@section('vendor-script')
+  <!-- vendor files -->
+  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+@endsection
+@section('page-script')
+  <!-- Page js files -->
+  <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 @endsection

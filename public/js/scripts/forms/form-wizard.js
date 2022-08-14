@@ -15,7 +15,402 @@ $(function () {
   }else{
     $("#married_section").hide();
   }
+
+  //ASASI
+  if($('.pengajian').val() == 'Asasi'){
+    $("#asasi_section").show();
+  }else{
+    $("#asasi_section").hide();
+  }
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Asasi'){
+      $("#asasi_section").fadeIn(500).show()
+      // $("#married_section").fadeIn(1000);
+    }else{
+      $("#asasi_section").hide()
+      // $("#married_section")..fadeOut(1000);
+    }
+
+  }); 
+
+   //diploma
+   if($('.pengajian').val() == 'Diploma'){
+    $("#diploma_section").show();
+  }else{
+    $("#diploma_section").hide();
+  }
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Diploma'){
+      $("#diploma_section").fadeIn(500).show()
+      // $("#married_section").fadeIn(1000);
+    }else{
+      $("#diploma_section").hide()
+      // $("#married_section")..fadeOut(1000);
+    }
+
+  }); 
+
+  //sarjana muda
+  if($('.pengajian').val() == 'Sarjana Muda'){
+    $("#muda_section").show();
+  }else{
+    $("#muda_section").hide();
+  }
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Sarjana Muda'){
+      $("#muda_section").fadeIn(500).show()
+      // $("#married_section").fadeIn(1000);
+    }else{
+      $("#muda_section").hide()
+      // $("#married_section")..fadeOut(1000);
+    }
+
+  }); 
+
+  //sarjana
+  if($('.pengajian').val() == 'Sarjana'){
+    $("#sarjana_section").show();
+  }else{
+    $("#sarjana_section").hide();
+  }
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Sarjana'){
+      $("#sarjana_section").fadeIn(500).show()
+      // $("#married_section").fadeIn(1000);
+    }else{
+      $("#sarjana_section").hide()
+      // $("#married_section")..fadeOut(1000);
+    }
+
+  }); 
+
+  //doktor
+  if($('.pengajian').val() == 'Kedoktoran'){
+    $("#doktor_section").show();
+  }else{
+    $("#doktor_section").hide();
+  }
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Kedoktoran'){
+      $("#doktor_section").fadeIn(500).show()
+      // $("#married_section").fadeIn(1000);
+    }else{
+      $("#doktor_section").hide()
+      // $("#married_section")..fadeOut(1000);
+    }
+
+  }); 
   
+  
+//TYPE PROGRAM FULL AND HALF
+
+//ASASI
+//asasi sepenuh
+$("#pengajian").on('change', function (bp) {
+  //asasi
+  if($('.pengajian').val() != 'Asasi'){
+    $("#asasi_sepenuh").hide();
+    $("#asasi_separuh").hide();
+  }
+  else{
+    if($('.asasi_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#asasi_sepenuh").fadeIn(500).show()
+    }
+    else{
+      $("#asasi_separuh").fadeIn(500).show()
+    }
+  }
+
+  //diploma
+  if($('.pengajian').val() != 'Diploma'){
+    $("#diploma_sepenuh").hide();
+    $("#diploma_separuh").hide();
+  }
+  else{
+    if($('.diploma_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#diploma_sepenuh").fadeIn(500).show()
+    }
+    else{
+      $("#diploma_separuh").fadeIn(500).show()
+    }
+  }
+
+  //sarjana muda
+  if($('.pengajian').val() != 'Sarjana Muda'){
+    $("#muda_sepenuh").hide();
+    $("#muda_separuh").hide();
+  }else{
+
+    if($('.muda_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#muda_sepenuh").fadeIn(500).show()
+    }
+    else{
+      $("#muda_separuh").fadeIn(500).show()
+    }
+  }
+
+  //master
+  if($('.pengajian').val() != 'Sarjana'){
+    $("#master_sepenuh").hide();
+    $("#master_separuh").hide();
+  }
+  else{
+    if($('.master_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#master_sepenuh").fadeIn(500).show()
+    }
+    else{
+      $("#master_separuh").fadeIn(500).show()
+    }
+  }
+
+  //doktor
+  if($('.pengajian').val() != 'Kedoktoran'){
+    $("#doktor_sepenuh").hide();
+    $("#doktor_separuh").hide();
+  }
+  else{
+    if($('.doktor_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#doktor_sepenuh").fadeIn(500).show()
+    }
+    else{
+      $("#doktor_separuh").fadeIn(500).show()
+    }
+  }
+
+}); 
+
+if($('.pengajian').val() == 'Asasi'){
+
+if($('.asasi_type_program_applied').val() == 'Sepenuh Masa'){
+  $("#asasi_sepenuh").show();
+}else{
+  $("#asasi_sepenuh").hide();
+}
+}
+else{
+
+  $("#asasi_sepenuh").hide();
+
+}
+
+$("#asasi_type_program_applied").on('change', function (bp) {
+
+  if($('.asasi_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#asasi_sepenuh").fadeIn(500).show()
+  }else{
+    $("#asasi_sepenuh").hide()   
+  }
+
+}); 
+
+//asasi separuh
+if($('.pengajian').val() == 'Asasi'){
+
+if($('.asasi_type_program_applied').val() == 'Separuh Masa'){
+  $("#asasi_separuh").show();
+}else{
+  $("#asasi_separuh").hide();
+}
+}
+else{
+
+  $("#asasi_separuh").hide();
+
+}
+
+$("#asasi_type_program_applied").on('change', function (bp) {
+
+  if($('.asasi_type_program_applied').val() == 'Separuh Masa'){
+    $("#asasi_separuh").fadeIn(500).show()   
+  }else{
+    $("#asasi_separuh").hide()   
+  }
+
+}); 
+
+//DIPLOMA
+//diploma sepenuh
+
+if($('.pengajian').val() == 'Diploma'){
+if($('.diploma_type_program_applied').val() == 'Sepenuh Masa'){
+  $("#diploma_sepenuh").show();
+}else{
+  $("#diploma_sepenuh").hide();
+}
+}else{
+  $("#diploma_sepenuh").hide();
+}
+
+$("#diploma_type_program_applied").on('change', function (bp) {
+
+  if($('.diploma_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#diploma_sepenuh").fadeIn(500).show()
+  }else{
+    $("#diploma_sepenuh").hide()   
+  }
+
+}); 
+
+//diploma separuh
+if($('.pengajian').val() == 'Diploma'){
+if($('.diploma_type_program_applied').val() == 'Separuh Masa'){
+  $("#diploma_separuh").show();
+}else{
+  $("#diploma_separuh").hide();
+}
+}else{
+  $("#diploma_separuh").hide();
+}
+
+$("#diploma_type_program_applied").on('change', function (bp) {
+
+  if($('.diploma_type_program_applied').val() == 'Separuh Masa'){
+    $("#diploma_separuh").fadeIn(500).show()   
+  }else{
+    $("#diploma_separuh").hide()   
+  }
+
+}); 
+
+//SARJANA MUDA
+//sarjana muda sepenuh
+if($('.pengajian').val() == 'Sarjana Muda'){
+if($('.muda_type_program_applied').val() == 'Sepenuh Masa'){
+  $("#muda_sepenuh").show();
+}else{
+  $("#muda_sepenuh").hide();
+}
+}else{
+  $("#muda_sepenuh").hide();
+}
+
+
+$("#muda_type_program_applied").on('change', function (bp) {
+
+  if($('.muda_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#muda_sepenuh").fadeIn(500).show()
+  }else{
+    $("#muda_sepenuh").hide()   
+  }
+
+}); 
+
+//sarjana muda separuh
+if($('.pengajian').val() == 'Sarjana Muda'){
+if($('.muda_type_program_applied').val() == 'Separuh Masa'){
+  $("#muda_separuh").show();
+}else{
+  $("#muda_separuh").hide();
+}
+}else{
+  $("#muda_separuh").hide();
+}
+
+$("#muda_type_program_applied").on('change', function (bp) {
+
+  if($('.muda_type_program_applied').val() == 'Separuh Masa'){
+    $("#muda_separuh").fadeIn(500).show()   
+  }else{
+    $("#muda_separuh").hide()   
+  }
+
+}); 
+
+//MASTER
+//master sepenuh
+if($('.pengajian').val() == 'Sarjana'){
+if($('.master_type_program_applied').val() == 'Sepenuh Masa'){
+  $("#master_sepenuh").show();
+}else{
+  $("#master_sepenuh").hide();
+}
+}else{
+  $("#master_sepenuh").hide();
+}
+
+$("#master_type_program_applied").on('change', function (bp) {
+
+  if($('.master_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#master_sepenuh").fadeIn(500).show()
+  }else{
+    $("#master_sepenuh").hide()   
+  }
+
+}); 
+
+//master separuh
+if($('.pengajian').val() == 'Sarjana'){
+if($('.master_type_program_applied').val() == 'Separuh Masa'){
+  $("#master_separuh").show();
+}else{
+  $("#master_separuh").hide();
+}
+}else{
+  $("#master_separuh").hide() 
+}
+
+$("#master_type_program_applied").on('change', function (bp) {
+
+  if($('.master_type_program_applied').val() == 'Separuh Masa'){
+    $("#master_separuh").fadeIn(500).show()   
+  }else{
+    $("#master_separuh").hide()   
+  }
+
+}); 
+
+//DOKTOR
+//doktor sepenuh
+if($('.pengajian').val() == 'Kedoktoran'){
+if($('.doktor_type_program_applied').val() == 'Sepenuh Masa'){
+  $("#doktor_sepenuh").show();
+}else{
+  $("#doktor_sepenuh").hide();
+}
+}else{
+  $("#doktor_sepenuh").hide();
+}
+
+$("#doktor_type_program_applied").on('change', function (bp) {
+
+  if($('.doktor_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#doktor_sepenuh").fadeIn(500).show()
+  }else{
+    $("#doktor_sepenuh").hide()   
+  }
+
+}); 
+
+//doktor separuh
+if($('.pengajian').val() == 'Kedoktoran'){
+if($('.doktor_type_program_applied').val() == 'Separuh Masa'){
+  $("#doktor_separuh").show();
+}else{
+  $("#doktor_separuh").hide();
+}
+}else{
+  $("#doktor_separuh").hide();
+}
+
+$("#doktor_type_program_applied").on('change', function (bp) {
+
+  if($('.doktor_type_program_applied').val() == 'Separuh Masa'){
+    $("#doktor_separuh").fadeIn(500).show()   
+  }else{
+    $("#doktor_separuh").hide()   
+  }
+
+}); 
 
   var isRtl = $('html').attr('data-textdirection') === 'rtl';
 
@@ -173,11 +568,93 @@ $(function () {
 
   $('.draftThree').on('click', function (event) {
 
+    if($('.pengajian').val() == "Asasi"){
+
+      var type_program_applied = $('.asasi_type_program_applied').val();
+      if($('.asasi_type_program_applied').val() == 'Sepenuh Masa')
+      {   
+      
+      var program_one = $('.asasi_program_one').val();
+      var program_two = $('.asasi_program_two').val();
+      }
+
+      else{
+
+        var program_one = $('.asasi_program_one2').val();
+        var program_two = $('.asasi_program_two2').val();
+
+      }
+
+    }
+    else if($('.pengajian').val() == "Diploma"){
+
+      var type_program_applied = $('.diploma_type_program_applied').val();
+      if($('.diploma_type_program_applied').val() == 'Sepenuh Masa')
+      {
+      var program_one = $('.dip_program_one').val();
+      var program_two = $('.dip_program_two').val();
+      }
+      else{
+        var program_one = $('.dip_program_one2').val();
+        var program_two = $('.dip_program_two2').val();
+      }
+
+    }
+    else if($('.pengajian').val() == "Sarjana Muda"){
+
+      var type_program_applied = $('.muda_type_program_applied').val();
+      if($('.muda_type_program_applied').val() == 'Sepenuh Masa')
+      {
+      var program_one = $('.muda_program_one').val();
+      var program_two = $('.muda_program_two').val();
+      }
+      else{
+        var program_one = $('.muda_program_one2').val();
+        var program_two = $('.muda_program_two2').val();
+      }
+
+    }
+    else if($('.pengajian').val() == "Sarjana"){
+
+      var type_program_applied = $('.master_type_program_applied').val();
+      if($('.master_type_program_applied').val() == 'Sepenuh Masa')
+      {
+      var program_one = $('.master_program_one').val();
+      var program_two = $('.master_program_two').val();
+      }
+      else{
+        var program_one = $('.master_program_one2').val();
+        var program_two = $('.master_program_two2').val();
+      }
+
+    }
+    else if($('.pengajian').val() == "Kedoktoran"){
+
+      var type_program_applied = $('.doktor_type_program_applied').val();
+      if($('.doktor_type_program_applied').val() == 'Sepenuh Masa')
+      {
+      var program_one = $('.doktor_program_one').val();
+      var program_two = $('.doktor_program_two').val();
+      }
+      else{
+        var program_one = $('.doktor_program_one2').val();
+        var program_two = $('.doktor_program_two2').val();
+      }
+
+    }
+    else{
+         
+      var program_one = NULL;
+      var program_two = NULL;
+
+    }
+
     let data = {
       'nric' : $('.nric').val(),
-      'type_program_applied' : $('.type_program_applied').val(),
-      'program_one' : $('.program_one').val(),
-      'program_two' : $('.program_two').val()
+      'type_program_applied' : type_program_applied,
+      'pengajian' : $('.pengajian').val(),
+      'program_one' : program_one,
+      'program_two' : program_two,
     }
 
     $.ajax({
@@ -912,11 +1389,94 @@ $(function () {
   }
 
   function formThreeValid(){
+
+    if($('.pengajian').val() == "Asasi"){
+
+      var type_program_applied = $('.asasi_type_program_applied').val();
+      if($('.asasi_type_program_applied').val() == 'Sepenuh Masa')
+      {   
+      
+      var program_one = $('.asasi_program_one').val();
+      var program_two = $('.asasi_program_two').val();
+      }
+
+      else{
+
+        var program_one = $('.asasi_program_one2').val();
+        var program_two = $('.asasi_program_two2').val();
+
+      }
+
+    }
+    else if($('.pengajian').val() == "Diploma"){
+
+      var type_program_applied = $('.diploma_type_program_applied').val();
+      if($('.diploma_type_program_applied').val() == 'Sepenuh Masa')
+      {
+      var program_one = $('.dip_program_one').val();
+      var program_two = $('.dip_program_two').val();
+      }
+      else{
+        var program_one = $('.dip_program_one2').val();
+        var program_two = $('.dip_program_two2').val();
+      }
+
+    }
+    else if($('.pengajian').val() == "Sarjana Muda"){
+
+      var type_program_applied = $('.muda_type_program_applied').val();
+      if($('.muda_type_program_applied').val() == 'Sepenuh Masa')
+      {
+      var program_one = $('.muda_program_one').val();
+      var program_two = $('.muda_program_two').val();
+      }
+      else{
+        var program_one = $('.muda_program_one2').val();
+        var program_two = $('.muda_program_two2').val();
+      }
+
+    }
+    else if($('.pengajian').val() == "Sarjana"){
+
+      var type_program_applied = $('.master_type_program_applied').val();
+      if($('.master_type_program_applied').val() == 'Sepenuh Masa')
+      {
+      var program_one = $('.master_program_one').val();
+      var program_two = $('.master_program_two').val();
+      }
+      else{
+        var program_one = $('.master_program_one2').val();
+        var program_two = $('.master_program_two2').val();
+      }
+
+    }
+    else if($('.pengajian').val() == "Kedoktoran"){
+
+      var type_program_applied = $('.doktor_type_program_applied').val();
+      if($('.doktor_type_program_applied').val() == 'Sepenuh Masa')
+      {
+      var program_one = $('.doktor_program_one').val();
+      var program_two = $('.doktor_program_two').val();
+      }
+      else{
+        var program_one = $('.doktor_program_one2').val();
+        var program_two = $('.doktor_program_two2').val();
+      }
+
+    }
+    else{
+         
+      var program_one = NULL;
+      var program_two = NULL;
+
+    }
+
     let data = {
       'nric' : $('.nric').val(),
-      'type_program_applied' : $('.type_program_applied').val(),
-      'program_one' : $('.program_one').val(),
-      'program_two' : $('.program_two').val()
+      'type_program_applied' : type_program_applied,
+      'pengajian' : $('.pengajian').val(),
+      'program_one' : program_one,
+      'program_two' : program_two
     }
 
     $.ajax({

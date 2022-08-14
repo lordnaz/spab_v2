@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
+use App\Models\Audit;
+use App\Models\StatusPermohonan;
 
 class KeputusanTemudugaFEController extends Controller
 {
@@ -66,7 +69,7 @@ class KeputusanTemudugaFEController extends Controller
 
         $code = decrypt($code);
 
-
+        
        
 
         $param = [
@@ -95,6 +98,19 @@ class KeputusanTemudugaFEController extends Controller
     public function updateHadirTemuduga(Request $req){
 
         // $data = $req->input();
+
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $req->nric)->first();
+
+        $audit = new Audit;
+        $audit->nric = $req->nric;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Hadir Temuduga';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
 
         $param = [
             'cadang1' => $req->cadang1,
@@ -147,6 +163,19 @@ class KeputusanTemudugaFEController extends Controller
 
         // $data = $req->input();
 
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $req->nric)->first();
+
+        $audit = new Audit;
+        $audit->nric = $req->nric;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Tidak Hadir Temuduga';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
+        
         $param = [
             'markah' => $req->markah,
             'nric' => $req->nric,
@@ -168,6 +197,18 @@ class KeputusanTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $code)->first();
+
+        $audit = new Audit;
+        $audit->nric = $code;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Hadir Temuduga Dibatalkan';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
        
 
         $param = [

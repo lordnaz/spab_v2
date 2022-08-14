@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserDetail;
 use App\Models\StatusPermohonan;
+use App\Models\Audit;
 use App\Models\ProgramApplied;
 use App\Models\program;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -40,7 +42,8 @@ class PengesahanPermohonanAPIController extends Controller
     public function sahkan(Request $req){
 
         $currentdt = date('Y-m-d H:i:s');
-       
+        
+
         $sahkan = StatusPermohonan::where('nric', $req->nric)->update([
             'updated_date_validation' => $currentdt,
             'status_validation' => 'SAH' ,
@@ -73,7 +76,8 @@ class PengesahanPermohonanAPIController extends Controller
     public function batal_pengesahan_pemohon(Request $req){
 
         $currentdt = date('Y-m-d H:i:s');
-
+    
+        
         
 
         $sahkan = StatusPermohonan::where('nric', $req->code)->update([
@@ -108,6 +112,7 @@ class PengesahanPermohonanAPIController extends Controller
     public function tolak_pengesahan_pemohon(Request $req){
 
         $currentdt = date('Y-m-d H:i:s');
+       
 
         $sahkan = StatusPermohonan::where('nric', $req->nric)->update([
             'updated_date_validation' => $currentdt,

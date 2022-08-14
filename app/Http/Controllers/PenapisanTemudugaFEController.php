@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\ScreeningIV;
+use Illuminate\Support\Facades\Session;
+use App\Models\Audit;
+use App\Models\StatusPermohonan;
 
 class PenapisanTemudugaFEController extends Controller
 {
@@ -61,6 +64,19 @@ class PenapisanTemudugaFEController extends Controller
     public function batalPenapisan($code){
 
         $code = decrypt($code);
+
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $code)->first();
+
+        $audit = new Audit;
+        $audit->nric = $code;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Temuduga Dibatalkan';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
         
 
 
@@ -82,6 +98,18 @@ class PenapisanTemudugaFEController extends Controller
         $code = decrypt($code);
         
 
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $code)->first();
+
+        $audit = new Audit;
+        $audit->nric = $code;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Temuduga Ditolak';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -134,6 +162,20 @@ class PenapisanTemudugaFEController extends Controller
 
         
         //update details
+       
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $req->nric)->first();
+
+        $audit = new Audit;
+        $audit->nric = $req->nric;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Ditemuduga';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
+
         $param = [
             
             'center_id' => $req->center_id,
@@ -157,9 +199,15 @@ class PenapisanTemudugaFEController extends Controller
 
         
         //update details
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+       
+
         $param = [
             
             'proses' => $req->proses,
+            'display' => $display,
+            'id' => $usersession,
         
             
         ];

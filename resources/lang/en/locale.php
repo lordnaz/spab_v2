@@ -503,6 +503,8 @@ return [
  "Penjadualan Temuduga" => "Interview Scheduling",
  "Keputusan Temuduga" => "Interview Result",
  "Keputusan Permohonan" => "Application Result",
- "Admin_Pendaftaranpelajar" => "Pendaftaran"
+ "Admin_Pendaftaranpelajar" => "Pendaftaran",
+ "Senarai Pelajar" => "Senarai Pelajar",
+ "Sejarah Pelajar" => "Sejarah Pelajar"
  
 ];

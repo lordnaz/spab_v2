@@ -162,9 +162,14 @@
         <form>
 
           <div class="row">
+          
             <div class="mb-1 col-md-6">
               <label class="form-label" for="nric">{!! __('locale.nric') !!}</label>
               <input type="text" id="nric" name="nric" class="form-control nric" placeholder="821102082727" readonly value="{{$form1['nric']}}"/>
+            </div>
+            <div class="mb-1 col-md-6">
+              <label class="form-label" for="nric">No. Siri</label>
+              <input type="text" id="asdas" name="asd" class="form-control asd" placeholder="" readonly value="{{$form1['no_siri']}}"/>
             </div>
             <div class="mb-1 col-md-6">
               <label class="form-label" for="name">{!! __('locale.register_name') !!}</label>
@@ -269,16 +274,16 @@
         <div class="d-flex bd-highlight">
             <button class="btn btn-outline-secondary btn-prev bd-highlight me-auto" disabled>
               <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-              <span class="align-middle d-sm-inline-block d-none">Previous</span>
+              <span class="align-middle d-sm-inline-block d-none">Kembali</span>
             </button>
 
             <a class="btn btn-success bd-highlight draftOne" id="draftOne">
-              <span class="d-sm-inline-block d-none">Save</span>
+              <span class="d-sm-inline-block d-none">Simpan</span>
               <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
             </a>
             &emsp;
             <button class="btn btn-primary btn-next bd-highlight" data-draft="draftOne">
-              <span class="align-middle d-sm-inline-block d-none">Next</span>
+              <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
               <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
             </button>
         </div>
@@ -288,8 +293,8 @@
       
       <div id="personal-info" class="content" role="tabpanel" aria-labelledby="personal-info-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Personal Info</h5>
-          <small>Enter Your Personal Info.</small>
+          <h5 class="mb-0">Maklumat Peribadi</h5>
+          <small>Masukkan Maklumat Peribadi Anda.</small>
         </div>
         <form>
           <div class="row">
@@ -302,7 +307,15 @@
                 <option value="Single" @if($form2['status_marriage'] == "Single") selected @else @endif)>Bujang</option>
               </select>
             </div>
+            <div class="mb-1 col-md-6">
+            <label class="form-label" for="status_marriage">Profil Gambar</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="customFile" />
+                <label class="custom-file-label" for="customFile">Choose profile pic</label>
+              </div>
           </div>
+          </div>
+          
 
           <div id="married_section">
             <div class="row">
@@ -331,7 +344,7 @@
           <br>
           <hr>
           <div class="content-header">
-            <h5 class="mb-0">Guardian</h5>
+            <h5 class="mb-0">Penjaga</h5>
           </div>
 
           <div class="row">
@@ -401,7 +414,7 @@
           <br>
           <hr>
           <div class="content-header">
-            <h5 class="mb-0">Heirs</h5>
+            <h5 class="mb-0">Waris</h5>
           </div>
 
           <div class="row">
@@ -447,16 +460,16 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           <a class="btn btn-success bd-highlight draftTwo" id="draftTwo">
-            <span class="d-sm-inline-block d-none">Save</span>
+            <span class="d-sm-inline-block d-none">Simpan</span>
             <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
           </a>
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight" data-draft="draftTwo">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -469,9 +482,27 @@
       <div id="program" class="content" role="tabpanel" aria-labelledby="program-step-trigger">
         <div class="content-header">
           <h5 class="mb-0">Rujukan & Program</h5>
-          <small>Fill in the form.</small>
+          <small>Isikan borang.</small>
         </div>
         <form>
+
+        <div class="row">
+            <div class="mb-1 col-md-6">
+              <label class="form-label" for="vertical-status_marriage">Program Pengajian</label>
+              <select class="form-select w-100 pengajian" id="pengajian" name="pengajian">
+              <option label="" selected>{!! __('locale.Please Choose') !!}</option>
+                <option value="Asasi" @if($form3['pengajian'] == "Asasi") selected @endif>Asasi</option>
+                <option value="Diploma" @if($form3['pengajian'] == "Diploma") selected @endif>Diploma</option>
+                <option value="Sarjana Muda" @if($form3['pengajian'] == "Sarjana Muda") selected @endif>Ijazah Sarjana Muda</option>
+                <option value="Sarjana" @if($form3['pengajian'] == "Sarjana") selected @endif>Ijazah Sarjana</option>
+                <option value="Kedoktoran" @if($form3['pengajian'] == "Kedoktoran") selected @endif>Ijazah Kedoktoran</option>
+              </select>
+            </div>
+
+          </div>
+
+         <!-- Asasi section -->
+          <div id="asasi_section">
           <div class="row">
             <!-- <div class="mb-1 col-md-6">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Series_No') !!}</label>
@@ -484,19 +515,22 @@
 
             <div class="mb-1 col-md-6">
               <label class="form-label" for="vertical-status_marriage">{!! __('locale.Type_Program_Applied') !!}</label>
-              <select class="form-select w-100 type_program_applied" id="type_program_applied" name="type_program_applied">
+              <select class="form-select w-100 asasi_type_program_applied" id="asasi_type_program_applied" name="asasi_type_program_applied">
               <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                <option value="Full Time" @if($form3['study_mode'] == "Full Time") selected @endif>Full-Time</option>
-                <option value="Half Time" @if($form3['study_mode'] == "Half Time") selected @endif>Half-Time</option>
+                <option value="Sepenuh Masa" @if($form3['study_mode'] == "Sepenuh Masa") selected @endif>Sepenuh Masa</option>
+                <option value="Separuh Masa" @if($form3['study_mode'] == "Separuh Masa") selected @endif>Separuh Masa</option>
               </select>
             </div>
 
           </div>
-
+          </div>
+          
+<!-- Sepenuh asasi -->
+<div id="asasi_sepenuh">
           <div class="row">
             <div class="mb-1 col-md-12">
               <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
-              <select class="form-select w-100 program_one" id="program_one" name="program_one">
+              <select class="form-select w-100 asasi_program_one" id="asasi_program_one" name="asasi_program_one">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($programs as $program)
                 <option value="{{$program->program_id}}" @if($program->program_id == $program_one_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
@@ -506,7 +540,7 @@
 
             <div class="mb-1 col-md-12">
               <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 program_two" id="program_two" name="program_two">
+              <select class="form-select w-100 program_two" id="asasi_program_two" name="asasi_program_two">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($programs as $program)
                 <option value="{{$program->program_id}}" @if($program->program_id == $program_two_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
@@ -514,6 +548,297 @@
               </select>
             </div>
           </div>
+</div>
+
+          <!-- Separuh asasi -->
+  <div id="asasi_separuh">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 asasi_program_one2" id="asasi_program_one2" name="asasi_program_one2">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($programs2 as $program)
+                <option value="{{$program->program_id}}" @if($program->program_id == $program_one_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 asasi_program_two2" id="asasi_program_two2" name="asasi_program_two2">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($programs2 as $program)
+                <option value="{{$program->program_id}}" @if($program->program_id == $program_two_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+</div>
+          
+
+          <!-- Diploma Section -->
+          <div id="diploma_section">
+          <div class="row">
+
+            <div class="mb-1 col-md-6">
+              <label class="form-label" for="vertical-status_marriage">{!! __('locale.Type_Program_Applied') !!}</label>
+              <select class="form-select w-100 diploma_type_program_applied" id="diploma_type_program_applied" name="diploma_type_program_applied">
+              <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                <option value="Sepenuh Masa" @if($form3['study_mode'] == "Sepenuh Masa") selected @endif>Sepenuh Masa</option>
+                <option value="Separuh Masa" @if($form3['study_mode'] == "Separuh Masa") selected @endif>Separuh Masa</option>
+              </select>
+            </div>
+
+          </div>
+          </div>
+          
+<!-- Diploma sepenuh -->
+<div id="diploma_sepenuh">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 dip_program_one" id="dip_program_one" name="dip_program_one">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($diploma as $diplomas)
+                <option value="{{$diplomas->program_id}}" @if($diplomas->program_id == $program_one_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 dip_program_two" id="dip_program_two" name="dip_program_two">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($diploma as $diplomas)
+                <option value="{{$diplomas->program_id}}" @if($diplomas->program_id == $program_two_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+</div>
+          <!-- Diploma separuh -->
+          <div id="diploma_separuh">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 dip_program_one2" id="dip_program_one2" name="dip_program_one2">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($diploma2 as $diplomas)
+                <option value="{{$diplomas->program_id}}" @if($diplomas->program_id == $program_one_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 dip_program_two2" id="dip_program_two2" name="dip_program_two2">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($diploma2 as $diplomas)
+                <option value="{{$diplomas->program_id}}" @if($diplomas->program_id == $program_two_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          </div>
+
+          <!-- Sarjana muda Section -->
+          <div id="muda_section">
+          <div class="row">
+
+            <div class="mb-1 col-md-6">
+              <label class="form-label" for="vertical-status_marriage">{!! __('locale.Type_Program_Applied') !!}</label>
+              <select class="form-select w-100 muda_type_program_applied" id="muda_type_program_applied" name="muda_type_program_applied">
+              <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                <option value="Sepenuh Masa" @if($form3['study_mode'] == "Sepenuh Masa") selected @endif>Sepenuh Masa</option>
+                <option value="Separuh Masa" @if($form3['study_mode'] == "Separuh Masa") selected @endif>Separuh Masa</option>
+              </select>
+            </div>
+
+          </div>
+          </div>
+          
+          <!-- Sepenuh -->
+<div id="muda_sepenuh">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 muda_program_one" id="muda_program_one" name="muda_program_one">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($sarjanamuda as $sarjanamudas)
+                <option value="{{$sarjanamudas->program_id}}" @if($sarjanamudas->program_id == $program_one_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 muda_program_two" id="muda_program_two" name="muda_program_two">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($sarjanamuda as $sarjanamudas)
+                <option value="{{$sarjanamudas->program_id}}" @if($sarjanamudas->program_id == $program_two_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+</div>
+<!-- Separuh -->
+<div id="muda_separuh">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 muda_program_one2" id="muda_program_one2" name="muda_program_one2">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($sarjanamuda2 as $sarjanamudas)
+                <option value="{{$sarjanamudas->program_id}}" @if($sarjanamudas->program_id == $program_one_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 muda_program_two2" id="muda_program_two2" name="muda_program_two2">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($sarjanamuda2 as $sarjanamudas)
+                <option value="{{$sarjanamudas->program_id}}" @if($sarjanamudas->program_id == $program_two_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+</div>
+          
+
+           <!-- Ijazah Sarjana Section -->
+           <div id="sarjana_section">
+          <div class="row">
+
+            <div class="mb-1 col-md-6">
+              <label class="form-label" for="vertical-status_marriage">{!! __('locale.Type_Program_Applied') !!}</label>
+              <select class="form-select w-100 master_type_program_applied" id="master_type_program_applied" name="master_type_program_applied">
+              <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                <option value="Sepenuh Masa" @if($form3['study_mode'] == "Sepenuh Masa") selected @endif>Sepenuh Masa</option>
+                <option value="Separuh Masa" @if($form3['study_mode'] == "Separuh Masa") selected @endif>Separuh Masa</option>
+              </select>
+            </div>
+
+          </div>
+           </div>
+          
+<!-- Master sepenuh -->
+<div id="master_sepenuh">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 master_program_one" id="master_program_one" name="master_program_one">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($sarjana as $sarjanas)
+                <option value="{{$sarjanas->program_id}}" @if($sarjanas->program_id == $program_one_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 master_program_two" id="master_program_two" name="master_program_two">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($sarjana as $sarjanas)
+                <option value="{{$sarjanas->program_id}}" @if($sarjanas->program_id == $program_two_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+</div>
+          
+<!-- Master separuh -->
+<div id="master_separuh">
+<div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 master_program_one"2 id="master_program_one2" name="master_program_one2">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($sarjana2 as $sarjanas)
+                <option value="{{$sarjanas->program_id}}" @if($sarjanas->program_id == $program_one_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 master_program_two2" id="master_program_two2" name="master_program_two2">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($sarjana2 as $sarjanas)
+                <option value="{{$sarjanas->program_id}}" @if($sarjanas->program_id == $program_two_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+</div>
+
+          <!-- doktor Section -->
+          <div id="doktor_section">
+          <div class="row">
+
+            <div class="mb-1 col-md-6">
+              <label class="form-label" for="vertical-status_marriage">{!! __('locale.Type_Program_Applied') !!}</label>
+              <select class="form-select w-100 doktor_type_program_applied" id="doktor_type_program_applied" name="doktor_type_program_applied">
+              <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                <option value="Sepenuh Masa" @if($form3['study_mode'] == "Sepenuh Masa") selected @endif>Sepenuh Masa</option>
+                <option value="Separuh Masa" @if($form3['study_mode'] == "Separuh Masa") selected @endif>Separuh Masa</option>
+              </select>
+            </div>
+
+          </div>
+          </div>
+          
+<!-- kedoktoran sepenuh -->
+<div id="doktor_sepenuh">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 doktor_program_one" id="doktor_program_one" name="doktor_program_one">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($kedoktoran as $kedoktorans)
+                <option value="{{$kedoktorans->program_id}}" @if($kedoktorans->program_id == $program_one_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 doktor_program_two" id="doktor_program_two" name="doktor_program_two">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($kedoktoran as $kedoktorans)
+                <option value="{{$kedoktorans->program_id}}" @if($kedoktorans->program_id == $program_two_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+</div>
+
+          <!-- kedoktoran separuh -->
+          <div id="doktor_separuh">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">{!! __('locale.Chosen Program') !!} 1</label>
+              <select class="form-select w-100 doktor_program_one" id="doktor_program_one" name="doktor_program_one">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($kedoktoran2 as $kedoktorans)
+                <option value="{{$kedoktorans->program_id}}" @if($kedoktorans->program_id == $program_one_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
+              <select class="form-select w-100 doktor_program_two" id="doktor_program_two" name="doktor_program_two">
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
+                @foreach ($kedoktoran2 as $kedoktorans)
+                <option value="{{$kedoktorans->program_id}}" @if($kedoktorans->program_id == $program_two_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          </div>
+          
           
           <!-- <div class="row"> -->
             <!-- <div class="mb-1 col-md-6">
@@ -564,16 +889,16 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           <a class="btn btn-success bd-highlight draftThree" id="draftThree">
-            <span class="d-sm-inline-block d-none">Save</span>
+            <span class="d-sm-inline-block d-none">Simpan</span>
             <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
           </a>
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight" data-draft="draftThree">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -625,7 +950,7 @@
           </div>
           <br>
           <div class="content-header">
-            <h5 class="mb-0">Other Qualifications</h5>
+            <h5 class="mb-0">Kelayakan Lain</h5>
           </div>
 
            <!-- loop  -->
@@ -671,7 +996,7 @@
                         <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
                           <i data-feather="x" class="me-25">
 
-                          </i><span>Delete</span>
+                          </i><span>Padam</span>
                         </button>
                       </div>
                     </div>
@@ -702,7 +1027,7 @@
        <div class="col-4">
                 <button id="btn1" class="btn btn-icon btn-primary" type="button" data-repeater-create>
                   <i data-feather="plus" class="me-25"></i>
-                  <span>Add New</span>
+                  <span>Tambah Baharu</span>
                 </button>
                 
               </div>
@@ -746,16 +1071,16 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           <a class="btn btn-success bd-highlight draftEmpat" id="draftEmpat">
-            <span class="d-sm-inline-block d-none">Save</span>
+            <span class="d-sm-inline-block d-none">Simpan</span>
             <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
           </a>
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight" data-draft="draftEmpat">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -764,7 +1089,7 @@
       <div id="education" class="content" role="tabpanel" aria-labelledby="education-step-trigger">
         <div class="content-header">
           <h5 class="mb-0">PMR</h5>
-          <small>Enter Your Address.</small>
+          
         </div>
         <form>
           <div class="row">
@@ -819,7 +1144,7 @@
                         <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
                           <i data-feather="x" class="me-25">
 
-                          </i><span>Delete</span>
+                          </i><span>Padam</span>
                         </button>
                       </div>
                     </div>
@@ -850,7 +1175,7 @@
        <div class="col-4">
                 <button id="btnpmr" class="btn btn-icon btn-primary" type="button" data-repeater-create>
                   <i data-feather="plus" class="me-25"></i>
-                  <span>Add New</span>
+                  <span>Tambah Baharu</span>
                 </button>
                 
               </div>
@@ -915,7 +1240,7 @@
                         <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
                           <i data-feather="x" class="me-25">
 
-                          </i><span>Delete</span>
+                          </i><span>Padam</span>
                         </button>
                       </div>
                     </div>
@@ -946,7 +1271,7 @@
        <div class="col-4">
                 <button id="btnspm" class="btn btn-icon btn-primary" type="button" data-repeater-create>
                   <i data-feather="plus" class="me-25"></i>
-                  <span>Add New</span>
+                  <span>Tambah Baharu</span>
                 </button>
                 
               </div>
@@ -999,7 +1324,7 @@
                         <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
                           <i data-feather="x" class="me-25">
 
-                          </i><span>Delete</span>
+                          </i><span>Padam</span>
                         </button>
                       </div>
                     </div>
@@ -1030,7 +1355,7 @@
        <div class="col-4">
                 <button id="btnstpm" class="btn btn-icon btn-primary" type="button" data-repeater-create>
                   <i data-feather="plus" class="me-25"></i>
-                  <span>Add New</span>
+                  <span>Tambah Baharu</span>
                 </button>
                 
               </div>
@@ -1041,16 +1366,16 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           <a class="btn btn-success bd-highlight draftLima" id="draftLima">
-            <span class="d-sm-inline-block d-none" >Save</span>
+            <span class="d-sm-inline-block d-none" >Simpan</span>
             <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
           </a>
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight" data-draft="draftLima">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1058,8 +1383,8 @@
 
       <div id="art" class="content" role="tabpanel" aria-labelledby="art-step-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Address</h5>
-          <small>Enter Your Address.</small>
+          <h5 class="mb-0">Pengalaman</h5>
+          <small>Pengalaman.</small>
         </div>
         <form>
            <!-- Form 6 -->
@@ -1097,7 +1422,7 @@
                         <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
                           <i data-feather="x" class="me-25">
 
-                          </i><span>Delete</span>
+                          </i><span>Padam</span>
                         </button>
                       </div>
                     </div>
@@ -1128,7 +1453,7 @@
        <div class="col-4">
                 <button id="btnform6" class="btn btn-icon btn-primary" type="button" data-repeater-create>
                   <i data-feather="plus" class="me-25"></i>
-                  <span>Add New</span>
+                  <span>Tambah Baharu</span>
                 </button>
                 
               </div>
@@ -1139,16 +1464,16 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           <a class="btn btn-success bd-highlight draftEnam" id="draftEnam">
-            <span class="d-sm-inline-block d-none">Save</span>
+            <span class="d-sm-inline-block d-none">Simpan</span>
             <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
           </a>
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight" data-draft="draftEnam">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1196,16 +1521,16 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           <a class="btn btn-success bd-highlight draftTujuh" id="draftTujuh">
-            <span class="d-sm-inline-block d-none">Save</span>
+            <span class="d-sm-inline-block d-none">Simpan</span>
             <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
           </a>
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight" data-draft="draftTujuh">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1258,7 +1583,7 @@
                         <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
                           <i data-feather="x" class="me-25">
 
-                          </i><span>Delete</span>
+                          </i><span>Padam</span>
                         </button>
                       </div>
                     </div>
@@ -1289,7 +1614,7 @@
        <div class="col-4">
                 <button id="btnform8" class="btn btn-icon btn-primary" type="button" data-repeater-create>
                   <i data-feather="plus" class="me-25"></i>
-                  <span>Add New</span>
+                  <span>Tambah Baharu</span>
                 </button>
                 
               </div>
@@ -1301,16 +1626,16 @@
         <div class="d-flex bd-highlight">
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           <a class="btn btn-success bd-highlight draftLapan" id="draftLapan">
-            <span class="d-sm-inline-block d-none">Save</span>
+            <span class="d-sm-inline-block d-none">Simpan</span>
             <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
           </a>
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight" data-draft="draftLapan">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1318,8 +1643,8 @@
 
       <div id="sponsor" class="content" role="tabpanel" aria-labelledby="sponsor-step-trigger">
         <div class="content-header">
-          <h5 class="mb-0">Address</h5>
-          <small>Enter Your Address.</small>
+          <h5 class="mb-0">Penajaan</h5>
+          <small>Penajaan</small>
         </div>
         <form>
           <div class="row">
@@ -1358,16 +1683,16 @@
 
           <button class="btn btn-primary btn-prev bd-highlight me-auto">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
 
           <a class="btn btn-success bd-highlight draftSembilan" id="draftSembilan">
-            <span class="d-sm-inline-block d-none">Save</span>
+            <span class="d-sm-inline-block d-none">Simpan</span>
             <i data-feather='save' class="align-middle ms-sm-25 ms-0"></i>
           </a>
           &emsp;
           <button class="btn btn-primary btn-next bd-highlight" data-draft="draftSembilan">
-            <span class="align-middle d-sm-inline-block d-none">Next</span>
+            <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
           </button>
         </div>
@@ -1414,7 +1739,7 @@
                         <button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button">
                           <i data-feather="x" class="me-25">
 
-                          </i><span>Delete</span>
+                          </i><span>Padam</span>
                         </button>
                       </div>
                     </div>
@@ -1445,7 +1770,7 @@
        <div class="col-4">
                 <button id="btnform10" class="btn btn-icon btn-primary" type="button" data-repeater-create>
                   <i data-feather="plus" class="me-25"></i>
-                  <span>Add New</span>
+                  <span>Tambah Baharu</span>
                 </button>
                 
               </div>
@@ -1456,9 +1781,9 @@
         <div class="d-flex justify-content-between">
           <button class="btn btn-primary btn-prev">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
           </button>
-          <button class="btn btn-success btn-next btn-submit" data-draft="draftSepuluh">Submit</button>
+          <button class="btn btn-success btn-next btn-submit" data-draft="draftSepuluh">Kemaskini</button>
         </div>
       </div>
       
@@ -1485,7 +1810,7 @@
     $("#btn1").click(function() { 
       var value = parseInt(form4);    
       var form44 = value + 1;
-      $("#view").append('<input hidden type="text" name="index" value='+form44+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Institusi/Kolej/Universiti</label><input type="text" class="form-control" id="institution_others_qc" name="institution_others_qc"></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Tahap/Gred/HPNG/PNGK</label><input type="text" class="form-control" id="grade_others_qc" name="grade_others_qc"> </div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemname">Pengkhususan</label><input type="text" class="form-control" id="specialization_others_qc" name="specialization_others_qc"></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemname">Tahun</label><input type="text" class="form-control" id="year_others_qc" name="year_others_qc"></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#view").append('<input hidden type="text" name="index" value='+form44+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Institusi/Kolej/Universiti</label><input type="text" class="form-control" id="institution_others_qc" name="institution_others_qc"></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Tahap/Gred/HPNG/PNGK</label><input type="text" class="form-control" id="grade_others_qc" name="grade_others_qc"> </div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemname">Pengkhususan</label><input type="text" class="form-control" id="specialization_others_qc" name="specialization_others_qc"></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemname">Tahun</label><input type="text" class="form-control" id="year_others_qc" name="year_others_qc"></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
       
       
@@ -1497,7 +1822,7 @@
       var valuepmr = parseInt(pmr);    
       var pmrr = valuepmr + 1;
 
-      $("#pmr").append('<input hidden type="text" name="index_pmr" value='+pmrr+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_pmr" name="subject_pmr"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_pmr" name="grade_pmr"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#pmr").append('<input hidden type="text" name="index_pmr" value='+pmrr+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_pmr" name="subject_pmr"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_pmr" name="grade_pmr"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
     
       
@@ -1508,7 +1833,7 @@
       var valuespm = parseInt(spm);    
       var spmm = valuespm + 1;
       
-      $("#spm").append('<input hidden type="text" name="index_spm" value='+spmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_spm" name="subject_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Bahasa Melayu">Bahasa Melayu</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option><option data-avatar="3-small.png" value="Sains">Sains</option><option data-avatar="3-small.png" value="Sejarah">Sejarah</option><option data-avatar="3-small.png" value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_spm" name="grade_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#spm").append('<input hidden type="text" name="index_spm" value='+spmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_spm" name="subject_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Bahasa Melayu">Bahasa Melayu</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option><option data-avatar="3-small.png" value="Sains">Sains</option><option data-avatar="3-small.png" value="Sejarah">Sejarah</option><option data-avatar="3-small.png" value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_spm" name="grade_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
      
       
@@ -1519,7 +1844,7 @@
       var valuestpm = parseInt(stpm);    
       var stpmm = valuestpm + 1;
 
-      $("#stpm").append('<input hidden type="text" name="index_stpm" value='+stpmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_stpm" name="subject_stpm"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_stpm" name="grade_stpm"><option selected disabled>Please Choose</option><option value="10">A+</option><option value="9">A</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#stpm").append('<input hidden type="text" name="index_stpm" value='+stpmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_stpm" name="subject_stpm"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_stpm" name="grade_stpm"><option selected disabled>Please Choose</option><option value="10">A+</option><option value="9">A</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
      
       
@@ -1531,7 +1856,7 @@
       var valueform6 = parseInt(form6);    
       var form66 = valueform6 + 1;
       
-      $("#form6").append('<input hidden type="text" name="index_form6" value='+form66+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Bidang Penglibatan</label><input type="text" class="form-control area_involvement" name="area_involvement" id="area_involvement" value=""></div></div><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Penganjur</label><input type="text" id="organizer" name="organizer" class="form-control organize"/></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Tahun</label><input type="text" id="year_involvement" name="year_involvement" class="form-control year_involvement" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#form6").append('<input hidden type="text" name="index_form6" value='+form66+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Bidang Penglibatan</label><input type="text" class="form-control area_involvement" name="area_involvement" id="area_involvement" value=""></div></div><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Penganjur</label><input type="text" id="organizer" name="organizer" class="form-control organize"/></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Tahun</label><input type="text" id="year_involvement" name="year_involvement" class="form-control year_involvement" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
      
       
@@ -1542,7 +1867,7 @@
       var valueform8 = parseInt(form8);    
       var form88 = valueform8 + 1;
       
-      $("#form8").append('<input hidden type="text" name="index_form8" value='+form88+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Kursus Yang Diambil</label><input type="text" class="form-control course_taken" name="course_taken" id="course_taken" value=""></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Penaja</label><input type="text" id="course_organizer" name="course_organizer" class="form-control course_organizer"/></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Tempat Diambil</label><input type="text" id="place_taken" name="place_taken" class="form-control place_taken" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Tarikh Tempoh</label><input type="text" id="year_taken" name="year_taken" class="form-control year_taken" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#form8").append('<input hidden type="text" name="index_form8" value='+form88+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Kursus Yang Diambil</label><input type="text" class="form-control course_taken" name="course_taken" id="course_taken" value=""></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Penaja</label><input type="text" id="course_organizer" name="course_organizer" class="form-control course_organizer"/></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Tempat Diambil</label><input type="text" id="place_taken" name="place_taken" class="form-control place_taken" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Tarikh Tempoh</label><input type="text" id="year_taken" name="year_taken" class="form-control year_taken" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
      
       
@@ -1553,7 +1878,7 @@
       var valueform10 = parseInt(form10);    
       var form1010 = valueform10 + 1;
       
-      $("#form10").append('<input hidden type="text" name="index_form10" value='+form1010+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Kelab/Persatuan</label><input type="text" class="form-control club" name="club" id="club" value=""></div></div><div class="col-md-3 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Jawatan</label><input type="text" id="role" name="role" class="form-control role"/></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Tahun</label><input type="text" id="year_takenclub" name="year_takenclub" class="form-control year_takenclub" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Delete</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#form10").append('<input hidden type="text" name="index_form10" value='+form1010+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Kelab/Persatuan</label><input type="text" class="form-control club" name="club" id="club" value=""></div></div><div class="col-md-3 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Jawatan</label><input type="text" id="role" name="role" class="form-control role"/></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="vertical-last-name">Tahun</label><input type="text" id="year_takenclub" name="year_takenclub" class="form-control year_takenclub" /></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
       
       
@@ -1582,4 +1907,5 @@
   <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
   <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
   <script src="{{ asset(mix('js/scripts/forms/form-repeater.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/forms/form-validation.js')) }}"></script>
 @endsection

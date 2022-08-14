@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\Offerprogram;
 use App\Models\UserDetail;
+use Illuminate\Support\Facades\Session;
+use App\Models\Audit;
+use App\Models\StatusPermohonan;
 
 class PenawaranPermohonanFEController extends Controller
 {
@@ -98,6 +101,18 @@ class PenawaranPermohonanFEController extends Controller
 
         $code = decrypt($code);
         
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $code)->first();
+
+        $audit = new Audit;
+        $audit->nric = $code;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Dalam Pemerhatian (KIV)';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
 
 
         $request = Http::withHeaders([
@@ -118,6 +133,18 @@ class PenawaranPermohonanFEController extends Controller
         $code = decrypt($code);
         
 
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $code)->first();
+
+        $audit = new Audit;
+        $audit->nric = $code;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Penawaran Ditolak';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
 
         $request = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -136,6 +163,18 @@ class PenawaranPermohonanFEController extends Controller
 
         $code = decrypt($code);
         
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $code)->first();
+
+        $audit = new Audit;
+        $audit->nric = $code;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Penawaran Dibatalkan';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
 
 
         $request = Http::withHeaders([
@@ -207,7 +246,19 @@ class PenawaranPermohonanFEController extends Controller
 
     public function tawar_penawaran(Request $req){
 
-        
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $req->nric)->first();
+
+        $audit = new Audit;
+        $audit->nric = $req->nric;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Penawaran Ditawar';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
+
         //update details
         $param = [
             'nric' => $req->nric,
@@ -237,9 +288,13 @@ class PenawaranPermohonanFEController extends Controller
 
         
         //update details
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
         $param = [
             
             'proses' => $req->proses,
+            'display' => $display,
+            'id' => $usersession,
         
             
         ];

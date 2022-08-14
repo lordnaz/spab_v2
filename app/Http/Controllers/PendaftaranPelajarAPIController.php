@@ -8,6 +8,8 @@ use App\Models\UserDetail;
 use App\Models\PenawaranPermohonan;
 use App\Models\StatusPermohonan;
 use App\Models\PendaftaranPelajar;
+use Illuminate\Support\Facades\Session;
+use App\Models\Audit;
 
 
 class PendaftaranPelajarAPIController extends Controller
@@ -15,7 +17,7 @@ class PendaftaranPelajarAPIController extends Controller
     //
     public function applicantinfo(Request $req){
 
-        $displayapplicantinfo = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
+        $displayapplicantinfo = UserDetail::join('all_status_permohonan','all_status_permohonan.nric', '=','user_details.nric')->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=','user_details.nric')->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->where('user_details.nric', $req->nric)->first();
 
@@ -28,11 +30,29 @@ class PendaftaranPelajarAPIController extends Controller
 
     public function updateapplicantinfo(Request $req){
         
-        $displayapplicantinfo = UserDetail::join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')->join('pendaftaran_pelajar', 'pendaftaran_pelajar.nric', '=', 'user_details.nric')->where('user_details.nric', $req->nric)->first();
+        $displayapplicantinfo =UserDetail::join('all_status_permohonan','all_status_permohonan.nric', '=','user_details.nric')->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=','user_details.nric')->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
+        ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
+        ->where('user_details.nric', $req->nric)->first();
+
         $program = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'Aktif')->get();
 
-        $currentdt = date('Y-m-d H:i:s');
+        $random_string = chr(rand(65,90)) . chr(rand(65,90)) . chr(rand(65,90));
+        $random_number = rand(10000000,99999999);
+        $job_id = $random_string.$random_number;
+      
 
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric',  $req->nric)->first();
+
+        $audit = new Audit;
+        $audit->nric =  $req->nric;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Didaftar';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
       
 
         $save_draft = StatusPermohonan::where('nric', $req->nric)
@@ -40,36 +60,37 @@ class PendaftaranPelajarAPIController extends Controller
                     'status_pendaftaran' => 'DAFTAR',
                     'status_global' => 'DAFTAR',
                     'balasan_calon' => 'DAFTAR',
+                    'status_offer' => 'DAFTAR',
                     'tarikh_pendaftaran' => $currentdt 
                     ]);
+   
 
-        $exists = PendaftaranPelajar::where('nric', $req->nric)->exists();
-        if(!$exists){      
+            $wujud = PendaftaranPelajar::where('nric', $req->nric)->where('no_matriks',NULL)->exists();
 
-        $updateapplicant4= PendaftaranPelajar::find($req->nric);
-        $updateapplicant4->no_matriks=$req->no_matriks;
-        $updateapplicant4->hostel_room=$req->hostel_room;
-        $updateapplicant4->no_resit=$req->no_resit;
-        $updateapplicant4->total_payment=$req->total_payment;
-        $updateapplicant4->bank=$req->bank;
-        $updateapplicant4->payment_reference=$req->payment_reference;
-        $updateapplicant4->payment_details=$req->payment_details;
-        $updateapplicant4->save();
+            if(!$wujud){
+
+            }else{
+
+                $exists = PendaftaranPelajar::where('nric', $req->nric)
+                ->update([
+    
+                    'no_matriks' => $job_id,
+                    
         
-        }
+                ]);
+            }
 
-        else {
-        $addnew= new PendaftaranPelajar;
-        $addnew->nric=$req->nric;
-        $addnew->no_matriks=$req->no_matriks;
-        $addnew->hostel_room=$req->hostel_room;
-        $addnew->no_resit=$req->no_resit;
-        $addnew->total_payment=$req->total_payment;
-        $addnew->bank=$req->bank;
-        $addnew->payment_reference=$req->payment_reference;
-        $addnew->payment_details=$req->payment_details;
+            $exists = PendaftaranPelajar::where('nric', $req->nric)
+            ->update([
 
-        }
+                
+                'hostel_room' => $req->hostel_room,
+    
+            ]);
+        
+       
+
+      
 
         $data = [
             'status' => 'success',
@@ -85,13 +106,33 @@ class PendaftaranPelajarAPIController extends Controller
     
         $code = decrypt($code);
 
+        $display = Session::get('display');
+        $usersession = auth()->user()->id;
+        $currentdt = date('Y-m-d H:i:s');
+        $nosiri = StatusPermohonan::where('job_id', $display)->where('nric', $code)->first();
+
+        $audit = new Audit;
+        $audit->nric =  $code;
+        $audit->no_siri = $nosiri->no_siri;
+        $audit->penerangan = 'Pendaftaran Dibatalkan';
+        $audit->tarikh_audit = $currentdt;
+        $audit->created_by = $usersession;
+        $audit->save();
         
+        $exists = PendaftaranPelajar::where('nric', $code)->update([
+
+            'no_matriks' => NULL,
+            'hostel_room' => NULL,
+
+
+        ]);
 
         $save_draft = StatusPermohonan::where('nric', $code)
         ->update([
             'status_pendaftaran' => NULL,
             'status_global' => 'TERIMA TAWARAN',
             'balasan_calon' => 'TERIMA TAWARAN',
+            'status_offer' => 'TERIMA TAWARAN',
             ]);
 
             return redirect()->route('pendaftaranpelajar');
