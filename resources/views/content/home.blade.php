@@ -424,6 +424,9 @@ $roles = auth()->user()->role;
         <div class="card-body pt-1">
           <ul class="timeline ms-50">
 
+          @if($status == 'Tiada')
+
+          @else
           @if($status['all_status'] == 'BELUM DISAHKAN')
             <li class="timeline-item">
               <span class="timeline-point timeline-point-indicator"></span>
@@ -575,6 +578,7 @@ $roles = auth()->user()->role;
           
               </div>
             </li>
+            @endif
             @endif
           </ul>
         </div>

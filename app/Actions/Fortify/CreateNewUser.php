@@ -43,16 +43,16 @@ class CreateNewUser implements CreatesNewUsers
         $userId = $create->id;
 
         if($userId){
-            // $details = UserDetail::create([
-            //     'user_id' => $userId,
-            //     'name' => $input['name'],
-            //     'nric' => $input['nric'],
-            //     // 'status' => "CALON",
-            //     'phone_no' => $input['phoneno'],
-            //     'created_by' => $userId,
-            //     'modified_by' => $userId,
-            //     // 'password' => Hash::make($input['password']),
-            // ]);
+            $details = UserDetail::create([
+                'user_id' => $userId,
+                'name' => $input['name'],
+                'nric' => $input['nric'],
+                // 'status' => "CALON",
+                'phone_no' => $input['phoneno'],
+                'created_by' => $userId,
+                'modified_by' => $userId,
+                // 'password' => Hash::make($input['password']),
+            ]);
     
             // $details = ApplicantDetailSub::create([
             //     'nric' => $input['nric'],

@@ -27,7 +27,16 @@ class StaterkitController extends Controller
 
             $userid = auth()->user()->id;
             $userdetails = UserDetail::where('created_by', $userid)->first();
+
+            $exits = StatusPermohonan::where('nric', $userdetails->nric)->exists();
+
+            if(!$exits){
+
+                $status = 'Tiada';
+            }
+            else{
             $status = StatusPermohonan::join('screening_interview','screening_interview.nric','=','all_status_permohonan.nric')->join('penawaran_permohonan','penawaran_permohonan.nric','=','all_status_permohonan.nric')->where('all_status_permohonan.nric', $userdetails->nric)->first();
+            }
             $iv = ScreeningIV::where('nric', $userdetails->nric)->first();
 
             $asasi = StatusPermohonan::where('pengajian', 'Asasi')->where('status_global', '!=', 'DRAFT')->where('job_id', $display)->count();
