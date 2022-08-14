@@ -11,6 +11,7 @@ use App\Models\PendaftaranPelajar;
 use Illuminate\Support\Facades\Session;
 use App\Models\Audit;
 
+use App\Exceptions\TemplateProcessing as TemplateProcessing;
 
 class PendaftaranPelajarAPIController extends Controller
 {
@@ -63,6 +64,19 @@ class PendaftaranPelajarAPIController extends Controller
                     'status_offer' => 'DAFTAR',
                     'tarikh_pendaftaran' => $currentdt 
                     ]);
+
+
+        if($save_draft){
+            $type = 'surat_permohonan';
+
+            $nric = $req->nric;
+            $address1 = $displayapplicantinfo->address1;
+            $date_created = date('Y-m-d H:i:s');
+            $pengajian = $displayapplicantinfo->pengajian;
+            $program = $$displayapplicantinfo->program;
+
+            $create_surat_permohonan = $this->TemplateProcessing($type, $nric, $address1, $date_created, $pengajian, $program);
+        }
    
 
             $wujud = PendaftaranPelajar::where('nric', $req->nric)->where('no_matriks',NULL)->exists();
@@ -88,9 +102,6 @@ class PendaftaranPelajarAPIController extends Controller
     
             ]);
         
-       
-
-      
 
         $data = [
             'status' => 'success',
@@ -141,6 +152,49 @@ class PendaftaranPelajarAPIController extends Controller
     public function printreceipt(){
 
         return view('components.print-receipt');
+    }
+
+
+    function TemplateProcessing($type, $nric, $address1, $date_created, $pengajian, $program)
+    {
+
+        switch ($type) {
+            case 'surat_permohonan':
+
+                $templatePath = TemplateProcessing::TemplateProcessingLetter($type);
+                
+                $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($templatePath);
+
+                $templateProcessor->setValue('nric', $nric);
+                $templateProcessor->setValue('address1', $address1);
+                $templateProcessor->setValue('date_created', $date_created);
+                $templateProcessor->setValue('pengajian', $pengajian);
+                $templateProcessor->setValue('program', $program);
+
+                $timestamp = date('YmdHis');
+
+                $filename = 'template_created/Surat_Permohonan_'.$timestamp.'.docx';
+
+                // code to insert filename for application reference
+
+                // end of
+
+                $pathToSave = storage_path($filename);
+
+                try {
+                    $templateProcessor->saveAs($pathToSave); 
+                } catch (Exception $e) {
+                }
+
+                return response()->download(storage_path($filename)); 
+
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
     }
 
     

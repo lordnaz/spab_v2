@@ -74,7 +74,7 @@ $roles = auth()->user()->role;
   
 </div> -->
 <!--/ Kick start -->
-{{$test}}
+<!-- {{$test}} -->
 @if($roles == 'admin')
 
   <!-- Miscellaneous Charts -->

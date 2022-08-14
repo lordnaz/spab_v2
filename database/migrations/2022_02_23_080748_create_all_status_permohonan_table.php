@@ -23,7 +23,6 @@ class CreateAllStatusPermohonanTable extends Migration
             $table->string('status_pendaftaran')->nullable();
             $table->string('all_status')->nullable();
             $table->string('modified_by_validation')->nullable();
-            $table->string('pengajian')->nullable();
             $table->timestamp('updated_date_validation')->nullable();
             $table->timestamp('submit_permohonan')->nullable();
             $table->string('pengajian')->nullable();
