@@ -18,7 +18,7 @@ class CreateProgramAppliedTable extends Migration
             $table->string('nric')->index();
             $table->string('job_id');
             $table->string('program_id')->index()->nullable();   
-            $table->string('type')->nullable();    
+            $table->string('AlatMuzik')->nullable();    
             $table->string('sequence')->nullable();   
             $table->integer('created_by')->nullable();
             $table->integer('modified_by')->nullable();

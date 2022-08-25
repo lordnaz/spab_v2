@@ -55,7 +55,7 @@
         <button type="button" class="step-trigger">
           <span class="bs-stepper-box">3</span>
           <span class="bs-stepper-label">
-            <span class="bs-stepper-title">{!! __('locale.Programme') !!}</span>
+            <span class="bs-stepper-title">Program</span>
             <!-- <span class="bs-stepper-subtitle">{!! __('locale.Programme Sub') !!}</span> -->
           </span>
         </button>
@@ -311,7 +311,7 @@
             <label class="form-label" for="status_marriage">Profil Gambar</label>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="customFile" name="customFile" />
-                <label class="custom-file-label" for="customFile">Choose profile pic</label>
+                <label class="custom-file-label" for="customFile"></label>
               </div>
           </div>
           </div>
@@ -407,6 +407,28 @@
                 name="guardian_email"
                 value="{{$form2['guardian_email']}}"
               />
+            </div>
+          </div>
+
+          <div class="row">
+          <div class="mb-1 col-md-6">
+              <label class="form-label" for="pendapatan_isi_rumah">Pendapatan Isi Rumah</label>
+              <select class="form-select w-100 pendapatan_isi_rumah" id="pendapatan_isi_rumah" name="pendapatan_isi_rumah">
+                <option label="" selected>{!! __('locale.Please Choose') !!}</option>
+                <option style="font-weight: bold;" label="" disabled>B40</option>
+                <option value="B1" @if($form2['pendapatan_isi_rumah'] == "B1") selected @else @endif)>B1 : Kurang Dari RM 2,500</option>
+                <option value="B2" @if($form2['pendapatan_isi_rumah'] == "B2") selected @else @endif)>B2 : RM 2,500 - RM 3,169</option>
+                <option value="B3" @if($form2['pendapatan_isi_rumah'] == "B3") selected @else @endif)>B3 : RM 3,170 - RM 3,969</option>
+                <option value="B4" @if($form2['pendapatan_isi_rumah'] == "B4") selected @else @endif)>B2 : RM 3,970 - RM 4,849</option>
+                <option style="font-weight: bold;" label="" disabled>M40</option>
+                <option value="M1" @if($form2['pendapatan_isi_rumah'] == "M1") selected @else @endif)>M1 : RM 4,850 - RM 5,879</option>
+                <option value="M2" @if($form2['pendapatan_isi_rumah'] == "M2") selected @else @endif)>M2 : RM 5,880 - RM 7,099</option>
+                <option value="M3" @if($form2['pendapatan_isi_rumah'] == "M3") selected @else @endif)>M3 : RM 7,110 - RM 8,699</option>
+                <option value="M4" @if($form2['pendapatan_isi_rumah'] == "M4")) selected @else @endif)>M4 : RM 8,700 - RM 10,959</option>
+                <option style="font-weight: bold;" label="" disabled>T20</option>
+                <option value="T1" @if($form2['pendapatan_isi_rumah'] == "T1") selected @else @endif)>M4 : RM 10,960 - RM 15,039</option>
+                <option value="T2" @if($form2['pendapatan_isi_rumah'] == "T2") selected @else @endif)>M4 : RM 15,039 Atau Lebih</option>
+              </select>
             </div>
           </div>
 
@@ -533,22 +555,14 @@
               <select class="form-select w-100 asasi_program_one" id="asasi_program_one" name="asasi_program_one">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($programs as $program)
-                <option value="{{$program->program_id}}" @if($program->program_id == $program_one_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
-                @endforeach
-              </select>
-            </div>
-
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 program_two" id="asasi_program_two" name="asasi_program_two">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($programs as $program)
-                <option value="{{$program->program_id}}" @if($program->program_id == $program_two_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
+                <option value="{{$program->program_id}}|{{$program->faculty}}"  @if($program->program_id == $program_one_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
                 @endforeach
               </select>
             </div>
           </div>
 </div>
+
+
 
           <!-- Separuh asasi -->
   <div id="asasi_separuh">
@@ -558,17 +572,7 @@
               <select class="form-select w-100 asasi_program_one2" id="asasi_program_one2" name="asasi_program_one2">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($programs2 as $program)
-                <option value="{{$program->program_id}}" @if($program->program_id == $program_one_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
-                @endforeach
-              </select>
-            </div>
-
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 asasi_program_two2" id="asasi_program_two2" name="asasi_program_two2">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($programs2 as $program)
-                <option value="{{$program->program_id}}" @if($program->program_id == $program_two_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
+                <option value="{{$program->program_id}}|{{$program->faculty}}" @if($program->program_id == $program_one_id) selected @endif>{{$program->code}} - {{$program->program}}</option>
                 @endforeach
               </select>
             </div>
@@ -600,20 +604,11 @@
               <select class="form-select w-100 dip_program_one" id="dip_program_one" name="dip_program_one">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($diploma as $diplomas)
-                <option value="{{$diplomas->program_id}}" @if($diplomas->program_id == $program_one_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
+                <option value="{{$diplomas->program_id}}|{{$diplomas->faculty}}" @if($diplomas->program_id == $program_one_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
                 @endforeach
               </select>
             </div>
 
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 dip_program_two" id="dip_program_two" name="dip_program_two">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($diploma as $diplomas)
-                <option value="{{$diplomas->program_id}}" @if($diplomas->program_id == $program_two_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
-                @endforeach
-              </select>
-            </div>
           </div>
 </div>
           <!-- Diploma separuh -->
@@ -624,20 +619,11 @@
               <select class="form-select w-100 dip_program_one2" id="dip_program_one2" name="dip_program_one2">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($diploma2 as $diplomas)
-                <option value="{{$diplomas->program_id}}" @if($diplomas->program_id == $program_one_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
+                <option value="{{$diplomas->program_id}}|{{$diplomas->faculty}}" @if($diplomas->program_id == $program_one_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
                 @endforeach
               </select>
             </div>
 
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 dip_program_two2" id="dip_program_two2" name="dip_program_two2">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($diploma2 as $diplomas)
-                <option value="{{$diplomas->program_id}}" @if($diplomas->program_id == $program_two_id) selected @endif>{{$diplomas->code}} - {{$diplomas->program}}</option>
-                @endforeach
-              </select>
-            </div>
           </div>
           </div>
 
@@ -665,20 +651,11 @@
               <select class="form-select w-100 muda_program_one" id="muda_program_one" name="muda_program_one">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($sarjanamuda as $sarjanamudas)
-                <option value="{{$sarjanamudas->program_id}}" @if($sarjanamudas->program_id == $program_one_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
+                <option value="{{$sarjanamudas->program_id}}|{{$sarjanamudas->faculty}}" @if($sarjanamudas->program_id == $program_one_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
                 @endforeach
               </select>
             </div>
 
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 muda_program_two" id="muda_program_two" name="muda_program_two">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($sarjanamuda as $sarjanamudas)
-                <option value="{{$sarjanamudas->program_id}}" @if($sarjanamudas->program_id == $program_two_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
-                @endforeach
-              </select>
-            </div>
           </div>
 </div>
 <!-- Separuh -->
@@ -689,20 +666,12 @@
               <select class="form-select w-100 muda_program_one2" id="muda_program_one2" name="muda_program_one2">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($sarjanamuda2 as $sarjanamudas)
-                <option value="{{$sarjanamudas->program_id}}" @if($sarjanamudas->program_id == $program_one_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
+                <option value="{{$sarjanamudas->program_id}}|{{$sarjanamudas->faculty}}" @if($sarjanamudas->program_id == $program_one_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
                 @endforeach
               </select>
             </div>
 
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 muda_program_two2" id="muda_program_two2" name="muda_program_two2">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($sarjanamuda2 as $sarjanamudas)
-                <option value="{{$sarjanamudas->program_id}}" @if($sarjanamudas->program_id == $program_two_id) selected @endif>{{$sarjanamudas->code}} - {{$sarjanamudas->program}}</option>
-                @endforeach
-              </select>
-            </div>
+        
           </div>
 </div>
           
@@ -731,20 +700,11 @@
               <select class="form-select w-100 master_program_one" id="master_program_one" name="master_program_one">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($sarjana as $sarjanas)
-                <option value="{{$sarjanas->program_id}}" @if($sarjanas->program_id == $program_one_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
+                <option value="{{$sarjanas->program_id}}|{{$sarjanas->faculty}}" @if($sarjanas->program_id == $program_one_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
                 @endforeach
               </select>
             </div>
 
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 master_program_two" id="master_program_two" name="master_program_two">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($sarjana as $sarjanas)
-                <option value="{{$sarjanas->program_id}}" @if($sarjanas->program_id == $program_two_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
-                @endforeach
-              </select>
-            </div>
           </div>
 </div>
           
@@ -756,20 +716,11 @@
               <select class="form-select w-100 master_program_one"2 id="master_program_one2" name="master_program_one2">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($sarjana2 as $sarjanas)
-                <option value="{{$sarjanas->program_id}}" @if($sarjanas->program_id == $program_one_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
+                <option value="{{$sarjanas->program_id}}|{{$sarjanas->faculty}}" @if($sarjanas->program_id == $program_one_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
                 @endforeach
               </select>
             </div>
 
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 master_program_two2" id="master_program_two2" name="master_program_two2">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($sarjana2 as $sarjanas)
-                <option value="{{$sarjanas->program_id}}" @if($sarjanas->program_id == $program_two_id) selected @endif>{{$sarjanas->code}} - {{$sarjanas->program}}</option>
-                @endforeach
-              </select>
-            </div>
           </div>
 </div>
 
@@ -797,20 +748,11 @@
               <select class="form-select w-100 doktor_program_one" id="doktor_program_one" name="doktor_program_one">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($kedoktoran as $kedoktorans)
-                <option value="{{$kedoktorans->program_id}}" @if($kedoktorans->program_id == $program_one_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
+                <option value="{{$kedoktorans->program_id}}|{{$kedoktorans->faculty}}" @if($kedoktorans->program_id == $program_one_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
                 @endforeach
               </select>
             </div>
 
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 doktor_program_two" id="doktor_program_two" name="doktor_program_two">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($kedoktoran as $kedoktorans)
-                <option value="{{$kedoktorans->program_id}}" @if($kedoktorans->program_id == $program_two_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
-                @endforeach
-              </select>
-            </div>
           </div>
 </div>
 
@@ -822,23 +764,62 @@
               <select class="form-select w-100 doktor_program_one" id="doktor_program_one" name="doktor_program_one">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 @foreach ($kedoktoran2 as $kedoktorans)
-                <option value="{{$kedoktorans->program_id}}" @if($kedoktorans->program_id == $program_one_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
+                <option value="{{$kedoktorans->program_id}}|{{$kedoktorans->faculty}}" @if($kedoktorans->program_id == $program_one_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
                 @endforeach
               </select>
             </div>
 
-            <div class="mb-1 col-md-12">
-              <label class="form-label" for="program_two">{!! __('locale.Chosen Program') !!} 2</label>
-              <select class="form-select w-100 doktor_program_two" id="doktor_program_two" name="doktor_program_two">
-                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
-                @foreach ($kedoktoran2 as $kedoktorans)
-                <option value="{{$kedoktorans->program_id}}" @if($kedoktorans->program_id == $program_two_id) selected @endif>{{$kedoktorans->code}} - {{$kedoktorans->program}}</option>
-                @endforeach
-              </select>
-            </div>
+          
           </div>
           </div>
           
+          <!-- fakulti -->
+
+<div id="asasi_sepenuhf">
+          <div class="row">
+            <div class="mb-1 col-md-12">
+              <label class="form-label" for="program_one">Alat Muzik</label>
+              <select class="form-select w-100 alat_muzik" id="alat_muzik" name="alat_muzik" required>
+                <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>             
+                <option value="Gitar Moden"  @if($alat == "Gitar Moden") selected @endif>Gitar Moden</option>
+                <option value="Gitar Klasikal" @if($alat == "Gitar Klasikal") selected @endif>Gitar Klasikal</option>
+                <option value="Gitar Moden" @if($alat == "Elektrik Bass") selected @endif>Elektrik Bass</option>
+                <option value="Double Bass" @if($alat == "Double Bass") selected @endif>Double Bass</option>
+                <option value="Piano Moden" @if($alat == "Piano Moden") selected @endif>Piano Moden</option>
+                <option value="Piano Klasika" @if($alat == "Piano Klasika") selected @endif>Piano Klasika</option>
+                <option value="Violin Klasikal" @if($alat == "Violin Klasikal") selected @endif>Violin Klasikal</option>
+                <option value="Violin Tradisional" @if($alat == "Violin Tradisional") selected @endif>Violin Tradisional</option>
+                <option value="Violi" @if($alat == "Viola") selected @endif>Viola</option>
+                <option value="Cello" @if($alat == "Cello") selected @endif>Cello</option>
+                <option value="Gambus" @if($alat == "Gambus") selected @endif>Gambus</option>
+                <option value="Sitar" @if($alat == "Sitar") selected @endif>Sitar</option>
+                <option value="Akordian" @if($alat == "Akordian") selected @endif>Akordian</option>
+                <option value="Perkusi" @if($alat == "Perkusi") selected @endif>Perkusi</option>
+                <option value="Drum" @if($alat == "Drum") selected @endif>Drum</option>
+                <option value="Marimba" @if($alat == "Marimba") selected @endif>Marimba</option>
+                <option value="Trumpet" @if($alat == "Trumpet") selected @endif>Trumpet</option>
+                <option value="Flute" @if($alat == "Flute") selected @endif>Flute</option>
+                <option value="Serunai" @if($alat == "Serunai") selected @endif>Serunai</option>
+                <option value="Clarinet" @if($alat == "Clarinet") selected @endif>Clarinet</option>
+                <option value="Saxophone" @if($alat == "Saxophone") selected @endif>Saxophone</option>
+                <option value="Trombone" @if($alat == "Trombone") selected @endif>Trombone</option>
+                <option value="French Horn" @if($alat == "French Horn") selected @endif>French Horn</option>
+                <option value="Caklempong" @if($alat == "Caklempong") selected @endif>Caklempong</option>
+                <option value="Gamelan" @if($alat == "Gamelan") selected @endif>Gamelan</option>
+                <option value="Pergendangan Melayu" @if($alat == "Pergendangan Melayu") selected @endif>Pergendangan Melayu</option>
+                <option value="Rebab" @if($alat == "Rebab") selected @endif>Rebab</option>
+                <option value="Tabla" @if($alat == "Tabla") selected @endif>Alat Muzik India - Tabla</option>
+                <option value="Alat Muzik Cina" @if($alat == "Alat Muzik Cina") selected @endif>Alat Muzik Cina - Gu Zheng/ Erhu/ Yang Qing/ Dizi/ Ruan & Liu Qin</option>
+                <option value="Lain-lain" @if($alat == "Lain-lain") selected @endif>Lain-lain alat muzik: (sekiranya ada)</option>
+              </select>
+            </div>
+          </div>
+</div>
+
+
+
+
+
           
           <!-- <div class="row"> -->
             <!-- <div class="mb-1 col-md-6">
@@ -1087,11 +1068,14 @@
       </div>
 
       <div id="education" class="content" role="tabpanel" aria-labelledby="education-step-trigger">
+       
+        <form>
+        
+
         <div class="content-header">
           <h5 class="mb-0">PMR</h5>
           
         </div>
-        <form>
           <div class="row">
             <div class="mb-1 col-md-4">
               <label class="form-label" for="vertical-last-name">{!! __('locale.Year_pmr') !!}</label>
@@ -1278,7 +1262,7 @@
        </div>
           <br>
           <div class="content-header">
-            <h5 class="mb-0">STPM</h5>
+            <h5 class="mb-0">STPM/STAM</h5>
           </div>
           <div class="row">
             <div class="mb-1 col-md-4">
@@ -1360,6 +1344,46 @@
                 
               </div>
        </div>
+
+       <br>
+       <div class="content-header">
+          <h5 class="mb-0">Diploma/Vokasional</h5>
+          
+        </div>
+          <div class="row">
+            <div class="mb-1 col-md-4">
+              <label class="form-label" for="vertical-last-name">CGPA</label>
+              <input type="text" id="vertical-last-name" name="year_pmr" class="form-control year_pmr" value="{{$pmryear}}"/>
+            </div>
+            <div class="mb-1 col-md-6">
+            <label class="form-label" for="status_marriage">Muat Naik Transkrip</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="customFile" />
+                <label class="custom-file-label" for="customFile"></label>
+              </div>
+          </div>
+          </div>
+
+       <br>
+       <div class="content-header">
+          <h5 class="mb-0">Ijazah Sarjana Muda</h5>
+          
+        </div>
+          <div class="row">
+            <div class="mb-1 col-md-4">
+              <label class="form-label" for="vertical-last-name">CGPA</label>
+              <input type="text" id="vertical-last-name" name="year_pmr" class="form-control year_pmr" value="{{$pmryear}}"/>
+            </div>
+            <div class="mb-1 col-md-6">
+            <label class="form-label" for="status_marriage">Muat Naik Transkrip</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="customFile" />
+                <label class="custom-file-label" for="customFile"></label>
+              </div>
+          </div>
+          </div>
+
+          
        <br>
         </form>
         
@@ -1822,7 +1846,7 @@
       var valuepmr = parseInt(pmr);    
       var pmrr = valuepmr + 1;
 
-      $("#pmr").append('<input hidden type="text" name="index_pmr" value='+pmrr+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_pmr" name="subject_pmr"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_pmr" name="grade_pmr"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#pmr").append('<input hidden type="text" name="index_pmr" value='+pmrr+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_pmr" name="subject_pmr"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_pmr" name="grade_pmr"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
     
       
@@ -1833,7 +1857,7 @@
       var valuespm = parseInt(spm);    
       var spmm = valuespm + 1;
       
-      $("#spm").append('<input hidden type="text" name="index_spm" value='+spmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_spm" name="subject_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Bahasa Melayu">Bahasa Melayu</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option><option data-avatar="3-small.png" value="Sains">Sains</option><option data-avatar="3-small.png" value="Sejarah">Sejarah</option><option data-avatar="3-small.png" value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_spm" name="grade_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#spm").append('<input hidden type="text" name="index_spm" value='+spmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_spm" name="subject_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Bahasa Melayu">Bahasa Melayu</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option><option data-avatar="3-small.png" value="Sains">Sains</option><option data-avatar="3-small.png" value="Sejarah">Sejarah</option><option data-avatar="3-small.png" value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_spm" name="grade_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
      
       
@@ -1844,7 +1868,7 @@
       var valuestpm = parseInt(stpm);    
       var stpmm = valuestpm + 1;
 
-      $("#stpm").append('<input hidden type="text" name="index_stpm" value='+stpmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_stpm" name="subject_stpm"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_stpm" name="grade_stpm"><option selected disabled>Please Choose</option><option value="10">A+</option><option value="9">A</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
+      $("#stpm").append('<input hidden type="text" name="index_stpm" value='+stpmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_stpm" name="subject_stpm"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_stpm" name="grade_stpm"><option selected disabled>Please Choose</option><option value="10">A+</option><option value="9">A</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
       feather.replace()
      
       

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
+use App\Models\CenterInterview;
 
 class PusatTemudugaFEController extends Controller
 {
@@ -15,17 +16,19 @@ class PusatTemudugaFEController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
         ];
 
-        $request = Request::create('/api/getAllCenterInterview', 'GET');
-        $response = Route::dispatch($request);
+        // $request = Request::create('/api/getAllCenterInterview', 'GET');
+        // $response = Route::dispatch($request);
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['data'];
+        // $datas = $responseBody['data'];
 
-        return view('components.pusat-temuduga-table', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        $displayCenterInterview = CenterInterview::where('status', true)->get();
+
+        return view('components.pusat-temuduga-table', ['breadcrumbs' => $breadcrumbs])->with('datas', $displayCenterInterview);
 
     }
 
@@ -45,27 +48,46 @@ class PusatTemudugaFEController extends Controller
 
         // $data = $req->input();
 
-        $param = [
+        // $param = [
 
-            'code_center' => $req->code_center,
-            'name_center'=> $req->name_center,
-            'address_center_1' => $req->address_center_1,
-           'tel_no_center' => $req->tel_no_center,
-            'fax_no_center' => $req->fax_no_center,
-            'officer_center' => $req->officer_center,
-            'position_officer_center' => $req->position_officer_center,
-            'description_center' => $req->description_center,
+        //     'code_center' => $req->code_center,
+        //     'name_center'=> $req->name_center,
+        //     'address_center_1' => $req->address_center_1,
+        //    'tel_no_center' => $req->tel_no_center,
+        //     'fax_no_center' => $req->fax_no_center,
+        //     'officer_center' => $req->officer_center,
+        //     'position_officer_center' => $req->position_officer_center,
+        //     'description_center' => $req->description_center,
             
-        ];
+        // ];
 
         $breadcrumbs = [
             ['link' => "/", 'name' => "Home"], ['link' => "/pusattemuduga", 'name' => "Pusat Temuduga"], ['name' => "Butiran Temuduga"]
         ];
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/addCenterInterview', $param);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/addCenterInterview', $param);
+
+        $currentdt = date('Y-m-d H:i:s');
+        $user_name = auth()->User()->name;
+
+        $addNewCenter = new CenterInterview;
+        $addNewCenter->code_center = $req->code_center;
+        $addNewCenter->name_center = $req->name_center;
+        $addNewCenter->address_center_1 = $req->address_center_1;
+        $addNewCenter->tel_no_center = $req->tel_no_center;
+        $addNewCenter->fax_no_center = $req->fax_no_center;
+        $addNewCenter->officer_center = $req->officer_center;
+        $addNewCenter->position_officer_center = $req->position_officer_center;
+        $addNewCenter->description_center = $req->description_center;
+        $addNewCenter->status = true;
+        $addNewCenter->status_center = "TIDAK AKTIF";
+        $addNewCenter->created_by = $user_name;
+        $addNewCenter->updated_by = $user_name;
+        $addNewCenter->save();
+
 
         return redirect()->route('pusattemuduga');
 
@@ -79,16 +101,18 @@ class PusatTemudugaFEController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "/pusattemuduga", 'name' => "Pusat Temuduga"], ['name' => "Butiran Pusat Temuduga"]
         ];
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/getAllCenterInterviewybId', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/getAllCenterInterviewybId', [
+        //     'code' => $code,
+        // ]);
 
-        $datas = $request['data'];
+        $displayCenterInterviewybId = CenterInterview::where('center_id',$code)->first();
 
-        return view('components.pusat-temuduga-detail', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        // $datas = $request['data'];
+
+        return view('components.pusat-temuduga-detail', ['breadcrumbs' => $breadcrumbs])->with('datas', $displayCenterInterviewybId);
 
     }
 
@@ -97,26 +121,41 @@ class PusatTemudugaFEController extends Controller
 
     $code = decrypt($req->center_id);
 
-        $param = [
+        // $param = [
 
-            'code'=> $code,
-            'name_center'=> $req->name_center,
+        //     'code'=> $code,
+        //     'name_center'=> $req->name_center,
+        //     'address_center_1' => $req->address_center_1,
+        //    'tel_no_center' => $req->tel_no_center,
+        //     'fax_no_center' => $req->fax_no_center,
+        //     'officer_center' => $req->officer_center,
+        //     'position_officer_center' => $req->position_officer_center,
+        //     'description_center' => $req->description_center,
+            
+        // ];
+
+
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/updateCenterInterviewybId', $param);
+
+        $user_name = auth()->User()->name;
+        $currentdt = date('Y-m-d H:i:s');
+        $updateCenterInterviewybId = CenterInterview::where('center_id',$code)->update
+        ([
+
+            
+            'name_center' => $req->name_center,
             'address_center_1' => $req->address_center_1,
-           'tel_no_center' => $req->tel_no_center,
+            'tel_no_center' => $req->tel_no_center,
             'fax_no_center' => $req->fax_no_center,
             'officer_center' => $req->officer_center,
             'position_officer_center' => $req->position_officer_center,
             'description_center' => $req->description_center,
+            'updated_by' => $user_name,
             
-        ];
-
-
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/updateCenterInterviewybId', $param);
-
-       
+        ]);
 
         return redirect()->route('pusattemuduga');
 
@@ -128,16 +167,34 @@ class PusatTemudugaFEController extends Controller
         
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/deleteCenterInterviewybId', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/deleteCenterInterviewybId', [
+        //     'code' => $code,
+        // ]);
 
-        $datas = $request['status'];
+        // $datas = $request['status'];
 
-        return redirect()->route('pusattemuduga' , compact('datas'));
+        $user_name = auth()->User()->name;
+        $where = CenterInterview::where('center_id', $code)->first();
+
+        if ($where->status_center == "TIDAK AKTIF"){
+
+        $deleteCenterInterviewybId = CenterInterview::where('center_id', $code)->update([
+            'status' => false    
+    
+            ]);
+
+            $status ="success";
+
+        }
+        else{
+
+            $status ="fail";
+        }
+
+        return redirect()->route('pusattemuduga')->with('datas',  $deleteCenterInterviewybId);
 
     }
 }

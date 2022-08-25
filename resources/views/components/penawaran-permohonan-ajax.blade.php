@@ -160,12 +160,12 @@ opacity:.75;">
                         <th></th>
                         <th>No.KP</th>
                         <th>{!! __('locale.Name') !!}</th>
-                        <th>Jenis</th>
+                       
                         <th>Negeri</th>
                         <th>P1</th>
-                        <th>P2</th>
-                        <th>Sijil</th>
-                        <th>P.T'Duga</th>
+                       
+                        
+                        <th>Pusat Temuduga</th>
                         <th>Sesi</th>
                         <th>Cdgn1</th>
                         <th>Cdgn2</th>
@@ -193,7 +193,7 @@ opacity:.75;">
                         <td>{{$count++}}</td>
                         <td>{{$ditawarr['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($ditawarr['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$ditawarr['name']}}</td>
-                        <td>{{$ditawarr['study_mode']}}</td>
+                        
                         <td>{{$ditawarr['state']}}</td>
                         @foreach ($program as $Program)
                 
@@ -208,20 +208,13 @@ opacity:.75;">
                 <td>{{$Program['code']}}-N{{$ditawarr['kelulusan1']}}</td>
                 @endif
                 @else
-                @if ($ditawarr['kelulusan2'] == 'L' || $ditawarr['kelulusan2'] == 'G')
-                <td>{{$Program['code']}}-{{$ditawarr['kelulusan2']}}</td>
-                @else
-                <td>{{$Program['code']}}-N{{$ditawarr['kelulusan2']}}</td>
-                @endif
+               
 
                 @endif
                 @endif
 
                 @endforeach
-                @if ($too == 1)
-                <td></td>
-                @endif
-                <td>{{$ditawarr['cert_related_program']}}</td>
+               
                         <td>{{$ditawarr['code_center']}}</td>
                         <td>{{$ditawarr['number_session']}}</td>
 
@@ -318,12 +311,11 @@ opacity:.75;">
                         <th></th>
                         <th>No.KP</th>
                         <th>{!! __('locale.Name') !!}</th>
-                        <th>Jenis</th>
+                        
                         <th>Negeri</th>
                         <th>P1</th>
-                        <th>P2</th>
-                        <th>Sijil</th>
-                        <th>P.T'Duga</th>
+                        
+                        <th>Pusat Temuduga</th>
                         <th>Sesi</th>
                         <th>Cdgn1</th>
                         <th>Cdgn2</th>
@@ -350,7 +342,7 @@ opacity:.75;">
                         <td>{{$count++}}</td>
                         <td>{{$kivv['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($kivv['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$kivv['name']}}</td>
-                        <td>{{$kivv['study_mode']}}</td>
+                      
                         <td>{{$kivv['state']}}</td>
                         @foreach ($program as $Program)
                 
@@ -365,20 +357,13 @@ opacity:.75;">
                 <td>{{$Program['code']}}-N{{$kivv['kelulusan1']}}</td>
                 @endif
                 @else
-                @if ($kivv['kelulusan2'] == 'L' || $kivv['kelulusan2'] == 'G')
-                <td>{{$Program['code']}}-{{$kivv['kelulusan2']}}</td>
-                @else
-                <td>{{$Program['code']}}-N{{$kivv['kelulusan2']}}</td>
-                @endif
+              
 
                 @endif
                 @endif
 
                 @endforeach
-                @if ($too == 1)
-                <td></td>
-                @endif
-                <td>{{$kivv['cert_related_program']}}</td>
+               
                         <td>{{$kivv['code_center']}}</td>
                         <td>{{$kivv['number_session']}}</td>
 
@@ -470,12 +455,11 @@ opacity:.75;">
                         <th></th>
                         <th>No.KP</th>
                         <th>{!! __('locale.Name') !!}</th>
-                        <th>Jenis</th>
+                       
                         <th>Negeri</th>
                         <th>P1</th>
-                        <th>P2</th>
-                        <th>Sijil</th>
-                        <th>P.T'Duga</th>
+                       
+                        <th>Pusat Temuduga</th>
                         <th>Sesi</th>
                         <th>Cdgn1</th>
                         <th>Cdgn2</th>
@@ -503,7 +487,7 @@ opacity:.75;">
                         <td>{{$count++}}</td>
                         <td>{{$ditolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($ditolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$ditolakk['name']}}</td>
-                        <td>{{$ditolakk['study_mode']}}</td>
+                       
                         <td>{{$ditolakk['state']}}</td>
                        
                         @foreach ($program as $Program)
@@ -519,20 +503,14 @@ opacity:.75;">
                 <td>{{$Program['code']}}-N{{$ditolakk['kelulusan1']}}</td>
                 @endif
                 @else
-                @if ($ditolakk['kelulusan2'] == 'L' || $ditolakk['kelulusan2'] == 'G')
-                <td>{{$Program['code']}}-{{$ditolakk['kelulusan2']}}</td>
-                @else
-                <td>{{$Program['code']}}-N{{$ditolakk['kelulusan2']}}</td>
+              
                 @endif
 
                 @endif
-                @endif
+                
 
                 @endforeach
-                @if ($too == 1)
-                <td></td>
-                @endif
-                <td>{{$ditolakk['cert_related_program']}}</td>
+              
                         <td>{{$ditolakk['code_center']}}</td>
                         <td>{{$ditolakk['number_session']}}</td>
 
@@ -622,12 +600,12 @@ opacity:.75;">
                         <th></th>
                         <th>No.KP</th>
                         <th>{!! __('locale.Name') !!}</th>
-                        <th>Jenis</th>
+                       
                         <th>Negeri</th>
                         <th>P1</th>
-                        <th>P2</th>
-                        <th>Sijil</th>
-                        <th>P.T'Duga</th>
+                        
+                       
+                        <th>Pusat Temuduga</th>
                         <th>Sesi</th>
                         <th>Cdgn1</th>
                         <th>Cdgn2</th>
@@ -654,7 +632,7 @@ opacity:.75;">
                         <td>{{$count++}}</td>
                         <td>{{$hadirr['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($hadirr['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$hadirr['name']}}</td>
-                        <td>{{$hadirr['study_mode']}}</td>
+                        
                         <td>{{$hadirr['state']}}</td>
                        
                         @foreach ($program as $Program)
@@ -670,20 +648,14 @@ opacity:.75;">
                 <td>{{$Program['code']}}-N{{$hadirr['kelulusan1']}}</td>
                 @endif
                 @else
-                @if ($hadirr['kelulusan2'] == 'L' || $hadirr['kelulusan2'] == 'G')
-                <td>{{$Program['code']}}-{{$hadirr['kelulusan2']}}</td>
-                @else
-                <td>{{$Program['code']}}-N{{$hadirr['kelulusan2']}}</td>
-                @endif
+              
 
                 @endif
                 @endif
 
                 @endforeach
-                @if ($too == 1)
-                <td></td>
-                @endif
-                        <td>{{$hadirr['cert_related_program']}}</td>
+              
+                        
                         <td>{{$hadirr['code_center']}}</td>
                         <td>{{$hadirr['number_session']}}</td>
 

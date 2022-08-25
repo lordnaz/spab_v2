@@ -228,6 +228,15 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     Route::post('displayajax', [StaterkitController::class, 'displayajax'])->name('displayajax');
     Route::get('download_tawaran/{code}', [StaterkitController::class, 'download_tawaran'])->name('download_tawaran');
+    Route::get('interview_pdf', [StaterkitController::class, 'interview_pdf'])->name('interview_pdf');
+    Route::get('downloadInterview_PDF', [StaterkitController::class, 'downloadInterview_PDF'])->name('downloadInterview_PDF');
+
+    //subjek
+    Route::get('subjek_table', [ProgrammeController::class, 'display_subjek'])->name('subjek_table');
+    Route::post('add_new_subjek', [ProgrammeController::class, 'add_new_subjek'])->name('add_new_subjek');
+    Route::get('tolak_subjek/{code}', [ProgrammeController::class, 'tolak_subjek'])->name('tolak_subjek');
+
+
 });
 
 

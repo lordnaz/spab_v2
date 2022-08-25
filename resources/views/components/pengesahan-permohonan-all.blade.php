@@ -49,9 +49,7 @@ $roles = auth()->user()->role;
           <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="select2 form-select" id="ajax">
             <!-- <select class="select2 form-select" id="program_list" name="program_list"> -->
                 <option value="{{ route('display_pengesahan_permohonan') }}" selected>Semua</option>
-                @foreach ($datas2 as $datas22)
-                <option data-avatar="1-small.png" value="{{ route('display_pengesahan_permohonan') }}">{{$datas22['code']}} - {{$datas22['program']}}</option>
-               @endforeach
+               
             </select>
           </div>
   

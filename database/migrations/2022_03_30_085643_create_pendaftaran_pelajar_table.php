@@ -22,6 +22,7 @@ class CreatePendaftaranPelajarTable extends Migration
             $table->string('no_resit')->nullable();
             $table->string('total_payment')->nullable();
             $table->string('payment_type')->nullable();
+            $table->integer('no_giliran')->nullable();
             $table->string('bank')->nullable();
             $table->string('surat_tawaran', 300)->nullable();
             $table->string('payment_reference')->nullable();

@@ -33,6 +33,7 @@ class CreateApplicantDetailsSubTable extends Migration
             $table->string('guardian_address_3')->nullable();
             $table->string('guardian_email')->nullable();
             $table->string('guardian_income')->nullable();
+            $table->string('pendapatan_isi_rumah')->nullable();
             $table->string('relationship')->nullable();
             $table->string('guardian_occupation')->nullable();
             $table->string('number_of_dependents')->nullable();

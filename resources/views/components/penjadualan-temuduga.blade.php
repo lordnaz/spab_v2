@@ -54,6 +54,12 @@
                             </div>
 
 
+                            <div class="col-sm-4 pt-2">
+                <a href="{{ route('downloadInterview_PDF') }}" class="btn btn-primary btn-page-block">
+                  <i data-feather="download" class="me-25"></i>
+                  <span>Senarai Temuduga</span>
+                </a>
+              </div>
 
 
                         </div>
@@ -70,7 +76,7 @@
                                 <th>No.KP</th>
                                 <th>Nama</th>
                                 <th>P1</th>
-                                <th>P2</th>
+                                
                                 <th>Sesi</th>
                                 <th>Tarikh</th>
                                 <th>Masa Mula</th>
@@ -106,19 +112,13 @@
                 <td>{{$Program['code']}}-N{{$displayTablee['kelulusan1']}}</td>
                 @endif
                 @else
-                @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
-                <td>{{$Program['code']}}-{{$displayTablee['kelulusan2']}}</td>
-                @else
-                <td>{{$Program['code']}}-N{{$displayTablee['kelulusan2']}}</td>
-                @endif
+               
 
                 @endif
                 @endif
 
                 @endforeach
-                @if ($too == 1)
-                <td></td>
-                @endif
+              
                   <td>{{$displayTablee['number_session']}}</td>
                   <td>{{$displayTablee['TarikhHadir'] ? Carbon\Carbon::parse($displayTablee['TarikhHadir'])->format('Y-m-d') : ' '}}
             

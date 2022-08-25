@@ -14,6 +14,18 @@
             @csrf  
             <div class="row">
 
+            
+            <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="code">MQA</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="mqa" class="form-control" name="mqa" placeholder="" required/>
+                  </div>
+                </div>
+              </div>
+              
               <div class="col-12">
                 <div class="mb-1 row">
                   <div class="col-sm-2">
@@ -83,7 +95,7 @@
                     <label class="col-form-label" for="field">{!! __('locale.Field') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="field" class="form-control" name="field" placeholder="" required/>
+                    <input type="text" id="field" class="form-control" name="field" placeholder="" />
                   </div>
                 </div>
               </div>
@@ -94,7 +106,7 @@
                     <label class="col-form-label" for="subfield">{!! __('locale.Sub-Field') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="subfield" class="form-control" name="sub_field" placeholder="" required/>
+                    <input type="text" id="subfield" class="form-control" name="sub_field" placeholder="" />
                   </div>
                 </div>
               </div>

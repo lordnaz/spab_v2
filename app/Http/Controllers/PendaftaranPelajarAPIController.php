@@ -10,6 +10,7 @@ use App\Models\StatusPermohonan;
 use App\Models\PendaftaranPelajar;
 use Illuminate\Support\Facades\Session;
 use App\Models\Audit;
+use Carbon\Carbon;
 
 use App\Exceptions\TemplateProcessing as TemplateProcessing;
 
@@ -18,6 +19,12 @@ class PendaftaranPelajarAPIController extends Controller
     //
     public function applicantinfo(Request $req){
 
+        $currentdt = date('Y-m-d H:i:s');
+        $currentDateTime = Carbon::parse($currentdt)->addYears(1)->format('Y');
+        $year = substr($currentDateTime, -2);
+       
+
+       
         $displayapplicantinfo = UserDetail::join('all_status_permohonan','all_status_permohonan.nric', '=','user_details.nric')->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=','user_details.nric')->join('penawaran_permohonan', 'penawaran_permohonan.nric', '=', 'user_details.nric')
         ->join('program', 'program.program_id', '=', 'penawaran_permohonan.program_tawar')
         ->where('user_details.nric', $req->nric)->first();
@@ -41,6 +48,62 @@ class PendaftaranPelajarAPIController extends Controller
         $random_number = rand(10000000,99999999);
         $job_id = $random_string.$random_number;
       
+        //kiraan nombor matrik depan
+        $todayyear = date('Y-m-d H:i:s');
+        $nextDateTime = Carbon::parse($todayyear)->addYears(1)->format('Y');
+        $nowDateTime = Carbon::parse($todayyear)->format('Y');
+        $nextyear = substr($nextDateTime, -2);
+        $thisyear =substr($nowDateTime, -2);
+
+       
+          //kiraan nombor matrik tengah
+        if($displayapplicantinfo->pengajian == "Diploma"){
+
+            $no_program = '1';
+        }
+        else if($displayapplicantinfo->pengajian == "Sarjana Muda"){
+
+            $no_program = '3';
+
+        }else{
+
+            $no_program = '2';
+        }
+
+
+          //kiraan nombor matrik hujung
+          $nomborpendaftaran = PendaftaranPelajar::join('all_status_permohonan','all_status_permohonan.nric', '=','pendaftaran_pelajar.nric')->where('all_status_permohonan.pengajian',$displayapplicantinfo->pengajian)
+          ->orderBy('pendaftaran_pelajar.no_giliran', 'asc')->first();
+
+          if($nomborpendaftaran == NULL){
+
+            $no_giliran = 1 ;
+
+          }
+          else{
+
+            $no_giliran = $nomborpendaftaran->no_giliran+1;
+
+          }
+
+          if($no_giliran > 0 && $no_giliran < 10){
+
+            $no_hujung = '00'.$no_giliran;
+
+          }
+          else if($no_giliran > 9 && $no_giliran < 100){
+
+            $no_hujung = '0'.$no_giliran;
+
+          }
+          else{
+
+            $no_hujung = $no_giliran;
+
+          }
+
+          $final_matrik = $thisyear.$nextyear.$no_program.$no_hujung;
+
 
         $display = Session::get('display');
         $usersession = auth()->user()->id;
@@ -66,18 +129,7 @@ class PendaftaranPelajarAPIController extends Controller
                     ]);
 
 
-        if($save_draft){
-            $type = 'surat_permohonan';
-
-            $nric = $req->nric;
-            $address1 = $displayapplicantinfo->address_1;
-            $date_created = date('Y-m-d H:i:s');
-            $pengajian = $displayapplicantinfo->pengajian;
-            $program = $displayapplicantinfo->program;
-            $fullname = $displayapplicantinfo->name;
-
-            $create_surat_permohonan = $this->TemplateProcessing($type, $nric, $address1, $date_created, $pengajian, $program, $fullname);
-        }
+       
    
 
             $wujud = PendaftaranPelajar::where('nric', $req->nric)->where('no_matriks',NULL)->exists();
@@ -89,8 +141,8 @@ class PendaftaranPelajarAPIController extends Controller
                 $exists = PendaftaranPelajar::where('nric', $req->nric)
                 ->update([
     
-                    'no_matriks' => $job_id,
-                    
+                    'no_matriks' => $final_matrik,
+                    'no_giliran' => (int)$no_giliran,
         
                 ]);
             }
@@ -111,7 +163,7 @@ class PendaftaranPelajarAPIController extends Controller
         ];
 
 
-        return view('components.pendaftaran-pelajar-detail')->with('data',$displayapplicantinfo)->with('dataa',$program);
+        return redirect()->route('pendaftaranpelajar');
     }
 
     public function cancelstatusapplicant($code){
@@ -156,59 +208,5 @@ class PendaftaranPelajarAPIController extends Controller
     }
 
 
-    function TemplateProcessing($type, $nric, $address1, $date_created, $pengajian, $program, $fullname)
-    {
-
-        switch ($type) {
-            case 'surat_permohonan':
-
-                $templatePath = TemplateProcessing::TemplateProcessingLetter($type);
-                
-                $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($templatePath);
-
-                $templateProcessor->setValue('nric', $nric);
-                $templateProcessor->setValue('address', $address1);
-                $templateProcessor->setValue('date_created', $date_created);
-                $templateProcessor->setValue('pengajian', $pengajian);
-                $templateProcessor->setValue('program', $program);
-                $templateProcessor->setValue('full_name', $fullname);
-
-                $timestamp = date('YmdHis');
-
-                $filename = 'template_created/Surat_Permohonan_'.$timestamp.'.docx';
-
-
-                        
-                
-                $exists = PendaftaranPelajar::where('nric', $nric)
-                ->update([
-    
-                    'surat_tawaran' => $filename,
-                    
-        
-                ]);
-
-                // code to insert filename for application reference
-
-                // end of
-
-                $pathToSave = storage_path($filename);
-
-                try {
-                    $templateProcessor->saveAs($pathToSave); 
-                } catch (Exception $e) {
-                }
-
-                return response()->download(storage_path($filename)); 
-
-                break;
-            
-            default:
-                # code...
-                break;
-        }
-
-    }
-
-    
+     
 }

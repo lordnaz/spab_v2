@@ -25,31 +25,35 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header border-bottom">
-          <h4 class="card-title">{!! __('locale.Programme Setting') !!}</h4>
+          <h4 class="card-title">Tetapan Subjek</h4>
         </div>
         
         <!--Search Form -->
+        <form action="/add_new_subjek" method="post" enctype="multipart/form-data" accept-charset='UTF-8' class="form form-horizontal">
+            @csrf  
+        <div class="col-12">
         <div class="card-body mt-2">
           <div class="row g-1 md-1">
+          <div class="col-sm-2">     
+          <input type="text" id="nama_subjek" class="form-control" name="nama_subjek" placeholder="Nama Subjek" required/>
+          </div>
             <div class="col-md-4">
-              <a href="{{ route('add_new') }}" class="btn btn-success"> 
-                <i data-feather="plus-circle" class="me-25"></i>
-                <span>{!! __('locale.New Program') !!}</span>
-              </a>
+            <button type="submit" class="btn btn-success">
+                  <i data-feather="plus-circle" class="me-25"></i>
+                  <span>Tambah Subjek</span>
+                </button>
             </div>
           </div>
         </div>
+        </div>
+        </form>
         <!-- <hr class="my-0" /> -->
         <div class="card-datatable">
           <table class="dt-advanced-search-2 table">
             <thead>
               <tr class="text-center">
                 <th></th>
-                <th>{!! __('locale.Code') !!}</th>
-                <th>{!! __('locale.Name') !!}</th>
-                <th>MQA</th>
-                <th>{!! __('locale.Type') !!}</th>
-                <th>{!! __('locale.Faculty') !!}</th>
+                <th>{!! __('locale.Name') !!}</th> 
                 <th>{!! __('locale.Action') !!}</th>
               </tr>
 
@@ -59,14 +63,11 @@
                 $count = 1;
               @endphp
 
-              @foreach ($datas as $data)
+              @foreach ($display as $data)
                 <tr>
                   <td>{{$count++}}</td>
-                  <td>{{$data['code']}}</td>
-                  <td>{{$data['program']}}</td>
-                  <td>{{$data['mqa']}}</td>
-                  <td>{{$data['type']}}</td>
-                  <td>{{$data['faculty']}}</td>
+                  
+                  <td>{{$data['nama_subjek']}}</td>
                   <td>
 
                   <div class="btn-group">
@@ -80,15 +81,11 @@
                       <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <a class="dropdown-item" href="{{ route('details_program', Crypt::encrypt($data['code'])) }}">Butiran</a>
-                      <a class="dropdown-item" href="{{ route('delete_details_program', $data['program_id']) }}">Padam</a>
+                      
+                      <a class="dropdown-item" href="{{ route('tolak_subjek', Crypt::encrypt($data['subjekp_id'])) }}">Padam</a>
 
                     </div>
                   </div>
-                    <!-- <a href="{{ route('details_program', Crypt::encrypt($data['code'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
-                    <a href="{{ route('delete_details_program', $data['program_id']) }}" class="btn-sm btn-danger deleteProgram"> 
-                      <i data-feather='external-link'></i>{!! __('locale.Delete') !!}
-                    </a> -->
                     
                   </td>
                  

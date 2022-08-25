@@ -146,12 +146,12 @@ opacity:.75;">
                         <th></th>
                         <th>No.KP</th>
                         <th>{!! __('locale.Name') !!}</th>
-                        <th>Jenis</th>
+                        
                         <th>Negeri</th>
                         <th>P1</th>
-                        <th>P2</th>
-                        <th>Sijil</th>
-                        <th>P.T'Duga</th>
+                        
+                        
+                        <th>Pusat Temuduga</th>
                         <th>T.Proses</th>
                         <th>{!! __('locale.Action') !!}</th>
                       </tr>
@@ -173,7 +173,7 @@ opacity:.75;">
                   <td>{{$count++}}</td>
                   <td>{{$displayTemudugaa['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTemudugaa['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTemudugaa['name']}}</td>
-                  <td>{{$displayTemudugaa['study_mode']}}</td>
+                  
                   <td>{{$displayTemudugaa['state']}}</td>
                   
                   @foreach ($tolak as $Tolak)
@@ -189,20 +189,14 @@ opacity:.75;">
                 <td>{{$Tolak['program']}}-N{{$displayTemudugaa['kelulusan1']}}</td>
                 @endif
                 @else
-                @if ($displayTemudugaa['kelulusan2'] == 'L' || $displayTemudugaa['kelulusan2'] == 'G')
-                <td>{{$Tolak['program']}}-{{$displayTemudugaa['kelulusan2']}}</td>
-                @else
-                <td>{{$Tolak['program']}}-N{{$displayTemudugaa['kelulusan2']}}</td>
-                @endif
+               
 
                 @endif
                 @endif
 
                 @endforeach
-                @if ($too == 1)
-                <td></td>
-                @endif
-                  <td>{{$displayTemudugaa['cert_related_program']}}</td>
+               
+                  
                   <td>{{$displayTemudugaa['code_center']}}</td>
                   <td>{{$displayTemudugaa['TarikhProses']}}</td>
                   <td>
@@ -255,11 +249,10 @@ opacity:.75;">
                         <th></th>
                         <th>No.KP</th>
                         <th>{!! __('locale.Name') !!}</th>
-                        <th>Jenis</th>
+                        
                         <th>Negeri</th>
                         <th>P1</th>
-                        <th>P2</th>
-                        <th>Sijil</th>
+                        
                         <th>P.T'Duga</th>
                         <th>T.Proses</th>
                         <th>{!! __('locale.Action') !!}</th>
@@ -280,7 +273,7 @@ opacity:.75;">
                   <td></td>
                   <td>{{$displayTolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTolakk['name']}}</td>
-                  <td>{{$displayTolakk['study_mode']}}</td>
+                  
                   <td>{{$displayTolakk['state']}}</td>
                  
                   @foreach ($tolak as $Tolak)
@@ -296,20 +289,14 @@ opacity:.75;">
                   <td>{{$Tolak['program']}}-N{{$displayTolakk['kelulusan1']}}</td>
                   @endif
                   @else
-                  @if ($displayTolakk['kelulusan2'] == 'L' || $displayTolakk['kelulusan2'] == 'G')
-                  <td>{{$Tolak['program']}}-{{$displayTolakk['kelulusan2']}}</td>
-                  @else
-                  <td>{{$Tolak['program']}}-N{{$displayTolakk['kelulusan2']}}</td>
-                  @endif
+                
 
                   @endif
                   @endif
 
                   @endforeach
-                  @if ($to == 1)
-                  <td></td>
-                  @endif
-                  <td>{{$displayTolakk['cert_related_program']}}</td>
+                
+                  
                   <td></td>
                   <td>{{$displayTolakk['TarikhProses']}}</td>
                   <td>
@@ -360,11 +347,11 @@ opacity:.75;">
                         <th></th>
                         <th>No.KP</th>
                         <th>{!! __('locale.Name') !!}</th>
-                        <th>Jenis</th>
+                        
                         <th>Negeri</th>
                         <th>P1</th>
-                        <th>P2</th>
-                        <th>Sijil</th>
+                       
+                       
                         <th>P.T'Duga</th>
                         <th>T.Proses</th>
                         
@@ -382,11 +369,11 @@ opacity:.75;">
     <td></td>
     <td>{{$displayBelumProsess['nric']}}</td>
     <td>{{$displayBelumProsess['name']}}</td>
-    <td>{{$displayBelumProsess['study_mode']}}</td>
+    
     <td>{{$displayBelumProsess['state']}}</td>
     <td></td>
-    <td></td>            
-    <td>{{$displayBelumProsess['cert_related_program']}}</td>
+              
+    
     <td></td>
     <td></td>
   

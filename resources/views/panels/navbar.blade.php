@@ -5,6 +5,7 @@ $roles = auth()->user()->role;
 @endphp
 
 @if ($configData['mainLayoutType'] === 'horizontal' && isset($configData['mainLayoutType']))
+
   <nav
     class="header-navbar navbar-expand-lg navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center {{ $configData['navbarColor'] }}"
     data-nav="brand-center">
@@ -113,10 +114,10 @@ $roles = auth()->user()->role;
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
         <h6 class="dropdown-header">{!! __('locale.Manage Profile') !!}</h6>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" 
+        <!-- <a class="dropdown-item" 
           href="{{ Route::has('myspace') ? route('myspace') : 'javascript:void(0)' }}">
           <i class="me-50" data-feather="dollar-sign"></i> {!! __('locale.Profile') !!}
-        </a>
+        </a> -->
         <a class="dropdown-item"
           href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0)' }}">
           <i class="me-50" data-feather="user"></i> {!! __('locale.Account Settings') !!}

@@ -75,6 +75,7 @@ $roles = auth()->user()->role;
 </div> -->
 <!--/ Kick start -->
 <!-- {{$test}} -->
+
 @if($roles == 'admin')
 
   <!-- Miscellaneous Charts -->
@@ -432,7 +433,7 @@ $roles = auth()->user()->role;
               <span class="timeline-point timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Pendaftaran Baharu</h6>
+                  <h6>Permohonan Baharu</h6>
                   <span class="timeline-event-time me-1">{{$status['submit_permohonan'] ? Carbon\Carbon::parse($status['submit_permohonan'])->format('d/m/y'): ''}}</span>
                 </div>
                 <p>Dihantar pada {{$status['submit_permohonan'] ? Carbon\Carbon::parse($status['submit_permohonan'])->format('h:i A'): ''}}</p>
@@ -467,7 +468,7 @@ $roles = auth()->user()->role;
               <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Process Permohonan Terima Temuduga</h6>
+                  <h6>Terima Temuduga</h6>
                   <span class="timeline-event-time me-1">{{$status['TarikhProses'] ? Carbon\Carbon::parse($status['TarikhProses'])->format('d/m/y'): ''}}</span>
                 </div>
                 <p>Diterima pada {{$status['TarikhProses'] ? Carbon\Carbon::parse($status['TarikhProses'])->format('h:i A'): ''}}</p> 
@@ -478,9 +479,10 @@ $roles = auth()->user()->role;
               <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Process Permohonan Ditolak</h6>
+                  <h6>Permohonan Ditolak</h6>
                   <span class="timeline-event-time me-1">{{$status['updated_date_offer'] ? Carbon\Carbon::parse($status['updated_date_offer'])->format('d/m/y'): ''}}</span>
                 </div>
+                <p>Tidak memenuhi syarat kelayakan</p>
                 <p>Ditolak pada {{$status['updated_date_offer'] ? Carbon\Carbon::parse($status['updated_date_offer'])->format('h:i A'): ''}}</p>
               </div>
             </li>
@@ -490,10 +492,12 @@ $roles = auth()->user()->role;
               <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Temuduga Berjalan</h6>
+                  <h6>Maklumat Temuduga</h6>
                   <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($iv['updated_at'])->format('d/m/y')}}</span>    
                 </div>
-                <p>Maklumat Temuduga </p>
+                <p><strong>Maklumat Temuduga</strong> </p>
+                <p>Pusat Temuduga : {{$iv['code_center']}}-{{$iv['name_center']}} </p>
+                <p>Sesi : {{$iv['number_session']}} </p>
                   <p>Tarikh : {{$iv['TarikhHadir'] ? Carbon\Carbon::parse($iv['TarikhHadir'])->format('d/m/y') : ' '}} </p>
                   <p>Masa : {{$iv['MasaFrom'] ? Carbon\Carbon::parse($iv['MasaFrom'])->format('h:i A') : ' '}} - {{$iv['MasaTo'] ? Carbon\Carbon::parse($iv['MasaTo'])->format('h:i A') : ' '}} </p>
                   @if ($status['status_temuduga'] == 'Hadir' || $status['status_temuduga'] == 'Ditawarkan' || $status['status_temuduga'] == 'Kiv' || $status['status_temuduga'] == 'Ditolak')
@@ -512,11 +516,13 @@ $roles = auth()->user()->role;
                   <h6>Tawaran Diterima</h6>
                   <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($status['TarikhTawar'])->format('d/m/y')}}</span>
                 </div>
-               
+                <p>Terima pada {{Carbon\Carbon::parse($status['TarikhTawar'])->format('h:i A')}}</p>
                 <p class="mb-0">Surat Tawaran</p>
                 <div class="d-flex flex-row align-items-center mt-50">
                   <img class="me-1" src="{{asset('images/icons/pdf.png')}}" alt="data.json" height="25" />
-                  <h6 class="mb-0">Surat_Tawaram.pdf</h6>
+                  <a href="{{ route('download_tawaran', Crypt::encrypt($status['surat_tawaran'])) }}">
+                  <h6 class="mb-0">Surat_Tawaran.pdf</h6>
+                  </a>
                 </div>
               </div>
             </li>
@@ -528,7 +534,7 @@ $roles = auth()->user()->role;
                   <h6>Dalam Pemerhatian (KIV)</h6>
                   <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($status['TarikhTawar'])->format('d/m/y')}}</span>
                 </div>
-               
+                <p>KIV pada {{Carbon\Carbon::parse($status['TarikhKIV'])->format('h:i A')}}</p>
               </div>
             </li>
             @elseif ($status['status_offer'] == 'Ditolak')
@@ -536,10 +542,10 @@ $roles = auth()->user()->role;
               <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Tawaran Ditolak</h6>
+                  <h6>Gagal Temuduga</h6>
                   <span class="timeline-event-time me-1">{{Carbon\Carbon::parse($status['TarikhTawar'])->format('d/m/y')}}</span>
                 </div>
-               
+                <p>Ditolak pada {{Carbon\Carbon::parse($status['TarikhTolak'])->format('h:i A')}}</p>
               </div>
             </li>
             @endif
@@ -571,18 +577,12 @@ $roles = auth()->user()->role;
               <span class="timeline-point timeline-point-success timeline-point-indicator"></span>
               <div class="timeline-event">
                 <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Calon Didaftar Sebagai Pelajar</h6>
+                  <h6>Pendaftaran Pelajar</h6>
                   <span class="timeline-event-time me-1">{{ Carbon\Carbon::parse($status['tarikh_pendaftaran'])->format('d/m/y')}}</span>
                 </div>
                 
                 <p>Didaftar pada {{ Carbon\Carbon::parse($status['tarikh_pendaftaran'])->format('h:i A')}} </p>
-                <p class="mb-0">Surat Tawaran</p>
-                <div class="d-flex flex-row align-items-center mt-50">
-                  <img class="me-1" src="{{asset('images/icons/pdf.png')}}" alt="data.json" height="25" />
-                  <a href="{{ route('download_tawaran', Crypt::encrypt($status['surat_tawaran'])) }}">
-                  <h6 class="mb-0">Surat_Tawaran.pdf</h6>
-                  </a>
-                </div>
+                
               </div>
             </li>
             @endif

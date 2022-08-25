@@ -14,6 +14,19 @@
       "slug": "home"
     },
     {
+      "name": "Admin_Subjek",
+      "icon": "file-text",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "subjek_table",
+          "name": "subjek Setting",
+          "icon": "circle",
+          "slug": "subjek_table"
+        }
+      ]
+    },
+    {
       "name": "Admin_Programme",
       "icon": "file-text",
       "slug": "",
@@ -41,7 +54,7 @@
           "url": "paneltemuduga",
           "name": "Interview Panel",
           "icon": "circle",
-          "slug": "program"
+          "slug": "paneltemuduga"
         },
         {
           "url": "pusattemuduga",
@@ -53,19 +66,19 @@
           "url": "PusatTemudugaTable",
           "name": "Bukak Temuduga",
           "icon": "circle",
-          "slug": "program"
+          "slug": "PusatTemudugaTable"
         },
         {
           "url": "PenapisanTemuduga",
           "name": "Penapisan Temuduga",
           "icon": "circle",
-          "slug": "program"
+          "slug": "PenapisanTemuduga"
         },
         {
           "url": "penjadualan_temuduga",
           "name": "Penjadualan Temuduga",
           "icon": "circle",
-          "slug": "program"
+          "slug": "penjadualan_temuduga"
         },
         {
           "url": "keputusan_temuduga",

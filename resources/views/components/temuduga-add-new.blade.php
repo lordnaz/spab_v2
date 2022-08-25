@@ -20,7 +20,7 @@
                     <label class="col-form-label" for="code">{!! __('locale.No.KP') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="code" class="form-control" name="no_ic" placeholder="" />
+                    <input type="text" id="code" class="form-control" name="no_ic" placeholder="" required/>
                   </div>
                 </div>
               </div>
@@ -31,7 +31,7 @@
                     <label class="col-form-label" for="name">{!! __('locale.Name') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="name" class="form-control" name="panel_name" placeholder="" />
+                    <input type="text" id="name" class="form-control" name="panel_name" placeholder="" required/>
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                     <label class="col-form-label" for="name">{!! __('locale.Position') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="name" class="form-control" name="panel_position" placeholder="" />
+                    <input type="text" id="name" class="form-control" name="panel_position" placeholder="" required/>
                   </div>
                 </div>
               </div>

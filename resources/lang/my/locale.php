@@ -509,7 +509,10 @@ return [
     "Senarai Pelajar" => "Senarai Pelajar",
     "Sejarah Pelajar" => "Sejarah Pelajar",
     "Admin_Audit_Trail" => "Audit Trail",
-    "Audit Trail" => "Audit Trail"
+    "Audit Trail" => "Audit Trail",
+    "Admin_Subjek" => "Subjek",
+    "subjek Setting" => "Tetapan Subjek"
+    
 
 
 

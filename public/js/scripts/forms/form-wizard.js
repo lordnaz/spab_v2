@@ -189,6 +189,8 @@ $("#pengajian").on('change', function (bp) {
 
 }); 
 
+
+//asasi sepenuh
 if($('.pengajian').val() == 'Asasi'){
 
 if($('.asasi_type_program_applied').val() == 'Sepenuh Masa'){
@@ -203,16 +205,128 @@ else{
 
 }
 
-$("#asasi_type_program_applied").on('change', function (bp) {
+
+
+
+//asasi penuh faculty
+if($('.pengajian').val() == 'Asasi'){
 
   if($('.asasi_type_program_applied').val() == 'Sepenuh Masa'){
-    $("#asasi_sepenuh").fadeIn(500).show()
+  var value = $('.asasi_program_one').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
   }else{
-    $("#asasi_sepenuh").hide()   
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+ 
+}
+ 
+  $("#asasi_program_one").on('change', function (bp) {
+  
+    var value = $('.asasi_program_one').val().split('|')
+
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});  
+    }
+  
+  }); 
+
+
+
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Asasi'){
+      
+      var value = $('.asasi_program_one').val().split('|')
+      
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"});   
+      }
+      }
+      else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+  }); 
+  
+$("#asasi_type_program_applied").on('change', function (bp) {
+  //asasi
+ 
+  $("#asasi_sepenuhf").css({display: "none"}); 
+  
+    if($('.asasi_type_program_applied').val() == 'Sepenuh Masa'){
+    var value = $('.asasi_program_one').val().split('|') 
+    $("#asasi_sepenuh").fadeIn(500).show()
+    $("#asasi_separuh").hide() 
+
+    }  
+    else{
+      $("#asasi_sepenuh").hide() 
+      $("#asasi_separuh").fadeIn(500).show()
+      var value = $('.asasi_program_one2').val().split('|') 
+    }
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+    
+  
+  }); 
+
+  //asasi SEPARUH FACULTY
+
+if($('.pengajian').val() == 'Asasi'){
+
+  if($('.asasi_type_program_applied').val() == 'Separuh Masa'){
+  var value = $('.asasi_program_one2').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+  
+}
+
+$("#asasi_program_one2").on('change', function (bp) {
+  
+  var value = $('.asasi_program_one2').val().split('|')
+
+  if( value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").fadeIn(500).show()
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});  
   }
 
 }); 
 
+
+$("#pengajian").on('change', function (bp) {
+
+  if($('.pengajian').val() == 'Asasi'){
+    
+    var value = $('.asasi_program_one2').val().split('|')
+    
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});   
+    }
+    }
+    else{
+      $("#asasi_sepenuhf").css({display: "none"}); 
+    }
+  
+}); 
+  
 //asasi separuh
 if($('.pengajian').val() == 'Asasi'){
 
@@ -228,15 +342,9 @@ else{
 
 }
 
-$("#asasi_type_program_applied").on('change', function (bp) {
 
-  if($('.asasi_type_program_applied').val() == 'Separuh Masa'){
-    $("#asasi_separuh").fadeIn(500).show()   
-  }else{
-    $("#asasi_separuh").hide()   
-  }
 
-}); 
+
 
 //DIPLOMA
 //diploma sepenuh
@@ -251,14 +359,127 @@ if($('.diploma_type_program_applied').val() == 'Sepenuh Masa'){
   $("#diploma_sepenuh").hide();
 }
 
-$("#diploma_type_program_applied").on('change', function (bp) {
+
+
+//diploma penuh faculty
+if($('.pengajian').val() == 'Diploma'){
 
   if($('.diploma_type_program_applied').val() == 'Sepenuh Masa'){
-    $("#diploma_sepenuh").fadeIn(500).show()
+  var value = $('.dip_program_one').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
   }else{
-    $("#diploma_sepenuh").hide()   
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+ 
+}
+ 
+  $("#dip_program_one").on('change', function (bp) {
+  
+    var value = $('.dip_program_one').val().split('|')
+
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});  
+    }
+  
+  }); 
+
+
+
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Diploma'){
+      
+      var value = $('.dip_program_one').val().split('|')
+      
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"});   
+      }
+      }
+      else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+  }); 
+  
+$("#diploma_type_program_applied").on('change', function (bp) {
+  //asasi
+ 
+  $("#asasi_sepenuhf").css({display: "none"}); 
+  
+    if($('.diploma_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#diploma_sepenuh").fadeIn(500).show()
+    $("#diploma_separuh").hide() 
+    var value = $('.dip_program_one').val().split('|'); 
+   
+    
+
+    }  
+    else{
+      $("#diploma_sepenuh").hide() 
+      $("#diploma_separuh").fadeIn(500).show()
+      var value = $('.dip_program_one2').val().split('|'); 
+    }
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+    
+  
+  }); 
+
+  //diploma SEPARUH FACULTY
+
+if($('.pengajian').val() == 'Diploma'){
+
+  if($('.diploma_type_program_applied').val() == 'Separuh Masa'){
+  var value = $('.dip_program_one2').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+  
+}
+
+$("#dip_program_one2").on('change', function (bp) {
+  
+  var value = $('.dip_program_one2').val().split('|')
+
+  if( value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").fadeIn(500).show()
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});  
   }
 
+}); 
+
+
+$("#pengajian").on('change', function (bp) {
+
+  if($('.pengajian').val() == 'Diploma'){
+    
+    var value = $('.dip_program_one2').val().split('|')
+    
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});   
+    }
+    }
+    else{
+      $("#asasi_sepenuhf").css({display: "none"}); 
+    }
+  
 }); 
 
 //diploma separuh
@@ -272,15 +493,8 @@ if($('.diploma_type_program_applied').val() == 'Separuh Masa'){
   $("#diploma_separuh").hide();
 }
 
-$("#diploma_type_program_applied").on('change', function (bp) {
 
-  if($('.diploma_type_program_applied').val() == 'Separuh Masa'){
-    $("#diploma_separuh").fadeIn(500).show()   
-  }else{
-    $("#diploma_separuh").hide()   
-  }
 
-}); 
 
 //SARJANA MUDA
 //sarjana muda sepenuh
@@ -294,16 +508,128 @@ if($('.muda_type_program_applied').val() == 'Sepenuh Masa'){
   $("#muda_sepenuh").hide();
 }
 
-
-$("#muda_type_program_applied").on('change', function (bp) {
+//muda penuh faculty
+if($('.pengajian').val() == 'Diploma'){
 
   if($('.muda_type_program_applied').val() == 'Sepenuh Masa'){
-    $("#muda_sepenuh").fadeIn(500).show()
+  var value = $('.muda_program_one').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
   }else{
-    $("#muda_sepenuh").hide()   
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+ 
+}
+ 
+  $("#muda_program_one").on('change', function (bp) {
+  
+    var value = $('.muda_program_one').val().split('|')
+
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});  
+    }
+  
+  }); 
+
+
+
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Sarjana Muda'){
+      
+      var value = $('.muda_program_one').val().split('|')
+      
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"});   
+      }
+      }
+      else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+  }); 
+  
+$("#muda_type_program_applied").on('change', function (bp) {
+  //asasi
+ 
+  $("#asasi_sepenuhf").css({display: "none"}); 
+  
+    if($('.muda_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#muda_sepenuh").fadeIn(500).show()
+    $("#muda_separuh").hide() 
+    var value = $('.muda_program_one').val().split('|'); 
+   
+    
+
+    }  
+    else{
+      $("#muda_sepenuh").hide() 
+      $("#muda_separuh").fadeIn(500).show()
+      var value = $('.muda_program_one2').val().split('|'); 
+    }
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+    
+  
+  }); 
+
+  //muda SEPARUH FACULTY
+
+if($('.pengajian').val() == 'Sarjana Muda'){
+
+  if($('.muda_type_program_applied').val() == 'Separuh Masa'){
+  var value = $('.muda_program_one2').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+  
+}
+
+$("#muda_program_one2").on('change', function (bp) {
+  
+  var value = $('.muda_program_one2').val().split('|')
+
+  if( value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").fadeIn(500).show()
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});  
   }
 
 }); 
+
+
+$("#pengajian").on('change', function (bp) {
+
+  if($('.pengajian').val() == 'Sarjana Muda'){
+    
+    var value = $('.muda_program_one2').val().split('|')
+    
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});   
+    }
+    }
+    else{
+      $("#asasi_sepenuhf").css({display: "none"}); 
+    }
+  
+}); 
+
+
 
 //sarjana muda separuh
 if($('.pengajian').val() == 'Sarjana Muda'){
@@ -316,15 +642,7 @@ if($('.muda_type_program_applied').val() == 'Separuh Masa'){
   $("#muda_separuh").hide();
 }
 
-$("#muda_type_program_applied").on('change', function (bp) {
 
-  if($('.muda_type_program_applied').val() == 'Separuh Masa'){
-    $("#muda_separuh").fadeIn(500).show()   
-  }else{
-    $("#muda_separuh").hide()   
-  }
-
-}); 
 
 //MASTER
 //master sepenuh
@@ -338,14 +656,126 @@ if($('.master_type_program_applied').val() == 'Sepenuh Masa'){
   $("#master_sepenuh").hide();
 }
 
-$("#master_type_program_applied").on('change', function (bp) {
+
+//master penuh faculty
+if($('.pengajian').val() == 'Sarjana'){
 
   if($('.master_type_program_applied').val() == 'Sepenuh Masa'){
-    $("#master_sepenuh").fadeIn(500).show()
+  var value = $('.master_program_one').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
   }else{
-    $("#master_sepenuh").hide()   
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+ 
+}
+ 
+  $("#master_program_one").on('change', function (bp) {
+  
+    var value = $('.master_program_one').val().split('|')
+
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});  
+    }
+  
+  }); 
+
+
+
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Sarjana'){
+      
+      var value = $('.master_program_one').val().split('|')
+      
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"});   
+      }
+      }
+      else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+  }); 
+  
+$("#master_type_program_applied").on('change', function (bp) {
+  //asasi
+ 
+  $("#asasi_sepenuhf").css({display: "none"}); 
+  
+    if($('.master_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#master_sepenuh").fadeIn(500).show()
+    $("#master_separuh").hide() 
+    var value = $('.master_program_one').val().split('|'); 
+   
+    
+
+    }  
+    else{
+      $("#master_sepenuh").hide() 
+      $("#master_separuh").fadeIn(500).show()
+      var value = $('.master_program_one2').val().split('|'); 
+    }
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+    
+  
+  }); 
+
+  //master SEPARUH FACULTY
+
+if($('.pengajian').val() == 'Sarjana'){
+
+  if($('.master_type_program_applied').val() == 'Separuh Masa'){
+  var value = $('.master_program_one2').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+  
+}
+
+$("#master_program_one2").on('change', function (bp) {
+  
+  var value = $('.master_program_one2').val().split('|')
+
+  if( value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").fadeIn(500).show()
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});  
   }
 
+}); 
+
+
+$("#pengajian").on('change', function (bp) {
+
+  if($('.pengajian').val() == 'Sarjana'){
+    
+    var value = $('.master_program_one2').val().split('|')
+    
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});   
+    }
+    }
+    else{
+      $("#asasi_sepenuhf").css({display: "none"}); 
+    }
+  
 }); 
 
 //master separuh
@@ -359,15 +789,6 @@ if($('.master_type_program_applied').val() == 'Separuh Masa'){
   $("#master_separuh").hide() 
 }
 
-$("#master_type_program_applied").on('change', function (bp) {
-
-  if($('.master_type_program_applied').val() == 'Separuh Masa'){
-    $("#master_separuh").fadeIn(500).show()   
-  }else{
-    $("#master_separuh").hide()   
-  }
-
-}); 
 
 //DOKTOR
 //doktor sepenuh
@@ -381,14 +802,127 @@ if($('.doktor_type_program_applied').val() == 'Sepenuh Masa'){
   $("#doktor_sepenuh").hide();
 }
 
-$("#doktor_type_program_applied").on('change', function (bp) {
+
+
+//master penuh faculty
+if($('.pengajian').val() == 'Kedoktoran'){
 
   if($('.doktor_type_program_applied').val() == 'Sepenuh Masa'){
-    $("#doktor_sepenuh").fadeIn(500).show()
+  var value = $('.doktor_program_one').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
   }else{
-    $("#doktor_sepenuh").hide()   
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+ 
+}
+ 
+  $("#doktor_program_one").on('change', function (bp) {
+  
+    var value = $('.doktor_program_one').val().split('|')
+
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});  
+    }
+  
+  }); 
+
+
+
+
+  $("#pengajian").on('change', function (bp) {
+
+    if($('.pengajian').val() == 'Kedoktoran'){
+      
+      var value = $('.doktor_program_one').val().split('|')
+      
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"});   
+      }
+      }
+      else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+  }); 
+  
+$("#doktor_type_program_applied").on('change', function (bp) {
+  //asasi
+ 
+  $("#asasi_sepenuhf").css({display: "none"}); 
+  
+    if($('.doktor_type_program_applied').val() == 'Sepenuh Masa'){
+    $("#doktor_sepenuh").fadeIn(500).show()
+    $("#doktor_separuh").hide() 
+    var value = $('.master_program_one').val().split('|'); 
+   
+    
+
+    }  
+    else{
+      $("#doktor_sepenuh").hide() 
+      $("#doktor_separuh").fadeIn(500).show()
+      var value = $('.doktor_program_one2').val().split('|'); 
+    }
+      if( value[1] == 'Muzik'){
+        $("#asasi_sepenuhf").fadeIn(500).show()
+      }else{
+        $("#asasi_sepenuhf").css({display: "none"}); 
+      }
+    
+    
+  
+  }); 
+
+  //diploma SEPARUH FACULTY
+
+if($('.pengajian').val() == 'Kedoktoran'){
+
+  if($('.doktor_type_program_applied').val() == 'Separuh Masa'){
+  var value = $('.doktor_program_one2').val().split('|')
+  if(value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").show();
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});
+  }
+  }
+  
+}
+
+$("#doktor_program_one2").on('change', function (bp) {
+  
+  var value = $('.doktor_program_one2').val().split('|')
+
+  if( value[1] == 'Muzik'){
+    $("#asasi_sepenuhf").fadeIn(500).show()
+  }else{
+    $("#asasi_sepenuhf").css({display: "none"});  
   }
 
+}); 
+
+
+$("#pengajian").on('change', function (bp) {
+
+  if($('.pengajian').val() == 'Kedoktoran'){
+    
+    var value = $('.doktor_program_one2').val().split('|')
+    
+    if( value[1] == 'Muzik'){
+      $("#asasi_sepenuhf").fadeIn(500).show()
+    }else{
+      $("#asasi_sepenuhf").css({display: "none"});   
+    }
+    }
+    else{
+      $("#asasi_sepenuhf").css({display: "none"}); 
+    }
+  
 }); 
 
 //doktor separuh
@@ -402,15 +936,11 @@ if($('.doktor_type_program_applied').val() == 'Separuh Masa'){
   $("#doktor_separuh").hide();
 }
 
-$("#doktor_type_program_applied").on('change', function (bp) {
 
-  if($('.doktor_type_program_applied').val() == 'Separuh Masa'){
-    $("#doktor_separuh").fadeIn(500).show()   
-  }else{
-    $("#doktor_separuh").hide()   
-  }
 
-}); 
+//fakulti
+
+
 
   var isRtl = $('html').attr('data-textdirection') === 'rtl';
 
@@ -536,7 +1066,8 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       'kin_no_tel' : $('.kin_no_tel').val(),
       'kin_no_phonehouse' : $('.kin_no_phonehouse').val(),
       'kin_email' : $('.kin_email').val(),
-      'kin_address_1' : $('.kin_address_1').val()
+      'kin_address_1' : $('.kin_address_1').val(),
+      'pendapatan_isi_rumah' : $('.pendapatan_isi_rumah').val()
     }
 
     $.ajax({
@@ -573,15 +1104,16 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.asasi_type_program_applied').val();
       if($('.asasi_type_program_applied').val() == 'Sepenuh Masa')
       {   
+      var value = $('.asasi_program_one').val().split('|')
+      var program_one = value[0];
       
-      var program_one = $('.asasi_program_one').val();
-      var program_two = $('.asasi_program_two').val();
       }
 
       else{
 
-        var program_one = $('.asasi_program_one2').val();
-        var program_two = $('.asasi_program_two2').val();
+        var value = $('.asasi_program_one2').val().split('|')
+        var program_one = value[0];
+        
 
       }
 
@@ -591,12 +1123,14 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.diploma_type_program_applied').val();
       if($('.diploma_type_program_applied').val() == 'Sepenuh Masa')
       {
-      var program_one = $('.dip_program_one').val();
-      var program_two = $('.dip_program_two').val();
+        var value = $('.dip_program_one').val().split('|')  
+        var program_one = value[0];
+      
       }
       else{
-        var program_one = $('.dip_program_one2').val();
-        var program_two = $('.dip_program_two2').val();
+        var value = $('.dip_program_one2').val().split('|')  
+        var program_one = value[0];
+        
       }
 
     }
@@ -605,12 +1139,14 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.muda_type_program_applied').val();
       if($('.muda_type_program_applied').val() == 'Sepenuh Masa')
       {
-      var program_one = $('.muda_program_one').val();
-      var program_two = $('.muda_program_two').val();
+     
+      var value = $('.muda_program_one').val().split('|')  
+      var program_one = value[0];
       }
       else{
-        var program_one = $('.muda_program_one2').val();
-        var program_two = $('.muda_program_two2').val();
+        var value = $('.muda_program_one2').val().split('|')  
+      var program_one = value[0];
+       
       }
 
     }
@@ -619,12 +1155,14 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.master_type_program_applied').val();
       if($('.master_type_program_applied').val() == 'Sepenuh Masa')
       {
-      var program_one = $('.master_program_one').val();
-      var program_two = $('.master_program_two').val();
+      
+      var value = $('.master_program_one').val().split('|')  
+      var program_one = value[0];
       }
       else{
-        var program_one = $('.master_program_one2').val();
-        var program_two = $('.master_program_two2').val();
+        var value = $('.master_program_one2').val().split('|')  
+      var program_one = value[0];
+        
       }
 
     }
@@ -633,28 +1171,30 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.doktor_type_program_applied').val();
       if($('.doktor_type_program_applied').val() == 'Sepenuh Masa')
       {
-      var program_one = $('.doktor_program_one').val();
-      var program_two = $('.doktor_program_two').val();
+     
+      var value = $('.doktor_program_one').val().split('|')  
+      var program_one = value[0];
       }
       else{
-        var program_one = $('.doktor_program_one2').val();
-        var program_two = $('.doktor_program_two2').val();
+        var value = $('.doktor_program_one2').val().split('|')  
+        var program_one = value[0]; 
       }
 
     }
     else{
          
       var program_one = NULL;
-      var program_two = NULL;
-
+      
     }
+
+
 
     let data = {
       'nric' : $('.nric').val(),
       'type_program_applied' : type_program_applied,
       'pengajian' : $('.pengajian').val(),
       'program_one' : program_one,
-      'program_two' : program_two,
+      'AlatMuzik' :  $('.alat_muzik').val(),
     }
 
     $.ajax({
@@ -1360,7 +1900,8 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       'kin_no_tel' : $('.kin_no_tel').val(),
       'kin_no_phonehouse' : $('.kin_no_phonehouse').val(),
       'kin_email' : $('.kin_email').val(),
-      'kin_address_1' : $('.kin_address_1').val()
+      'kin_address_1' : $('.kin_address_1').val(),
+      'pendapatan_isi_rumah' : $('.pendapatan_isi_rumah').val()
     }
 
     $.ajax({
@@ -1395,15 +1936,16 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.asasi_type_program_applied').val();
       if($('.asasi_type_program_applied').val() == 'Sepenuh Masa')
       {   
+      var value = $('.asasi_program_one').val().split('|')
+      var program_one = value[0];
       
-      var program_one = $('.asasi_program_one').val();
-      var program_two = $('.asasi_program_two').val();
       }
 
       else{
 
-        var program_one = $('.asasi_program_one2').val();
-        var program_two = $('.asasi_program_two2').val();
+        var value = $('.asasi_program_one2').val().split('|')
+        var program_one = value[0];
+        
 
       }
 
@@ -1413,12 +1955,14 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.diploma_type_program_applied').val();
       if($('.diploma_type_program_applied').val() == 'Sepenuh Masa')
       {
-      var program_one = $('.dip_program_one').val();
-      var program_two = $('.dip_program_two').val();
+        var value = $('.dip_program_one').val().split('|')  
+        var program_one = value[0];
+      
       }
       else{
-        var program_one = $('.dip_program_one2').val();
-        var program_two = $('.dip_program_two2').val();
+        var value = $('.dip_program_one2').val().split('|')  
+        var program_one = value[0];
+        
       }
 
     }
@@ -1427,12 +1971,14 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.muda_type_program_applied').val();
       if($('.muda_type_program_applied').val() == 'Sepenuh Masa')
       {
-      var program_one = $('.muda_program_one').val();
-      var program_two = $('.muda_program_two').val();
+     
+      var value = $('.muda_program_one').val().split('|')  
+      var program_one = value[0];
       }
       else{
-        var program_one = $('.muda_program_one2').val();
-        var program_two = $('.muda_program_two2').val();
+        var value = $('.muda_program_one2').val().split('|')  
+      var program_one = value[0];
+       
       }
 
     }
@@ -1441,12 +1987,14 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.master_type_program_applied').val();
       if($('.master_type_program_applied').val() == 'Sepenuh Masa')
       {
-      var program_one = $('.master_program_one').val();
-      var program_two = $('.master_program_two').val();
+      
+      var value = $('.master_program_one').val().split('|')  
+      var program_one = value[0];
       }
       else{
-        var program_one = $('.master_program_one2').val();
-        var program_two = $('.master_program_two2').val();
+        var value = $('.master_program_one2').val().split('|')  
+      var program_one = value[0];
+        
       }
 
     }
@@ -1455,28 +2003,30 @@ $("#doktor_type_program_applied").on('change', function (bp) {
       var type_program_applied = $('.doktor_type_program_applied').val();
       if($('.doktor_type_program_applied').val() == 'Sepenuh Masa')
       {
-      var program_one = $('.doktor_program_one').val();
-      var program_two = $('.doktor_program_two').val();
+     
+      var value = $('.doktor_program_one').val().split('|')  
+      var program_one = value[0];
       }
       else{
-        var program_one = $('.doktor_program_one2').val();
-        var program_two = $('.doktor_program_two2').val();
+        var value = $('.doktor_program_one2').val().split('|')  
+        var program_one = value[0]; 
       }
 
     }
     else{
          
       var program_one = NULL;
-      var program_two = NULL;
-
+      
     }
+
+
 
     let data = {
       'nric' : $('.nric').val(),
       'type_program_applied' : type_program_applied,
       'pengajian' : $('.pengajian').val(),
       'program_one' : program_one,
-      'program_two' : program_two
+      'AlatMuzik' :  $('.alat_muzik').val(),
     }
 
     $.ajax({

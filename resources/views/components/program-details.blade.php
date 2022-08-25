@@ -17,14 +17,24 @@ $test = Session::get('variableName');
         {{@csrf_field()}}
             <div class="row">
            
-            
+            <div class="col-12">
+                <div class="mb-1 row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label" for="code">MQA</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" id="mqa" class="form-control" name="mqa" value="{{$datas['mqa']}}"/>
+                  </div>
+                </div>
+              </div>
+
               <div class="col-12">
                 <div class="mb-1 row">
                   <div class="col-sm-2">
                     <label class="col-form-label" for="code">{!! __('locale.Program Code') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="code" class="form-control" name="code" placeholder="" value="{{$datas['code']}}"/>
+                    <input type="text" id="code" class="form-control" name="code" placeholder="" value="{{$datas['code']}}" required/>
                   </div>
                 </div>
               </div>
@@ -35,7 +45,7 @@ $test = Session::get('variableName');
                     <label class="col-form-label" for="name">{!! __('locale.Program Name') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="name" class="form-control" name="program" placeholder="" value="{{$datas['program']}}"/>
+                    <input type="text" id="name" class="form-control" name="program" placeholder="" value="{{$datas['program']}}" required/>
                   </div>
                 </div>
               </div>

@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
+use App\Models\CenterInterview;
 use App\Models\SessionInterview;
+use App\Models\PanelSessionInterview;
+use App\Models\AsasInterview;
+use App\Models\PanelInterview;
+use App\Models\ScreeningIV;
 
 
 class OpenPusatTemudugaFEController extends Controller
@@ -18,17 +23,20 @@ class OpenPusatTemudugaFEController extends Controller
 
       
 
-        $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
-        $response = Route::dispatch($request);
+        // $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
+        // $response = Route::dispatch($request);
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['data'];
+        // $datas = $responseBody['data'];
 
-        return view('components.open-pusat-temuduga-new', compact('datas'));
+        $displayCenterInterview = CenterInterview::where('status', true)->get();
+        $displayCenterInterviewTable = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
+
+        return view('components.open-pusat-temuduga-new')->with('datas', $displayCenterInterview);
 
     }
 
@@ -36,17 +44,20 @@ class OpenPusatTemudugaFEController extends Controller
 
        
 
-        $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
-        $response = Route::dispatch($request);
+        // $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
+        // $response = Route::dispatch($request);
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['dataa'];
+        // $datas = $responseBody['dataa'];
 
-        return view('components.open-pusat-temuduga-table', compact('datas'));
+        $displayCenterInterview = CenterInterview::where('status', true)->get();
+        $displayCenterInterviewTable = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
+
+        return view('components.open-pusat-temuduga-table')->with('datas', $displayCenterInterviewTable);
 
     }
 
@@ -54,17 +65,20 @@ class OpenPusatTemudugaFEController extends Controller
 
        
 
-        $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
-        $response = Route::dispatch($request);
+        // $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
+        // $response = Route::dispatch($request);
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['dataa'];
+        // $datas = $responseBody['dataa'];
 
-        return view('components.open-pusat-temuduga-detail', compact('datas'));
+        $displayCenterInterview = CenterInterview::where('status', true)->get();
+        $displayCenterInterviewTable = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
+        
+        return view('components.open-pusat-temuduga-detail')->with('datas', $displayCenterInterviewTable);
 
     }
 
@@ -74,22 +88,38 @@ class OpenPusatTemudugaFEController extends Controller
 
         
         
-        $param = [
+        // $param = [
 
             
-            'center_id' => $req->center_id,
-            'negeri' => $req->negeri,
-            'catatan' => $req->catatan,
+        //     'center_id' => $req->center_id,
+        //     'negeri' => $req->negeri,
+        //     'catatan' => $req->catatan,
             
-        ];
+        // ];
 
       
+        $exists = AsasInterview::where('center_id', $req->center_id)->where('status',true)->exists();
+    
 
+        if(!$exists){
+        $addNewPanelInterview = new AsasInterview();
+        $addNewPanelInterview->center_id = $req->center_id;
+        $addNewPanelInterview->negeri = $req->negeri;
+        $addNewPanelInterview->catatan = $req->catatan;
+        $addNewPanelInterview->status = true;
+        $addNewPanelInterview->save();
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/PostOpenCenterInterview', $param);
+        $update = CenterInterview::where('center_id', $req->center_id)->update([
+            'status_center' =>'AKTIF',
+           
+
+        ]);
+    }
+
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/PostOpenCenterInterview', $param);
 
         return redirect()->route('PusatTemudugaTable');
 
@@ -101,20 +131,26 @@ class OpenPusatTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
+        $displayCenterInterview = AsasInterview::where('asas_id', $code)->first();
+        $displayall = CenterInterview::where('status', true)->get();
+        $Displayasas = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_id', $code)->first();
+        $DisplaySession = SessionInterview::orderBy('number_session', 'asc')->where('asas_id', $code)->where('status', true)->get();
+        $kiraan = SessionInterview::orderBy('number_session', 'asc')->where('asas_id', $code)->where('status', true)->get();
+        $panel = PanelInterview::where('status', true)->get();
        
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/getAllOpenCenterInterviewybId', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/getAllOpenCenterInterviewybId', [
+        //     'code' => $code,
+        // ]);
 
-        $datas = $request['data'];
-        $datass = $request['dataa'];
+        // $datas = $request['data'];
+        // $datass = $request['dataa'];
 
-        return view('components.open-pusat-temuduga-detail')->with('datas', $datas)->with('datass', $datass);
+        return view('components.open-pusat-temuduga-detail')->with('datas', $displayCenterInterview)->with('datass', $displayall);
 
     }
 
@@ -122,21 +158,28 @@ class OpenPusatTemudugaFEController extends Controller
 
         $asas_id = decrypt($req->asas_id);
         //update details
-        $param = [
+        // $param = [
             
-            'asas_id' => $asas_id,
-            'negeri' => $req->negeri,
-            'catatan' => $req->catatan,
-            'center_id' => $req->center_id,
+        //     'asas_id' => $asas_id,
+        //     'negeri' => $req->negeri,
+        //     'catatan' => $req->catatan,
+        //     'center_id' => $req->center_id,
         
             
-        ];
+        // ];
+
+        $update = AsasInterview::where('asas_id', $req->asas_id)->update([
+            'center_id' => $req->center_id,
+            'negeri' => $req->negeri,
+            'catatan' => $req->catatan,
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/UpdateAsasTemuduga', $param);
+        ]);
+
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/UpdateAsasTemuduga', $param);
 
         return redirect()->route('PusatTemudugaTable');
 
@@ -148,22 +191,28 @@ class OpenPusatTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
+        $displayCenterInterview = AsasInterview::where('asas_id', $code)->first();
+        $displayall = CenterInterview::where('status', true)->get();
+        $Displayasas = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_id', $code)->first();
+        $DisplaySession = SessionInterview::orderBy('number_session', 'asc')->where('asas_id', $code)->where('status', true)->get();
+        $kiraan = SessionInterview::orderBy('number_session', 'asc')->where('asas_id', $code)->where('status', true)->get();
+        $panel = PanelInterview::where('status', true)->get();
        
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/getAllOpenCenterInterviewybId', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/getAllOpenCenterInterviewybId', [
+        //     'code' => $code,
+        // ]);
 
-        $Panel = $request['panel'];
-        $Displayasas = $request['Displayasas'];
-        $Displaysession = $request['Displaysession'];
-        $kiraan = $request['kiraan'];
+        // $Panel = $request['panel'];
+        // $Displayasas = $request['Displayasas'];
+        // $Displaysession = $request['Displaysession'];
+        // $kiraan = $request['kiraan'];
 
-        return view('components.open-pusat-temuduga-session')->with('panel', $Panel)->with('displayasas', $Displayasas)->with('displaysession', $Displaysession)->with('kiraan', $kiraan);
+        return view('components.open-pusat-temuduga-session')->with('panel', $panel)->with('displayasas', $Displayasas)->with('displaysession', $DisplaySession)->with('kiraan', $kiraan);
 
     }
 
@@ -176,29 +225,43 @@ class OpenPusatTemudugaFEController extends Controller
         $TarikhFrom = Carbon::parse($req->TarikhFrom)->format('Y-m-d H:i:s');
         $TarikhTo = Carbon::parse($req->TarikhTo)->format('Y-m-d H:i:s');
 
-        $param = [
+        // $param = [
 
-            'asas_id' => $asas_id,
-            'number_session' => $req->number_session,
-            'TarikhFrom' => $TarikhFrom,
-            'TarikhTo' => $TarikhTo,
-            'DateFrom' => $DateFrom,
-            'DateTo' => $DateTo,
-            'panel' => $req->panel,
-            'description' => $req->description,
-            'place_description' => $req->place_description,
+        //     'asas_id' => $asas_id,
+        //     'number_session' => $req->number_session,
+        //     'TarikhFrom' => $TarikhFrom,
+        //     'TarikhTo' => $TarikhTo,
+        //     'DateFrom' => $DateFrom,
+        //     'DateTo' => $DateTo,
+        //     'panel' => $req->panel,
+        //     'description' => $req->description,
+        //     'place_description' => $req->place_description,
               
-        ];
+        // ];
+
+        $addNewPanelInterview = new SessionInterview();
+        $addNewPanelInterview->asas_id = $asas_id;
+        $addNewPanelInterview->number_session = $req->number_session;
+        $addNewPanelInterview->TarikhFrom = $TarikhFrom;
+        $addNewPanelInterview->TarikhTo = $TarikhTo;
+        $addNewPanelInterview->DateFrom = $DateFrom;
+        $addNewPanelInterview->DateTo = $DateTo;
+        $addNewPanelInterview->description = $req->description;
+        $addNewPanelInterview->place_description = $req->place_description;
+        $addNewPanelInterview->panel_id = $req->panel;
+        $addNewPanelInterview->status = true;
+        $addNewPanelInterview->save();
+
 
         $breadcrumbs = [
             ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/OpenSession', $param);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/OpenSession', $param);
 
         return redirect()->route('sessiontable', Crypt::encrypt([$asas_id]));
 
@@ -213,17 +276,21 @@ class OpenPusatTemudugaFEController extends Controller
         
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/OpenSessionDetail', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/OpenSessionDetail', [
+        //     'code' => $code,
+        // ]);
 
-        $Panel = $request['panel'];
-        $Displaysession = $request['Displaysession'];
+        $DisplaySession = SessionInterview::where('session_id', $code)->first();
+        $panel = PanelInterview::where('status', true)->get();
 
-        return view('components.open-pusat-temuduga-session-detail')->with('panel', $Panel)->with('Displaysession', $Displaysession);
+
+        // $Panel = $request['panel'];
+        // $Displaysession = $request['Displaysession'];
+
+        return view('components.open-pusat-temuduga-session-detail')->with('panel', $panel)->with('Displaysession', $DisplaySession);
 
     }
 
@@ -237,25 +304,37 @@ class OpenPusatTemudugaFEController extends Controller
         $TarikhFrom = Carbon::parse($req->TarikhFrom)->format('Y-m-d H:i:s');
         $TarikhTo = Carbon::parse($req->TarikhTo)->format('Y-m-d H:i:s');
         //update details
-        $param = [
+        // $param = [
             
-            'session_id' => $session_id,
-            'number_session' => $req->number_session,
+        //     'session_id' => $session_id,
+        //     'number_session' => $req->number_session,
+        //     'TarikhFrom' => $TarikhFrom,
+        //     'TarikhTo' => $TarikhTo,
+        //     'DateFrom' => $DateFrom,
+        //     'DateTo' => $DateTo,
+        //     'panel' => $req->panel,
+        //     'description' => $req->description,
+        //     'place_description' => $req->place_description,
+             
+        // ];
+
+        $update = SessionInterview::where('session_id', $session_id)->update([
+            
             'TarikhFrom' => $TarikhFrom,
             'TarikhTo' => $TarikhTo,
             'DateFrom' => $DateFrom,
             'DateTo' => $DateTo,
-            'panel' => $req->panel,
             'description' => $req->description,
+            'panel_id' => $req->panel,
             'place_description' => $req->place_description,
-             
-        ];
+            
 
+        ]);
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/UpdateSesi', $param);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/UpdateSesi', $param);
 
         return redirect()->route('sessiontable', Crypt::encrypt([$asas_id]));
 
@@ -267,15 +346,32 @@ class OpenPusatTemudugaFEController extends Controller
         $code = decrypt($code);
 
 
+        $exists = SessionInterview::where('asas_id', $code)->where('status',true)->exists();
+
+        if(!$exists){
+        $update = AsasInterview::where('asas_id', $code)->update([
+                'status' => false,
+                
+
+
+            ]);
+
+            $status="berjaya";
+
+        }
+        else{
+
+            $status="tidak berjaya";
+        }
        
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/deleteOpenTemuduga', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/deleteOpenTemuduga', [
+        //     'code' => $code,
+        // ]);
 
        
 
@@ -295,13 +391,27 @@ class OpenPusatTemudugaFEController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
+        $exists = ScreeningIV::where('session_id', $code)->exists();
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/deleteSesi', [
-            'code' => $code,
-        ]);
+        if(!$exists){
+         $update = SessionInterview::where('session_id', $code)->update([
+ 
+                 'status' => false,           
+ 
+             ]);
+ 
+             $status="berjaya";
+         }
+         else{
+             $status="Tidak Berjaya";
+         }
+
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/deleteSesi', [
+        //     'code' => $code,
+        // ]);
 
        
 

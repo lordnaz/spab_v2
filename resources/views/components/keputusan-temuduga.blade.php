@@ -67,11 +67,8 @@
                                 <th></th>
                                 <th>No.KP</th>
                                 <th>Nama</th>
-                                <th>Jenis</th>
                                 <th>Negeri</th>
                                 <th>P1</th>
-                                <th>P2</th>
-                                <th>Sijil</th>
                                 <th>Panel 1</th>
                                 <th>Panel 2</th>
                                 <th>Markah</th>
@@ -94,7 +91,7 @@
                     <td>{{$count++}}</td>
                   <td>{{$displayTablee['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTablee['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTablee['name']}}</td>
-                  <td>{{$displayTablee['study_mode']}}</td>
+                  
                   <td>{{$displayTablee['state']}}</td>
                 
                   @foreach ($program as $Program)
@@ -110,20 +107,12 @@
                 <td>{{$Program['code']}}-N{{$displayTablee['kelulusan1']}}</td>
                 @endif
                 @else
-                @if ($displayTablee['kelulusan2'] == 'L' || $displayTablee['kelulusan2'] == 'G')
-                <td>{{$Program['code']}}-{{$displayTablee['kelulusan2']}}</td>
-                @else
-                <td>{{$Program['code']}}-N{{$displayTablee['kelulusan2']}}</td>
-                @endif
+               
 
                 @endif
                 @endif
 
                 @endforeach
-                @if ($too == 1)
-                <td></td>
-                @endif
-                  <td>{{$displayTablee['cert_related_program']}}</td>
                   @if(!empty($cadang1))
                   @foreach ($cadang1 as $Cadang1)
                   @if($Cadang1['nric'] == $displayTablee['nric'])

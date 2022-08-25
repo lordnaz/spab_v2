@@ -410,7 +410,8 @@ class PenawaranPermohonanAPIController extends Controller
                 'masa_daftar' => $req->masa_daftar,
                 'tempat_daftar' => $req->tempat_daftar,
                 'catatan' => $req->catatan,
-                  
+                'TarikhTolak' =>NULL,   
+                'TarikhKIV' => NULL, 
             ]);
 
         
@@ -462,6 +463,7 @@ class PenawaranPermohonanAPIController extends Controller
             'masa_daftar' => NULL,   
             'tempat_daftar' => NULL,  
             'TarikhTolak' => $currentdt,   
+            'TarikhKIV' => NULL, 
             'catatan' => NULL,   
             'sem' => NULL,   
             'tahun' => NULL, 
@@ -513,6 +515,7 @@ class PenawaranPermohonanAPIController extends Controller
             'tarikh_daftar' => NULL, 
             'masa_daftar' => NULL,   
             'TarikhKIV' => $currentdt,  
+            'TarikhTolak' => NULL, 
             'tempat_daftar' => NULL,   
             'catatan' => NULL,  
             'sem' => NULL,   
@@ -561,6 +564,7 @@ class PenawaranPermohonanAPIController extends Controller
         ([
             'program_tawar' => NULL,       
             'TarikhTawar' => NULL,  
+            'TarikhKIV' => NULL,
             'tarikh_daftar' => NULL, 
             'masa_daftar' => NULL,   
             'tempat_daftar' => NULL,   

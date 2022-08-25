@@ -21,6 +21,7 @@ class CreateProgramTable extends Migration
             $table->string('faculty')->nullable();
             $table->string('field')->nullable();
             $table->string('sub_field')->nullable();
+            $table->string('mqa')->nullable();
             $table->string('notes')->nullable();
             $table->string('job_id')->nullable();
             $table->boolean('status')->default(true);

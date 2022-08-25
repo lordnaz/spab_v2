@@ -23,7 +23,7 @@
   <div class="col-md-8 col-sm-6 col-12 mb-2 mb-md-0">
       <!-- Activity Timeline -->
       <div class="card">
-        <h4 class="card-header">Penjejak Permohonan</h4>
+        <h4 class="card-header">Kronologi Pemohon</h4>
         <div class="card-body pt-1">
           <ul class="timeline ms-50">
 

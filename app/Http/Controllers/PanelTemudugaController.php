@@ -16,17 +16,19 @@ class PanelTemudugaController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
         ];
 
-        $request = Request::create('/api/getAllPanel', 'GET');
-        $response = Route::dispatch($request);
+        // $request = Request::create('/api/getAllPanel', 'GET');
+        // $response = Route::dispatch($request);
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['data'];
+        // $datas = $responseBody['data'];
 
-        return view('components.panel-temuduga', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        $displayPanel = PanelInterview::where('status', true)->get();
+
+        return view('components.panel-temuduga', ['breadcrumbs' => $breadcrumbs])->with('datas', $displayPanel);
 
     }
 
@@ -38,16 +40,18 @@ class PanelTemudugaController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Panel Temuduga"], ['name' => "ButiranTemuduga"]
         ];
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/getPanelDetailsbyId', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/getPanelDetailsbyId', [
+        //     'code' => $code,
+        // ]);
 
-        $datas = $request['data'];
+        // $datas = $request['data'];
 
-        return view('components.temuduga-details', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        $displayPanelbyId = PanelInterview::where('no_ic',$code)->first();
+
+        return view('components.temuduga-details', ['breadcrumbs' => $breadcrumbs])->with('datas', $displayPanelbyId);
 
     }
 
@@ -67,29 +71,51 @@ class PanelTemudugaController extends Controller
 
         // $data = $req->input();
 
-        $param = [
+        // $param = [
 
-            'no_ic' => $req->no_ic,
-            'panel_name'=> $req->panel_name,
-            'panel_position' => $req->panel_position,
-           'panel_faculty' => $req->panel_faculty,
-            'address_1' => $req->address_1,
-            'tel_house' => $req->tel_house,
-            'tel_phone' => $req->tel_phone,
-            'panel_email' => $req->panel_email,
-            'description' => $req->description,
-            'panel_status' =>$req->status,
+        //     'no_ic' => $req->no_ic,
+        //     'panel_name'=> $req->panel_name,
+        //     'panel_position' => $req->panel_position,
+        //    'panel_faculty' => $req->panel_faculty,
+        //     'address_1' => $req->address_1,
+        //     'tel_house' => $req->tel_house,
+        //     'tel_phone' => $req->tel_phone,
+        //     'panel_email' => $req->panel_email,
+        //     'description' => $req->description,
+        //     'panel_status' =>$req->status,
             
-        ];
+        // ];
+
+        $currentdt = date('Y-m-d H:i:s');
+        $user_id = auth()->User()->name;
+
+        $addpanel = new PanelInterview;
+        $addpanel->no_ic = $req->no_ic;
+        $addpanel->panel_name = $req->panel_name;
+        $addpanel->panel_position = $req->panel_position;
+        $addpanel->panel_faculty = $req->panel_faculty;
+        $addpanel->address_1 = $req->address_1;
+        $addpanel->address_2 = $req->address_2;
+        $addpanel->address_3 = $req->address_3;
+        $addpanel->tel_house = $req->tel_house;
+        $addpanel->tel_phone = $req->tel_phone;
+        $addpanel->panel_email = $req->panel_email;
+        $addpanel->description = $req->description;
+        $addpanel->panel_status = $req->panel_status;
+        $addpanel->status = true;
+        $addpanel->created_by = $user_id;
+        $addpanel->save();
 
         $breadcrumbs = [
             ['link' => "/", 'name' => "Home"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Butiran Temuduga"]
         ];
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/addNewPanel', $param);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/addNewPanel', $param);
+
+        
 
         return redirect()->route('paneltemuduga');
 
@@ -99,14 +125,19 @@ class PanelTemudugaController extends Controller
 
         $code = decrypt($code);
         
+        $user_name = auth()->User()->name;
+        $deletePanel = PanelInterview::where('panel_id', $code)->update([
+            'status' => false    
+    
+            ]);
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/deletePanelById', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/deletePanelById', [
+        //     'code' => $code,
+        // ]);
 
        
 
@@ -116,27 +147,43 @@ class PanelTemudugaController extends Controller
 
     public function update_temuduga(Request $req){
 
-        $param = [
+        // $param = [
 
-            'panel_id' => $req->panel_id,
-            'no_ic' => $req->no_ic,
-            'panel_name'=> $req->panel_name,
-            'panel_position' => $req->panel_position,
-           'panel_faculty' => $req->panel_faculty,
-            'address_1' => $req->address_1,
-            'tel_house' => $req->tel_house,
-            'tel_phone' => $req->tel_phone,
-            'panel_email' => $req->panel_email,
-            'description' => $req->description,
-            'panel_status' =>$req->status,
+        //     'panel_id' => $req->panel_id,
+        //     'no_ic' => $req->no_ic,
+        //     'panel_name'=> $req->panel_name,
+        //     'panel_position' => $req->panel_position,
+        //    'panel_faculty' => $req->panel_faculty,
+        //     'address_1' => $req->address_1,
+        //     'tel_house' => $req->tel_house,
+        //     'tel_phone' => $req->tel_phone,
+        //     'panel_email' => $req->panel_email,
+        //     'description' => $req->description,
+        //     'panel_status' =>$req->status,
             
-        ];
+        // ];
 
+        $currentdt = date('Y-m-d H:i:s');
+        $updatePanelById = PanelInterview::where('panel_id',$req->panel_id)->update
+        ([
+                'no_ic' => $req->no_ic,
+                'panel_name' => $req->panel_name,
+                'panel_position' => $req->panel_position,
+                'panel_faculty' => $req->panel_faculty,
+                'address_1' => $req->address_1,
+                'address_2' => $req->address_2,
+                'address_3' => $req->address_3,
+                'tel_house' => $req->tel_house,
+                'tel_phone' => $req->tel_phone,
+                'panel_email' => $req->panel_email,
+                'description' => $req->description,
+                'panel_status' => $req->panel_status,
+        ]);
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/updatePanelById', $param);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/updatePanelById', $param);
 
        
 

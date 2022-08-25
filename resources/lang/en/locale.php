@@ -505,6 +505,8 @@ return [
  "Keputusan Permohonan" => "Application Result",
  "Admin_Pendaftaranpelajar" => "Pendaftaran",
  "Senarai Pelajar" => "Senarai Pelajar",
- "Sejarah Pelajar" => "Sejarah Pelajar"
+ "Sejarah Pelajar" => "Sejarah Pelajar",
+ "Admin_Subjek" => "Subjek",
+    "subjek Setting" => "Tetapan Subjek"
  
 ];

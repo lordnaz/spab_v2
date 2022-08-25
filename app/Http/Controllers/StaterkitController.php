@@ -8,8 +8,10 @@ use App\Models\StatusPermohonan;
 use App\Models\UserDetail;
 use App\Models\UserInformation;
 use App\Models\ScreeningIV;
+use App\Models\CenterInterview;
 use App\Models\ProgramApplied;
 use App\Models\program;
+use PDF;
 
 class StaterkitController extends Controller
 {
@@ -39,7 +41,7 @@ class StaterkitController extends Controller
             $status = StatusPermohonan::join('screening_interview','screening_interview.nric','=','all_status_permohonan.nric')->join('penawaran_permohonan','penawaran_permohonan.nric','=','all_status_permohonan.nric')
             ->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=','all_status_permohonan.nric')->where('all_status_permohonan.nric', $userdetails->nric)->first();
             }
-            $iv = ScreeningIV::where('nric', $userdetails->nric)->first();
+            $iv = ScreeningIV::join('interview_center','interview_center.center_id','=','screening_interview.center_id')->join('session_interview','session_interview.session_id','=','screening_interview.session_id')->where('nric', $userdetails->nric)->first();
 
             $asasi = StatusPermohonan::where('pengajian', 'Asasi')->where('status_global', '!=', 'DRAFT')->where('job_id', $display)->count();
             $diploma = StatusPermohonan::where('pengajian', 'Diploma')->where('status_global', '!=', 'DRAFT')->where('job_id', $display)->count();
@@ -255,5 +257,31 @@ class StaterkitController extends Controller
         
         return response()->download(storage_path($code));
         
+    }
+
+    public function interview_pdf(){
+
+
+        $data = UserDetail::join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')      
+        ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+        ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')  
+        ->where('all_status_permohonan.status_temuduga', 'Temuduga')->orderBy('interview_center.code_center','asc')
+        ->get();
+
+        return view('components.interview_template',compact('data'));
+    }
+    public function downloadInterview_PDF(){
+
+        $data = UserDetail::join('screening_interview', 'screening_interview.nric', '=', 'user_details.nric')
+        ->join('interview_center', 'interview_center.center_id', '=', 'screening_interview.center_id')      
+        ->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')
+        ->join('session_interview', 'session_interview.session_id', '=', 'screening_interview.session_id')  
+        ->where('all_status_permohonan.status_temuduga', 'Temuduga')->orderBy('interview_center.code_center','asc')
+        ->get();
+
+        $pdf = PDF::loadView('components.interview_template',compact('data'));
+
+        return $pdf->download('Senarai_Temuduga.pdf');
     }
 }

@@ -29,6 +29,7 @@ use Carbon\Carbon;
 use Exception;
 use App\Models\Audit;
 use App\Models\UserInformation;
+use App\Models\SubjekPermohonan;
 use PDO;
 
 class FE_PermohonanController extends Controller
@@ -117,6 +118,7 @@ class FE_PermohonanController extends Controller
 
         $intake = Session::get('variableName');
 
+        $subjekpermohonan = SubjekPermohonan::orderBy('nama_subjek', 'asc')->get();
         $programs = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Sepenuh Masa')->where('program.type', 'Program Asasi')->get();
         $programs2 = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Separuh Masa')->where('program.type', 'Program Asasi')->get();
         $diploma = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Sepenuh Masa')->where('program.type', 'Diploma')->get();
@@ -255,6 +257,7 @@ class FE_PermohonanController extends Controller
             $applied_program_one = ProgramApplied::where('nric', $userdetails->nric)->where('job_id',  $intake)
                                             ->where('sequence', 'program_one')->first();                                   
             $program_one_id = $applied_program_one->program_id;
+            $alat = $applied_program_one->AlatMuzik;
         }
         
 
@@ -359,7 +362,7 @@ class FE_PermohonanController extends Controller
         ->with('spm', $spm)->with('spmyear', $yearsspm)->with('stpm', $stpm)->with('stpmyear', $yearsstpm)->with('form6', $form6)->with('form8', $form8)
         ->with('form10', $form10)->with('form1', $form1)->with('form2', $form2)->with('form3', $form3)->with('form4', $form4)->with('form44', $form44)->with('form7', $form7)
         ->with('form9', $form9)->with('sarjana', $sarjana)->with('sarjanamuda', $sarjanamuda)->with('diploma', $diploma)->with('kedoktoran', $kedoktoran)
-        ->with('sarjana2', $sarjana2)->with('sarjanamuda2', $sarjanamuda2)->with('diploma2', $diploma2)->with('kedoktoran2', $kedoktoran2)->with('programs2', $programs2);
+        ->with('sarjana2', $sarjana2)->with('sarjanamuda2', $sarjanamuda2)->with('diploma2', $diploma2)->with('kedoktoran2', $kedoktoran2)->with('programs2', $programs2)->with('subjekpermohonan', $subjekpermohonan)->with('alat', $alat);
     }
 
     public function draft_one(Request $req){
@@ -530,6 +533,7 @@ class FE_PermohonanController extends Controller
                         'kin_email' => $req->kin_email,
                         'kin_address_1' => $req->kin_address_1,
                         'job_id' => $intake,
+                        'pendapatan_isi_rumah' => $req->pendapatan_isi_rumah,
                         'created_by' => $usersession,
                         ]);
                 }
@@ -566,6 +570,7 @@ class FE_PermohonanController extends Controller
                     $detail_sub->kin_no_phonehouse = $req->kin_no_phonehouse;
                     $detail_sub->kin_email = $req->kin_email;
                     $detail_sub->job_id = $intake;
+                    $detail_sub->pendapatan_isi_rumah = $req->pendapatan_isi_rumah;
                     $detail_sub->kin_address_1 = $req->kin_address_1;
                     $detail_sub->created_by = $usersession;
                     $detail_sub->save();
@@ -611,8 +616,8 @@ class FE_PermohonanController extends Controller
         $usersession = auth()->user()->id;
         $type = $req->type_program_applied;
         $program_one = $req->program_one;
-        $program_two = $req->program_two;
         $pengajian = $req->pengajian;
+        $AlatMuzik = $req->AlatMuzik;
         $nric = $req->nric;
         $code = '000';
         $intake = Session::get('variableName');
@@ -641,6 +646,7 @@ class FE_PermohonanController extends Controller
                 $program_applied->program_id = $program_one;
                 $program_applied->sequence = 'program_one';
                 $program_applied->created_by = $usersession;
+                $program_applied->AlatMuzik = $AlatMuzik;
                 $program_applied->modified_by = $usersession;
                 $program_applied->save();
             }
@@ -651,32 +657,10 @@ class FE_PermohonanController extends Controller
                                         ->where('sequence', 'program_one')
                                         ->update([
                                             'program_id' => $program_one,
+                                            'AlatMuzik' => $AlatMuzik,
                                             ]);
         }
 
-        $check_program_two = ProgramApplied::where('nric', $nric)->where('job_id', $intake)
-                                            ->where('sequence', 'program_two')->exists();
-        
-        if(!$check_program_two){
-            if($program_two != ''){
-                $program_applied = new ProgramApplied;
-                $program_applied->nric = $nric;
-                $program_applied->program_id = $program_two;
-                $program_applied->job_id = $intake;
-                $program_applied->sequence = 'program_two';
-                $program_applied->created_by = $usersession;
-                $program_applied->modified_by = $usersession;
-                $program_applied->save();
-            }
-        }else{
-            // If exist, update data 
-            $save_two = ProgramApplied::where('nric', $nric)
-                                        ->where('job_id', $intake)
-                                        ->where('sequence', 'program_two')
-                                        ->update([
-                                            'program_id' => $program_two,
-                                            ]);
-        }
 
         $data = [
             'status' => 'success',

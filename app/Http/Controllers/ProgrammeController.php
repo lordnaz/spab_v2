@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Crypt;
 use GuzzleHttp\Client;
 use App\Models\Offerprogram;
 use App\Models\program;
+use App\Models\SubjekPermohonan;
+use App\Models\Qualification;
 
 
 class ProgrammeController extends Controller
@@ -21,17 +23,18 @@ class ProgrammeController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['name' => "Tetapan Program"]
         ];
 
-        $request = Request::create('/api/display_allprogram', 'GET');
-        $response = Route::dispatch($request);
+        $display = program::where('status', true)->get();
+        // $request = Request::create('/api/display_allprogram', 'GET');
+        // $response = Route::dispatch($request);
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['data'];
+        // $datas = $responseBody['data'];
 
-        return view('components.program-setting', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        return view('components.program-setting', ['breadcrumbs' => $breadcrumbs])->with('datas', $display);
 
     }
 
@@ -52,6 +55,7 @@ class ProgrammeController extends Controller
         // $data = $req->input();
 
         $param = [
+            'mqa' => $req->mqa,
             'code' => $req->code,
             'program' => $req->program,
             'type' => $req->type,
@@ -61,14 +65,29 @@ class ProgrammeController extends Controller
             'notes' => $req->notes,
         ];
 
+        $user_id = auth()->user()->name;
+    
+        $addprogram = new program;
+        $addprogram->mqa = $req->mqa;
+        $addprogram->code = $req->code;
+        $addprogram->program = $req->program;
+        $addprogram->type = $req->type;
+        $addprogram->faculty = $req->faculty;
+        $addprogram->field = $req->field;
+        $addprogram->sub_field = $req->sub_field;
+        $addprogram->notes = $req->notes;
+        $addprogram->status = true;
+        $addprogram->created_by = $user_id;
+        $addprogram->save();
+
         $breadcrumbs = [
             ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/add_program', $param);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/add_program', $param);
 
         return redirect()->route('program');
 
@@ -82,16 +101,20 @@ class ProgrammeController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/display_program', [
-            'code' => $code,
-        ]);
+        $program = program::where('code', $code)
+        ->where('status', true)
+        ->first();
 
-        $datas = $request['data'];
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/display_program', [
+        //     'code' => $code,
+        // ]);
 
-        return view('components.program-details', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        // $datas = $request['data'];
+
+        return view('components.program-details', ['breadcrumbs' => $breadcrumbs])->with('datas', $program);
 
     }
 
@@ -107,7 +130,7 @@ class ProgrammeController extends Controller
         $update = program::where('program_id',$req->program_id)->update
         ([
 
-                
+        'mqa' => $req->mqa,       
         'code' => $req->code,
         'program' => $req->program,
         'type' => $req->type,
@@ -154,17 +177,23 @@ class ProgrammeController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['name' => "Program Ditawar"]
         ];
 
-        $request = Request::create('/api/display_offerprogram', 'GET');
-        $response = Route::dispatch($request);
+        $display = Offerprogram::orderBy('offerprogram_id', 'asc')
+        ->join('program', 'program.program_id', '=', 'offerprogram.program_id')
+        ->select('program.code','program.program','offerprogram.mode', 'offerprogram.quota', 'offerprogram.created_by', 'offerprogram.created_at', 'offerprogram.updated_at', 'offerprogram.status_aktif', 'offerprogram.offerprogram_id as id')
+        ->where('offerprogram.status',true)
+        ->get();
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request = Request::create('/api/display_offerprogram', 'GET');
+        // $response = Route::dispatch($request);
+
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['data'];
+        // $datas = $responseBody['data'];
 
-        return view('components.program-offer', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        return view('components.program-offer', ['breadcrumbs' => $breadcrumbs])->with('datas', $display);
     }
 
     public function offered_add(){
@@ -192,22 +221,23 @@ class ProgrammeController extends Controller
         // }else{
         //     $datas = null;
         // }
-            
+           
+        $display = program::where('status', true)->get();
         
 
-        $request = Request::create('/api/display_allprogram', 'GET');
-        $response = Route::dispatch($request);
+        // $request = Request::create('/api/display_allprogram', 'GET');
+        // $response = Route::dispatch($request);
 
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
+        // $request->headers->set('Content-Type', 'application/json');
+        // $request->headers->set('Authorization', 'Bearer ' . getenv('APP_TOKEN'));
         
-        $responseBody = json_decode($response->getContent(), true);
+        // $responseBody = json_decode($response->getContent(), true);
 
-        $datas = $responseBody['data'];
+        // $datas = $responseBody['data'];
 
         
 
-        return view('components.program-offer-add', ['breadcrumbs' => $breadcrumbs], compact('datas'));
+        return view('components.program-offer-add', ['breadcrumbs' => $breadcrumbs])->with('datas', $display);
 
     }
 
@@ -240,18 +270,39 @@ class ProgrammeController extends Controller
         //     die();
         // }
         
+        $user_id = auth()->User()->name;
 
-        $param = [
+        $exits = Offerprogram::where('program_id', $req->program_id)->where('status',true)->exists();
+
+        if(!$exits){
+        $addprogram = new Offerprogram;
+        $addprogram->program_id = $req->program_id;
+        $addprogram->mode = $req->mode;
+        $addprogram->notes = $req->notes;
+        $addprogram->quota = $req->quota;
+        $addprogram->quota_semasa = 0;
+        $addprogram->registration_date = $req->registration_date;
+        $addprogram->registration_time = $req->registration_time;
+        $addprogram->registration_venue = $req->registration_venue;
+        $addprogram->status_aktif = "tidak aktif";
+        $addprogram->status_validate = "tiada pelajar";
+        $addprogram->qualification_text = "nothing";
+        $addprogram->status = true;
+        $addprogram->created_by = $user_id;
+        $addprogram->save();
+        }
+
+        // $param = [
 
             
-            'program_id' => $req->program_id,
-            'mode' => $req->mode,
-            'quota' => $req->quota,
-            'notes' => $req->notes,
-            'registration_date' => $req->registration_date,
-            'registration_time' => $req->registration_time,
-            'registration_venue' => $req->registration_venue,
-        ];
+        //     'program_id' => $req->program_id,
+        //     'mode' => $req->mode,
+        //     'quota' => $req->quota,
+        //     'notes' => $req->notes,
+        //     'registration_date' => $req->registration_date,
+        //     'registration_time' => $req->registration_time,
+        //     'registration_venue' => $req->registration_venue,
+        // ];
 
         
         $breadcrumbs = [
@@ -259,10 +310,10 @@ class ProgrammeController extends Controller
         ];
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/new_offerprogram', $param);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/new_offerprogram', $param);
 
         // return $request;
         // die();
@@ -282,28 +333,52 @@ class ProgrammeController extends Controller
             ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/offeredprogramById', [
-            'code' => $code,
-        ]);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/offeredprogramById', [
+        //     'code' => $code,
+        // ]);
 
-        $datas = $request['data'];
-        $datass = $request['dataa'];
-        $datasss = $request['dataaa'];
+        // $datas = $request['data'];
+        // $datass = $request['dataa'];
+        // $datasss = $request['dataaa'];
 
-        return view('components.program-offered-details', ['breadcrumbs' => $breadcrumbs])->with('datas', $datas)->with('datass', $datass)->with('datasss', $datasss);
+        $display = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->select('program.code','program.program','offerprogram.mode','offerprogram.notes', 'offerprogram.quota', 'offerprogram.registration_date', 'offerprogram.registration_time', 'offerprogram.registration_venue','offerprogram.qualification_text','offerprogram.status_aktif', 'offerprogram.offerprogram_id as id', 'offerprogram.program_id')->where('offerprogram.offerprogram_id',$code)->first();
+        $displayy = program::where('status', true)->get();
+        $displayyy = Qualification::where('status', true)->where('offerprogram_id', $code)->get();
+
+        return view('components.program-offered-details', ['breadcrumbs' => $breadcrumbs])->with('datas',  $display)->with('datass',  $displayy)->with('datasss', $displayyy);
 
     }
 
     public function update_offered_program(Request $req){
 
         $offerid = decrypt($req->offerid);
+       
         //update details
-        $param = [
+        // $param = [
             
-            'offerid' => $offerid,
+        //     'offerid' => $offerid,
+        //     'program_id' => $req->program_id,
+        //     'mode' => $req->mode,
+        //     'quota' => $req->quota,
+        //     'notes' => $req->notes,
+        //     'registration_date' => $req->registration_date,
+        //     'registration_time' => $req->registration_time,
+        //     'registration_venue' => $req->registration_venue,
+        //     'status' => $req->status,
+            
+        // ];
+
+
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/update_offerprogram2', $param);
+
+        $update = Offerprogram::where('offerprogram_id',$offerid)->update
+        ([
             'program_id' => $req->program_id,
             'mode' => $req->mode,
             'quota' => $req->quota,
@@ -311,23 +386,19 @@ class ProgrammeController extends Controller
             'registration_date' => $req->registration_date,
             'registration_time' => $req->registration_time,
             'registration_venue' => $req->registration_venue,
-            'status' => $req->status,
-            
-        ];
+            'status_aktif' => $req->status,
 
-
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/update_offerprogram2', $param);
+        ]);
 
         
         //update qualification
         for ($k = 0; $k < $req->totalup; $k++){
             
+          
 
             if (empty($req->qualification[$k])) {
 
+                
             }
             else{
                 $qualificationid = decrypt($req->qualification[$k]);
@@ -336,43 +407,148 @@ class ProgrammeController extends Controller
             if (empty($req->update[$k]['subjek'])) {
                 
 
-                $parammm = [
-                
-                    'offerid' => 'nothing',
-                    'qualificationid' => $qualificationid,
-                    'subjek' => 'nothing',
-                    'grade' => '1',
-                    'status' => false,
-                    
-                ];
+                $grade = '1';
 
-                $request = Http::withHeaders([
-                    'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-                ])->post(getenv('ENDPOINT').'/api/update_ProgramQualification', $parammm);
+                if ($grade == '1') {
+                    $valuegrade = "F";
+                } elseif ($grade == '2') {
+                    $valuegrade = "E";
+                } elseif ($grade == '3') {
+                    $valuegrade = "D-";
+                } elseif ($grade == '4') {
+                    $valuegrade = "D";
+                } elseif ($grade == '5') {
+                    $valuegrade = "D+";
+                } elseif ($grade == '6') {
+                    $valuegrade = "C-";
+                } elseif ($grade == '7') {
+                    $valuegrade = "C";
+                } elseif ($grade == '8') {
+                    $valuegrade = "C+";
+                } elseif ($grade == '9') {
+                    $valuegrade = "B-";
+                } elseif ($grade == '10') {
+                    $valuegrade = "B";
+                } elseif ($grade == '11') {
+                    $valuegrade = "B+";
+                } elseif ($grade == '12') {
+                    $valuegrade = "A-";
+                } elseif ($grade == '13') {
+                    $valuegrade = "A";
+                } elseif ($grade == '14') {
+                    $valuegrade = "A+";
+                } else {
+                    $valuegrade = "N/A";
+                }
+    
+                $update = Qualification::where('qualificationid', $qualificationid)->update
+                ([
+        
+                    'subj_name' => 'nothing',
+                    'min_grade' => $valuegrade,
+                    'val_grade' => $grade,
+                    'status' => false,
+                      
+                ]);
+    
+                
+            $delete = Qualification::where('qualificationid', $qualificationid)->first();
+    
+            if($delete->status == false){
+    
+                $data = Qualification::find($qualificationid);
+                $data->delete();
+            }
+
+                // $parammm = [
+                
+                //     'offerid' => 'nothing',
+                //     'qualificationid' => $qualificationid,
+                //     'subjek' => 'nothing',
+                //     'grade' => '1',
+                //     'status' => false,
+                    
+                // ];
+
+                // $request = Http::withHeaders([
+                //     'Content-Type' => 'application/json',
+                //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+                // ])->post(getenv('ENDPOINT').'/api/update_ProgramQualification', $parammm);
         
 
             }
 
             else{
 
-           
+                $subjek = $req->update[$k]['subjek'];
+                $grade = $req->update[$k]['grade'];
 
-            $parammm = [
+                if ($grade == '1') {
+                    $valuegrade = "F";
+                } elseif ($grade == '2') {
+                    $valuegrade = "E";
+                } elseif ($grade == '3') {
+                    $valuegrade = "D-";
+                } elseif ($grade == '4') {
+                    $valuegrade = "D";
+                } elseif ($grade == '5') {
+                    $valuegrade = "D+";
+                } elseif ($grade == '6') {
+                    $valuegrade = "C-";
+                } elseif ($grade == '7') {
+                    $valuegrade = "C";
+                } elseif ($grade == '8') {
+                    $valuegrade = "C+";
+                } elseif ($grade == '9') {
+                    $valuegrade = "B-";
+                } elseif ($grade == '10') {
+                    $valuegrade = "B";
+                } elseif ($grade == '11') {
+                    $valuegrade = "B+";
+                } elseif ($grade == '12') {
+                    $valuegrade = "A-";
+                } elseif ($grade == '13') {
+                    $valuegrade = "A";
+                } elseif ($grade == '14') {
+                    $valuegrade = "A+";
+                } else {
+                    $valuegrade = "N/A";
+                }
+    
+                $update = Qualification::where('qualificationid', $qualificationid)->update
+                ([
+        
+                    'subj_name' => $subjek,
+                    'min_grade' => $valuegrade,
+                    'val_grade' => $grade,
+                    'status' => true,
+                      
+                ]);
+    
                 
-                'offerid' => $offerid,
-                'qualificationid' => $qualificationid,
-                'subjek' => $req->update[$k]['subjek'],
-                'grade' => $req->update[$k]['grade'],
-                'status' => true,
+            $delete = Qualification::where('qualificationid', $qualificationid)->first();
+    
+            if($delete->status == false){
+    
+                $data = Qualification::find($qualificationid);
+                $data->delete();
+            }
+
+            // $parammm = [
                 
-            ];
+            //     'offerid' => $offerid,
+            //     'qualificationid' => $qualificationid,
+            //     'subjek' => $req->update[$k]['subjek'],
+            //     'grade' => $req->update[$k]['grade'],
+            //     'status' => true,
+                
+            // ];
     
     
-            $request = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-            ])->post(getenv('ENDPOINT').'/api/update_ProgramQualification', $parammm);
+            // $request = Http::withHeaders([
+            //     'Content-Type' => 'application/json',
+            //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+            // ])->post(getenv('ENDPOINT').'/api/update_ProgramQualification', $parammm);
             
         }
     
@@ -391,19 +567,72 @@ class ProgrammeController extends Controller
             }
             else{
 
-        $paramm = [
+                $user_id = auth()->User()->name;
+                $nothing = 'nothing';
+          
+                  if (empty($req->data[$i]['subjek'])) {
+                  
+                  } else {
+          
+                    $subjek = $req->data[$i]['subjek'];
+                   
+                    $grade = $req->data[$i]['grade'];
+                      if ($grade == '1') {
+                          $valuegrade = "F";
+                      } elseif ($grade == '2') {
+                          $valuegrade = "E";
+                      } elseif ($grade == '3') {
+                          $valuegrade = "D-";
+                      } elseif ($grade == '4') {
+                          $valuegrade = "D";
+                      } elseif ($grade == '5') {
+                          $valuegrade = "D+";
+                      } elseif ($grade == '6') {
+                          $valuegrade = "C-";
+                      } elseif ($grade == '7') {
+                          $valuegrade = "C";
+                      } elseif ($grade == '8') {
+                          $valuegrade = "C+";
+                      } elseif ($grade == '9') {
+                          $valuegrade = "B-";
+                      } elseif ($grade == '10') {
+                          $valuegrade = "B";
+                      } elseif ($grade == '11') {
+                          $valuegrade = "B+";
+                      } elseif ($grade == '12') {
+                          $valuegrade = "A-";
+                      } elseif ($grade == '13') {
+                          $valuegrade = "A";
+                      } elseif ($grade == '14') {
+                          $valuegrade = "A+";
+                      } else {
+                          $valuegrade = "N/A";
+                      }
+                     
+                      $addpanel = new Qualification;
+                      $addpanel->subj_name = $req->data[$i]['subjek'];
+                      $addpanel->min_grade = $valuegrade;
+                      $addpanel->val_grade = $grade;
+                      $addpanel->offerprogram_id = $offerid;
+                      $addpanel->status = true;
+                      $addpanel->created_by = $user_id;
+                      $addpanel->save();
+          
+                  }
+
+        // $paramm = [
             
-            'subjek' => $req->data[$i]['subjek'],
-            'grade' => $req->data[$i]['grade'],
-            'offeridd' => $offerid,
+        //     'subjek' => $req->data[$i]['subjek'],
+        //     'grade' => $req->data[$i]['grade'],
+        //     'offeridd' => $offerid,
             
-        ];
+        // ];
 
 
-        $request = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
-        ])->post(getenv('ENDPOINT').'/api/add_ProgramQualification', $paramm);
+        // $request = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     'Authorization' => 'Bearer ' . getenv('APP_TOKEN')
+        // ])->post(getenv('ENDPOINT').'/api/add_ProgramQualification', $paramm);
 
         }
     }
@@ -441,6 +670,41 @@ class ProgrammeController extends Controller
 
        
         return redirect()->route('offered_program');
+
+    }
+
+    public function display_subjek(){
+        
+        
+        $display = SubjekPermohonan::orderBy('nama_subjek', 'asc')->get();
+ 
+
+        return view('components.subjek_permohonan_table')->with('display', $display);
+
+    }
+
+    public function add_new_subjek(Request $req){
+ 
+
+        $new = new SubjekPermohonan;
+        $new->nama_subjek = $req->nama_subjek;
+        $new->save();
+
+
+        return redirect()->route('subjek_table');
+
+    }
+
+    public function tolak_subjek($code){
+  
+        $code = decrypt($code);
+
+        $data = SubjekPermohonan::find($code);
+        $data->delete();
+        
+
+
+        return redirect()->route('subjek_table');
 
     }
 

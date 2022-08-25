@@ -49,16 +49,7 @@
                 </div>
               </div>
 
-              <div class="col-12">
-                <div class="mb-1 row">
-                  <div class="col-sm-2">
-                    <label class="col-form-label" for="name">{!! __('locale.Payment_Ref_No') !!}</label>
-                  </div>
-                  <div class="col-sm-10">
-                    <input type="text" id="payment_ref_no" class="form-control" name="payment_ref_no" placeholder="" value="{{$datas['payment_ref_no']}}"readonly/>
-                  </div>
-                </div>
-              </div>
+             
 
               <div class="col-12">
                                 <div class="mb-1 row">

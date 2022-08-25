@@ -13,6 +13,7 @@ class ProgramController extends Controller
         $user_id = auth()->user()->name;
     
         $addprogram = new program;
+        $addprogram->mqa = $req->mqa;
         $addprogram->code = $req->code;
         $addprogram->program = $req->program;
         $addprogram->type = $req->type;
@@ -97,7 +98,8 @@ class ProgramController extends Controller
         'faculty' => $req->faculty,
         'field' => $req->field,
         'sub_field' => $req->sub_field,
-        'notes' => $req->note
+        'notes' => $req->note,
+        'mqa' => $req->mqa
 
         ]);
 
