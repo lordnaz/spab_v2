@@ -103,7 +103,7 @@
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="terms" name="terms" tabindex="4" required/>
                   <label class="form-check-label" for="terms">
-                  {!! __('locale.tnc_statement') !!} <a href="{{ route('terms.show') }}" target="_blank"><b>{!! __('locale.tnc_link') !!}</b></a>
+                  {!! __('locale.tnc_statement') !!} <a href="" target="_blank"><b>{!! __('locale.tnc_link') !!}</b></a>
                   </label>
 
                   @error('terms')
