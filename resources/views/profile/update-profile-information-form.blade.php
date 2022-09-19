@@ -1,10 +1,10 @@
 <x-jet-form-section submit="updateProfileInformation">
   <x-slot name="title">
-    {{ __('Profile Information') }}
+    {{ __('Maklumat Profil') }}
   </x-slot>
 
   <x-slot name="description">
-    {{ __('Update your account\'s profile information and email address.') }}
+    {{ __('Kemas kini maklumat profil dan alamat e-mel akaun anda.') }}
   </x-slot>
 
   <x-slot name="form">
@@ -31,7 +31,7 @@
         </div>
 
         <x-jet-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
-          {{ __('Select A New Photo') }}
+          {{ __('Pilih Gambar Baharu') }}
         </x-jet-secondary-button>
 
         @if ($this->user->profile_photo_path)
@@ -46,7 +46,7 @@
 
     <!-- Name -->
     <div class="mb-1">
-      <x-jet-label class="form-label" for="name" value="{{ __('Name') }}" />
+      <x-jet-label class="form-label" for="name" value="{{ __('Nama') }}" />
       <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
       wire:model.defer="state.name" autocomplete="name" />
       <x-jet-input-error for="name" />
@@ -54,14 +54,14 @@
 
     <!-- Email -->
     <div class="mb-1">
-      <x-jet-label class="form-label" for="email" value="{{ __('Email') }}" />
+      <x-jet-label class="form-label" for="email" value="{{ __('Emel') }}" />
       <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
         wire:model.defer="state.email" />
       <x-jet-input-error for="email" />
     </div>
     <div class="mb-1">
    
-    <x-jet-label class="form-label" for="email" value="{{ __('Race') }}" />
+    <x-jet-label class="form-label" for="email" value="{{ __('Bangsa') }}" />
               <select class="form-select w-100 race" id="race" wire:model.defer="state.race">
                 <option label="" selected disabled>{!! __('locale.Please Choose') !!}</option>
                 <option value="Melayu" @if($state['race'] == "Melayu") selected @else  @endif>Melayu</option>
@@ -73,11 +73,11 @@
 
     <div class="mb-1">
               
-              <x-jet-label class="form-label" for="email" value="{{ __('Gender') }}" />
+              <x-jet-label class="form-label" for="email" value="{{ __('Jantina') }}" />
               <select class="form-select w-100 gender" id="gender" wire:model.defer="state.gender">
                 <option label="">{!! __('locale.Please Choose') !!}</option>
-                <option value="Male" @if($state['gender'] == "Male") selected @else  @endif>Male</option>
-                <option value="Female" @if($state['gender'] == "Female") selected @else  @endif>Female</option>
+                <option value="Male" @if($state['gender'] == "Male") selected @else  @endif>Lelaki</option>
+                <option value="Female" @if($state['gender'] == "Female") selected @else  @endif>Perempuan</option>
               </select>
             </div>
   </x-slot>
@@ -85,7 +85,7 @@
   <x-slot name="actions">
     <div class="d-flex align-items-baseline">
       <x-jet-button>
-        {{ __('Save') }}
+        {{ __('Simpan') }}
       </x-jet-button>
     </div>
   </x-slot>

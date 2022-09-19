@@ -36,12 +36,12 @@
               <div class="col-12">
                 <div class="mb-1 row">
                   <div class="col-sm-2">
-                    <label class="col-form-label" for="subfield">{!! __('locale.Type') !!}</label>
+                    <label class="col-form-label" for="subfield" >{!! __('locale.Type') !!}</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="radio" id="subfield"  name="mode" value="Sepenuh Masa"/>
+                    <input type="radio" id="subfield"  name="mode" value="Sepenuh Masa"  required/>
                     <label class="col-form-label" for="subfield" >Sepenuh Masa</label>
-                    <input type="radio" id="subfield"  name="mode" value="Separuh Masa"/>
+                    <input type="radio" id="subfield"  name="mode" value="Separuh Masa"  required/>
                     <label class="col-form-label" for="subfield">Separuh Masa</label>
                   </div>
                   
@@ -54,7 +54,7 @@
                     <label class="col-form-label" for="field">Kuota</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="number" id="field" class="form-control" name="quota" />
+                    <input type="number" id="field" class="form-control" name="quota"  required />
                   </div>
                 </div>
               </div>
@@ -77,7 +77,7 @@
                     <label class="col-form-label" for="subfield">Tarikh Daftar</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="subfield" class="form-control" name="registration_date" placeholder=""/>
+                    <input type="text" id="subfield" class="form-control" name="registration_date" placeholder="" required/>
                   </div>
                 </div>
               </div>
@@ -88,7 +88,7 @@
                     <label class="col-form-label" for="subfield">Masa Daftar</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="subfield" class="form-control" name="registration_time" placeholder=""/>
+                    <input type="text" id="subfield" class="form-control" name="registration_time" placeholder=""  required/>
                   </div>
                 </div>
               </div>

@@ -25,7 +25,7 @@ class FE_PendaftaranPelajarController extends Controller
         ];
 
         
-        return view('components.pendaftaran-pelajar-new', ['breadcrumbs' => $breadcrumbs],);
+        return view('components.pendaftaran-pelajar-new')->with('button','tiada');
 
     } 
 

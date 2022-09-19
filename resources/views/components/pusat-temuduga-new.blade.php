@@ -17,10 +17,10 @@
                             <div class="col-12">
                                 <div class="mb-1 row">
                                     <div class="col-sm-2">
-                                        <label class="col-form-label" for="code">{!! __('locale.Code') !!}</label>
+                                        <label class="col-form-label" for="code">Kod</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input type="text" id="code" class="form-control" name="code_center" placeholder="" />
+                                        <input type="text" id="code" class="form-control" name="code_center" placeholder="" required/>
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                         <label class="col-form-label" for="name">{!! __('locale.Name') !!}</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input type="text" id="name" class="form-control" name="name_center" placeholder="" />
+                                        <input type="text" id="name" class="form-control" name="name_center" placeholder="" required/>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                             <div class="col-12">
                                 <div class="mb-1 row">
                                     <div class="col-sm-2">
-                                        <label class="col-form-label" for="name">Tels:</label>
+                                        <label class="col-form-label" for="name">Tels</label>
                                     </div>
                                     <div class="col-sm-10">
                                         <input type="text" id="name" class="form-control" name="tel_no_center" placeholder="" />
@@ -61,7 +61,7 @@
                             <div class="col-12">
                                 <div class="mb-1 row">
                                     <div class="col-sm-2">
-                                        <label class="col-form-label" for="name">Faks:</label>
+                                        <label class="col-form-label" for="name">Faks</label>
                                     </div>
                                     <div class="col-sm-10">
                                         <input type="text" id="name" class="form-control" name="fax_no_center" placeholder="" />

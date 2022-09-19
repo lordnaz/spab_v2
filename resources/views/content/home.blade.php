@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Home')
+@section('title', 'Halaman Utama')
 
 @section('content')
 

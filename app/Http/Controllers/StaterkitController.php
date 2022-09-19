@@ -21,7 +21,7 @@ class StaterkitController extends Controller
         
         if(auth()->user()){
             $breadcrumbs = [
-                ['link' => "home", 'name' => "Home"], ['name' => "Announcement"]
+                ['link' => "home", 'name' => "Halaman Utama"] 
             ];
 
             $usersession = auth()->user()->id;

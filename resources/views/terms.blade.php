@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-body">
           <div class="mb-2">
-            <x-jet-authentication-card-logo />
+           <center><img src="/img/aswara.png" width ="60" ></center>
           </div>
 
           <div>

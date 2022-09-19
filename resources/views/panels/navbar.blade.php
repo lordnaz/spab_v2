@@ -101,7 +101,7 @@ $roles = auth()->user()->role;
             @endif
           </span>
           <span class="user-status">
-            role : {{ $roles }}
+            {{ $roles }}
           </span>
         </div>
         <span class="avatar">
@@ -159,7 +159,7 @@ $roles = auth()->user()->role;
         @if (Auth::check())
           <a class="dropdown-item" href="{{ route('logout') }}"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <i class="me-50" data-feather="power"></i> Logout
+            <i class="me-50" data-feather="power"></i> Log Keluar
           </a>
           <form method="POST" id="logout-form" action="{{ route('logout') }}">
             @csrf

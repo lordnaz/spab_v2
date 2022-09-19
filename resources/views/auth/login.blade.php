@@ -32,7 +32,7 @@
           <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-1">
-              <label for="login-email" class="form-label">{!! __('locale.Email') !!}</label>
+              <label for="login-email" class="form-label">Emel</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" aria-describedby="login-email" tabindex="1" autofocus
                 value="{{ old('email') }}" />
               @error('email')
@@ -44,10 +44,10 @@
 
             <div class="mb-1">
               <div class="d-flex justify-content-between">
-                <label class="form-label" for="login-password">{!! __('locale.Password') !!}</label>
+                <label class="form-label" for="login-password">Kata Laluan</label>
                 @if (Route::has('password.request'))
                   <a href="{{ route('password.request') }}" class="text-primary">
-                    <small>{!! __('locale.Forgot_Password') !!}</small>
+                    <small>Lupa Kata Laluan?</small>
                   </a>
                 @endif
               </div>

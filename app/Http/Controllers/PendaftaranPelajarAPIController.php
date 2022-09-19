@@ -19,6 +19,15 @@ class PendaftaranPelajarAPIController extends Controller
     //
     public function applicantinfo(Request $req){
 
+      $exists = UserDetail::join('all_status_permohonan','all_status_permohonan.nric', '=','user_details.nric')
+      ->where('user_details.nric', $req->nric)->where('all_status_permohonan.status_global', 'DITERIMA')->exists();
+      
+      if(!$exists){
+
+
+        return view('components.pendaftaran-pelajar-new')->with('button','ada');
+      }
+      else{
         $currentdt = date('Y-m-d H:i:s');
         $currentDateTime = Carbon::parse($currentdt)->addYears(1)->format('Y');
         $year = substr($currentDateTime, -2);
@@ -34,6 +43,7 @@ class PendaftaranPelajarAPIController extends Controller
 
         
         return view('components.pendaftaran-pelajar-detail')->with('data',$displayapplicantinfo)->with('dataa',$program);
+      }
     }
 
     public function updateapplicantinfo(Request $req){

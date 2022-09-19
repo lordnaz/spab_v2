@@ -121,7 +121,7 @@
                     <label class="col-form-label">{!! __('locale.Status') !!}:</label>
                   </div>
                   <div class="col-sm-10">
-                    <select class="select2 form-select" id="type" name="status">
+                    <select class="select2 form-select" id="type" name="panel_status" required>
                       <option selected disabled>{!! __('locale.Please Choose') !!}</option>
                       <option data-avatar="1-small.png" value="Aktif">{!! __('locale.Active') !!}</option>
                       <option data-avatar="3-small.png" value="Tidak Aktif">{!! __('locale.Not Active') !!}</option>

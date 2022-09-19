@@ -39,7 +39,7 @@ class FE_PermohonanController extends Controller
     public function regis_all(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Permohonan"], ['name' => "Senarai Permohonan"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Permohonan"], ['name' => "Senarai Permohonan"]
         ];
 
         // $request = Request::create('/api/display_allprogram', 'GET');
@@ -252,6 +252,7 @@ class FE_PermohonanController extends Controller
         $check_one = ProgramApplied::where('nric', $userdetails->nric)->where('job_id', $intake)
                                     ->where('sequence', 'program_one')->exists();
         $program_one_id = "NOT_EXIST";
+        $alat = "NOT_EXIST";
         
         if($check_one){
             $applied_program_one = ProgramApplied::where('nric', $userdetails->nric)->where('job_id',  $intake)
