@@ -4,6 +4,13 @@
   {{-- vendor css files --}}
   
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+@endsection
+
+@section('page-style')
+  <!-- Page css files -->
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+
 @endsection
 
 @section('content')
@@ -114,7 +121,8 @@
                     <label class="col-form-label" for="subfield">Tarikh Daftar</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="subfield" class="form-control" name="registration_date" placeholder="" value="{{$datas['registration_date']}}"/>
+                    
+                    <input type="text" id="registration_date" name="registration_date" class="form-control flatpickr-basic date_of_birth" value="{{$datas['registration_date']}}" placeholder="YYYY-MM-DD" required/>
                   </div>
                 </div>
               </div>
@@ -125,7 +133,8 @@
                     <label class="col-form-label" for="subfield">Masa Daftar</label>
                   </div>
                   <div class="col-sm-10">
-                    <input type="text" id="subfield" class="form-control" name="registration_time" placeholder="" value="{{$datas['registration_time']}}"/>
+                    
+                    <input type="text" id="registration_date" name="registration_time" class="form-control flatpickr-time date_of_birth" value="{{$datas['registration_time']}}" placeholder="00:00" required/>
                   </div>
                 </div>
               </div>
@@ -313,12 +322,14 @@
 @section('vendor-script')
   <!-- vendor files -->
   <script src="{{ asset(mix('vendors/js/forms/repeater/jquery.repeater.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 @endsection
 @section('page-script')
   <!-- Page js files -->
   
   <script src="{{ asset(mix('js/scripts/forms/form-repeater.js')) }}"></script>
   <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 @endsection
 
 

@@ -127,7 +127,7 @@ $("#pengajian").on('change', function (bp) {
     $("#asasi_sepenuh").fadeIn(500).show()
     }
     else{
-      $("#asasi_separuh").fadeIn(500).show()
+      $("#asasi_sepenuh").fadeIn(500).show()
     }
   }
 
@@ -2272,12 +2272,12 @@ if($('.doktor_type_program_applied').val() == 'Separuh Masa'){
     'usubject_spm' : usubject_spm,
     'ugrade_spm' : ugrade_spm,
     'year_stpm' : $('.year_stpm').val(),
-      'index_stpm' : index_stpm,
-      'subject_stpm' : subject_stpm,
-      'grade_stpm' : grade_stpm,
-      'id_stpm' : id_stpm,
-      'usubject_stpm' : usubject_stpm,
-      'ugrade_stpm' : ugrade_stpm,
+    'index_stpm' : index_stpm,
+    'subject_stpm' : subject_stpm,
+    'grade_stpm' : grade_stpm,
+    'id_stpm' : id_stpm,
+    'usubject_stpm' : usubject_stpm,
+    'ugrade_stpm' : ugrade_stpm,
    }
 
    $.ajax({
@@ -2726,9 +2726,6 @@ function formSepuluhValid(){
           phone_no: {
             required: true
           },
-          house_no: {
-            required: true
-          },
           dun: {
             required: true
           },
@@ -2747,9 +2744,6 @@ function formSepuluhValid(){
           partner_no_tel: {
             required: true
           },
-          partner_no_phonehouse: {
-            required: true
-          },
           partner_address_1: {
             required: true
           },
@@ -2764,9 +2758,6 @@ function formSepuluhValid(){
             required: true
           },
           guardian_no_tel: {
-            required: true
-          },
-          guardian_no_phonehouse: {
             required: true
           },
           guardian_address_1: {
@@ -2792,9 +2783,6 @@ function formSepuluhValid(){
             required: true
           },
           kin_no_tel: {
-            required: true
-          },
-          kin_no_phonehouse: {
             required: true
           },
           kin_email: {

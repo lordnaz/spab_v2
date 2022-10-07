@@ -41,6 +41,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
 Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
+    Route::get('/', [StaterkitController::class, 'home']);
     Route::get('home', [StaterkitController::class, 'home'])->name('home');
 
     // Route Components
@@ -139,7 +140,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('draft_sembilan', [FE_PermohonanController::class, 'draft_sembilan'])->name('draft_sembilan');
     Route::post('draft_sepuluh', [FE_PermohonanController::class, 'draft_sepuluh'])->name('draft_sepuluh');
     Route::post('/returnpage', [FE_PermohonanController::class, 'returnpage'])->name('returnpage');
-    Route::get('butiran/{code}', [FE_PermohonanController::class, 'butiran'])->name('butiran');
+    Route::get('butiran/{code}/{intakeid}', [FE_PermohonanController::class, 'butiran'])->name('butiran');
     
     
     Route::get('display_pengesahan_permohonan', [PengesahanPermohonanFEController::class, 'display_pengesahan_permohonan'])->name('display_pengesahan_permohonan');

@@ -21,25 +21,33 @@ class FE_PendaftaranPelajarController extends Controller
     public function pendaftaranpelajar(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['name' => "Pendaftaran Pelajar"]
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Pendaftaran"], ['name' => "Pendaftaran Pelajar"]
         ];
 
         
-        return view('components.pendaftaran-pelajar-new')->with('button','tiada');
+        return view('components.pendaftaran-pelajar-new' , ['breadcrumbs' => $breadcrumbs])->with('button','tiada');
 
     } 
 
     public function senarai_pelajar(){
 
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Pendaftaran"], ['name' => "Senarai Pelajar"]
+        ];
+
         $display = Session::get('display');
         $datas = StatusPermohonan::join('user_details','user_details.nric', '=', 'all_status_permohonan.nric')->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.status_global', 'DAFTAR')->get();
 
         
-        return view('components.senarai_daftar')->with('datas',$datas);
+        return view('components.senarai_daftar' , ['breadcrumbs' => $breadcrumbs])->with('datas',$datas);
 
     }
 
     public function senarai_pelajar_detail($code){
+
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Pendaftaran"], ['name' => "Senarai Pelajar"]
+        ];
 
         $code = decrypt($code);
 
@@ -51,21 +59,29 @@ class FE_PendaftaranPelajarController extends Controller
 
 
         
-        return view('components.senarai_daftar_detail')->with('data',$displayapplicantinfo);
+        return view('components.senarai_daftar_detail' , ['breadcrumbs' => $breadcrumbs])->with('data',$displayapplicantinfo);
     }
 
     public function sejarah_pelajar(){
 
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Pendaftaran"], ['name' => "Sejarah Pelajar"]
+        ];
+        
         $display = Session::get('display');
         $datas = StatusPermohonan::join('user_details','user_details.nric', '=', 'all_status_permohonan.nric')->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.status_global', 'DAFTAR')->get();
 
         
-        return view('components.sejarah_pelajar')->with('datas',$datas);
+        return view('components.sejarah_pelajar' , ['breadcrumbs' => $breadcrumbs])->with('datas',$datas);
 
     }
 
     public function sejarah_pelajar_detail(Request $req){
 
+
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Pendaftaran"], ['name' => "Sejarah Pelajar"]
+        ];
 
         $nric = $req->nric;
         $exist = StatusPermohonan::where('nric', $req->nric)->exists();
@@ -100,16 +116,20 @@ class FE_PendaftaranPelajarController extends Controller
         
 
         
-        return view('components.sejarah_pelajar_detail')->with('wujud',$wujud)->with('nric',$nric)->with('datas',$asasi1)->with('datass',$asasi2)->with('datasd',$diploma1)->with('datassd',$diploma2)
+        return view('components.sejarah_pelajar_detail' , ['breadcrumbs' => $breadcrumbs])->with('wujud',$wujud)->with('nric',$nric)->with('datas',$asasi1)->with('datass',$asasi2)->with('datasd',$diploma1)->with('datassd',$diploma2)
         ->with('datasm',$muda1)->with('datassm',$muda2)->with('datassa',$sarjana1)->with('datasssa',$sarjana2)->with('datask',$doktor1)->with('datassk',$doktor2);
 
     }
 
     public function audit_trail(){
 
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Audit Trail"], ['name' => "Audit Trail"]
+        ];
+
         $datas = StatusPermohonan::join('user_details','user_details.nric', '=', 'all_status_permohonan.nric')->join('pendaftaran_pelajar','pendaftaran_pelajar.nric', '=', 'all_status_permohonan.nric')->where('all_status_permohonan.status_global', '!=', 'DRAFT')->get();
 
-        return view('components.audit_trail')->with('datas',$datas);
+        return view('components.audit_trail' , ['breadcrumbs' => $breadcrumbs])->with('datas',$datas);
     }
 
     public function audit_trail_detail($code){

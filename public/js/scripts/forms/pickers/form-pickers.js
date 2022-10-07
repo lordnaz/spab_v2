@@ -27,8 +27,10 @@
   // Time
   if (timePickr.length) {
     timePickr.flatpickr({
+
       enableTime: true,
-      noCalendar: true
+      noCalendar: true,
+      dateFormat: "H:i"
     });
   }
 

@@ -1,5 +1,23 @@
 @extends('layouts/contentLayoutMaster')
 
+@section('vendor-style')
+  <!-- vendor css files -->
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/wizard/bs-stepper.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
+@endsection
+
+@section('page-style')
+  <!-- Page css files -->
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
+@endsection
+
 @section('content')
 <!-- Basic Horizontal form layout section start -->
 <section id="basic-horizontal-layouts">
@@ -76,8 +94,9 @@
                   <div class="col-sm-2">
                     <label class="col-form-label" for="subfield">Tarikh Daftar</label>
                   </div>
-                  <div class="col-sm-10">
-                    <input type="text" id="subfield" class="form-control" name="registration_date" placeholder="" required/>
+                  <div class="col-sm-2">
+                  
+                    <input type="text" id="registration_date" name="registration_date" class="form-control flatpickr-basic date_of_birth" value="" placeholder="YYYY-MM-DD" required/>
                   </div>
                 </div>
               </div>
@@ -87,8 +106,9 @@
                   <div class="col-sm-2">
                     <label class="col-form-label" for="subfield">Masa Daftar</label>
                   </div>
-                  <div class="col-sm-10">
-                    <input type="text" id="subfield" class="form-control" name="registration_time" placeholder=""  required/>
+                  <div class="col-sm-2">
+    
+                    <input type="text" id="registration_date" name="registration_time" class="form-control flatpickr-time date_of_birth" value="" placeholder="00:00" required/>
                   </div>
                 </div>
               </div>
@@ -124,4 +144,21 @@
 </section>
 <!-- Basic Horizontal form layout section end -->
 
+@endsection
+
+@section('vendor-script')
+  <!-- vendor files -->
+  <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/forms/repeater/jquery.repeater.min.js')) }}"></script>
+@endsection
+@section('page-script')
+  <!-- Page js files -->
+  <script src="{{ asset(mix('js/scripts/forms/form-wizard.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/forms/form-repeater.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/forms/form-validation.js')) }}"></script>
 @endsection

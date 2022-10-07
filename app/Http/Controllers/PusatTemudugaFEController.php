@@ -13,7 +13,7 @@ class PusatTemudugaFEController extends Controller
     public function pusattemuduga(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Pusat Temuduga"]
         ];
 
         // $request = Request::create('/api/getAllCenterInterview', 'GET');

@@ -19,7 +19,7 @@ class PengesahanPermohonanFEController extends Controller
     public function display_pengesahan_permohonan(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Permohonan"],['name' => "Pengesahan Permohonan"]
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Kemasukan"], ['name' => "Pengesahan Permohonan"]
         ];
 
         // $request = Request::create('/api/display_permohonan', 'GET');
@@ -50,7 +50,7 @@ class PengesahanPermohonanFEController extends Controller
 
        
 
-        return view('components.pengesahan-permohonan-all')->with('datas', $display)->with('sah',$sah)->with('tolak',$tolak);
+        return view('components.pengesahan-permohonan-all' , ['breadcrumbs' => $breadcrumbs])->with('datas', $display)->with('sah',$sah)->with('tolak',$tolak);
         // return view('components.pengesahan-permohonan-detail', ['breadcrumbs' => $breadcrumbs], compact('datas'));
         
 

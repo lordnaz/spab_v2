@@ -19,13 +19,17 @@ class PendaftaranPelajarAPIController extends Controller
     //
     public function applicantinfo(Request $req){
 
+      $breadcrumbs = [
+        ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Pendaftaran"], ['name' => "Pendaftaran Pelajar"]
+    ];
+    
       $exists = UserDetail::join('all_status_permohonan','all_status_permohonan.nric', '=','user_details.nric')
       ->where('user_details.nric', $req->nric)->where('all_status_permohonan.status_global', 'DITERIMA')->exists();
       
       if(!$exists){
 
 
-        return view('components.pendaftaran-pelajar-new')->with('button','ada');
+        return view('components.pendaftaran-pelajar-new' , ['breadcrumbs' => $breadcrumbs])->with('button','ada');
       }
       else{
         $currentdt = date('Y-m-d H:i:s');
@@ -42,7 +46,7 @@ class PendaftaranPelajarAPIController extends Controller
         
 
         
-        return view('components.pendaftaran-pelajar-detail')->with('data',$displayapplicantinfo)->with('dataa',$program);
+        return view('components.pendaftaran-pelajar-detail' , ['breadcrumbs' => $breadcrumbs])->with('data',$displayapplicantinfo)->with('dataa',$program);
       }
     }
 

@@ -78,8 +78,19 @@ class FE_PermohonanController extends Controller
                                         ->where('all_status', 'DRAFT')
                                         ->orWhere('all_status', 'DALAM PROSES')
                                         ->exists();
-        
-        $button = SubmitApplication::where('nric', $userdetails->nric)->where('all_status', 'BELUM DISAHKAN')->exists();
+
+          $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
+
+        $button = SubmitApplication::where('nric', $userdetails->nric)->where('all_status', 'BELUM DISAHKAN')->where('job_id', $intake)->exists();
 
         if(!$button){
 
@@ -98,7 +109,7 @@ class FE_PermohonanController extends Controller
     public function registration(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Permohonan"], ['name' => "Permohonan Baru"]
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Permohonan"], ['name' => "Permohonan Baru"]
         ];
 
        
@@ -116,7 +127,17 @@ class FE_PermohonanController extends Controller
 
         $email = auth()->user()->email;
 
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
+       
 
         $subjekpermohonan = SubjekPermohonan::orderBy('nama_subjek', 'asc')->get();
         $programs = Offerprogram::join('program', 'program.program_id', '=', 'offerprogram.program_id')->where('offerprogram.status_aktif', 'aktif')->where('offerprogram.mode', 'Sepenuh Masa')->where('program.type', 'Program Asasi')->get();
@@ -359,10 +380,10 @@ class FE_PermohonanController extends Controller
         
 
         return view('components.permohonan-baru', ['breadcrumbs' => $breadcrumbs], 
-        compact('email', 'programs', 'program_one_id', 'program_two_id'))->with('kelulusanloop', $kelulusanloop)->with('pmr', $pmr)->with('pmryear', $years)
+        compact('email','program_one_id', 'program_two_id'))->with('kelulusanloop', $kelulusanloop)->with('pmr', $pmr)->with('pmryear', $years)
         ->with('spm', $spm)->with('spmyear', $yearsspm)->with('stpm', $stpm)->with('stpmyear', $yearsstpm)->with('form6', $form6)->with('form8', $form8)
         ->with('form10', $form10)->with('form1', $form1)->with('form2', $form2)->with('form3', $form3)->with('form4', $form4)->with('form44', $form44)->with('form7', $form7)
-        ->with('form9', $form9)->with('sarjana', $sarjana)->with('sarjanamuda', $sarjanamuda)->with('diploma', $diploma)->with('kedoktoran', $kedoktoran)
+        ->with('form9', $form9)->with('programs', $programs)->with('sarjana', $sarjana)->with('sarjanamuda', $sarjanamuda)->with('diploma', $diploma)->with('kedoktoran', $kedoktoran)
         ->with('sarjana2', $sarjana2)->with('sarjanamuda2', $sarjanamuda2)->with('diploma2', $diploma2)->with('kedoktoran2', $kedoktoran2)->with('programs2', $programs2)->with('subjekpermohonan', $subjekpermohonan)->with('alat', $alat);
     }
 
@@ -375,7 +396,16 @@ class FE_PermohonanController extends Controller
         $usersession = auth()->user()->id;
         $nric = $req->nric;
         $code = '000';
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
         if($nric != ''){
 
             $exists = UserDetail::where('nric', $nric)->exists();
@@ -500,7 +530,16 @@ class FE_PermohonanController extends Controller
         $nric = $req->nric;
         $code = '000';
 
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
 
         if($nric != ''){
 
@@ -621,7 +660,16 @@ class FE_PermohonanController extends Controller
         $AlatMuzik = $req->AlatMuzik;
         $nric = $req->nric;
         $code = '000';
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
 
         $application = SubmitApplication::where('nric', $nric)
                                         ->where('all_status', 'DRAFT')
@@ -682,7 +730,16 @@ class FE_PermohonanController extends Controller
         $usersession = auth()->user()->id;
         $nric = $req->nric;
         $code = '000';
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
 
         //Muet Result
         if($nric != ''){
@@ -908,8 +965,68 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $usersession = auth()->user()->id;
         $nric = $req->nric;
         $code = '000';
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
         
+          //PMR update
+          if(!empty($req->id_pmr)){
+
+            for($i=0; $i < count($req->id_pmr); $i++){
+
+                if(empty($req->usubject_pmr[$i]) && empty($req->ugrade_pmr[$i])){
+
+                    $save_draft = SubjectGrade::where('subject_gradeid', $req->id_pmr[$i])
+                    ->update([
+                        'status' => false,
+                               
+                        ]);
+
+                }
+
+                else{
+                $save_draft = SubjectGrade::where('subject_gradeid', $req->id_pmr[$i])
+                ->update([
+                    'subject_list' => $req->usubject_pmr[$i],
+                    'grade' => $req->ugrade_pmr[$i],
+                    'year' => $req->year_pmr,          
+                    ]);
+                }
+        }
+    }
+        //PMR submit
+
+      
+        if(!empty($req->subject_pmr) || !empty($req->grade_pmr)){
+            for($k=0; $k < count($req->subject_pmr); $k++){
+               
+            $wujudpmr = SubjectGrade::where('nric', $nric)->where('job_id', $intake)->where('status', true)->where('type_qualification', 'PMR')->where('sequence', $req->index_pmr[$k])->exists();
+                    
+            if(!$wujudpmr){   
+                
+            $detail = new SubjectGrade;
+            $detail->nric = $nric;
+            $detail->subject_list = $req->subject_pmr[$k];
+            $detail->grade = $req->grade_pmr[$k];
+            $detail->type_qualification = "PMR";
+            $detail->year = $req->year_pmr;
+            $detail->job_id = $intake;
+            $detail->sequence = $req->index_pmr[$k];
+            $detail->created_by = $usersession;
+            $detail->save();
+
+        
+            
+            }
+        }
+    }
 
         //SPM update
         if(!empty($req->id_spm)){
@@ -961,56 +1078,7 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
             }
         }
 
-        //PMR update
-        if(!empty($req->id_pmr)){
-
-            for($i=0; $i < count($req->id_pmr); $i++){
-
-                if(empty($req->usubject_pmr[$i]) && empty($req->ugrade_pmr[$i])){
-
-                    $save_draft = SubjectGrade::where('subject_gradeid', $req->id_pmr[$i])
-                    ->update([
-                        'status' => false,
-                               
-                        ]);
-
-                }
-
-                else{
-                $save_draft = SubjectGrade::where('subject_gradeid', $req->id_pmr[$i])
-                ->update([
-                    'subject_list' => $req->usubject_pmr[$i],
-                    'grade' => $req->ugrade_pmr[$i],
-                    'year' => $req->year_pmr,          
-                    ]);
-                }
-        }
-    }
-        //PMR submit
-
       
-        if(!empty($req->subject_pmr) || !empty($req->grade_pmr)){
-            for($k=0; $k < count($req->subject_pmr); $k++){
-               
-            $wujudpmr = SubjectGrade::where('nric', $nric)->where('job_id', $intake)->where('status', true)->where('type_qualification', 'PMR')->where('sequence', $req->index_pmr[$i])->exists();
-                    
-            if(!$wujudpmr){   
-                
-            $detail = new SubjectGrade;
-            $detail->nric = $nric;
-            $detail->subject_list = $req->subject_pmr[$k];
-            $detail->grade = $req->grade_pmr[$k];
-            $detail->type_qualification = "PMR";
-            $detail->year = $req->year_pmr;
-            $detail_sub->job_id = $intake;
-            $detail->sequence = $req->index_pmr[$k];
-            $detail->created_by = $usersession;
-            $detail->save();
-
-            
-            }
-        }
-    }
         
          
 
@@ -1057,7 +1125,7 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
             $details->type_qualification = "STPM";
             $details->year = $req->year_stpm;
             $details->sequence = $req->index_stpm[$l];
-            $detail_sub->job_id = $intake;
+            $details->job_id = $intake;
             $details->created_by = $usersession;
             $details->save();
 
@@ -1104,7 +1172,16 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $usersession = auth()->user()->id;
         $nric = $req->nric;
         $code = '000';
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
         //form6
         if(!empty($req->id_form6)){
 
@@ -1190,7 +1267,16 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $nric = $req->nric;
         $code = '000';
         $year_working = Carbon::parse($req->year_working)->format('Y-m-d');
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
         if($nric != ''){
 
             $exists =ApplicantExperiences::where('nric', $nric)->where('job_id', $intake)->exists();
@@ -1276,7 +1362,16 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $usersession = auth()->user()->id;
         $nric = $req->nric;
         $code = '000';
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
         //lapan update
         if(!empty($req->id_form8)){
 
@@ -1363,7 +1458,16 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $nric = $req->nric;
         $code = '000';
         $date_offer = Carbon::parse($req->date_offer)->format('Y-m-d');
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
         if($nric != ''){
 
             $exists =SponsorDetails::where('nric', $nric)->where('job_id', $intake)->exists();
@@ -1449,7 +1553,16 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $usersession = auth()->user()->id;
         $nric = $req->nric;
         $code = '000';
-        $intake = Session::get('variableName');
+        $testintake = Intake::first();
+        if($testintake == NULL){
+          
+            $intake = "2022";
+
+        }
+        else{
+
+            $intake = $testintake->intake;
+        }
         $application = SubmitApplication::where('nric', $nric)->where('job_id', $intake)
         ->where('all_status', 'DRAFT')
         ->orWhere('all_status', 'DALAM PROSES')
@@ -1668,13 +1781,14 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
 
     }
 
-    public function butiran($code){
+    public function butiran($code, $intakeid){
 
         $breadcrumbs = [
             ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Permohonan"], ['name' => "Permohonan Baru"]
         ];
 
         $code = decrypt($code);
+        $intakeid = decrypt($intakeid);
         // $request = Request::create('/api/display_allprogram', 'GET');
         // $response = Route::dispatch($request);
 
@@ -1695,6 +1809,15 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $userdetails = SubmitApplication::where('nric', $code)->first();
            
         $intake = Session::get('variableName');
+        $role = auth()->user()->role;
+        if($role == "admin")
+        {
+            $intake = Session::get('display');
+        }
+        else{
+
+            $intake = $intakeid;
+        }
         //form1
 
         $form1 = UserDetail::join('all_status_permohonan','all_status_permohonan.nric', '=','user_details.nric')->where('user_details.nric', $code)->where('user_details.job_id', $intake)->first();

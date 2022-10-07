@@ -42,7 +42,9 @@ class OpenPusatTemudugaFEController extends Controller
 
     public function PusatTemudugaTable(){
 
-       
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Buka Pusat Temuduga"]
+        ];
 
         // $request = Request::create('/api/getAllOpenCenterInterview', 'GET');
         // $response = Route::dispatch($request);
@@ -57,7 +59,7 @@ class OpenPusatTemudugaFEController extends Controller
         $displayCenterInterview = CenterInterview::where('status', true)->get();
         $displayCenterInterviewTable = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
 
-        return view('components.open-pusat-temuduga-table')->with('datas', $displayCenterInterviewTable);
+        return view('components.open-pusat-temuduga-table', ['breadcrumbs' => $breadcrumbs])->with('datas', $displayCenterInterviewTable);
 
     }
 

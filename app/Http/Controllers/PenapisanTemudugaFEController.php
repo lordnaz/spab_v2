@@ -20,7 +20,9 @@ class PenapisanTemudugaFEController extends Controller
 
     public function PenapisanTemuduga(){
 
-      
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Penapisan Temuduga"]
+        ];
 
         // $request = Request::create('/api/getAllScreeningIVapplicant', 'GET');
         // $response = Route::dispatch($request);
@@ -56,13 +58,15 @@ class PenapisanTemudugaFEController extends Controller
 
     $tolak = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
 
-        return view('components.penapisan-temuduga-table')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)
+        return view('components.penapisan-temuduga-table', ['breadcrumbs' => $breadcrumbs])->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)
         ->with('displayTolak', $displayTolak)->with('tolak', $tolak);
 
     }
 
     public function ajaxtemuduga($code){
-
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Penapisan Temuduga"]
+        ];
 
         $type = $code;
         //update details
@@ -123,7 +127,7 @@ class PenapisanTemudugaFEController extends Controller
                 $tolak = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
         }
         
-        return view('components.penapisan-ajaxTemuduga')->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak)->with('code', $code)->with('tolak', $tolak);
+        return view('components.penapisan-ajaxTemuduga' , ['breadcrumbs' => $breadcrumbs])->with('displayBelumProses', $displayBelumProses)->with('displayTemuduga', $displayTemuduga)->with('displayTolak', $displayTolak)->with('code', $code)->with('tolak', $tolak);
 
     }
 

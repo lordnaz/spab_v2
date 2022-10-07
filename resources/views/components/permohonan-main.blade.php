@@ -87,7 +87,7 @@
                     <td>{{$application['status_global']}}</td>
                     <td>{{ \Carbon\Carbon::parse($application['created_at'])}}</td>
                     <td>
-                      <a href="{{ route('butiran', Crypt::encrypt($application['nric'])) }}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
+                      <a href="butiran/{{Crypt::encrypt($application['nric'])}}/{{Crypt::encrypt($application['job_id'])}}" class="btn-sm btn-warning"> <i data-feather='external-link'></i>{!! __('locale.Details') !!}</a>
                       @if($application['status_global'] == 'DAFTAR')
                       <a href="{{ route('download_tawaran', Crypt::encrypt($application['surat_tawaran'])) }}" class="btn-sm btn-primary"></i>Surat Tawaran</a>
                       @else

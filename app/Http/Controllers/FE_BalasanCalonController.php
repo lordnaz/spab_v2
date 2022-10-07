@@ -63,7 +63,7 @@ class FE_BalasanCalonController extends Controller
         ->get();
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['name' => "Balasan Calon"]
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Kemasukan"], ['name' => "Balasan Calon"]
         ];
 
         // $request = Request::create('/api/display_balasan', 'GET');

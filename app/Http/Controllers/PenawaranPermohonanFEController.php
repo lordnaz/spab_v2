@@ -33,6 +33,9 @@ class PenawaranPermohonanFEController extends Controller
     //
     public function PenawaranPermohonan(){
 
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Kemasukan"], ['name' => "Penawaran Permohonan"]
+        ];
         
         //ditawar
         $ditawar = UserDetail::join('applicant_experiences', 'applicant_experiences.nric', '=', 'user_details.nric')      
@@ -184,7 +187,7 @@ class PenawaranPermohonanFEController extends Controller
         
 
 
-        return view('components.penawaran-permohonan')
+        return view('components.penawaran-permohonan' , ['breadcrumbs' => $breadcrumbs])
         ->with('ditawar', $ditawar)->with('cadang1ditawar', $cadang1ditawar)->with('cadang2ditawar', $cadang2ditawar)->with('programditawar', $programditawar)
         ->with('ditolak', $ditolak)->with('cadang1ditolak', $cadang1ditolak)->with('cadang2ditolak', $cadang2ditolak)->with('programditolak', $programditolak)
         ->with('kiv', $kiv)->with('cadang1kiv', $cadang1kiv)->with('cadang2kiv', $cadang2kiv)->with('programkiv', $programkiv)
@@ -194,7 +197,9 @@ class PenawaranPermohonanFEController extends Controller
 
     public function AjaxPenawaranPermohonan($code){
 
-       
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Kemasukan"], ['name' => "Penawaran Permohonan"]
+        ];
 
 
          //ditawar
@@ -345,7 +350,7 @@ class PenawaranPermohonanFEController extends Controller
         
 
 
-        return view('components.penawaran-permohonan-ajax')
+        return view('components.penawaran-permohonan-ajax' , ['breadcrumbs' => $breadcrumbs])
         ->with('ditawar', $ditawar)->with('cadang1ditawar', $cadang1ditawar)->with('cadang2ditawar', $cadang2ditawar)->with('programditawar', $programditawar)
         ->with('ditolak', $ditolak)->with('cadang1ditolak', $cadang1ditolak)->with('cadang2ditolak', $cadang2ditolak)->with('programditolak', $programditolak)
         ->with('kiv', $kiv)->with('cadang1kiv', $cadang1kiv)->with('cadang2kiv', $cadang2kiv)->with('programkiv', $programkiv)

@@ -29,7 +29,9 @@ class FE_KeputusanPermohonanController extends Controller
     //
     public function keputusanpermohonan(){
 
-      
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Kemasukan"], ['name' => "Keputusan Permohonan"]
+        ];
 
         $displayUser = UserDetail::orderBy('user_detailsid', 'desc')->join('all_status_permohonan', 'all_status_permohonan.nric', '=', 'user_details.nric')->where('all_status_permohonan.status_global', '!=', 'DRAFT')->get();
         // $request = Request::create('/api/display_all_permohonan_pengesahan', 'GET');
@@ -43,7 +45,7 @@ class FE_KeputusanPermohonanController extends Controller
         // $datas = $responseBody['dataa'];
 
         
-        return view('components.keputusan-permohonan-table')->with('datas',  $displayUser);
+        return view('components.keputusan-permohonan-table' , ['breadcrumbs' => $breadcrumbs])->with('datas',  $displayUser);
 
     }
     public function keputusanpermohonanybNRIC($code){

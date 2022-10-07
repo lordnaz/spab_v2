@@ -13,7 +13,7 @@ class PanelTemudugaController extends Controller
     public function temuduga_setting(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Panel Temuduga"]
         ];
 
         // $request = Request::create('/api/getAllPanel', 'GET');

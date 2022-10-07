@@ -20,7 +20,7 @@ class ProgrammeController extends Controller
     public function program_setting(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['name' => "Tetapan Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Program"], ['name' => "Tetapan Program"]
         ];
 
         $display = program::where('status', true)->get();
@@ -174,7 +174,7 @@ class ProgrammeController extends Controller
 
     public function offered_program(){
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['name' => "Program Ditawar"]
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Program"], ['name' => "Program Ditawar"]
         ];
 
         $display = Offerprogram::orderBy('offerprogram_id', 'asc')
@@ -675,11 +675,13 @@ class ProgrammeController extends Controller
 
     public function display_subjek(){
         
-        
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Subjek"], ['name' => "Tetapan Subjek"]
+        ];
         $display = SubjekPermohonan::orderBy('nama_subjek', 'asc')->get();
  
 
-        return view('components.subjek_permohonan_table')->with('display', $display);
+        return view('components.subjek_permohonan_table', ['breadcrumbs' => $breadcrumbs])->with('display', $display);
 
     }
 

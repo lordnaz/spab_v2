@@ -239,8 +239,8 @@
               <label class="form-label" for="gender">{!! __('locale.Gender') !!}</label>
               <select class="form-select w-100 gender" id="gender" name="gender">
                 <option label="" selected>{!! __('locale.Please Choose') !!}</option>
-                <option value="Male" @if($form1['gender'] == "Lelaki") selected @else @endif>Lelaki</option>
-                <option value="Female" @if($form1['gender'] == "Perempuan") selected @else @endif>Perempuan</option>
+                <option value="Male" @if($form1['gender'] == "Male") selected @else @endif>Lelaki</option>
+                <option value="Female" @if($form1['gender'] == "Female") selected @else @endif>Perempuan</option>
               </select>
             </div>
             <div class="mb-1 col-md-6">
@@ -1098,9 +1098,16 @@
                   <div class="mb-1">
                   <label class="form-label" for="itemname">Subjek</label>
                   <select class="form-control" id="usubject_pmr" name="usubject_pmr">
-                    <option selected disabled>Please Choose</option>
+                    <option selected disabled>Sila Pilih</option>
                     <option value="Bahasa Melayu" @if ($PMR['subject_list'] == 'Bahasa Melayu') selected @endif>Bahasa Melayu</option>
+                    <option value="Bahasa Inggeris"  @if ($PMR['subject_list'] == 'Bahasa Inggeris') selected @endif>Bahasa Inggeris</option>
+                    <option value="Pendidikan Islam"  @if ($PMR['subject_list'] == 'Pendidikan Islam') selected @endif>Pendidikan Islam</option>
+                    <option value="Sains"  @if ($PMR['subject_list'] == 'Sains') selected @endif>Sains</option>
+                    <option value="Sejarah"  @if ($PMR['subject_list'] == 'Sejarah') selected @endif>Sejarah</option>
                     <option value="Matematik"  @if ($PMR['subject_list'] == 'Matematik') selected @endif>Matematik</option>
+                    @foreach($subjekpermohonan as $subjek)
+                    <option value="{{$subjek["nama_subjek"]}}" @if ($PMR['subject_list'] == $subjek['nama_subjek']) selected @endif>{{$subjek["nama_subjek"]}}</option>
+                    @endforeach
                   </select>
                   </div>
                 </div>
@@ -1108,7 +1115,7 @@
                       <div class="mb-1">
                   <label class="form-label" for="itemname">Subjek</label>
                   <select class="form-control" id="ugrade_pmr" name="usgrade_pmr">
-                    <option selected disabled>Please Choose</option>
+                    <option selected disabled>Sila Pilih</option>
                     <option data-avatar="1-small.png" value="10" @if ($PMR['grade'] == 10) selected @endif>A+</option>
                     <option data-avatar="3-small.png" value="9" @if ($PMR['grade'] == 9) selected @endif>A</option>
                     <option data-avatar="3-small.png" value="8" @if ($PMR['grade'] == 8) selected @endif>A-</option>
@@ -1191,12 +1198,16 @@
                   <div class="mb-1">
                   <label class="form-label" for="itemname">Subjek</label>
                   <select class="form-control" id="usubject_spm" name="usubject_spm">
-                    <option selected disabled>Please Choose</option>
+                    <option selected disabled>Sila Pilih</option>
                     <option data-avatar="1-small.png" value="Bahasa Melayu"  @if ($SPM['subject_list'] == 'Bahasa Melayu') selected @endif>Bahasa Melayu</option>
                     <option data-avatar="3-small.png" value="Bahasa Inggeris"  @if ($SPM['subject_list'] == 'Bahasa Inggeris') selected @endif>Bahasa Inggeris</option>
+                    <option data-avatar="3-small.png" value="Pendidikan Islam"  @if ($SPM['subject_list'] == 'Pendidikan Islam') selected @endif>Pendidikan Islam</option>
                     <option data-avatar="3-small.png" value="Sains"  @if ($SPM['subject_list'] == 'Sains') selected @endif>Sains</option>
                     <option data-avatar="3-small.png" value="Sejarah"  @if ($SPM['subject_list'] == 'Sejarah') selected @endif>Sejarah</option>
                     <option data-avatar="3-small.png" value="Matematik"  @if ($SPM['subject_list'] == 'Matematik') selected @endif>Matematik</option>
+                    @foreach($subjekpermohonan as $subjek)
+                    <option value="{{$subjek["nama_subjek"]}}" @if ($SPM['subject_list'] == $subjek['nama_subjek']) selected @endif>{{$subjek["nama_subjek"]}}</option>
+                    @endforeach
                   </select>
                   </div>
                 </div>
@@ -1204,7 +1215,7 @@
                       <div class="mb-1">
                   <label class="form-label" for="itemname">Subjek</label>
                   <select class="form-control" id="ugrade_spm" name="usgrade_spm">
-                    <option selected disabled>Please Choose</option>
+                    <option selected disabled>Sila Pilih</option>
                     <option data-avatar="1-small.png" value="10" @if ($SPM['grade'] == 10) selected @endif>A+</option>
                     <option data-avatar="3-small.png" value="9" @if ($SPM['grade'] == 9) selected @endif>A</option>
                     <option data-avatar="3-small.png" value="8" @if ($SPM['grade'] == 8) selected @endif>A-</option>
@@ -1286,9 +1297,16 @@
                   <div class="mb-1">
                   <label class="form-label" for="itemname">Subjek</label>
                   <select class="form-control" id="usubject_stpm" name="usubject_stpm">
-                    <option selected disabled>Please Choose</option>
+                    <option selected disabled>Sila Pilih</option>
                     <option value="Bahasa Melayu" @if ($STPM['subject_list'] == 'Bahasa Melayu') selected @endif>Bahasa Melayu</option>
+                    <option value="Bahasa Inggeris"  @if ($STPM['subject_list'] == 'Bahasa Inggeris') selected @endif>Bahasa Inggeris</option>
+                    <option value="Pendidikan Islam"  @if ($STPM['subject_list'] == 'Pendidikan Islam') selected @endif>Pendidikan Islam</option>
+                    <option value="Sains"  @if ($STPM['subject_list'] == 'Sains') selected @endif>Sains</option>
+                    <option value="Sejarah"  @if ($STPM['subject_list'] == 'Sejarah') selected @endif>Sejarah</option>
                     <option value="Matematik"  @if ($STPM['subject_list'] == 'Matematik') selected @endif>Matematik</option>
+                    @foreach($subjekpermohonan as $subjek)
+                    <option value="{{$subjek["nama_subjek"]}}" @if ($STPM['subject_list'] == $subjek['nama_subjek']) selected @endif>{{$subjek["nama_subjek"]}}</option>
+                    @endforeach
                   </select>
                   </div>
                 </div>
@@ -1296,9 +1314,17 @@
                       <div class="mb-1">
                   <label class="form-label" for="itemname">Subjek</label>
                   <select class="form-control" id="ugrade_stpm" name="usgrade_stpm">
-                    <option selected disabled>Please Choose</option>
-                    <option value="10" @if ($STPM['grade'] == 10) selected @endif>A+</option>
-                    <option value="9" @if ($STPM['grade'] == 9) selected @endif>A</option>
+                    <option selected disabled>Sila Pilih</option>
+                    <option data-avatar="1-small.png" value="10" @if ($STPM['grade'] == 10) selected @endif>A+</option>
+                    <option data-avatar="3-small.png" value="9" @if ($STPM['grade'] == 9) selected @endif>A</option>
+                    <option data-avatar="3-small.png" value="8" @if ($STPM['grade'] == 8) selected @endif>A-</option>
+                    <option data-avatar="3-small.png" value="7" @if ($STPM['grade'] == 7) selected @endif>B+</option>
+                    <option data-avatar="3-small.png" value="6" @if ($STPM['grade'] == 6) selected @endif>B</option>
+                    <option data-avatar="3-small.png" value="5" @if ($STPM['grade'] == 5) selected @endif>C+</option>
+                    <option data-avatar="3-small.png" value="4" @if ($STPM['grade']== 4) selected @endif>C</option>
+                    <option data-avatar="3-small.png" value="3" @if ($STPM['grade'] == 3) selected @endif>D</option>
+                    <option data-avatar="3-small.png" value="2" @if ($STPM['grade'] == 2) selected @endif>E</option>
+                    <option data-avatar="3-small.png" value="1" @if ($STPM['grade'] == 1) selected @endif>G</option>
                   </select>
                       </div>
                     </div>
@@ -1846,8 +1872,7 @@
       var valuepmr = parseInt(pmr);    
       var pmrr = valuepmr + 1;
 
-      $("#pmr").append('<input hidden type="text" name="index_pmr" value='+pmrr+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_pmr" name="subject_pmr"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_pmr" name="grade_pmr"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
-      feather.replace()
+      $("#pmr").append('<input hidden type="text" name="index_pmr" value='+pmrr+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_pmr" name="subject_pmr"><option selected disabled>Sila Pilih</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Bahasa Inggeris">Bahasa Inggeris</option><option value="Sains">Sains</option><option value="Sejarah">Sejarah</option><option value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_pmr" name="grade_pmr"><option selected disabled>Sila Pilih</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;feather.replace()
     
       
     });
@@ -1857,8 +1882,7 @@
       var valuespm = parseInt(spm);    
       var spmm = valuespm + 1;
       
-      $("#spm").append('<input hidden type="text" name="index_spm" value='+spmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_spm" name="subject_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="Bahasa Melayu">Bahasa Melayu</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option><option data-avatar="3-small.png" value="Sains">Sains</option><option data-avatar="3-small.png" value="Sejarah">Sejarah</option><option data-avatar="3-small.png" value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_spm" name="grade_spm"><option selected disabled>Please Choose</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
-      feather.replace()
+      $("#spm").append('<input hidden type="text" name="index_spm" value='+spmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_spm" name="subject_spm"><option selected disabled>Sila Pilih</option><option data-avatar="1-small.png" value="Bahasa Melayu">Bahasa Melayu</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option><option data-avatar="3-small.png" value="Sains">Sains</option><option data-avatar="3-small.png" value="Sejarah">Sejarah</option><option data-avatar="3-small.png" value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_spm" name="grade_spm"><option selected disabled>Sila Pilih</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;feather.replace()
      
       
     });
@@ -1868,8 +1892,7 @@
       var valuestpm = parseInt(stpm);    
       var stpmm = valuestpm + 1;
 
-      $("#stpm").append('<input hidden type="text" name="index_stpm" value='+stpmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_stpm" name="subject_stpm"><option selected disabled>Please Choose</option><option value="Bahasa Melayu">Bahasa Melayu</option><option value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_stpm" name="grade_stpm"><option selected disabled>Please Choose</option><option value="10">A+</option><option value="9">A</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;
-      feather.replace()
+      $("#stpm").append('<input hidden type="text" name="index_stpm" value='+stpmm+'><div data-repeater-item><div class="row d-flex align-items-end"><div class="col-md-4 col-12"><div class="mb-1"><label class="form-label" for="itemname">Subjek</label><select class="select2 form-select" id="subject_stpm" name="subject_stpm"><option selected disabled>Sila Pilih</option><option data-avatar="1-small.png" value="Bahasa Melayu">Bahasa Melayu</option><option data-avatar="3-small.png" value="Bahasa Inggeris">Bahasa Inggeris</option><option data-avatar="3-small.png" value="Sains">Sains</option><option data-avatar="3-small.png" value="Sejarah">Sejarah</option><option data-avatar="3-small.png" value="Matematik">Matematik</option>@foreach($subjekpermohonan as $subjek)<option value="{{$subjek["nama_subjek"]}}">{{$subjek["nama_subjek"]}}</option>@endforeach</select></div></div><div class="col-md-2 col-12"><div class="mb-1"><label class="form-label" for="itemcost">Grade</label><select class="select2 form-select" id="grade_stpm" name="grade_stpm"><option selected disabled>Sila Pilih</option><option data-avatar="1-small.png" value="10">A+</option><option data-avatar="3-small.png" value="9">A</option><option data-avatar="3-small.png" value="8">A-</option><option data-avatar="3-small.png" value="7">B+</option><option data-avatar="3-small.png" value="6">B</option><option data-avatar="3-small.png" value="5">C+</option><option data-avatar="3-small.png" value="4">C</option><option data-avatar="3-small.png" value="3">D</option><option data-avatar="3-small.png" value="2">E</option><option data-avatar="3-small.png" value="1">G</option></select></div></div><div class="col-md-2 col-12"><div class="mb-1"><button class="btn btn-outline-danger text-nowrap px-1" data-repeater-delete type="button"><i data-feather="x" class="me-25"></i><span>Padam</span></button></div></div></div><hr/></div>').fadeIn();;feather.replace()
      
       
     });

@@ -98,22 +98,7 @@
                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
               </div>
             </div>
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-              <div class="mb-1">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="terms" name="terms" tabindex="4" required/>
-                  <label class="form-check-label" for="terms">
-                  {!! __('locale.tnc_statement') !!} <a href="" target="_blank"><b>{!! __('locale.tnc_link') !!}</b></a>
-                  </label>
-
-                  @error('terms')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
-              </div>
-            @endif
+          
             <button type="submit" class="btn btn-primary w-100" tabindex="5">{!! __('locale.register_btn') !!}</button>
           </form>
 

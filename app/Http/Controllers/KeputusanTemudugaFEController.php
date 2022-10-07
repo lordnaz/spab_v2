@@ -40,6 +40,9 @@ class KeputusanTemudugaFEController extends Controller
         // $cadang2 = $responseBody['cadang2'];
         // $program = $responseBody['program'];
 
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Keputusan Temuduga"]
+        ];
         
         $DataCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->orderBy('asas_interview.asas_id', 'asc')->where('asas_interview.status', true)->get();
         $FirstCenter = AsasInterview::join('interview_center','interview_center.center_id', '=', 'asas_interview.center_id')->orderBy('asas_interview.asas_id', 'asc')->where('asas_interview.status', true)->first();
@@ -84,14 +87,16 @@ class KeputusanTemudugaFEController extends Controller
 
 
 
-        return view('components.keputusan-temuduga')
+        return view('components.keputusan-temuduga', ['breadcrumbs' => $breadcrumbs])
         ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('displayTable', $displayTable)->with('cadang1', $cadang1)->with('cadang2', $cadang2)->with('program', $program);
 
     }
 
     public function KeputusanTemuduga($code){
 
-      
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Keputusan Temuduga"]
+        ];
 
         // $param = [
             
@@ -158,7 +163,7 @@ class KeputusanTemudugaFEController extends Controller
 
         $program = ProgramApplied::join('program', 'program.program_id', '=', 'program_applied.program_id')->get();
         
-        return view('components.KeputusanTemuduga')
+        return view('components.KeputusanTemuduga' , ['breadcrumbs' => $breadcrumbs])
         ->with('FirstCenter', $FirstCenter)->with('DataCenter', $DataCenter)->with('displayTable', $displayTable)->with('cadang1', $cadang1)->with('cadang2', $cadang2)->with('program', $program);
 
     }
