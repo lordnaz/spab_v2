@@ -237,6 +237,9 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::post('add_new_subjek', [ProgrammeController::class, 'add_new_subjek'])->name('add_new_subjek');
     Route::get('tolak_subjek/{code}', [ProgrammeController::class, 'tolak_subjek'])->name('tolak_subjek');
 
+    Route::get('buka_akaun', [StaterkitController::class, 'buka_akaun'])->name('buka_akaun');
+    Route::post('add_new_akaun', [StaterkitController::class, 'add_new_akaun'])->name('add_new_akaun');
+
 
 });
 

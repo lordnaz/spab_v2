@@ -11,6 +11,8 @@ use App\Models\ScreeningIV;
 use App\Models\CenterInterview;
 use App\Models\ProgramApplied;
 use App\Models\program;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use PDF;
 
 class StaterkitController extends Controller
@@ -283,5 +285,38 @@ class StaterkitController extends Controller
         $pdf = PDF::loadView('components.interview_template',compact('data'));
 
         return $pdf->download('Senarai_Temuduga.pdf');
+    }
+
+    public function buka_akaun(){
+
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Buka Akaun"]
+        ];
+
+       
+        return view('components.buka_akaun', ['breadcrumbs' => $breadcrumbs]);
+    }
+
+    public function add_new_akaun(Request $req){
+
+       
+        $currentdt = date('Y-m-d H:i:s');
+
+        $akaun = new User;
+        $akaun->name = $req->name;
+        $akaun->email = $req->emel;
+        $akaun->password = Hash::make($req->password);
+        $akaun->role = 'admin';
+        $akaun->email_verified_at = $currentdt;
+        $akaun->save();
+
+        $id = User::orderBy('id','DESC')->first();
+
+        $akauninfo = new UserInformation();
+        $akauninfo ->nric = $req->nric;
+        $akauninfo ->created_by = $id->id;
+        $akauninfo->save();
+
+        return redirect()->route('buka_akaun');
     }
 }
