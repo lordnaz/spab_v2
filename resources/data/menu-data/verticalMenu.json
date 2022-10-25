@@ -156,7 +156,20 @@
           "slug": "app-invoice-edit"
         }
       ]
-    },   
+    }, 
+    {
+      "name": "Admin_Buka_Akaun",
+      "icon": "file-text",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "buka_akaun",
+          "name": "Buka Akaun",
+          "icon": "circle",
+          "slug": "buka_akaun"
+        }
+      ]
+    },     
     {
       "name": "User_Intake",
       "icon": "file-text",

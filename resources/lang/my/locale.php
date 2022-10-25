@@ -511,7 +511,9 @@ return [
     "Admin_Audit_Trail" => "Audit Trail",
     "Audit Trail" => "Audit Trail",
     "Admin_Subjek" => "Subjek",
-    "subjek Setting" => "Tetapan Subjek"
+    "subjek Setting" => "Tetapan Subjek",
+    "Admin_Buka_Akaun" => "Buka Akaun Pentadbir",
+    "Buka Akaun" => "Buka Akaun",
     
 
 

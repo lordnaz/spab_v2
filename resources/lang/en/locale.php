@@ -507,6 +507,9 @@ return [
  "Senarai Pelajar" => "Senarai Pelajar",
  "Sejarah Pelajar" => "Sejarah Pelajar",
  "Admin_Subjek" => "Subjek",
-    "subjek Setting" => "Tetapan Subjek"
+    "subjek Setting" => "Tetapan Subjek",
+    "Admin_Buka_Akaun" => "Buka Akaun Pentadbir",
+    "Buka Akaun" => "Buka Akaun",
+
  
 ];
