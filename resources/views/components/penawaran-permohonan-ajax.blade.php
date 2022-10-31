@@ -191,7 +191,7 @@ opacity:.75;">
                       @endphp
                       <tr class="text-center">
                         <td>{{$count++}}</td>
-                        <td>{{$ditawarr['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($ditawarr['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                        <td>{{$ditawarr['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($ditawarr['nric'])}}/{{Crypt::encrypt($ditawarr['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$ditawarr['name']}}</td>
                         
                         <td>{{$ditawarr['state']}}</td>
@@ -270,7 +270,7 @@ opacity:.75;">
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($ditawarr['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($ditawarr['nric'])}}/{{Crypt::encrypt($ditawarr['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('display_penawarabynric', Crypt::encrypt($ditawarr['nric'])) }}">Temuduga</a>
                   <a class="dropdown-item" href="{{ route('KIV_penawaran', Crypt::encrypt($ditawarr['nric'])) }}">KIV</a>     
                   <a class="dropdown-item" href="{{ route('tolak_penawaran', Crypt::encrypt($ditawarr['nric'])) }}">Tolak</a>    
@@ -340,7 +340,7 @@ opacity:.75;">
                       @endphp
                       <tr class="text-center">
                         <td>{{$count++}}</td>
-                        <td>{{$kivv['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($kivv['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                        <td>{{$kivv['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($kivv['nric'])}}/{{Crypt::encrypt($kivv['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$kivv['name']}}</td>
                       
                         <td>{{$kivv['state']}}</td>
@@ -419,7 +419,7 @@ opacity:.75;">
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($kivv['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($kivv['nric'])}}/{{Crypt::encrypt($kivv['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('display_penawarabynric', Crypt::encrypt($kivv['nric'])) }}">Temuduga</a>    
                   <a class="dropdown-item" href="{{ route('tolak_penawaran', Crypt::encrypt($kivv['nric'])) }}">Tolak</a>    
                   <a class="dropdown-item" href="{{ route('hadir_penawaran', Crypt::encrypt($kivv['nric'])) }}">Batal</a>            
@@ -485,7 +485,7 @@ opacity:.75;">
                       @endphp
                       <tr class="text-center">
                         <td>{{$count++}}</td>
-                        <td>{{$ditolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($ditolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                        <td>{{$ditolakk['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($ditolakk['nric'])}}/{{Crypt::encrypt($ditolakk['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$ditolakk['name']}}</td>
                        
                         <td>{{$ditolakk['state']}}</td>
@@ -566,7 +566,7 @@ opacity:.75;">
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($ditolakk['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($ditolakk['nric'])}}/{{Crypt::encrypt($ditolakk['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('display_penawarabynric', Crypt::encrypt($ditolakk['nric'])) }}">Temuduga</a>
                   <a class="dropdown-item" href="{{ route('KIV_penawaran', Crypt::encrypt($ditolakk['nric'])) }}">KIV</a>        
                   <a class="dropdown-item" href="{{ route('hadir_penawaran', Crypt::encrypt($ditolakk['nric'])) }}">Batal</a>            
@@ -630,7 +630,7 @@ opacity:.75;">
                       @endphp
                       <tr class="text-center">
                         <td>{{$count++}}</td>
-                        <td>{{$hadirr['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($hadirr['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                        <td>{{$hadirr['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($hadirr['nric'])}}/{{Crypt::encrypt($hadirr['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                         <td>{{$hadirr['name']}}</td>
                         
                         <td>{{$hadirr['state']}}</td>
@@ -699,7 +699,7 @@ opacity:.75;">
 
                         <td>{{$hadirr['sem']}}</td>
                         <td>
-                          <a href="{{ route('butiran', Crypt::encrypt($hadirr['nric'])) }}" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
+                          <a href="butiran/{{Crypt::encrypt($hadirr['nric'])}}/{{Crypt::encrypt($hadirr['job_id'])}}" class="btn-sm btn-warning">{!! __('locale.Details') !!}</a>
 
 
                         </td>

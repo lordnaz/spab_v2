@@ -37,7 +37,7 @@ class PanelTemudugaController extends Controller
         $code = decrypt($code);
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Panel Temuduga"], ['name' => "ButiranTemuduga"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Panel Temuduga"], ['name' => "ButiranTemuduga"]
         ];
 
         // $request = Http::withHeaders([
@@ -58,7 +58,7 @@ class PanelTemudugaController extends Controller
     public function page_new_temuduga(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Temuduga Baru"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Temuduga Baru"]
         ];
 
         $datas = 'test';
@@ -107,7 +107,7 @@ class PanelTemudugaController extends Controller
         $addpanel->save();
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Butiran Temuduga"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Butiran Temuduga"]
         ];
 
         // $request = Http::withHeaders([

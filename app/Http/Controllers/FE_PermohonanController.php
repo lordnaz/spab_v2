@@ -1784,7 +1784,7 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
     public function butiran($code, $intakeid){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Permohonan"], ['name' => "Permohonan Baru"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Permohonan"], ['name' => "Permohonan Baru"]
         ];
 
         $code = decrypt($code);
@@ -1812,7 +1812,7 @@ if(!empty($req->institution) || !empty($req->grade) || !empty($req->specializati
         $role = auth()->user()->role;
         if($role == "admin")
         {
-            $intake = Session::get('display');
+            $intake = $intakeid;
         }
         else{
 

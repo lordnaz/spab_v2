@@ -7,7 +7,7 @@
     <div class="col-md-12 col-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">{!! __('locale.Details_2') !!}</h4>
+          <h4 class="card-title">Butiran Panel</h4>
         </div>
         <div class="card-body">
           <form action="/add_new_temuduga" method="post" enctype="multipart/form-data" accept-charset='UTF-8' class="form form-horizontal">

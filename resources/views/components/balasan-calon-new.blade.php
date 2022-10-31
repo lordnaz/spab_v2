@@ -126,7 +126,7 @@ $roles = auth()->user()->role;
              @endphp
                 <tr class="text-center" >
                   <td>{{$count++}}</td>
-                  <td>{{$displayTawars['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTawars['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$displayTawars['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($displayTawars['nric'])}}/{{Crypt::encrypt($displayTawars['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTawars['name']}}</td>
                   <td>{{$displayTawars['study_mode']}}</td>
                   <td>{{$displayTawars['status_offer']}}</td>
@@ -189,7 +189,7 @@ $roles = auth()->user()->role;
              @endphp
                 <tr class="text-center">
                 <td>{{$count++}}</td>
-                  <td>{{$displayTerimas['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTerimas['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$displayTerimas['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($displayTerimas['nric'])}}/{{Crypt::encrypt($displayTerimas['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTerimas['name']}}</td>
                   <td>{{$displayTerimas['type_program_applied']}}</td>
                   <td>{{$displayTerimas['status_offer']}}</td>
@@ -260,7 +260,7 @@ $roles = auth()->user()->role;
              @endphp
                 <tr class="text-center">
                 <td>{{$count++}}</td>
-                  <td>{{$displayTolaks['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTolaks['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$displayTolaks['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($displayTolaks['nric'])}}/{{Crypt::encrypt($displayTolaks['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTolaks['name']}}</td>
                   <td>{{$displayTolaks['type_program_applied']}}</td>
                   <td>{{$displayTolaks['status_offer']}}</td>

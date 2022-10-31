@@ -35,7 +35,7 @@ class PusatTemudugaFEController extends Controller
     public function page_new_pusat(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Temuduga Baru"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/paneltemuduga", 'name' => "Panel Temuduga"], ['name' => "Temuduga Baru"]
         ];
 
         $datas = 'test';
@@ -62,7 +62,7 @@ class PusatTemudugaFEController extends Controller
         // ];
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/pusattemuduga", 'name' => "Pusat Temuduga"], ['name' => "Butiran Temuduga"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/pusattemuduga", 'name' => "Pusat Temuduga"], ['name' => "Butiran Temuduga"]
         ];
 
         // $request = Http::withHeaders([
@@ -98,7 +98,7 @@ class PusatTemudugaFEController extends Controller
         $code = decrypt($code);
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/pusattemuduga", 'name' => "Pusat Temuduga"], ['name' => "Butiran Pusat Temuduga"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/pusattemuduga", 'name' => "Pusat Temuduga"], ['name' => "Butiran Pusat Temuduga"]
         ];
 
         // $request = Http::withHeaders([

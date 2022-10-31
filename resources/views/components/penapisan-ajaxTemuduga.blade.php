@@ -171,7 +171,7 @@ opacity:.75;">
              @endphp
                 <tr class="text-center" >
                   <td>{{$count++}}</td>
-                  <td>{{$displayTemudugaa['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTemudugaa['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$displayTemudugaa['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($displayTemudugaa['nric'])}}/{{Crypt::encrypt($displayTemudugaa['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTemudugaa['name']}}</td>
                   
                   <td>{{$displayTemudugaa['state']}}</td>
@@ -211,7 +211,7 @@ opacity:.75;">
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($displayTemudugaa['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($displayTemudugaa['nric'])}}/{{Crypt::encrypt($displayTemudugaa['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}">Temuduga</a>
                   <a class="dropdown-item" href="{{ route('tolakPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}">Tolak</a>
                   <a class="dropdown-item" href="{{ route('batalPenapisan', Crypt::encrypt($displayTemudugaa['nric'])) }}">Batal</a>
@@ -271,7 +271,7 @@ opacity:.75;">
               @endphp
                 <tr class="text-center">
                   <td></td>
-                  <td>{{$displayTolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$displayTolakk['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($displayTolakk['nric'])}}/{{Crypt::encrypt($displayTolakk['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTolakk['name']}}</td>
                   
                   <td>{{$displayTolakk['state']}}</td>
@@ -312,7 +312,7 @@ opacity:.75;">
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($displayTolakk['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($displayTolakk['nric'])}}/{{Crypt::encrypt($displayTolakk['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('temudugaPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}">Temuduga</a>
                   <a class="dropdown-item" href="{{ route('batalPenapisan', Crypt::encrypt($displayTolakk['nric'])) }}">Batal</a>                  
                 </div>

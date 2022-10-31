@@ -41,7 +41,7 @@ class ProgrammeController extends Controller
     public function add_new(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Program Baru"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Program Baru"]
         ];
 
         $datas = 'test';
@@ -81,7 +81,7 @@ class ProgrammeController extends Controller
         $addprogram->save();
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
         // $request = Http::withHeaders([
@@ -98,7 +98,7 @@ class ProgrammeController extends Controller
         $code = decrypt($code);
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
         $program = program::where('code', $code)
@@ -123,7 +123,7 @@ class ProgrammeController extends Controller
         // $data = $req->input();
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
         
@@ -151,7 +151,7 @@ class ProgrammeController extends Controller
         // $data = $req->input();
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
         $exist = Offerprogram::where('program_id', $code)->where('status', true)->where('status_aktif', 'aktif')->exists();
@@ -199,7 +199,7 @@ class ProgrammeController extends Controller
     public function offered_add(){
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Program"], ['link' => "/offered_program", 'name' => "Program Ditawar"], ['name' => "Tetapan Tawaran Program"]
         ];
 
         // $existOffered = Offerprogram::get();
@@ -306,7 +306,7 @@ class ProgrammeController extends Controller
 
         
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
 
@@ -330,7 +330,7 @@ class ProgrammeController extends Controller
         $code = decrypt($code);
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
         // $request = Http::withHeaders([

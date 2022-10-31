@@ -41,7 +41,7 @@
           "url": "offered_program",
           "name": "Activation",
           "icon": "circle",
-          "slug": "offered-program"
+          "slug": "offered_program"
         }
       ]
     },
@@ -103,7 +103,7 @@
           "url": "PenawaranPermohonan",
           "name": "Penawaran Permohonan",
           "icon": "circle",
-          "slug": "registration"
+          "slug": "PenawaranPermohonan"
         },
         {
           "url": "keputusanpermohonan",
@@ -153,7 +153,7 @@
           "url": "audit_trail",
           "name": "Audit Trail",
           "icon": "circle",
-          "slug": "app-invoice-edit"
+          "slug": "audit_trail"
         }
       ]
     }, 

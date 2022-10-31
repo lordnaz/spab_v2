@@ -33,10 +33,14 @@ class OpenPusatTemudugaFEController extends Controller
 
         // $datas = $responseBody['data'];
 
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "PusatTemudugaTable", 'name' => "Buka Pusat Temuduga"], ['name' => "Buka Pusat Temuduga Baru"]
+        ];
+
         $displayCenterInterview = CenterInterview::where('status', true)->get();
         $displayCenterInterviewTable = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
 
-        return view('components.open-pusat-temuduga-new')->with('datas', $displayCenterInterview);
+        return view('components.open-pusat-temuduga-new', ['breadcrumbs' => $breadcrumbs])->with('datas', $displayCenterInterview);
 
     }
 
@@ -77,6 +81,9 @@ class OpenPusatTemudugaFEController extends Controller
 
         // $datas = $responseBody['dataa'];
 
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "javascript:void(0)", 'name' => "Temuduga"], ['name' => "Buka Pusat Temuduga"]
+        ];
         $displayCenterInterview = CenterInterview::where('status', true)->get();
         $displayCenterInterviewTable = AsasInterview::join('interview_center', 'interview_center.center_id', '=', 'asas_interview.center_id')->where('asas_interview.status', true)->get();
         
@@ -152,7 +159,11 @@ class OpenPusatTemudugaFEController extends Controller
         // $datas = $request['data'];
         // $datass = $request['dataa'];
 
-        return view('components.open-pusat-temuduga-detail')->with('datas', $displayCenterInterview)->with('datass', $displayall);
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Halaman Utama"], ['link' => "PusatTemudugaTable", 'name' => "Buka Pusat Temuduga"], ['name' => "Butiran Buka Pusat Temuduga"]
+        ];
+
+        return view('components.open-pusat-temuduga-detail' , ['breadcrumbs' => $breadcrumbs])->with('datas', $displayCenterInterview)->with('datass', $displayall);
 
     }
 
@@ -256,7 +267,7 @@ class OpenPusatTemudugaFEController extends Controller
 
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
 
@@ -390,7 +401,7 @@ class OpenPusatTemudugaFEController extends Controller
         $asas_id = SessionInterview::where('session_id', $code)->first();
 
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Home"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
+            ['link' => "/", 'name' => "Halaman Utama"], ['link' => "/program", 'name' => "Tetapan Program"], ['name' => "Butiran Program"]
         ];
 
         $exists = ScreeningIV::where('session_id', $code)->exists();

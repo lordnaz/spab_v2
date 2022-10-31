@@ -11,6 +11,7 @@ use App\Models\ScreeningIV;
 use App\Models\CenterInterview;
 use App\Models\ProgramApplied;
 use App\Models\program;
+use App\Models\Intake;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use PDF;
@@ -28,7 +29,25 @@ class StaterkitController extends Controller
 
             $usersession = auth()->user()->id;
            
-            $display = Session::get('display');
+            $sessiondisplay = Session::get('display');
+
+            $testdisplay = Intake::first();
+
+        if($sessiondisplay == NULL){
+        if($testdisplay == NULL){
+          
+            $display = "2022";
+
+        }
+        else{
+
+            $display = $testdisplay->intake;
+        }
+        }
+        else{
+
+            $display = $sessiondisplay;
+        }
 
             $userid = auth()->user()->id;
             $userdetails = UserInformation::where('created_by', $userid)->first();
@@ -176,6 +195,7 @@ class StaterkitController extends Controller
             ->count();
 
             
+            
             return view('/content/home', ['breadcrumbs' => $breadcrumbs])->with('display',$display)->with('status',$status)->with('iv',$iv)->with('asasi',$asasi)->with('diploma',$diploma)
             ->with('sarjanamuda',$sarjanamuda)->with('sarjana',$sarjana)->with('doktor',$doktor)->with('asasip',$asasip)->with('diplomap',$diplomap)
             ->with('sarjanamudap',$sarjanamudap)->with('sarjanap',$sarjanap)->with('doktorp',$doktorp)->with('asasite',$asasite)->with('diplomate',$diplomate)
@@ -190,7 +210,7 @@ class StaterkitController extends Controller
     public function auth(){
         // return view('/auth/login');
         Session::put('variableName', '2022');
-        Session::put('display', '2022');
+
         if(auth()->user()){
             $breadcrumbs = [
                 ['link' => "home", 'name' => "Home"], ['name' => "Announcement"]

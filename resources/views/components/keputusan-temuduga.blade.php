@@ -89,7 +89,7 @@
              @endphp
                 <tr class="text-center" >
                     <td>{{$count++}}</td>
-                  <td>{{$displayTablee['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($displayTablee['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$displayTablee['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($displayTablee['nric'])}}/{{Crypt::encrypt($displayTablee['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$displayTablee['name']}}</td>
                   
                   <td>{{$displayTablee['state']}}</td>
@@ -153,7 +153,7 @@
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($displayTablee['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($displayTablee['nric'])}}/{{Crypt::encrypt($displayTablee['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('hadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}">Hadir</a>
                   <a class="dropdown-item" href="{{ route('TidakhadirTemuduga', Crypt::encrypt($displayTablee['nric'])) }}">Tidak Hadir</a>     
                   <a class="dropdown-item" href="{{ route('batalTemuduga', Crypt::encrypt($displayTablee['nric'])) }}">Batal</a>               

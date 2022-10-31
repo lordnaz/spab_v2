@@ -137,7 +137,7 @@ $roles = auth()->user()->role;
                 
                   <td>{{Carbon\Carbon::parse($data['created_at'])->format('Y-m-d')}}</td>
                   <td>{{$data['no_siri']}}</td>
-                  <td>{{$data['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($data['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$data['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($data['nric'])}}/{{Crypt::encrypt($data['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$data['name']}}</td>
               <td>{{$data['status_validation']}}</td>
               
@@ -156,7 +156,7 @@ $roles = auth()->user()->role;
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($data['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($data['nric'])}}/{{Crypt::encrypt($data['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('sahkan_permohonan_id', Crypt::encrypt($data['nric'])) }}">Sahkan</a>
                   <a class="dropdown-item" href="{{ route('tolak_permohonan_id', Crypt::encrypt($data['nric'])) }}">Tolak</a>
                   <a class="dropdown-item" href="{{ route('draft_permohonan', Crypt::encrypt($data['nric'])) }}">Draft</a>
@@ -213,7 +213,7 @@ $roles = auth()->user()->role;
                 
                   <td>{{Carbon\Carbon::parse($sahh['created_at'])->format('Y-m-d')}}</td>
                   <td>{{$sahh['no_siri']}}</td>
-                  <td>{{$sahh['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($sahh['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$sahh['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($sahh['nric'])}}/{{Crypt::encrypt($sahh['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$sahh['name']}}</td>
               <td>{{$sahh['status_validation']}}</td>
               
@@ -232,7 +232,7 @@ $roles = auth()->user()->role;
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($sahh['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($sahh['nric'])}}/{{Crypt::encrypt($sahh['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('tolak_permohonan_id', Crypt::encrypt($sahh['nric'])) }}">Tolak</a>
                   <a class="dropdown-item" href="{{ route('batal_permohonan', Crypt::encrypt($sahh['nric'])) }}">Batal</a>
                 </div>
@@ -280,7 +280,7 @@ $roles = auth()->user()->role;
                 
                   <td>{{Carbon\Carbon::parse($tolakk['created_at'])->format('Y-m-d')}}</td>
                   <td>{{$tolakk['no_siri']}}</td>
-                  <td>{{$tolakk['nric']}}&nbsp;<a href="{{ route('butiran', Crypt::encrypt($tolakk['nric'])) }}" class=""> <i data-feather='search'></i></a></td>
+                  <td>{{$tolakk['nric']}}&nbsp;<a href="butiran/{{Crypt::encrypt($tolakk['nric'])}}/{{Crypt::encrypt($tolakk['job_id'])}}" class=""> <i data-feather='search'></i></a></td>
                   <td>{{$tolakk['name']}}</td>
               <td>{{$tolakk['status_validation']}}</td>
               
@@ -299,7 +299,7 @@ $roles = auth()->user()->role;
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="{{ route('butiran', Crypt::encrypt($tolakk['nric'])) }}">Butiran</a>
+                <a class="dropdown-item" href="butiran/{{Crypt::encrypt($tolakk['nric'])}}/{{Crypt::encrypt($tolakk['job_id'])}}">Butiran</a>
                   <a class="dropdown-item" href="{{ route('sahkan_permohonan_id', Crypt::encrypt($tolakk['nric'])) }}">Sahkan</a>
                   <a class="dropdown-item" href="{{ route('batal_permohonan', Crypt::encrypt($tolakk['nric'])) }}">Batal</a>
                 </div>
